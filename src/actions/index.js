@@ -22,6 +22,9 @@ export const SET_BCU_M_BOGIE_DATA = 'SET_BCU_M_BOGIE_DATA';
 export const SET_BCU_T_BOGIE_DATA = 'SET_BCU_T_BOGIE_DATA';
 export const SET_DRIVE_INFO_DATA = 'SET_DRIVE_INFO_DATA';
 
+//DRIVE =======================================================
+export const SET_DRIVE_DATA = 'SET_DRIVE_DATA';
+
 export const setFrontLeftData = (data) => {
   return {
     type: SET_FRONT_LEFT_DATA,
@@ -139,6 +142,12 @@ export const setFrontLaserData = (data) => {
 export const setRearLaserData = (data) => {
   return {
     type: SET_REAR_LASER_DATA,
+    data
+  }
+}
+export const setDriveData = (data) => {
+  return {
+    type: SET_DRIVE_DATA,
     data
   }
 }

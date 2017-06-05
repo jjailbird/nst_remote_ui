@@ -19,7 +19,8 @@ import {
   setBcuTBogieData,
   setDriveInfoData,
   setFrontLaserData,
-  setRearLaserData
+  setRearLaserData,
+  setDriveData
 } from './actions';
 
 import React, { Component } from 'react';
@@ -222,6 +223,19 @@ class App extends Component {
     this.setRearLaserData.rx = 0;
     this.setRearLaserData.ry = 0;
     this.setRearLaserData.g = 0;
+
+    this.setDriveData = {};
+    this.setDriveData.tracBatt = 0;
+    this.setDriveData.contBatt = 0;
+    this.setDriveData.maxInvTemp = 0;
+    this.setDriveData.maxMotorTemp = 0;
+    this.setDriveData.battTemp = 0;
+    this.setDriveData.soc = 0;
+    this.setDriveData.fwd = 0;
+    this.setDriveData.speed = 0;
+    this.setDriveData.position = 0;
+    this.setDriveData.trat = 0;
+    this.setDriveData.brake = 0;
   }
   componentDidMount() {
     this.timer = setInterval(this.thick, 1000 / 30);
@@ -406,6 +420,23 @@ class App extends Component {
     this.setRearLaserData.g = getRandomFloat(-5,5);
 
     dispatch( setRearLaserData(this.setRearLaserData) )
+
+    if (this.setDriveData.speed.length >= 234) {
+      this.setDriveData.speed.shift();
+    }
+
+    this.setDriveData.tracBatt = getRandomFloat(300,900);
+    this.setDriveData.contBatt = getRandomFloat(10,40);
+    this.setDriveData.maxInvTemp = getRandomFloat(0,100);
+    this.setDriveData.maxMotorTemp = getRandomFloat(0,100);
+    this.setDriveData.battTemp = getRandomFloat(0,100);
+    this.setDriveData.soc = getRandomFloat(0,100);
+    this.setDriveData.fwd = getRandomInt(-3,3);
+    this.setDriveData.speed = getRandomFloat(0,60);
+    this.setDriveData.position = getRandomFloat(0,250);
+    //this.setDriveData.trat = getRandomFloat(,);//최대최소값이 없음;;;
+    //this.setDriveData.brake = getRandomFloat(,);
+
   }
   render() {
     return (

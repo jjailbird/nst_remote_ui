@@ -23,6 +23,9 @@ import bcuMBogieData from './bcuMBogieData';
 import bcuMTogieData from './bcuTBogieData';
 import driveInfoData from './driveInfoData';
 
+//DRIVE =======================================================
+import driveData from './driveData';
+
 const reducers = combineReducers({ 
   frontLeftData,
   frontRightData,
@@ -43,7 +46,8 @@ const reducers = combineReducers({
   bcuMTogieData,
   driveInfoData,
   frontLaserData,
-  rearLaserData
+  rearLaserData,
+  driveData
 });
 
 export default reducers;
