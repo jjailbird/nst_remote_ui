@@ -6,6 +6,7 @@ import TestSetupPanelDataContainer from './components/TestSetupPanelDataContaine
 import TestSetupPanelDataContainerDonutChart from './components/TestSetupPanelDataContainerDonutChart';
 import TestSetupGaugeBar from './components/TestSetupGaugeBar';
 import DynamicLineChart2 from './components/DynamicLineChart2';
+import RailroadTrailStartStop from './components/RailroadTrailStartStop';
 
 import { connect } from 'react-redux';
 
@@ -605,7 +606,10 @@ class ViewTestSetupPanel extends Component {
                       height: '193px',
                       marginBottom: '16px'
                     }}
-                  ></div>
+                  >
+                    <h4>VEHICLE POSITION</h4>
+                    <RailroadTrailStartStop start={10} stop={200} value={100} />
+                  </div>
                   <div
                     style={{
                       border: '1px solid rgba(255,255,255,0.3)',

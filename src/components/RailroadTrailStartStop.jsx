@@ -56,10 +56,6 @@ export default class RailroadTrailStartStop extends Component {
   render() {
     return (
       <div>
-        <div>
-          <h4>Rail Test</h4>
-          <span>{this.stopPos.x}</span><span>{this.stopPos.y}</span>
-        </div>
         <svg 
           x="0px" y="0px" width="262.5px" height="111.5px" viewBox="0 0 262.5 111.5"
           enableBackground="new 0 0 262.5 111.5" xmlSpace="preserve"
