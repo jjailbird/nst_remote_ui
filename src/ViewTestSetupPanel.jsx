@@ -850,8 +850,181 @@ class ViewTestSetupPanel extends Component {
                       </div>{/*inputGroup END*/}
                     </div>{/*inputLeftGroup END*/}
                   </div>
-
-                  
+                  <div
+                    style={{
+                      overflow: 'hidden',
+                      borderBottom: '1px solid rgba(255,255,255,0.3)'
+                    }}
+                  >
+                    <div
+                      style={{
+                        float: 'left',
+                        width:'50%',
+                        textAlign: 'center',
+                        padding: '12px',
+                        color: '#fff',
+                        fontWeight: 'bold',
+                        fontSize: '19px',
+                        borderRight: '1px solid rgba(255,255,255,0.3)'
+                      }}
+                    >Manual Drive Setup</div>
+                    <div
+                      style={{
+                        float: 'right',
+                        width:'49%',
+                        textAlign: 'center',
+                        padding: '12px',
+                        color: '#fff',
+                        fontWeight: 'bold',
+                        fontSize: '19px'
+                      }}
+                    >Shunt Drive Setup</div>
+                  </div>
+                  <div
+                    style={{
+                      overflow: 'hidden'
+                    }}
+                  >
+                    <div
+                      style={{
+                        float: 'left',
+                        width:'50%',
+                        textAlign: 'center',
+                        padding: '0px 12px',
+                        color: '#fff',
+                        fontWeight: 'bold',
+                        fontSize: '19px'
+                      }}
+                    >
+                      <div
+                        className="inputGroup"
+                        style={{
+                          overflow: 'hidden',
+                          marginTop: '4px'
+                        }}
+                      >
+                        <div
+                          style={{
+                            float: 'left',
+                            fontSize: '16px',
+                            color: '#fff',
+                            textTransform: 'uppercase',
+                            width: '130px',
+                            padding: '7px 0px 7px 9px',
+                            textAlign: 'left'
+                          }}
+                        >Limit speed</div>
+                        <input
+                          value="0"
+                          style={{
+                            float: 'left',
+                            width: '115px',
+                            background: 'none',
+                            border: '1px solid rgba(255,255,255,0.3)',
+                            color: '#fff',
+                            padding: '7px 5px',
+                            textAlign: 'center',
+                            fontSize: '15px',
+                            marginRight: '5px'
+                          }}
+                        />
+                      </div>{/*inputGroup END*/}
+                    </div>
+                    <div
+                      style={{
+                        float: 'right',
+                        width:'49%',
+                        textAlign: 'center',
+                        padding: '0px 12px',
+                        color: '#fff',
+                        fontWeight: 'bold',
+                        fontSize: '19px'
+                      }}
+                    >
+                      <div
+                        className="inputGroup"
+                        style={{
+                          overflow: 'hidden',
+                          marginTop: '4px'
+                        }}
+                      >
+                        <div
+                          style={{
+                            float: 'left',
+                            fontSize: '16px',
+                            color: '#fff',
+                            textTransform: 'uppercase',
+                            width: '130px',
+                            padding: '7px 0px 7px 9px',
+                            textAlign: 'left'
+                          }}
+                        >Shunt Speed</div>
+                        <input
+                          value="0"
+                          style={{
+                            float: 'left',
+                            width: '115px',
+                            background: 'none',
+                            border: '1px solid rgba(255,255,255,0.3)',
+                            color: '#fff',
+                            padding: '7px 5px',
+                            textAlign: 'center',
+                            fontSize: '15px',
+                            marginRight: '5px'
+                          }}
+                        />
+                      </div>{/*inputGroup END*/}
+                      <div
+                        style={{
+                          overflow: 'hidden',
+                          marginTop: '2px',
+                          paddingRight: '17px'
+                        }}
+                      >
+                        <input
+                          type="button"
+                          value="Default"
+                          style={{
+                            padding: '5px 10px',
+                            border: '1px solid rgba(255,255,255,0.3)',
+                            background: 'rgba(132, 134, 149, 1)',
+                            color: '#000',
+                            fontSize: '14px',
+                            marginRight: '3px',
+                            width: '110px',
+                            fontWeight: 'bold'
+                          }}
+                        />
+                        <input
+                          type="button"
+                          value="INIT"
+                          style={{
+                            padding: '5px 10px',
+                            border: '1px solid rgba(255,255,255,0.3)',
+                            background: 'rgba(132, 134, 149, 1)',
+                            color: '#000',
+                            fontSize: '14px',
+                            marginRight: '3px',
+                            width: '60px',
+                            fontWeight: 'bold'
+                          }}
+                        />
+                        <input
+                          type="button"
+                          value="SET"
+                          style={{
+                            padding: '5px 10px',
+                            border: '1px solid rgba(255,255,255,0.3)',
+                            background: 'rgba(132, 134, 149, 1)',
+                            color: '#000',
+                            fontSize: '14px',
+                            width: '60px',
+                            fontWeight: 'bold'
+                          }}
+                        />
+                      </div>
+                    </div>
+                  </div>
                 </div>
                 <PanelControlButtonsRight />
               </div>
