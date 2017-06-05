@@ -19,7 +19,8 @@ class ViewTestSetupPanel extends Component {
       invTempData,
       bcuMBogieData,
       bcuMTogieData,
-      driveInfoData
+      driveInfoData,
+      motorControlData
     } = this.props;
     return (
 
@@ -607,8 +608,7 @@ class ViewTestSetupPanel extends Component {
                       marginBottom: '16px'
                     }}
                   >
-                    <h4>VEHICLE POSITION</h4>
-                    <RailroadTrailStartStop start={10} stop={200} value={100} />
+                    <RailroadTrailStartStop value={motorControlData.data.position} name="VEHICLE POSITION" unit="m" start={10} stop={200} />
                   </div>
                   <div
                     style={{
@@ -1044,7 +1044,8 @@ function mapStateToProps(state){
       invVoltData: state.invTempData,
       bcuMBogieData: state.bcuMBogieData,
       bcuMTogieData: state.bcuMTogieData,
-      driveInfoData: state.driveInfoData
+      driveInfoData: state.driveInfoData,
+      motorControlData: state.motorControlData
     }
 }
 

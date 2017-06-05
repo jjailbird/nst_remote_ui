@@ -11,6 +11,8 @@ import rearRightMotorData from './rearRightMotorData';
 import motorControlData from './motorControlData';
 import frontWheelsetData from './frontWheelsetData';
 import rearWheelsetData from './rearWheelsetData';
+import frontLaserData from './frontLaserData';
+import rearLaserData from './rearLaserData';
 
 // TEST_SETUP =======================================================
 import bmsSocData from './bmsSocData';
@@ -39,7 +41,9 @@ const reducers = combineReducers({
   invTempData,
   bcuMBogieData,
   bcuMTogieData,
-  driveInfoData
+  driveInfoData,
+  frontLaserData,
+  rearLaserData
 });
 
 export default reducers;

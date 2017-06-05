@@ -645,7 +645,7 @@ ul.setupDescList li{
   padding: 10px 0;
   margin: 0 7px;
 }
-.setupMotorGraphList .motor-temp > span{
+.setupMotorGraphList .motor-temp > span.mTRed{
   color:red;
   font-weight: bold;
   font-size:22px;

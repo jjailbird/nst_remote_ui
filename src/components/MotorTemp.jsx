@@ -13,7 +13,7 @@ export default class MotorTemp extends Component {
     }
     return (
       <div className="motor-temp">
-          Motor Temp <span>{tempValue}</span>℃
+          <span>Motor Temp</span> <span className="mTRed">{tempValue}</span><span>℃</span>
       </div>
     );
   }

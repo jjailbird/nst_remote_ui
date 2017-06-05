@@ -5,6 +5,12 @@ import MotorTemp from './components/MotorTemp';
 import MotorGaugeBar from './components/MotorGaugeBar';
 import PanelControlButtonsLeft from './components/PanelControlButtonsLeft';
 import PanelControlButtonsRight from './components/PanelControlButtonsRight';
+import MotorDonutChart from './components/MotorDonutChart';
+import LaserDonutCircleChart from './components/LaserDonutCircleChart';
+import DonutCircleChart from './components/DonutCircleChart';
+import LaserDonutDigitalChart from './components/LaserDonutDigitalChart';
+import LaserBarChartA from './components/LaserBarChartA'
+import LaserBarChartS from './components/LaserBarChartS'
 
 import { connect } from 'react-redux';
 
@@ -14,7 +20,10 @@ class ViewSetup extends Component {
       frontLeftMotorData,
       frontRightMotorData,
       rearLeftMotorData,
-      rearRightMotorData
+      rearRightMotorData,
+      frontLaserData,
+      rearLaserData,
+      motorControlData
     } = this.props;
     return (
 
@@ -82,36 +91,146 @@ class ViewSetup extends Component {
                     </div>
                     <div className="setPiedata-pieGroups pull-left">
                       <div className="setPiedata-pieGrape pie1">
-                          <img src="img/sample/setupsample2.png"/>
+                        <LaserDonutCircleChart 
+                          data={frontLaserData.data.lx} 
+                          unit="mm" 
+                          name="Laser - X" 
+                          dataName = 'lx'
+                          strokeColor="rgba(44,106,170,0.7)" 
+                          strokeColorLine="rgba(255,255,255,0.2)" 
+                          donutWidth="47" 
+                          donutStrokeWidth="6"
+                          valueFontSize="22px"
+                          valueFontColor="#fff"
+                        />
                       </div>
                       <div className="setPiedata-pieGrape pie2">
-                          <img src="img/sample/setupsample2.png"/>
+                        <LaserDonutCircleChart 
+                          data={frontLaserData.data.ly} 
+                          unit="mm" 
+                          name="Laser - Y" 
+                          dataName = 'ly'
+                          strokeColor="rgba(201,53,53,0.7)" 
+                          strokeColorLine="rgba(255,255,255,0.2)" 
+                          donutWidth="47" 
+                          donutStrokeWidth="6"
+                          valueFontSize="22px"
+                          valueFontColor="#fff"
+                        />
                       </div>
                       <div className="setPiedata-pieGrape pie3">
-                          <img src="img/sample/setupsample2.png"/>
+                        <LaserDonutCircleChart 
+                          data={rearLaserData.data.lx} 
+                          unit="mm" 
+                          name="Laser - X" 
+                          dataName = 'lx'
+                          strokeColor="rgba(44,106,170,0.7)" 
+                          strokeColorLine="rgba(255,255,255,0.2)" 
+                          donutWidth="47" 
+                          donutStrokeWidth="6"
+                          valueFontSize="22px"
+                          valueFontColor="#fff"
+                        />
                       </div>
                       <div className="setPiedata-pieGrape pie4">
-                          <img src="img/sample/setupsample2.png"/>
+                        <LaserDonutCircleChart 
+                          data={rearLaserData.data.ly} 
+                          unit="mm" 
+                          name="Laser - Y" 
+                          dataName = 'ly'
+                          strokeColor="rgba(201,53,53,0.7)" 
+                          strokeColorLine="rgba(255,255,255,0.2)" 
+                          donutWidth="47" 
+                          donutStrokeWidth="6"
+                          valueFontSize="22px"
+                          valueFontColor="#fff"
+                        />
                       </div>
-                      <div className="setPiedata-pieGrape pieCenter">
-                          <img src="img/sample/setupsample3.png"/>
+                      <div className="setPiedata-pieGrape pieCenter">         
+                        <LaserDonutDigitalChart 
+                          data={frontLaserData.data.g} 
+                          unit="°" 
+                          name="GYRO - Z" 
+                          dataName="frontG"
+                          strokeColor="rgba(137,182,89,1)" 
+                          strokeColorLine="rgba(137,182,89,0.3)" 
+                          donutWidth="112" 
+                          donutStrokeWidth="10"
+                          valueFontSize="35px"
+                          valueFontColor="#fff"
+                        />
                       </div>
                     </div>
                     <div className="setPiedata-pieGroups pull-right">
                       <div className="setPiedata-pieGrape pie1">
-                          <img src="img/sample/setupsample2.png"/>
+                        <LaserDonutCircleChart 
+                          data={frontLaserData.data.rx} 
+                          unit="mm" 
+                          name="Laser - X" 
+                          dataName = 'rx'
+                          strokeColor="rgba(44,106,170,0.7)" 
+                          strokeColorLine="rgba(255,255,255,0.2)" 
+                          donutWidth="47" 
+                          donutStrokeWidth="6"
+                          valueFontSize="22px"
+                          valueFontColor="#fff"
+                        />
                       </div>
                       <div className="setPiedata-pieGrape pie2">
-                          <img src="img/sample/setupsample2.png"/>
+                        <LaserDonutCircleChart 
+                          data={frontLaserData.data.ry} 
+                          unit="mm" 
+                          name="Laser - Y" 
+                          dataName = 'ry'
+                          strokeColor="rgba(201,53,53,0.7)" 
+                          strokeColorLine="rgba(255,255,255,0.2)" 
+                          donutWidth="47" 
+                          donutStrokeWidth="6"
+                          valueFontSize="22px"
+                          valueFontColor="#fff"
+                        />
                       </div>
                       <div className="setPiedata-pieGrape pie3">
-                          <img src="img/sample/setupsample2.png"/>
+                        <LaserDonutCircleChart 
+                          data={rearLaserData.data.rx} 
+                          unit="mm" 
+                          name="Laser - X" 
+                          dataName = 'rx'
+                          strokeColor="rgba(44,106,170,0.7)" 
+                          strokeColorLine="rgba(255,255,255,0.2)" 
+                          donutWidth="47" 
+                          donutStrokeWidth="6"
+                          valueFontSize="22px"
+                          valueFontColor="#fff"
+                        />
                       </div>
                       <div className="setPiedata-pieGrape pie4">
-                          <img src="img/sample/setupsample2.png"/>
+                        <LaserDonutCircleChart 
+                          data={rearLaserData.data.ry} 
+                          unit="mm" 
+                          name="Laser - Y" 
+                          dataName = 'ry'
+                          strokeColor="rgba(201,53,53,0.7)" 
+                          strokeColorLine="rgba(255,255,255,0.2)" 
+                          donutWidth="47" 
+                          donutStrokeWidth="6"
+                          valueFontSize="22px"
+                          valueFontColor="#fff"
+                        />
                       </div>
                       <div className="setPiedata-pieGrape pieCenter">
-                          <img src="img/sample/setupsample3.png"/>
+                        <LaserDonutDigitalChart 
+                          data={rearLaserData.data.g} 
+                          unit="°" 
+                          name="GYRO - Z" 
+                          dataName="rearG"
+                          strokeColor="rgba(137,182,89,1)" 
+                          strokeColorLine="rgba(137,182,89,0.3)" 
+                          donutWidth="112" 
+                          donutStrokeWidth="10"
+                          valueFontSize="35px"
+                          valueFontColor="#fff"
+                        />
                       </div>
                     </div>
                   </div>
@@ -215,15 +334,45 @@ class ViewSetup extends Component {
                     <div className="setupMotorGraph pull-left">
                       <div className="setupMotorGraphList">
                         <div className="pie-graph pull-left">
-                          <img src="img/sample/setup-piegraph1.png"/>
+                          <MotorDonutChart 
+                            data={frontLeftMotorData.data.a} 
+                            unit="A" 
+                            name="A-cur" 
+                            strokeColor="#fff" 
+                            strokeColorLine="rgba(255,255,255,0.3)" 
+                            donutWidth="48" 
+                            donutStrokeWidth="6"
+                            valueFontSize="35px"
+                            valueFontColor="#fff"
+                          />
                         </div>
                         <div className="pie-graph pull-left">
-                          <img src="img/sample/setup-piegraph1.png"/>
+                          <MotorDonutChart 
+                            data={frontLeftMotorData.data.b} 
+                            unit="A" 
+                            name="B-cur" 
+                            strokeColor="#fff" 
+                            strokeColorLine="rgba(255,255,255,0.3)" 
+                            donutWidth="48" 
+                            donutStrokeWidth="6"
+                            valueFontSize="35px"
+                            valueFontColor="#fff"
+                          />
                         </div>
                         <div className="pie-graph pull-left">
-                          <img src="img/sample/setup-piegraph1.png"/>
+                          <MotorDonutChart 
+                            data={frontLeftMotorData.data.c} 
+                            unit="A" 
+                            name="C-cur" 
+                            strokeColor="#fff" 
+                            strokeColorLine="rgba(255,255,255,0.3)" 
+                            donutWidth="48" 
+                            donutStrokeWidth="6"
+                            valueFontSize="35px"
+                            valueFontColor="#fff"
+                          />
                         </div>
-                      </div>
+                      </div>{/*setupMotorGraphList END*/}
                       <div className="setupMotorGraphList">
                         <MotorTemp data={frontLeftMotorData.data.temp}/>
                       </div>
@@ -249,15 +398,45 @@ class ViewSetup extends Component {
                     <div className="setupMotorGraph pull-left">
                       <div className="setupMotorGraphList">
                         <div className="pie-graph pull-left">
-                          <img src="img/sample/setup-piegraph1.png"/>
+                          <MotorDonutChart 
+                            data={frontRightMotorData.data.a} 
+                            unit="A" 
+                            name="A-cur" 
+                            strokeColor="#fff" 
+                            strokeColorLine="rgba(255,255,255,0.3)" 
+                            donutWidth="48" 
+                            donutStrokeWidth="6"
+                            valueFontSize="35px"
+                            valueFontColor="#fff"
+                          />
                         </div>
                         <div className="pie-graph pull-left">
-                          <img src="img/sample/setup-piegraph1.png"/>
+                          <MotorDonutChart 
+                            data={frontRightMotorData.data.b} 
+                            unit="A" 
+                            name="B-cur" 
+                            strokeColor="#fff" 
+                            strokeColorLine="rgba(255,255,255,0.3)" 
+                            donutWidth="48" 
+                            donutStrokeWidth="6"
+                            valueFontSize="35px"
+                            valueFontColor="#fff"
+                          />
                         </div>
                         <div className="pie-graph pull-left">
-                          <img src="img/sample/setup-piegraph1.png"/>
+                          <MotorDonutChart 
+                            data={frontRightMotorData.data.c} 
+                            unit="A" 
+                            name="C-cur" 
+                            strokeColor="#fff" 
+                            strokeColorLine="rgba(255,255,255,0.3)" 
+                            donutWidth="48" 
+                            donutStrokeWidth="6"
+                            valueFontSize="35px"
+                            valueFontColor="#fff"
+                          />
                         </div>
-                      </div>
+                      </div>{/*setupMotorGraphList END*/}
                       <div className="setupMotorGraphList">
                         <MotorTemp data={frontRightMotorData.data.temp}/>
                       </div>
@@ -285,15 +464,45 @@ class ViewSetup extends Component {
                     <div className="setupMotorGraph pull-left">
                       <div className="setupMotorGraphList">
                         <div className="pie-graph pull-left">
-                          <img src="img/sample/setup-piegraph1.png"/>
+                          <MotorDonutChart 
+                            data={rearLeftMotorData.data.a} 
+                            unit="A" 
+                            name="A-cur" 
+                            strokeColor="#fff" 
+                            strokeColorLine="rgba(255,255,255,0.3)" 
+                            donutWidth="48" 
+                            donutStrokeWidth="6"
+                            valueFontSize="35px"
+                            valueFontColor="#fff"
+                          />
                         </div>
                         <div className="pie-graph pull-left">
-                          <img src="img/sample/setup-piegraph1.png"/>
+                          <MotorDonutChart 
+                            data={rearLeftMotorData.data.b} 
+                            unit="A" 
+                            name="B-cur" 
+                            strokeColor="#fff" 
+                            strokeColorLine="rgba(255,255,255,0.3)" 
+                            donutWidth="48" 
+                            donutStrokeWidth="6"
+                            valueFontSize="35px"
+                            valueFontColor="#fff"
+                          />
                         </div>
                         <div className="pie-graph pull-left">
-                          <img src="img/sample/setup-piegraph1.png"/>
+                          <MotorDonutChart 
+                            data={rearLeftMotorData.data.c} 
+                            unit="A" 
+                            name="C-cur" 
+                            strokeColor="#fff" 
+                            strokeColorLine="rgba(255,255,255,0.3)" 
+                            donutWidth="48" 
+                            donutStrokeWidth="6"
+                            valueFontSize="35px"
+                            valueFontColor="#fff"
+                          />
                         </div>
-                      </div>
+                      </div>{/*setupMotorGraphList END*/}
                       <div className="setupMotorGraphList">
                         <MotorTemp data={rearLeftMotorData.data.temp}/>
                       </div>
@@ -319,15 +528,45 @@ class ViewSetup extends Component {
                     <div className="setupMotorGraph pull-left">
                       <div className="setupMotorGraphList">
                         <div className="pie-graph pull-left">
-                          <img src="img/sample/setup-piegraph1.png"/>
+                          <MotorDonutChart 
+                            data={rearRightMotorData.data.a} 
+                            unit="A" 
+                            name="A-cur" 
+                            strokeColor="#fff" 
+                            strokeColorLine="rgba(255,255,255,0.3)" 
+                            donutWidth="48" 
+                            donutStrokeWidth="6"
+                            valueFontSize="35px"
+                            valueFontColor="#fff"
+                          />
                         </div>
                         <div className="pie-graph pull-left">
-                          <img src="img/sample/setup-piegraph1.png"/>
+                          <MotorDonutChart 
+                            data={rearRightMotorData.data.b} 
+                            unit="A" 
+                            name="B-cur" 
+                            strokeColor="#fff" 
+                            strokeColorLine="rgba(255,255,255,0.3)" 
+                            donutWidth="48" 
+                            donutStrokeWidth="6"
+                            valueFontSize="35px"
+                            valueFontColor="#fff"
+                          />
                         </div>
                         <div className="pie-graph pull-left">
-                          <img src="img/sample/setup-piegraph1.png"/>
+                          <MotorDonutChart 
+                            data={rearRightMotorData.data.c} 
+                            unit="A" 
+                            name="C-cur" 
+                            strokeColor="#fff" 
+                            strokeColorLine="rgba(255,255,255,0.3)" 
+                            donutWidth="48" 
+                            donutStrokeWidth="6"
+                            valueFontSize="35px"
+                            valueFontColor="#fff"
+                          />
                         </div>
-                      </div>
+                      </div>{/*setupMotorGraphList END*/}
                       <div className="setupMotorGraphList">
                         <MotorTemp data={rearRightMotorData.data.temp}/>
                       </div>
@@ -356,46 +595,17 @@ class ViewSetup extends Component {
                       <div className="axleTitle">left laser sensor</div>
                       <div className="axleGraphBox">
                         <div className="axleGraphBoxGroup">
-                          <div className="axleGraphBoxBarGraph">
-                            <div className="BarGraphTitle">A</div>
-                            <div className="BarGraphOutLine">
-                              <div className="BarGraphFill" style={{height: '30%'}}></div>
-                            </div>
-                          </div>
-                          <div className="axleGraphBoxBarGraph">
-                            <div className="BarGraphTitle">S</div>
-                            <div className="BarGraphOutLine">
-                              <div className="BarGraphFill" style={{height: '30%'}}></div>
-                            </div>
-                          </div>
+                          <LaserBarChartA data={frontLaserData.data.lx} dataName="lx" barColor="rgba(44,106,170,0.7)" />
+                          <LaserBarChartS fillHeight={5} dataName="lx" barColor="rgba(44,106,170,0.7)" />
+                          {/*세팅값을 입력하면 고정되는 구조인지?고정값이면 구체적 수치입력방법(=5.5)vs퍼센트입력방법(=55) 현재는 수치입력으로 해놓음*/}
                         </div>
                         <div className="axleGraphBoxGroup">
-                          <div className="axleGraphBoxBarGraph">
-                            <div className="BarGraphTitle">A</div>
-                            <div className="BarGraphOutLine">
-                              <div className="BarGraphFill" style={{height: '30%'}}></div>
-                            </div>
-                          </div>
-                          <div className="axleGraphBoxBarGraph">
-                            <div className="BarGraphTitle">S</div>
-                            <div className="BarGraphOutLine">
-                              <div className="BarGraphFill" style={{height: '30%'}}></div>
-                            </div>
-                          </div>
+                          <LaserBarChartA data={frontLaserData.data.lx} dataName="lx" barColor="rgba(44,106,170,0.7)" />
+                          <LaserBarChartS fillHeight={5} dataName="lx" barColor="rgba(44,106,170,0.7)" />
                         </div>
                         <div className="axleGraphBoxGroup">
-                          <div className="axleGraphBoxBarGraph">
-                            <div className="BarGraphTitle">A</div>
-                            <div className="BarGraphOutLine">
-                              <div className="BarGraphFill bgColorRed" style={{height: '30%'}}></div>
-                            </div>
-                          </div>
-                          <div className="axleGraphBoxBarGraph">
-                            <div className="BarGraphTitle">S</div>
-                            <div className="BarGraphOutLine">
-                              <div className="BarGraphFill bgColorRed" style={{height: '70%'}}></div>
-                            </div>
-                          </div>
+                          <LaserBarChartA data={frontLaserData.data.ly} dataName="ly" barColor="rgba(201,53,53,0.7)" />
+                          <LaserBarChartS fillHeight={5} dataName="ly" barColor="rgba(201,53,53,0.7)" />
                         </div>
                       </div>
                     </div>
@@ -403,46 +613,16 @@ class ViewSetup extends Component {
                       <div className="axleTitle">right laser sensor</div>
                       <div className="axleGraphBox">
                         <div className="axleGraphBoxGroup">
-                          <div className="axleGraphBoxBarGraph">
-                            <div className="BarGraphTitle">A</div>
-                            <div className="BarGraphOutLine">
-                              <div className="BarGraphFill" style={{height: '30%'}}></div>
-                            </div>
-                          </div>
-                          <div className="axleGraphBoxBarGraph">
-                            <div className="BarGraphTitle">S</div>
-                            <div className="BarGraphOutLine">
-                              <div className="BarGraphFill" style={{height: '70%'}}></div>
-                            </div>
-                          </div>
+                          <LaserBarChartA data={frontLaserData.data.rx} dataName="rx" barColor="rgba(44,106,170,0.7)" />
+                          <LaserBarChartS fillHeight={5} dataName="rx" barColor="rgba(44,106,170,0.7)" />
                         </div>
                         <div className="axleGraphBoxGroup">
-                          <div className="axleGraphBoxBarGraph">
-                            <div className="BarGraphTitle">A</div>
-                            <div className="BarGraphOutLine">
-                              <div className="BarGraphFill" style={{height: '30%'}}></div>
-                            </div>
-                          </div>
-                          <div className="axleGraphBoxBarGraph">
-                            <div className="BarGraphTitle">S</div>
-                            <div className="BarGraphOutLine">
-                              <div className="BarGraphFill" style={{height: '70%'}}></div>
-                            </div>
-                          </div>
+                          <LaserBarChartA data={frontLaserData.data.rx} dataName="rx" barColor="rgba(44,106,170,0.7)" />
+                          <LaserBarChartS fillHeight={5} dataName="rx" barColor="rgba(44,106,170,0.7)" />
                         </div>
                         <div className="axleGraphBoxGroup">
-                          <div className="axleGraphBoxBarGraph">
-                            <div className="BarGraphTitle">A</div>
-                            <div className="BarGraphOutLine">
-                              <div className="BarGraphFill bgColorRed" style={{height: '30%'}}></div>
-                            </div>
-                          </div>
-                          <div className="axleGraphBoxBarGraph">
-                            <div className="BarGraphTitle">S</div>
-                            <div className="BarGraphOutLine">
-                              <div className="BarGraphFill bgColorRed" style={{height: '70%'}}></div>
-                            </div>
-                          </div>
+                          <LaserBarChartA data={frontLaserData.data.ry} dataName="ry" barColor="rgba(201,53,53,0.7)" />
+                          <LaserBarChartS fillHeight={5} dataName="ry" barColor="rgba(201,53,53,0.7)" />
                         </div>
                       </div>
                     </div>
@@ -450,18 +630,8 @@ class ViewSetup extends Component {
                       <div className="axleTitle">gyro</div>
                       <div className="axleGraphBox">
                         <div className="axleGraphBoxGroup">
-                          <div className="axleGraphBoxBarGraph">
-                            <div className="BarGraphTitle">A</div>
-                            <div className="BarGraphOutLine">
-                              <div className="BarGraphFill bgColorGreen" style={{height: '30%'}}></div>
-                            </div>
-                          </div>
-                          <div className="axleGraphBoxBarGraph">
-                            <div className="BarGraphTitle">S</div>
-                            <div className="BarGraphOutLine">
-                              <div className="BarGraphFill bgColorGreen" style={{height: '70%'}}></div>
-                            </div>
-                          </div>
+                          <LaserBarChartA data={frontLaserData.data.g} dataName="g" barColor="rgba(137,182,89,1)" />
+                          <LaserBarChartS fillHeight={3} dataName="g" barColor="rgba(137,182,89,1)" />
                         </div>
                       </div>
                     </div>
@@ -472,7 +642,7 @@ class ViewSetup extends Component {
                     sensor set up rear axle
                     <span><small>
                       A : Absolute Value<br />
-                      R : Set Value
+                      S : Set Value
                     </small></span>
                   </div>
                   <div className="setupBoxCon">
@@ -480,46 +650,16 @@ class ViewSetup extends Component {
                       <div className="axleTitle">left laser sensor</div>
                       <div className="axleGraphBox">
                         <div className="axleGraphBoxGroup">
-                          <div className="axleGraphBoxBarGraph">
-                            <div className="BarGraphTitle">A</div>
-                            <div className="BarGraphOutLine">
-                              <div className="BarGraphFill" style={{height: '30%'}}></div>
-                            </div>
-                          </div>
-                          <div className="axleGraphBoxBarGraph">
-                            <div className="BarGraphTitle">S</div>
-                            <div className="BarGraphOutLine">
-                              <div className="BarGraphFill" style={{height: '70%'}}></div>
-                            </div>
-                          </div>
+                          <LaserBarChartA data={rearLaserData.data.lx} dataName="lx" barColor="rgba(44,106,170,0.7)" />
+                          <LaserBarChartS fillHeight={5} dataName="lx" barColor="rgba(44,106,170,0.7)" />
                         </div>
                         <div className="axleGraphBoxGroup">
-                          <div className="axleGraphBoxBarGraph">
-                            <div className="BarGraphTitle">A</div>
-                            <div className="BarGraphOutLine">
-                              <div className="BarGraphFill" style={{height: '30%'}}></div>
-                            </div>
-                          </div>
-                          <div className="axleGraphBoxBarGraph">
-                            <div className="BarGraphTitle">S</div>
-                            <div className="BarGraphOutLine">
-                              <div className="BarGraphFill" style={{height: '70%'}}></div>
-                            </div>
-                          </div>
+                          <LaserBarChartA data={rearLaserData.data.lx} dataName="lx" barColor="rgba(44,106,170,0.7)" />
+                          <LaserBarChartS fillHeight={5} dataName="lx" barColor="rgba(44,106,170,0.7)" />
                         </div>
                         <div className="axleGraphBoxGroup">
-                          <div className="axleGraphBoxBarGraph">
-                            <div className="BarGraphTitle">A</div>
-                            <div className="BarGraphOutLine">
-                              <div className="BarGraphFill bgColorRed" style={{height: '30%'}}></div>
-                            </div>
-                          </div>
-                          <div className="axleGraphBoxBarGraph">
-                            <div className="BarGraphTitle">S</div>
-                            <div className="BarGraphOutLine">
-                              <div className="BarGraphFill bgColorRed" style={{height: '70%'}}></div>
-                            </div>
-                          </div>
+                          <LaserBarChartA data={rearLaserData.data.ly} dataName="ly" barColor="rgba(201,53,53,0.7)" />
+                          <LaserBarChartS fillHeight={5} dataName="ly" barColor="rgba(201,53,53,0.7)" />
                         </div>
                       </div>
                     </div>
@@ -527,46 +667,16 @@ class ViewSetup extends Component {
                       <div className="axleTitle">right laser sensor</div>
                       <div className="axleGraphBox">
                         <div className="axleGraphBoxGroup">
-                          <div className="axleGraphBoxBarGraph">
-                            <div className="BarGraphTitle">A</div>
-                            <div className="BarGraphOutLine">
-                              <div className="BarGraphFill" style={{height: '30%'}}></div>
-                            </div>
-                          </div>
-                          <div className="axleGraphBoxBarGraph">
-                            <div className="BarGraphTitle">S</div>
-                            <div className="BarGraphOutLine">
-                              <div className="BarGraphFill" style={{height: '70%'}}></div>
-                            </div>
-                          </div>
+                          <LaserBarChartA data={rearLaserData.data.rx} dataName="lx" barColor="rgba(44,106,170,0.7)" />
+                          <LaserBarChartS fillHeight={5} dataName="rx" barColor="rgba(44,106,170,0.7)" />
                         </div>
                         <div className="axleGraphBoxGroup">
-                          <div className="axleGraphBoxBarGraph">
-                            <div className="BarGraphTitle">A</div>
-                            <div className="BarGraphOutLine">
-                              <div className="BarGraphFill" style={{height: '30%'}}></div>
-                            </div>
-                          </div>
-                          <div className="axleGraphBoxBarGraph">
-                            <div className="BarGraphTitle">S</div>
-                            <div className="BarGraphOutLine">
-                              <div className="BarGraphFill" style={{height: '70%'}}></div>
-                            </div>
-                          </div>
+                          <LaserBarChartA data={rearLaserData.data.rx} dataName="lx" barColor="rgba(44,106,170,0.7)" />
+                          <LaserBarChartS fillHeight={5} dataName="rx" barColor="rgba(44,106,170,0.7)" />
                         </div>
                         <div className="axleGraphBoxGroup">
-                          <div className="axleGraphBoxBarGraph">
-                            <div className="BarGraphTitle">A</div>
-                            <div className="BarGraphOutLine">
-                              <div className="BarGraphFill bgColorRed" style={{height: '30%'}}></div>
-                            </div>
-                          </div>
-                          <div className="axleGraphBoxBarGraph">
-                            <div className="BarGraphTitle">S</div>
-                            <div className="BarGraphOutLine">
-                              <div className="BarGraphFill bgColorRed" style={{height: '70%'}}></div>
-                            </div>
-                          </div>
+                          <LaserBarChartA data={rearLaserData.data.ry} dataName="ly" barColor="rgba(201,53,53,0.7)" />
+                          <LaserBarChartS fillHeight={5} dataName="ry" barColor="rgba(201,53,53,0.7)" />
                         </div>
                       </div>
                     </div>
@@ -574,18 +684,8 @@ class ViewSetup extends Component {
                       <div className="axleTitle">gyro</div>
                       <div className="axleGraphBox">
                         <div className="axleGraphBoxGroup">
-                          <div className="axleGraphBoxBarGraph">
-                            <div className="BarGraphTitle">A</div>
-                            <div className="BarGraphOutLine">
-                              <div className="BarGraphFill bgColorGreen" style={{height: '30%'}}></div>
-                            </div>
-                          </div>
-                          <div className="axleGraphBoxBarGraph">
-                            <div className="BarGraphTitle">S</div>
-                            <div className="BarGraphOutLine">
-                              <div className="BarGraphFill bgColorGreen" style={{height: '70%'}}></div>
-                            </div>
-                          </div>
+                          <LaserBarChartA data={rearLaserData.data.g} dataName="g" barColor="rgba(137,182,89,1)" />
+                          <LaserBarChartS fillHeight={3} dataName="g" barColor="rgba(137,182,89,1)" />
                         </div>
                       </div>
                     </div>
@@ -612,7 +712,10 @@ function mapStateToProps(state){
       frontLeftMotorData: state.frontLeftMotorData,
       frontRightMotorData: state.frontRightMotorData,
       rearLeftMotorData: state.rearLeftMotorData,
-      rearRightMotorData: state.rearRightMotorData
+      rearRightMotorData: state.rearRightMotorData,
+      frontLaserData: state.frontLaserData,
+      rearLaserData: state.rearLaserData,
+      motorControlData: state.motorControlData
     }
 }
 

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { isFloat } from '../utils/functions';
 
 export default class RailroadTrailStartStop extends Component {
   constructor(props) {
@@ -53,9 +54,43 @@ export default class RailroadTrailStartStop extends Component {
     this.moveStartPoint(this.props.start);
     this.moveStopPoint(this.props.stop);
   }
-  render() {
+  render() {    
+    const {value, name, unit ,start, stop} = this.props;//stop 포인트위치부터 circle위치까지의 거리 값을 넣어야 할거같은데;;; 잘 모르겠네요
+    const changePosition = value - stop;//<----틀린듯.ㅜㅜ
+    const valueDisplay = isFloat(value) ? changePosition.toFixed(2) : changePosition;
     return (
       <div>
+        <div
+          className="lineGraphTitle"
+          style={{
+            overflow: 'hidden',
+            width: '100%',
+            padding: '5px 7px',
+            marginBottom: '5px'
+          }}
+        >
+          <div
+            style={{
+              width: '150px',
+              padding: '8px 7px',
+              float: 'left',
+              textTransform: 'uppercase',
+              fontSize: '14px',
+              fontWeight: 'bold'
+            }}
+          >{name}</div>
+          <div
+            style={{
+              float: 'right',
+              width: '105px',
+              padding :'8px 10px',
+              background: 'rgb(132, 134, 149)',
+              color: '#000',
+              fontWeight: 'bold',
+              textAlign: 'center'
+            }}
+          >{valueDisplay} <small>{unit}</small></div>
+        </div>
         <svg 
           x="0px" y="0px" width="262.5px" height="111.5px" viewBox="0 0 262.5 111.5"
           enableBackground="new 0 0 262.5 111.5" xmlSpace="preserve"

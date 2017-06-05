@@ -17,7 +17,9 @@ import {
   setInvTempData,
   setBcuMBogieData,
   setBcuTBogieData,
-  setDriveInfoData
+  setDriveInfoData,
+  setFrontLaserData,
+  setRearLaserData
 } from './actions';
 
 import React, { Component } from 'react';
@@ -206,6 +208,20 @@ class App extends Component {
     this.setDriveInfoData.soc = 0;
     this.setDriveInfoData.tract = 0;
     this.setDriveInfoData.brake = 0;
+
+    this.setFrontLaserData = {};
+    this.setFrontLaserData.lx = 0;
+    this.setFrontLaserData.ly = 0;
+    this.setFrontLaserData.rx = 0;
+    this.setFrontLaserData.ry = 0;
+    this.setFrontLaserData.g = 0;
+
+    this.setRearLaserData = {};
+    this.setRearLaserData.lx = 0;
+    this.setRearLaserData.ly = 0;
+    this.setRearLaserData.rx = 0;
+    this.setRearLaserData.ry = 0;
+    this.setRearLaserData.g = 0;
   }
   componentDidMount() {
     this.timer = setInterval(this.thick, 1000 / 30);
@@ -374,6 +390,22 @@ class App extends Component {
     this.setDriveInfoData.brake = getRandomFloat(0,10);
 
     dispatch( setDriveInfoData(this.setDriveInfoData) )
+
+    this.setFrontLaserData.lx = getRandomFloat(-10,10);
+    this.setFrontLaserData.ly = getRandomFloat(-10,10);
+    this.setFrontLaserData.rx = getRandomFloat(-10,10);
+    this.setFrontLaserData.ry = getRandomFloat(-10,10);
+    this.setFrontLaserData.g = getRandomFloat(-5,5);
+
+    dispatch( setFrontLaserData(this.setFrontLaserData) )
+
+    this.setRearLaserData.lx = getRandomFloat(-10,10);
+    this.setRearLaserData.ly = getRandomFloat(-10,10);
+    this.setRearLaserData.rx = getRandomFloat(-10,10);
+    this.setRearLaserData.ry = getRandomFloat(-10,10);
+    this.setRearLaserData.g = getRandomFloat(-5,5);
+
+    dispatch( setRearLaserData(this.setRearLaserData) )
   }
   render() {
     return (
