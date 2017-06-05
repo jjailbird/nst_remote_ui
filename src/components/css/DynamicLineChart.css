@@ -1,0 +1,35 @@
+.dlcBox{
+    overflow:hidden;
+    margin-top:0px;
+    display: inline-block;
+}
+.dlcBox:first-child{
+    margin-top:5px;
+}
+.dynamic-line-chart{
+    background:url(/img/dynamiclinechart-bg.png);
+    background-size:cover;
+    background-position:center;
+
+}
+.dynamic-line-chart polyline{    
+}
+.lineGraphTitle{
+    width:120px;
+    float:left;
+    color:#fff;
+}
+.lineGraphTitle h5{
+    font-size:12px;
+    text-transform: uppercase;
+}
+.lineGraphTitle p{
+    font-size: 16px;
+}
+.lineGraphTitle p small{
+    font-size: 12px;
+}
+.lineGraphChart{
+    width:292px;
+    float:right;
+}

@@ -1,0 +1,8 @@
+.conBoxAreaBtnBox.cbabbLeft a{
+  background:rgba(0,0,0,0.7);
+  border: 1px solid rgba(255,255,255,0.4);
+  padding:9px 15px 8px;
+  display: inline-block;
+  font-size:16px;
+  margin-right:8px;
+}

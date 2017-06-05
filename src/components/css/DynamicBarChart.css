@@ -1,0 +1,31 @@
+.dbcBox{
+    overflow:hidden;
+    margin-top:8px;
+    display: inline-block;
+    color:#fff;
+}
+.dbcBox:first-child{
+    margin-top:10px;
+}
+.dbcBox .barGraphBox{
+    width:315px;
+    float:left;
+}
+.dbcBox .barGraphBox h5{
+    font-size:12px;
+    text-transform: uppercase;
+    margin-bottom:2px;
+}
+.dbcBox .barGraphBox .barGraphBar{
+    height:10px;
+}
+.dbcBox .barGraphDataBox{
+    float:right;
+    width:80px;
+    text-align: right;
+    font-size: 16px;
+    margin-top:5px;
+}
+.dbcBox .barGraphDataBox small{
+    font-size: 12px;
+}

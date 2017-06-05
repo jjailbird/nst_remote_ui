@@ -1,0 +1,21 @@
+.bar-graph-title{
+  font-size:11px;
+  margin-bottom:3px;
+  color:#fff;
+  text-transform: uppercase;
+}
+.bar-graph-title small{
+  text-transform: capitalize;
+}
+.barBox{
+  border:1px solid rgba(255,255,255,0.4);
+  padding: 2px;
+  height: 150px;
+  position: relative;
+}
+.barBox .barFill{
+  position: absolute;
+  height:50%;
+  bottom:2px;
+  left:2px;
+}
