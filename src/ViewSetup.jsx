@@ -27,24 +27,6 @@ class ViewSetup extends Component {
     } = this.props;
     return (
         <div className="contBox">
-        {/*--------------------------------------삭제---------------------------------------------*/}
-        <div
-          style={{
-            width:'500px',
-            position: 'absolute',
-            left: '0px',
-            top: '0px',
-            zIndex: '9999',
-            background: 'rgba(0,0,0,1)',
-            color: '#fff',
-            padding: '10px'
-          }}
-        >
-          좌측 두번째 영역에 탭메뉴아직 못했습니다.<br />좌측 두번째 영역녹색 그래프에 대쉬를 넣어야하는데 못넣었습니다.해매다가 시간을 너무 잡아먹어서 우선 모양만 만들어 왔습니다.<br/>
-          데이타는 전부 만들어놨습니다.엑셀기준으로 드라이브 데이타도 만들었는데 맨끝데이터에 최대 최소값이 없어서 주석처리해놨습니다.<br/>
-          지금시각이 6시인데 좀 자고 오후에 나갈께요 일어나는데로 전화할께요~
-        </div>
-        {/*--------------------------------------삭제---------------------------------------------*/}
           <div className="headArea">
             <div className="headLeft pull-left">
               <img src="img/titlev1-setup.png" />
