@@ -1,3 +1,4 @@
+import Websocket from 'react-websocket';
 import { connect } from 'react-redux';
 import { 
   setFrontLeftData,
@@ -20,7 +21,8 @@ import {
   setDriveInfoData,
   setFrontLaserData,
   setRearLaserData,
-  setDriveData
+  setDriveData,
+  setItcTestData,
 } from './actions';
 
 import React, { Component } from 'react';
@@ -54,46 +56,15 @@ import ViewTest from './ViewTest';
 import ViewTest2 from './ViewTest2';
 import ViewTestSetupPanel from './ViewTestSetupPanel';
 
-/*
-const Topic = ({ match }) => (
-  <div>
-    <h3>{match.params.topicId}</h3>
-  </div>
-);
-
-const Topics = ({ match }) => (
-  <div>
-    <h2>Topics</h2>
-    <ul>
-      <li>
-        <NavLink to={`${match.url}/rendering`}>
-          Rendering with React
-        </NavLink>
-      </li>
-      <li>
-        <NavLink to={`${match.url}/components`}>
-          Components
-        </NavLink>
-      </li>
-      <li>
-        <NavLink to={`${match.url}/props-v-state`}>
-          Props v. State
-        </NavLink>
-      </li>
-    </ul>
-
-    <Route path={`${match.url}/:topicId`} component={Topic}/>
-    <Route exact path={match.url} render={() => (
-      <h3>Please select a topic.</h3>
-    )}/>
-  </div>
-);
-*/
 
 class App extends Component {
   constructor(props) {
     super(props);
+    this.worker = null;
+    this.hostname = window.location.hostname;
+    this.handleData = this.handleData.bind(this);
     this.thick = this.thick.bind(this);
+    
     this.frontLeftData = {};
     this.frontLeftData.latDistance = [];
     this.frontLeftData.yawAngle = [];
@@ -236,9 +207,97 @@ class App extends Component {
     this.setDriveData.position = 0;
     this.setDriveData.trat = 0;
     this.setDriveData.brake = 0;
+
+    this.currentData = null;
   }
   componentDidMount() {
-    this.timer = setInterval(this.thick, 1000 / 30);
+     // this.timer = setInterval(this.thick, 1000 / 30);
+    this.socket = new WebSocket('ws://localhost:8181/');
+    this.socket.onmessage = e => {
+      var json = JSON.parse(e.data);
+      this.handleData(json);
+      // this.currentData = json;
+      // setTimeout(this.handleData, 10);
+    } 
+
+  }
+  testConsole(data) {
+    console.log('testConsole:', data);
+  }
+
+  handleData(json) {
+    // const json = this.currentData;
+    const { dispatch } = this.props;
+    // const json = JSON.parse(data);
+    // console.log('webSocket Received:', json);
+   
+    if (json.FrontLeft) {
+      if (this.frontLeftData.latDistance.length >= 292) {
+        this.frontLeftData.latDistance.shift();
+        this.frontLeftData.yawAngle.shift();
+        this.frontLeftData.motorTorque.shift();
+        this.frontLeftData.motorSpeed.shift();
+      }
+      this.frontLeftData.latDistance.push(json.FrontLeft.LatDistance);
+      this.frontLeftData.yawAngle.push(json.FrontLeft.YawAngle);
+      this.frontLeftData.motorTorque.push(json.FrontLeft.MotorTorque);
+      this.frontLeftData.motorSpeed.push(json.FrontLeft.MotorSpeed);
+      dispatch( setFrontLeftData(this.frontLeftData) );
+    }
+
+    if (json.FrontRight) {
+      if (this.frontRightData.latDistance.length >= 292) {
+        this.frontRightData.latDistance.shift();
+        this.frontRightData.yawAngle.shift();
+        this.frontRightData.motorTorque.shift();
+        this.frontRightData.motorSpeed.shift();
+      }
+      this.frontRightData.latDistance.push(json.FrontRight.LatDistance);
+      this.frontRightData.yawAngle.push(json.FrontRight.YawAngle);
+      this.frontRightData.motorTorque.push(json.FrontRight.MotorTorque);
+      this.frontRightData.motorSpeed.push(json.FrontRight.MotorSpeed);
+      dispatch( setFrontRightData(this.frontRightData) );
+    }
+
+    if (json.RearLeft) {
+      if (this.rearLeftData.latDistance.length >= 292) {
+        this.rearLeftData.latDistance.shift();
+        this.rearLeftData.yawAngle.shift();
+        this.rearLeftData.motorTorque.shift();
+        this.rearLeftData.motorSpeed.shift();
+      }
+      this.rearLeftData.latDistance.push(json.RearLeft.LatDistance);
+      this.rearLeftData.yawAngle.push(json.RearLeft.YawAngle);
+      this.rearLeftData.motorTorque.push(json.RearLeft.MotorTorque);
+      this.rearLeftData.motorSpeed.push(json.RearLeft.MotorSpeed);
+      dispatch( setRearLeftData(this.rearLeftData) );
+    }
+
+    if (json.RearRight) {
+      if (this.rearRightData.latDistance.length >= 292) {
+        this.rearRightData.latDistance.shift();
+        this.rearRightData.yawAngle.shift();
+        this.rearRightData.motorTorque.shift();
+        this.rearRightData.motorSpeed.shift();
+      }
+      this.rearRightData.latDistance.push(json.RearRight.LatDistance);
+      this.rearRightData.yawAngle.push(json.RearRight.YawAngle);
+      this.rearRightData.motorTorque.push(json.RearRight.MotorTorque);
+      this.rearRightData.motorSpeed.push(json.RearRight.MotorSpeed);
+      dispatch( setRearRightData(this.rearRightData) );
+    }
+
+
+    
+    /*
+    dispatch( setItcTestData({
+      frontLeftData: this.frontLeftData,
+      frontRightData: this.frontRightData,
+      rearLeftData: this.rearLeftData,
+      rearRightData: this.rearRightData
+    }) );
+    */
+
   }
   thick() {
     const { dispatch } = this.props;
@@ -301,7 +360,6 @@ class App extends Component {
     this.frontLeftMotorData.b = getRandomInt(0,500);
     this.frontLeftMotorData.c = getRandomInt(0,500);
     this.frontLeftMotorData.temp = getRandomInt(0,100);
-    
     dispatch( setFrontLeftMotorData(this.frontLeftMotorData) );
 
     this.frontRightMotorData.rpm = getRandomInt(0,3000);
@@ -310,7 +368,6 @@ class App extends Component {
     this.frontRightMotorData.b = getRandomInt(0,500);
     this.frontRightMotorData.c = getRandomInt(0,500);
     this.frontRightMotorData.temp = getRandomInt(0,100);
-    
     dispatch( setFrontRightMotorData(this.frontRightMotorData) );
 
     this.rearLeftMotorData.rpm = getRandomInt(0,3000);
@@ -442,6 +499,12 @@ class App extends Component {
     return (
       <Router>
         <div>
+          {/*
+          <Websocket
+            url={`ws://${this.hostname}:8181/`}
+            onMessage={this.handleData} debug={false}
+          />
+          */}
           <div>
             <Route exact path="/main" component={ViewMain}/>
             <Route path="/itcrun" component={ViewITCRun}/>
@@ -459,14 +522,14 @@ class App extends Component {
             <div className="ver">
               Ver.0.00001
             </div>
-            <div className="navi-btns">
+            <div className="navi-btns" style={{ width: '730px' }}>
               <ul>
                 <li className="navTop1">
                   <NavLink to="/main" activeClassName="navOn">
                     <img src="img/navi1.png" alt="main" />
                   </NavLink>
                 </li>
-                <li className="navTop2">
+                <li className="navTop3">
                   <NavLink to="/itcrun" activeClassName="navOn">
                     <img src="img/navi2.png" alt="ITC Run" />
                   </NavLink>
@@ -476,14 +539,9 @@ class App extends Component {
                     <img src="img/navi3.png" alt="Setup" />
                   </NavLink>
                 </li>
-                <li className="navTop2">
+                <li className="navTop1">
                   <NavLink to="/spec" activeClassName="navOn">
                     <img src="img/navi4.png" alt="Spec" />
-                  </NavLink>
-                </li>
-                <li className="navTop1">
-                  <NavLink to="/" activeClassName="navOn">
-                    <img src="img/navi5.png" alt="Demo" />
                   </NavLink>
                 </li>
               </ul>

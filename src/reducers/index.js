@@ -14,6 +14,8 @@ import rearWheelsetData from './rearWheelsetData';
 import frontLaserData from './frontLaserData';
 import rearLaserData from './rearLaserData';
 
+import itcTestData from './itcTestData';
+
 // TEST_SETUP =======================================================
 import bmsSocData from './bmsSocData';
 import bmsTempData from './bmsTempData';
@@ -27,6 +29,7 @@ import driveInfoData from './driveInfoData';
 import driveData from './driveData';
 
 const reducers = combineReducers({ 
+  itcTestData,
   frontLeftData,
   frontRightData,
   rearLeftData,

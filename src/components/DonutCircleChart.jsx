@@ -2,9 +2,6 @@ import React, { Component } from 'react';
 import { isFloat } from '../utils/functions';
 
 export default class DonutCircleChart extends Component {
-  constructor(props) {
-    super(props);
-  }
   componentDidMount() {
     const donutRing = document.getElementById('donutRing');
     // const length = donutRing.getTotalLength();
@@ -77,7 +74,7 @@ export default class DonutCircleChart extends Component {
         <div
           style={{
             textAlign: 'center',
-            width: donutWidth,
+            width: `${donutWidth}px`,
             position: 'absolute',
             left: '54px',
             top: '12px',

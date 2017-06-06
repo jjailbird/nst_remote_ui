@@ -5,6 +5,7 @@ import './index.css';
 
 import { Provider } from 'react-redux';
 import { createStore } from 'redux';
+// import { createStore } from 'redux-worker';
 
 import reducers from './reducers';
 

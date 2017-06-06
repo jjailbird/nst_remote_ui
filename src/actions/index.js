@@ -13,6 +13,8 @@ export const SET_REAR_WHEELSET_DATA = 'SET_REAR_WHEELSET_DATA';
 export const SET_FRONT_LASER_DATA = 'SET_FRONT_LASER_DATA';
 export const SET_REAR_LASER_DATA = 'SET_REAR_LASER_DATA';
 
+export const SET_ITC_TEST_DATA = 'SET_ITC_TEST_DATA';
+
 // TEST_SETUP =======================================================
 export const SET_BMS_SOC_DATA = 'SET_BMS_SOC_DATA';
 export const SET_BMS_TEMP_DATA = 'SET_BMS_TEMP_DATA';
@@ -24,6 +26,13 @@ export const SET_DRIVE_INFO_DATA = 'SET_DRIVE_INFO_DATA';
 
 //DRIVE =======================================================
 export const SET_DRIVE_DATA = 'SET_DRIVE_DATA';
+
+export const setItcTestData = (data) => {
+  return {
+    type: SET_ITC_TEST_DATA,
+    data
+  }
+}
 
 export const setFrontLeftData = (data) => {
   return {
