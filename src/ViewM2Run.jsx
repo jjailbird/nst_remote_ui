@@ -4,7 +4,7 @@ import DriveRailroadTrail from './components/DriveRailroadTrail';
 
 import { connect } from 'react-redux';
 
-class ViewTrain extends Component {
+class ViewM2Run extends Component {
   render() {
     const { 
       driveData
@@ -173,4 +173,4 @@ function mapStateToProps(state){
     }
 }
 
-export default connect(mapStateToProps)(ViewTrain);
+export default connect(mapStateToProps)(ViewM2Run);

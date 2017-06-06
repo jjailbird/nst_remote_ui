@@ -10,7 +10,7 @@ import RailroadTrailStartStop from './components/RailroadTrailStartStop';
 
 import { connect } from 'react-redux';
 
-class ViewTestSetupPanel extends Component {
+class ViewM2Setup extends Component {
   render() {
     const { 
       bmsSocData,
@@ -1049,4 +1049,4 @@ function mapStateToProps(state){
     }
 }
 
-export default connect(mapStateToProps)(ViewTestSetupPanel);
+export default connect(mapStateToProps)(ViewM2Setup);

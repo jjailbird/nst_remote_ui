@@ -27,6 +27,17 @@ export const SET_DRIVE_INFO_DATA = 'SET_DRIVE_INFO_DATA';
 //DRIVE =======================================================
 export const SET_DRIVE_DATA = 'SET_DRIVE_DATA';
 
+// HSC_TEST =======================================================
+export const SET_FRONT_LEFT_HSC_DATA = 'SET_FRONT_LEFT_HSC_DATA';
+export const SET_FRONT_RIGHT_HSC_DATA = 'SET_FRONT_RIGHT_HSC_DATA';
+export const SET_REAR_LEFT_HSC_DATA = 'SET_REAR_LEFT_HSC_DATA';
+export const SET_REAR_RIGHT_HSC_DATA = 'SET_REAR_RIGHT_HSC_DATA';
+export const SET_MOTOR_CONTROL_HSC_DATA = 'SET_MOTOR_CONTROL_HSC_DATA';
+export const SET_FRONT_WHEELSET_HSC_DATA = 'SET_FRONT_WHEELSET_HSC_DATA';
+export const SET_REAR_WHEELSET_HSC_DATA = 'SET_REAR_WHEELSET_HSC_DATA';
+
+// HSC_SETUP =======================================================
+
 export const setFrontLeftData = (data) => {
   return {
     type: SET_FRONT_LEFT_DATA,
@@ -162,6 +173,48 @@ export const setFrontSensorData = (data) => {
 export const setRearSensorData = (data) => {
   return {
     type: SET_REAR_SENSOR_DATA,
+    data
+  }
+}
+export const setFrontLeftHscData = (data) => {
+  return {
+    type: SET_FRONT_LEFT_HSC_DATA,
+    data
+  }
+}
+export const setFrontRightHscData = (data) => {
+  return {
+    type: SET_FRONT_RIGHT_HSC_DATA,
+    data
+  }
+}
+export const setRearLeftHscData = (data) => {
+  return {
+    type: SET_REAR_LEFT_HSC_DATA,
+    data
+  }
+}
+export const setRearRightHscData = (data) => {
+  return {
+    type: SET_REAR_RIGHT_HSC_DATA,
+    data
+  }
+}
+export const setMotorControlHscData = (data) => {
+  return {
+    type: SET_MOTOR_CONTROL_HSC_DATA,
+    data
+  }
+}
+export const setFrontWheelsetHscData = (data) => {
+  return {
+    type: SET_FRONT_WHEELSET_HSC_DATA,
+    data
+  }
+}
+export const setRearWheelsetHscData = (data) => {
+  return {
+    type: SET_REAR_WHEELSET_HSC_DATA,
     data
   }
 }

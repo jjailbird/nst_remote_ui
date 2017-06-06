@@ -28,6 +28,16 @@ import driveInfoData from './driveInfoData';
 //DRIVE =======================================================
 import driveData from './driveData';
 
+// HSC_TEST =======================================================
+import frontLeftHscData from './frontLeftHscData';
+import frontRightHscData from './frontRightHscData';
+import rearLeftHscData from './rearLeftHscData';
+import rearRightHscData from './rearRightHscData';
+import motorControlHscData from './motorControlHscData';
+import frontWheelsetHscData from './frontWheelsetHscData';
+import rearWheelsetHscData from './rearWheelsetHscData';
+// HSC_SETUP =======================================================
+
 const reducers = combineReducers({ 
   frontLeftData,
   frontRightData,
@@ -51,7 +61,14 @@ const reducers = combineReducers({
   rearLaserData,
   frontSensorData,
   rearSensorData,
-  driveData
+  driveData,
+  frontLeftHscData,
+  frontRightHscData,
+  rearLeftHscData,
+  rearRightHscData,
+  motorControlHscData,
+  frontWheelsetHscData,
+  rearWheelsetHscData
 });
 
 export default reducers;

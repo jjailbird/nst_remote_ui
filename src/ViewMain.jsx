@@ -10,7 +10,7 @@ export default class ViewMain extends Component {
         <div className="con-login">
           <div className="con-loginBoxArea">
             <div className="con-loginTitle">
-              <img src="img/v1-index-title.png" alt="ITC Control Panel" />
+              <img src="/img/v1-index-title.png" alt="ITC Control Panel" />
             </div>
             <div className="con-loginBox">
               <div className="login-form">

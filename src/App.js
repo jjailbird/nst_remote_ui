@@ -22,7 +22,14 @@ import {
   setRearLaserData,
   setFrontSensorData,
   setRearSensorData,
-  setDriveData
+  setDriveData,
+  setFrontLeftHscData,//hsc data start
+  setFrontRightHscData,
+  setRearLeftHscData,
+  setRearRightHscData,
+  setMotorControlHscData,
+  setFrontWheelsetHscData,
+  setRearWheelsetHscData
 } from './actions';
 
 import React, { Component } from 'react';
@@ -55,6 +62,21 @@ import ViewSpec from './ViewSpec';
 import ViewTest from './ViewTest';
 import ViewTest2 from './ViewTest2';
 import ViewTestSetupPanel from './ViewTestSetupPanel';
+//페이지 정리
+import ViewM1Main from './ViewM1Main';
+import ViewM1Run from './ViewM1Run';
+import ViewM1Setup from './ViewM1Setup';
+import ViewM1Spec from './ViewM1Spec';
+
+import ViewM2Main from './ViewM2Main';
+import ViewM2Run from './ViewM2Run';
+import ViewM2Setup from './ViewM2Setup';
+import ViewM2Spec from './ViewM2Spec';
+
+import ViewM3Main from './ViewM3Main';
+import ViewM3Run from './ViewM3Run';
+import ViewM3Setup from './ViewM3Setup';
+import ViewM3Spec from './ViewM3Spec';
 
 /*
 const Topic = ({ match }) => (
@@ -270,6 +292,48 @@ class App extends Component {
     this.setRearSensorData.ry2S = 0;
     this.setRearSensorData.gA = 0;
     this.setRearSensorData.gS = 0;
+
+    //hsc    
+    this.frontLeftHscData = {};
+    this.frontLeftHscData.latDistance = [];
+    this.frontLeftHscData.yawAngle = [];
+    this.frontLeftHscData.motorTorque = [];
+    this.frontLeftHscData.motorSpeed = [];
+
+    this.frontRightHscData = {};
+    this.frontRightHscData.latDistance = [];
+    this.frontRightHscData.yawAngle = [];
+    this.frontRightHscData.motorTorque = [];
+    this.frontRightHscData.motorSpeed = [];
+
+    this.rearLeftHscData = {};
+    this.rearLeftHscData.latDistance = [];
+    this.rearLeftHscData.yawAngle = [];
+    this.rearLeftHscData.motorTorque = [];
+    this.rearLeftHscData.motorSpeed = [];
+
+    this.rearRightHscData = {};
+    this.rearRightHscData.latDistance = [];
+    this.rearRightHscData.yawAngle = [];
+    this.rearRightHscData.motorTorque = [];
+    this.rearRightHscData.motorSpeed = [];
+
+    this.setMotorControlHscData =  {};
+    this.setMotorControlHscData.position = 0;
+    this.setMotorControlHscData.curv = 0;
+    this.setMotorControlHscData.speed = 0;
+
+    this.setFrontWheelsetHscData = {};
+    this.setFrontWheelsetHscData.position = 0;
+    this.setFrontWheelsetHscData.trackCurve = 0;
+    this.setFrontWheelsetHscData.attackAngle = 0;
+    this.setFrontWheelsetHscData.steeringRatio = 0;
+
+    this.setRearWheelsetHscData = {};
+    this.setRearWheelsetHscData.position = 0;
+    this.setRearWheelsetHscData.trackCurve = 0;
+    this.setRearWheelsetHscData.attackAngle = 0;
+    this.setRearWheelsetHscData.steeringRatio = 0;
   }
   componentDidMount() {
     this.timer = setInterval(this.thick, 1000 / 30);
@@ -506,6 +570,80 @@ class App extends Component {
     this.setRearSensorData.gS = getRandomFloat(-5,5);
 
     dispatch( setRearSensorData(this.setRearSensorData) )
+
+    //hsc
+
+    if (this.frontLeftHscData.latDistance.length >= 292) {
+      this.frontLeftHscData.latDistance.shift();
+      this.frontLeftHscData.yawAngle.shift();
+      this.frontLeftHscData.motorTorque.shift();
+      this.frontLeftHscData.motorSpeed.shift();
+    }
+    this.frontLeftHscData.latDistance.push(getRandomFloat(-10,10));
+    this.frontLeftHscData.yawAngle.push(getRandomFloat(-5,5));
+    this.frontLeftHscData.motorTorque.push(getRandomInt(0,3000));
+    this.frontLeftHscData.motorSpeed.push(getRandomInt(0,3000));
+
+    dispatch( setFrontLeftHscData(this.frontLeftHscData) );
+
+    if (this.frontRightHscData.latDistance.length >= 292) {
+      this.frontRightHscData.latDistance.shift();
+      this.frontRightHscData.yawAngle.shift();
+      this.frontRightHscData.motorTorque.shift();
+      this.frontRightHscData.motorSpeed.shift();
+    }
+    this.frontRightHscData.latDistance.push(getRandomFloat(-10,10));
+    this.frontRightHscData.yawAngle.push(getRandomFloat(-5,5));
+    this.frontRightHscData.motorTorque.push(getRandomInt(0,3000));
+    this.frontRightHscData.motorSpeed.push(getRandomInt(0,3000));
+    
+    dispatch( setFrontRightHscData(this.frontRightHscData) );
+
+    if (this.rearLeftHscData.latDistance.length >= 292) {
+      this.rearLeftHscData.latDistance.shift();
+      this.rearLeftHscData.yawAngle.shift();
+      this.rearLeftHscData.motorTorque.shift();
+      this.rearLeftHscData.motorSpeed.shift();
+    }
+    this.rearLeftHscData.latDistance.push(getRandomFloat(-10,10));
+    this.rearLeftHscData.yawAngle.push(getRandomFloat(-5,5));
+    this.rearLeftHscData.motorTorque.push(getRandomInt(0,3000));
+    this.rearLeftHscData.motorSpeed.push(getRandomInt(0,3000));
+    
+    dispatch( setRearLeftHscData(this.rearLeftHscData) );
+
+    if (this.rearRightHscData.latDistance.length >= 292) {
+      this.rearRightHscData.latDistance.shift();
+      this.rearRightHscData.yawAngle.shift();
+      this.rearRightHscData.motorTorque.shift();
+      this.rearRightHscData.motorSpeed.shift();
+    }
+    this.rearRightHscData.latDistance.push(getRandomFloat(-10,10));
+    this.rearRightHscData.yawAngle.push(getRandomFloat(-5,5));
+    this.rearRightHscData.motorTorque.push(getRandomInt(0,3000));
+    this.rearRightHscData.motorSpeed.push(getRandomInt(0,3000));
+    
+    dispatch( setRearRightHscData(this.rearRightHscData) );
+
+    this.setMotorControlHscData.position = getRandomFloat(0,250);
+    this.setMotorControlHscData.curv = getRandomInt(0,10000);
+    this.setMotorControlHscData.speed = getRandomFloat(0,60);
+      
+    dispatch( setMotorControlHscData(this.setMotorControlHscData) );
+
+    this.setFrontWheelsetHscData.position = getRandomFloat(0,250);
+    this.setFrontWheelsetHscData.trackCurve = getRandomFloat(0,10000);
+    this.setFrontWheelsetHscData.attackAngle = getRandomFloat(-5,5);
+    this.setFrontWheelsetHscData.steeringRatio = getRandomFloat(0,2);
+
+    dispatch( setFrontWheelsetHscData(this.setFrontWheelsetHscData) );
+
+    this.setRearWheelsetHscData.position = getRandomFloat(0,250);
+    this.setRearWheelsetHscData.trackCurve = getRandomFloat(0,10000);
+    this.setRearWheelsetHscData.attackAngle = getRandomFloat(-5,5);
+    this.setRearWheelsetHscData.steeringRatio = getRandomFloat(0,2);
+
+    dispatch( setRearWheelsetHscData(this.setRearWheelsetHscData) );
   }
   render() {
     return (
@@ -520,16 +658,65 @@ class App extends Component {
             <Route path="/test" component={ViewTest} />
             <Route path="/test2" component={ViewTest2} />
             <Route path="/testsetuppanel" component={ViewTestSetupPanel} />
+
+            {/*페이지 정리*/}
+            <Route path="/m1/main" component={ViewM1Main} />
+            <Route path="/m1/run" component={ViewM1Run} />
+            <Route path="/m1/setup" component={ViewM1Setup} />
+            <Route path="/m1/spec" component={ViewM1Spec} />
+
+            <Route path="/m2/main" component={ViewM2Main} />
+            <Route path="/m2/run" component={ViewM2Run} />
+            <Route path="/m2/setup" component={ViewM2Setup} />
+            <Route path="/m2/spec" component={ViewM2Spec} />
+
+            <Route path="/m3/main" component={ViewM3Main} />
+            <Route path="/m3/run" component={ViewM3Run} />
+            <Route path="/m3/setup" component={ViewM3Setup} />
+            <Route path="/m3/spec" component={ViewM3Spec} />
+
           </div>
+          {/*===============삭제하세요(임시메뉴)===============*/}
+          <div
+            style={{
+              width: '600px',
+              background: '#000',
+              color: '#fff',
+              position: 'absolute',
+              bottom: '0px',
+              left: '50%',
+              zIndex: '15',
+              textAlign: 'center',
+              marginLeft: '-300px'
+            }}
+          >
+            <span>M1 </span>
+            <a href="/m1/main">main </a>
+            <a href="/m1/run">run </a>
+            <a href="/m1/setup">setup </a>
+            <a href="/m1/spec">spec </a>
+            <span>M2 </span>
+            <a href="/m2/main">main </a>
+            <a href="/m2/run">run </a>
+            <a href="/m2/setup">setup </a>
+            <a href="/m2/spec">spec </a>
+            <span>M3 </span>
+            <a href="/m3/main">main </a>
+            <a href="/m3/run">run </a>
+            <a href="/m3/setup">setup </a>
+            <a href="/m3/spec">spec </a>
+          </div>
+          {/*===============삭제하세요(임시메뉴)END===============*/}
+          
           <div 
             className="navi"
             style={{
-              //background: 'url(img/navi-bg.png)'
-              background: 'url(img/navi-drive-bg.png)'
+              //background: 'url(/img/navi-bg.png)'
+              background: 'url(/img/navi-drive-bg.png)'
             }}
           >
             <div className="copy">
-              <img src="img/copy.png" alt="copyright"/>
+              <img src="/img/copy.png" alt="copyright"/>
             </div>
             <div className="ver">
               Ver.0.00001
@@ -545,7 +732,7 @@ class App extends Component {
               <ul>
                 <li className="navTop2">
                   <NavLink to="/main" activeClassName="navOn" style={{position: 'relative'}}>
-                    <img src="img/navi1.png" alt="main" />
+                    <img src="/img/navi1.png" alt="main" />
                     <div
                       style={{
                         width: '100%',
@@ -561,7 +748,7 @@ class App extends Component {
                 </li>
                 <li className="navTop3">
                   <NavLink to="/itcrun" activeClassName="navOn" style={{position: 'relative'}}>
-                    <img src="img/navi2.png" alt="ITC Run" />
+                    <img src="/img/navi2.png" alt="ITC Run" />
                     <div
                       style={{
                         width: '100%',
@@ -577,7 +764,7 @@ class App extends Component {
                 </li>
                 <li className="navTop3">
                   <NavLink to="/setup" activeClassName="navOn" style={{position: 'relative'}}>
-                    <img src="img/navi3.png" alt="Setup" />
+                    <img src="/img/navi3.png" alt="Setup" />
                     <div
                       style={{
                         width: '100%',
@@ -593,7 +780,7 @@ class App extends Component {
                 </li>
                 <li className="navTop2">
                   <NavLink to="/spec" activeClassName="navOn" style={{position: 'relative'}}>
-                    <img src="img/navi4.png" alt="Spec" />
+                    <img src="/img/navi4.png" alt="Spec" />
                     <div
                       style={{
                         width: '100%',

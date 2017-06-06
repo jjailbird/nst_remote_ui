@@ -13,7 +13,7 @@ import PanelControlButtonsRight from './components/PanelControlButtonsRight';
 
 import { connect } from 'react-redux';
 
-class ViewITCRun extends Component {
+class ViewM1Run extends Component {
   render() {
     const { 
       motorControlData,
@@ -417,4 +417,4 @@ function mapStateToProps(state){
     }
 }
 
-export default connect(mapStateToProps)(ViewITCRun);
+export default connect(mapStateToProps)(ViewM1Run);

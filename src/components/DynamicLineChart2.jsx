@@ -75,7 +75,7 @@ export default class DynamicLineChart2 extends Component {
             height: '131px',
             clear: 'both',
             margin: '0 auto',
-            backgroundImage: 'url(img/dynamiclinechart-bg2.png)',
+            backgroundImage: 'url(/img/dynamiclinechart-bg2.png)',
             paddingLeft: '42px',
             paddingBottom: '22px'
           }}

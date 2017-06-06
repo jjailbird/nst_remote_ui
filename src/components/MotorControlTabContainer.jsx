@@ -37,16 +37,16 @@ export default class MotorControlTabContainer extends Component {
           }}
         >
           <div className={type !== 'ISO' ? 'hide' : ''}>
-            <img src="img/motor-control1.png" alt="img/motor-control1.png"/>
+            <img src="/img/motor-control1.png" alt="img/motor-control1.png"/>
           </div>
           <div className={type !== 'SIDE' ? 'hide' : ''}>
-            <img src="img/motor-control2.png" alt="img/motor-control2.png"/>
+            <img src="/img/motor-control2.png" alt="img/motor-control2.png"/>
           </div>
           <div className={type !== 'FRT' ? 'hide' : ''}>
-            <img src="img/motor-control3.png" alt="img/motor-control3.png"/>
+            <img src="/img/motor-control3.png" alt="img/motor-control3.png"/>
           </div>
           <div className={type !== 'TOP' ? 'hide' : ''}>
-            <img src="img/motor-control4.png" alt="img/motor-control4.png"/>
+            <img src="/img/motor-control4.png" alt="img/motor-control4.png"/>
           </div>
         </div>
       </div>

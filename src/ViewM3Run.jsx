@@ -13,22 +13,22 @@ import PanelControlButtonsRight from './components/PanelControlButtonsRight';
 
 import { connect } from 'react-redux';
 
-class ViewITCRun extends Component {
+class ViewM3Run extends Component {
   render() {
     const { 
-      motorControlData,
-      frontLeftData,
-      frontRightData,
-      rearLeftData,
-      rearRightData,
-      frontWheelsetData,
-      rearWheelsetData
+      motorControlHscData,
+      frontLeftHscData,
+      frontRightHscData,
+      rearLeftHscData,
+      rearRightHscData,
+      frontWheelsetHscData,
+      rearWheelsetHscData
     } = this.props;
     return (
       <div className="contBox">
         <div className="headArea">
           <div className="headLeft pull-left">
-            <img src="/img/titlev1-itc_run.png"  alt="img/titlev1-itc_run.png"/>
+            <img src="/img/titlev3-itc_run.png"  alt="img/titlev3-itc_run.png"/>
           </div>
           <div className="headRight pull-right">        
             hyundai rotem company
@@ -56,7 +56,7 @@ class ViewITCRun extends Component {
                   2017.9.9 MON<br />20:20 30
                   <div className="voiData">
                     <DonutCircleChart 
-                      data={motorControlData.data.speed} 
+                      data={motorControlHscData.data.speed} 
                       unit="Km/m" 
                       name="Speed" 
                       strokeColor="#fff" 
@@ -69,7 +69,7 @@ class ViewITCRun extends Component {
                   </div>
                   <div className="voiData">
                     <DonutCircleChart 
-                      data={motorControlData.data.position} 
+                      data={motorControlHscData.data.position} 
                       unit="m" 
                       name="Position" 
                       strokeColor="#fff" 
@@ -82,7 +82,7 @@ class ViewITCRun extends Component {
                   </div>
                   <div className="voiData">
                     <DonutCircleChart 
-                      data={motorControlData.data.curv} 
+                      data={motorControlHscData.data.curv} 
                       unit="m" 
                       name="Radius" 
                       strokeColor="#fff" 
@@ -104,8 +104,8 @@ class ViewITCRun extends Component {
                 Live Cam Mode
               </div>
             </div>
-            <GraphTabContainer data={frontLeftData.data} title="Front Left"/>
-            <GraphTabContainer data={rearLeftData.data} title="Rear Left"/>
+            <GraphTabContainer data={frontLeftHscData.data} title="Front Left"/>
+            <GraphTabContainer data={rearLeftHscData.data} title="Rear Left"/>
             <PanelControlButtonsLeft />
           </div>
           <div className="motor-control-modeBox pull-left">
@@ -205,13 +205,13 @@ class ViewITCRun extends Component {
                 <MotorControlTabContainer />
               </div>
               <div className="pull-left motorConRail">
-                <RailroadTrail value={motorControlData.data.position} valueMax="250" />
+                <RailroadTrail value={motorControlHscData.data.position} valueMax="250" />
               </div>
               <div className="pull-left motorConPie">
                 <div className="motorConPieBox1">
                   <div className="motorConPieBox1Child">
                     <DonutDivideLeftChart 
-                      data={motorControlData.data.position} 
+                      data={motorControlHscData.data.position} 
                       unit="m" 
                       name="Vehicle Position" 
                       strokeColor="#3581c9" 
@@ -224,7 +224,7 @@ class ViewITCRun extends Component {
                   </div>
                   <div className="motorConPieBox1Child">
                     <DonutDivideLeftChart 
-                      data={motorControlData.data.curv} 
+                      data={motorControlHscData.data.curv} 
                       unit="m" 
                       name="Track Curvature" 
                       strokeColor="#3581c9" 
@@ -238,7 +238,7 @@ class ViewITCRun extends Component {
                 </div>
                 <div className="motorConPieBox2">
                     <DonutDivideLeftChart 
-                      data={motorControlData.data.speed} 
+                      data={motorControlHscData.data.speed} 
                       unit="km/h" 
                       name="Vehicle Speed" 
                       strokeColor="#c93535" 
@@ -263,28 +263,28 @@ class ViewITCRun extends Component {
                     <span>Position</span>
                     <span>:</span>
                     <span>
-                      {frontWheelsetData.data.position ? frontWheelsetData.data.position.toFixed(1) : 0} m
+                      {frontWheelsetHscData.data.position ? frontWheelsetHscData.data.position.toFixed(1) : 0} m
                     </span>
                   </li>
                   <li>
                     <span>Track Curve</span>
                     <span>:</span>
                     <span>
-                      {frontWheelsetData.data.trackCurve ? frontWheelsetData.data.trackCurve.toFixed(1) : 0} m
+                      {frontWheelsetHscData.data.trackCurve ? frontWheelsetHscData.data.trackCurve.toFixed(1) : 0} m
                     </span>
                   </li>
                   <li>
                     <span>Attack Angle</span>
                     <span>:</span>
                     <span>
-                      {frontWheelsetData.data.attackAngle ? frontWheelsetData.data.attackAngle.toFixed(1) : 0} deg
+                      {frontWheelsetHscData.data.attackAngle ? frontWheelsetHscData.data.attackAngle.toFixed(1) : 0} deg
                     </span>
                   </li>
                   <li>
                     <span>Steering Ratio</span>
                     <span>:</span>
                     <span>
-                      {frontWheelsetData.data.steeringRatio ? frontWheelsetData.data.steeringRatio.toFixed(1) : 0}
+                      {frontWheelsetHscData.data.steeringRatio ? frontWheelsetHscData.data.steeringRatio.toFixed(1) : 0}
                     </span>
                   </li>
                 </ul>
@@ -298,28 +298,28 @@ class ViewITCRun extends Component {
                     <span>Position</span>
                     <span>:</span>
                     <span>
-                      {rearWheelsetData.data.position ? rearWheelsetData.data.position.toFixed(1) : 0} m
+                      {rearWheelsetHscData.data.position ? rearWheelsetHscData.data.position.toFixed(1) : 0} m
                     </span>
                   </li>
                   <li>
                     <span>Track Curve</span>
                     <span>:</span>
                     <span>
-                      {rearWheelsetData.data.trackCurve ? rearWheelsetData.data.trackCurve.toFixed(1) : 0} m
+                      {rearWheelsetHscData.data.trackCurve ? rearWheelsetHscData.data.trackCurve.toFixed(1) : 0} m
                     </span>
                   </li>
                   <li>
                     <span>Attack Angle</span>
                     <span>:</span>
                     <span>
-                      {rearWheelsetData.data.attackAngle ? rearWheelsetData.data.attackAngle.toFixed(1) : 0} deg
+                      {rearWheelsetHscData.data.attackAngle ? rearWheelsetHscData.data.attackAngle.toFixed(1) : 0} deg
                     </span>
                   </li>
                   <li>
                     <span>Steering Ratio</span>
                     <span>:</span>
                     <span>
-                      {rearWheelsetData.data.steeringRatio ? rearWheelsetData.data.steeringRatio.toFixed(1) : 0}
+                      {rearWheelsetHscData.data.steeringRatio ? rearWheelsetHscData.data.steeringRatio.toFixed(1) : 0}
                     </span>
                   </li>
                 </ul>
@@ -347,7 +347,7 @@ class ViewITCRun extends Component {
                   2017.9.9 MON<br />20:20 30
                   <div className="voiData">
                     <DonutCircleChart 
-                      data={motorControlData.data.speed} 
+                      data={motorControlHscData.data.speed} 
                       unit="Km/m" 
                       name="Speed" 
                       strokeColor="#fff" 
@@ -360,7 +360,7 @@ class ViewITCRun extends Component {
                   </div>
                   <div className="voiData">
                     <DonutCircleChart 
-                      data={motorControlData.data.position} 
+                      data={motorControlHscData.data.position} 
                       unit="m" 
                       name="Position" 
                       strokeColor="#fff" 
@@ -373,7 +373,7 @@ class ViewITCRun extends Component {
                   </div>
                   <div className="voiData">
                     <DonutCircleChart 
-                      data={motorControlData.data.curv} 
+                      data={motorControlHscData.data.curv} 
                       unit="m" 
                       name="Radius" 
                       strokeColor="#fff" 
@@ -395,8 +395,8 @@ class ViewITCRun extends Component {
                 Recording Mode
               </div>
             </div>
-            <GraphTabContainer data={frontRightData.data} title="Front Right"/>
-            <GraphTabContainer data={rearRightData.data} title="Rear Right"/>
+            <GraphTabContainer data={frontRightHscData.data} title="Front Right"/>
+            <GraphTabContainer data={rearRightHscData.data} title="Rear Right"/>
             <PanelControlButtonsRight />
           </div>
         </div>
@@ -407,14 +407,14 @@ class ViewITCRun extends Component {
 
 function mapStateToProps(state){
     return {
-      frontLeftData: state.frontLeftData,
-      frontRightData: state.frontRightData,
-      rearLeftData: state.rearLeftData,
-      rearRightData: state.rearRightData,
-      motorControlData: state.motorControlData,
-      frontWheelsetData: state.frontWheelsetData,
-      rearWheelsetData: state.rearWheelsetData
+      frontLeftHscData: state.frontLeftHscData,
+      frontRightHscData: state.frontRightHscData,
+      rearLeftHscData: state.rearLeftHscData,
+      rearRightHscData: state.rearRightHscData,
+      motorControlHscData: state.motorControlHscData,
+      frontWheelsetHscData: state.frontWheelsetHscData,
+      rearWheelsetHscData: state.rearWheelsetHscData
     }
 }
 
-export default connect(mapStateToProps)(ViewITCRun);
+export default connect(mapStateToProps)(ViewM3Run);

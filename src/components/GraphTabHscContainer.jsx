@@ -5,7 +5,7 @@ import DynamicLineChart from './DynamicLineChart';
 import DynamicBarChart from './DynamicBarChart';
 import DonutDigitalChart from './DonutDigitalChart';
 
-export default class GraphTabContainer extends Component {
+export default class GraphTabHscContainer extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -40,22 +40,22 @@ export default class GraphTabContainer extends Component {
           </span>
           <div className="graphTypeContents">
             <div className={type !== 'PIE' ? 'hide' : ''}>
-              <DonutDigitalChart data={data.latDistance} unit="mm" name="lat. distance" strokeColor="#8cb857" strokeColorLine="#2f4036"/>
+              <DonutDigitalChart data={data.sylinder} unit="mm" name="sylinder stroke" strokeColor="#8cb857" strokeColorLine="#2f4036"/>
               <DonutDigitalChart data={data.yawAngle} unit="deg" name="yaw angle" strokeColor="#8cb857" strokeColorLine="#2f4036"/>
-              <DonutDigitalChart data={data.motorTorque} unit="Nm" name="motor torque" strokeColor="#3581c9" strokeColorLine="#16315b"/>
-              <DonutDigitalChart data={data.motorSpeed} unit="RPM" name="motor speed" strokeColor="#3581c9" strokeColorLine="#16315b"/>
+              <DonutDigitalChart data={data.aPort} unit="kpa" name="a port pressure" strokeColor="#3581c9" strokeColorLine="#16315b"/>
+              <DonutDigitalChart data={data.bPort} unit="kpa" name="b port pressure" strokeColor="#3581c9" strokeColorLine="#16315b"/>
             </div>
             <div className={type != 'BAR' ? 'hide' : ''}>
-              <DynamicBarChart data={data.latDistance} unit="mm" name="lat. distance" barColor="#6f934f"/>
+              <DynamicBarChart data={data.sylinder} unit="mm" name="sylinder stroke" barColor="#6f934f"/>
               <DynamicBarChart data={data.yawAngle} unit="deg" name="yaw angle" barColor="#6f934f"/>
-              <DynamicBarChart data={data.motorTorque} unit="Nm" name="motor torque" barColor="#2c68a8"/>
-              <DynamicBarChart data={data.motorSpeed} unit="RPM" name="motor speed" barColor="#2c68a8"/>
+              <DynamicBarChart data={data.aPort} unit="kpa" name="a port pressure" barColor="#2c68a8"/>
+              <DynamicBarChart data={data.bPort} unit="kpa" name="a port pressure" barColor="#2c68a8"/>
             </div>
             <div className={type != 'LINE' ? 'hide' : ''}>
-              <DynamicLineChart data={data.latDistance} unit="mm" name="lat. distance"/>
+              <DynamicLineChart data={data.sylinder} unit="mm" name="lat. distance"/>
               <DynamicLineChart data={data.yawAngle} unit="deg" name="yaw angle" />
-              <DynamicLineChart data={data.motorTorque} unit="Nm" name="motor torque" />
-              <DynamicLineChart data={data.motorSpeed} unit="RPM" name="motor speed" />              
+              <DynamicLineChart data={data.aPort} unit="kpa" name="a port pressure" />
+              <DynamicLineChart data={data.bPort} unit="kpa" name="a port pressure" />              
             </div>
 
           </div>        

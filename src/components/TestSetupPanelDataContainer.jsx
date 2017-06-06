@@ -56,7 +56,7 @@ export default class TestSetupPanelDataContainer extends Component {
         <span className="testPanelBoxTitle">
           {compTitle}
           <img 
-            src="img/data-title-triangleBig.png"
+            src="/img/data-title-triangleBig.png"
             alt="data-title-triangleBig"
             style={{
               position: 'absolute',

@@ -14,7 +14,7 @@ import LaserTabContainer from './components/LaserTabContainer';
 
 import { connect } from 'react-redux';
 
-class ViewSetup extends Component {
+class ViewM1Setup extends Component {
   render() {
     const { 
       frontLeftMotorData,
@@ -717,4 +717,4 @@ function mapStateToProps(state){
     }
 }
 
-export default connect(mapStateToProps)(ViewSetup);
+export default connect(mapStateToProps)(ViewM1Setup);
