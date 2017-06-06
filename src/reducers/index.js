@@ -15,28 +15,14 @@ import frontLaserData from './frontLaserData';
 import rearLaserData from './rearLaserData';
 import frontSensorData from './frontSensorData';
 import rearSensorData from './rearSensorData';
+// ===================================================================
 
-// TEST_SETUP =======================================================
-import bmsSocData from './bmsSocData';
-import bmsTempData from './bmsTempData';
-import invVoltData from './invVoltData';
-import invTempData from './invTempData';
-import bcuMBogieData from './bcuMBogieData';
-import bcuMTogieData from './bcuTBogieData';
-import driveInfoData from './driveInfoData';
-
-//DRIVE =======================================================
-import driveData from './driveData';
-
-// HSC_TEST =======================================================
-import frontLeftHscData from './frontLeftHscData';
-import frontRightHscData from './frontRightHscData';
-import rearLeftHscData from './rearLeftHscData';
-import rearRightHscData from './rearRightHscData';
-import motorControlHscData from './motorControlHscData';
-import frontWheelsetHscData from './frontWheelsetHscData';
-import rearWheelsetHscData from './rearWheelsetHscData';
-// HSC_SETUP =======================================================
+// ITC_SETUP =========================================================
+import setItcSetupFrontLeftData from './setItcSetupFrontLeftData';
+import setItcSetupFrontRightData from './setItcSetupFrontRightData';
+import setItcSetupRearLeftData from './setItcSetupRearLeftData';
+import setItcSetupRearRightData from './setItcSetupRearRightData';
+// ===================================================================
 
 const reducers = combineReducers({ 
   frontLeftData,
@@ -50,25 +36,14 @@ const reducers = combineReducers({
   motorControlData,
   frontWheelsetData,
   rearWheelsetData,
-  bmsSocData,
-  bmsTempData,
-  invVoltData,
-  invTempData,
-  bcuMBogieData,
-  bcuMTogieData,
-  driveInfoData,
   frontLaserData,
   rearLaserData,
   frontSensorData,
   rearSensorData,
-  driveData,
-  frontLeftHscData,
-  frontRightHscData,
-  rearLeftHscData,
-  rearRightHscData,
-  motorControlHscData,
-  frontWheelsetHscData,
-  rearWheelsetHscData
+  setItcSetupFrontLeftData,
+  setItcSetupFrontRightData,
+  setItcSetupRearLeftData,
+  setItcSetupRearRightData
 });
 
 export default reducers;

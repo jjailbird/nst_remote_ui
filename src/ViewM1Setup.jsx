@@ -21,11 +21,17 @@ class ViewM1Setup extends Component {
       frontRightMotorData,
       rearLeftMotorData,
       rearRightMotorData,
-      frontLaserData,
-      rearLaserData,
+      
+      frontLeftData,
+      frontRightData,
+      rearLeftData,
+      rearRightData,
+
+      // frontLaserData,
+      // rearLaserData,
       frontSensorData,
       rearSensorData,
-      motorControlData
+      // motorControlData
     } = this.props;
     return (
         <div className="contBox">
@@ -89,7 +95,7 @@ class ViewM1Setup extends Component {
                     <div className="setPiedata-pieGroups pull-left">
                       <div className="setPiedata-pieGrape pie1">
                         <LaserDonutCircleChart 
-                          data={frontLaserData.data.lx} 
+                          data={frontLeftData.data.laserX} 
                           unit="mm" 
                           name="Laser - X" 
                           dataName = 'lx'
@@ -103,7 +109,7 @@ class ViewM1Setup extends Component {
                       </div>
                       <div className="setPiedata-pieGrape pie2">
                         <LaserDonutCircleChart 
-                          data={frontLaserData.data.ly} 
+                          data={frontLeftData.data.laserY} 
                           unit="mm" 
                           name="Laser - Y" 
                           dataName = 'ly'
@@ -117,7 +123,7 @@ class ViewM1Setup extends Component {
                       </div>
                       <div className="setPiedata-pieGrape pie3">
                         <LaserDonutCircleChart 
-                          data={rearLaserData.data.lx} 
+                          data={rearLeftData.data.laserX} 
                           unit="mm" 
                           name="Laser - X" 
                           dataName = 'lx'
@@ -131,7 +137,7 @@ class ViewM1Setup extends Component {
                       </div>
                       <div className="setPiedata-pieGrape pie4">
                         <LaserDonutCircleChart 
-                          data={rearLaserData.data.ly} 
+                          data={rearLeftData.data.laserY} 
                           unit="mm" 
                           name="Laser - Y" 
                           dataName = 'ly'
@@ -145,7 +151,7 @@ class ViewM1Setup extends Component {
                       </div>
                       <div className="setPiedata-pieGrape pieCenter">         
                         <LaserDonutDigitalChart 
-                          data={frontLaserData.data.g} 
+                          data={frontRightData.data.gyroZ} 
                           unit="°" 
                           name="GYRO - Z" 
                           dataName="frontG"
@@ -161,7 +167,7 @@ class ViewM1Setup extends Component {
                     <div className="setPiedata-pieGroups pull-right">
                       <div className="setPiedata-pieGrape pie1">
                         <LaserDonutCircleChart 
-                          data={frontLaserData.data.rx} 
+                          data={frontRightData.data.laserX} 
                           unit="mm" 
                           name="Laser - X" 
                           dataName = 'rx'
@@ -175,7 +181,7 @@ class ViewM1Setup extends Component {
                       </div>
                       <div className="setPiedata-pieGrape pie2">
                         <LaserDonutCircleChart 
-                          data={frontLaserData.data.ry} 
+                          data={frontRightData.data.laserY} 
                           unit="mm" 
                           name="Laser - Y" 
                           dataName = 'ry'
@@ -189,7 +195,7 @@ class ViewM1Setup extends Component {
                       </div>
                       <div className="setPiedata-pieGrape pie3">
                         <LaserDonutCircleChart 
-                          data={rearLaserData.data.rx} 
+                          data={rearRightData.data.laserX} 
                           unit="mm" 
                           name="Laser - X" 
                           dataName = 'rx'
@@ -203,7 +209,7 @@ class ViewM1Setup extends Component {
                       </div>
                       <div className="setPiedata-pieGrape pie4">
                         <LaserDonutCircleChart 
-                          data={rearLaserData.data.ry} 
+                          data={rearRightData.data.laserY} 
                           unit="mm" 
                           name="Laser - Y" 
                           dataName = 'ry'
@@ -217,7 +223,7 @@ class ViewM1Setup extends Component {
                       </div>
                       <div className="setPiedata-pieGrape pieCenter">
                         <LaserDonutDigitalChart 
-                          data={rearLaserData.data.g} 
+                          data={rearRightData.data.gyroZ} 
                           unit="°" 
                           name="GYRO - Z" 
                           dataName="rearG"
@@ -704,16 +710,24 @@ class ViewM1Setup extends Component {
 }
 
 function mapStateToProps(state){
+    console.log('itcsetup',state.setItcSetupFrontRightData);
     return {
+
       frontLeftMotorData: state.frontLeftMotorData,
       frontRightMotorData: state.frontRightMotorData,
       rearLeftMotorData: state.rearLeftMotorData,
       rearRightMotorData: state.rearRightMotorData,
-      frontLaserData: state.frontLaserData,
-      rearLaserData: state.rearLaserData,
+      
+      frontLeftData: state.setItcSetupFrontLeftData,
+      frontRightData: state.setItcSetupFrontRightData,
+      rearLeftData: state.setItcSetupRearLeftData,
+      rearRightData: state.setItcSetupRearRightData,
+     
+      // frontLaserData: state.frontLaserData,
+      // rearLaserData: state.rearLaserData,
       frontSensorData: state.frontSensorData,
       rearSensorData: state.rearSensorData,
-      motorControlData: state.motorControlData
+      // motorControlData: state.motorControlData
     }
 }
 

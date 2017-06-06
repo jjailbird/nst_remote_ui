@@ -1,3 +1,4 @@
+import Websocket from 'react-websocket';
 import { connect } from 'react-redux';
 import { 
   setFrontLeftData,
@@ -29,7 +30,11 @@ import {
   setRearRightHscData,
   setMotorControlHscData,
   setFrontWheelsetHscData,
-  setRearWheelsetHscData
+  setRearWheelsetHscData,
+  setItcSetupFrontLeftData,
+  setItcSetupFrontRightData,
+  setItcSetupRearLeftData,
+  setItcSetupRearRightData
 } from './actions';
 
 import React, { Component } from 'react';
@@ -54,70 +59,20 @@ import {
 
 import { getRandomInt, getRandomFloat } from './utils/functions';
 
-import ViewMain from './ViewMain';
-import ViewITCRun from './ViewITCRun';
-import ViewSetup from './ViewSetup';
-import ViewTrain from './ViewTrain';
-import ViewSpec from './ViewSpec';
-import ViewTest from './ViewTest';
-import ViewTest2 from './ViewTest2';
-import ViewTestSetupPanel from './ViewTestSetupPanel';
 //페이지 정리
 import ViewM1Main from './ViewM1Main';
 import ViewM1Run from './ViewM1Run';
 import ViewM1Setup from './ViewM1Setup';
 import ViewM1Spec from './ViewM1Spec';
 
-import ViewM2Main from './ViewM2Main';
-import ViewM2Run from './ViewM2Run';
-import ViewM2Setup from './ViewM2Setup';
-import ViewM2Spec from './ViewM2Spec';
-
-import ViewM3Main from './ViewM3Main';
-import ViewM3Run from './ViewM3Run';
-import ViewM3Setup from './ViewM3Setup';
-import ViewM3Spec from './ViewM3Spec';
-
-/*
-const Topic = ({ match }) => (
-  <div>
-    <h3>{match.params.topicId}</h3>
-  </div>
-);
-
-const Topics = ({ match }) => (
-  <div>
-    <h2>Topics</h2>
-    <ul>
-      <li>
-        <NavLink to={`${match.url}/rendering`}>
-          Rendering with React
-        </NavLink>
-      </li>
-      <li>
-        <NavLink to={`${match.url}/components`}>
-          Components
-        </NavLink>
-      </li>
-      <li>
-        <NavLink to={`${match.url}/props-v-state`}>
-          Props v. State
-        </NavLink>
-      </li>
-    </ul>
-
-    <Route path={`${match.url}/:topicId`} component={Topic}/>
-    <Route exact path={match.url} render={() => (
-      <h3>Please select a topic.</h3>
-    )}/>
-  </div>
-);
-*/
 
 class App extends Component {
   constructor(props) {
     super(props);
+    this.hostname =  '192.168.147.20';// window.location.hostname;
     this.thick = this.thick.bind(this);
+    this.handleData = this.handleData.bind(this);
+
     this.frontLeftData = {};
     this.frontLeftData.latDistance = [];
     this.frontLeftData.yawAngle = [];
@@ -191,49 +146,7 @@ class App extends Component {
     this.setRearWheelsetData.attackAngle = 0;
     this.setRearWheelsetData.steeringRatio = 0;
 
-    this.setBmsSocData = {};
-    this.setBmsSocData.cell1 = 0;
-    this.setBmsSocData.cell2 = 0;
-    this.setBmsSocData.cell3 = 0;
-    this.setBmsSocData.cell4 = 0;
-
-    this.setBmsTempData = {};
-    this.setBmsTempData.cell1 = 0;
-    this.setBmsTempData.cell2 = 0;
-    this.setBmsTempData.cell3 = 0;
-    this.setBmsTempData.cell4 = 0;
-
-    this.setInvVoltData = {};
-    this.setInvVoltData.inv1 = 0;
-    this.setInvVoltData.inv2 = 0;
-    this.setInvVoltData.inv3 = 0;
-    this.setInvVoltData.inv4 = 0;
-
-    this.setInvTempData = {};
-    this.setInvTempData.inv1 = 0;
-    this.setInvTempData.inv2 = 0;
-    this.setInvTempData.inv3 = 0;
-    this.setInvTempData.inv4 = 0;
-
-    this.setBcuMBogieData = {};
-    this.setBcuMBogieData.b1 = 0;
-    this.setBcuMBogieData.b2 = 0;
-    this.setBcuMBogieData.b3 = 0;
-    this.setBcuMBogieData.b4 = 0;
-
-    this.setBcuTBogieData = {};
-    this.setBcuTBogieData.b1 = 0;
-    this.setBcuTBogieData.b2 = 0;
-    this.setBcuTBogieData.b3 = 0;
-    this.setBcuTBogieData.b4 = 0;
-
-    this.setDriveInfoData = {};
-    this.setDriveInfoData.notch = 0;
-    this.setDriveInfoData.speed = [];
-    this.setDriveInfoData.soc = 0;
-    this.setDriveInfoData.tract = 0;
-    this.setDriveInfoData.brake = 0;
-
+    // ITCSETUP ===========================
     this.setFrontLaserData = {};
     this.setFrontLaserData.lx = 0;
     this.setFrontLaserData.ly = 0;
@@ -247,6 +160,25 @@ class App extends Component {
     this.setRearLaserData.rx = 0;
     this.setRearLaserData.ry = 0;
     this.setRearLaserData.g = 0;
+
+    this.ITCSETUP_FrontLeftData = {};
+    this.ITCSETUP_FrontLeftData.laserX = 0;
+    this.ITCSETUP_FrontLeftData.laserY = 0;
+
+    this.ITCSETUP_FrontRightData = {};
+    this.ITCSETUP_FrontRightData.laserX = 0;
+    this.ITCSETUP_FrontRightData.laserY = 0;
+    this.ITCSETUP_FrontRightData.gyroZ = 0;
+
+    this.ITCSETUP_RearLeftData = {};
+    this.ITCSETUP_RearLeftData.laserX = 0;
+    this.ITCSETUP_RearLeftData.laserY = 0;
+    
+    this.ITCSETUP_RearRightData = {};
+    this.ITCSETUP_RearLeftData.laserX = 0;
+    this.ITCSETUP_RearLeftData.laserY = 0;
+    this.ITCSETUP_RearLeftData.gyroZ = 0;
+    // ======================================
 
     this.setDriveData = {};
     this.setDriveData.tracBatt = 0;
@@ -293,51 +225,221 @@ class App extends Component {
     this.setRearSensorData.gA = 0;
     this.setRearSensorData.gS = 0;
 
-    //hsc    
-    this.frontLeftHscData = {};
-    this.frontLeftHscData.sylinder = [];
-    this.frontLeftHscData.yawAngle = [];
-    this.frontLeftHscData.aPort = [];
-    this.frontLeftHscData.bPort = [];
-
-    this.frontRightHscData = {};
-    this.frontRightHscData.sylinder = [];
-    this.frontRightHscData.yawAngle = [];
-    this.frontRightHscData.aPort = [];
-    this.frontRightHscData.bPort = [];
-
-    this.rearLeftHscData = {};
-    this.rearLeftHscData.sylinder = [];
-    this.rearLeftHscData.yawAngle = [];
-    this.rearLeftHscData.aPort = [];
-    this.rearLeftHscData.bPort = [];
-
-    this.rearRightHscData = {};
-    this.rearRightHscData.sylinder = [];
-    this.rearRightHscData.yawAngle = [];
-    this.rearRightHscData.aPort = [];
-    this.rearRightHscData.bPort = [];
-
-    this.setMotorControlHscData =  {};
-    this.setMotorControlHscData.position = 0;
-    this.setMotorControlHscData.curv = 0;
-    this.setMotorControlHscData.speed = 0;
-
-    this.setFrontWheelsetHscData = {};
-    this.setFrontWheelsetHscData.position = 0;
-    this.setFrontWheelsetHscData.trackCurve = 0;
-    this.setFrontWheelsetHscData.attackAngle = 0;
-    this.setFrontWheelsetHscData.steeringRatio = 0;
-
-    this.setRearWheelsetHscData = {};
-    this.setRearWheelsetHscData.position = 0;
-    this.setRearWheelsetHscData.trackCurve = 0;
-    this.setRearWheelsetHscData.attackAngle = 0;
-    this.setRearWheelsetHscData.steeringRatio = 0;
   }
   componentDidMount() {
-    this.timer = setInterval(this.thick, 1000 / 30);
+    // this.timer = setInterval(this.thick, 1000 / 30);
   }
+  handleData(data) {
+    const json = JSON.parse(data); 
+    const ITCTEST = json.ITCTEST ? json.ITCTEST : {};
+    const ITCSETUP = json.ITCSETUP ? json.ITCSETUP : {}; 
+    const { dispatch } = this.props;
+    // const json = JSON.parse(data);
+    // console.log('webSocket Received:', json);
+   
+    if (ITCTEST.FrontLeft) {
+      if (this.frontLeftData.latDistance.length >= 292) {
+        this.frontLeftData.latDistance.shift();
+        this.frontLeftData.yawAngle.shift();
+        this.frontLeftData.motorTorque.shift();
+        this.frontLeftData.motorSpeed.shift();
+      }
+      this.frontLeftData.latDistance.push(ITCTEST.FrontLeft.LatDistance);
+      this.frontLeftData.yawAngle.push(ITCTEST.FrontLeft.YawAngle);
+      this.frontLeftData.motorTorque.push(ITCTEST.FrontLeft.MotorTorque);
+      this.frontLeftData.motorSpeed.push(ITCTEST.FrontLeft.MotorSpeed);
+      dispatch( setFrontLeftData(this.frontLeftData) );
+    }
+
+    if (ITCTEST.FrontRight) {
+      if (this.frontRightData.latDistance.length >= 292) {
+        this.frontRightData.latDistance.shift();
+        this.frontRightData.yawAngle.shift();
+        this.frontRightData.motorTorque.shift();
+        this.frontRightData.motorSpeed.shift();
+      }
+      this.frontRightData.latDistance.push(ITCTEST.FrontRight.LatDistance);
+      this.frontRightData.yawAngle.push(ITCTEST.FrontRight.YawAngle);
+      this.frontRightData.motorTorque.push(ITCTEST.FrontRight.MotorTorque);
+      this.frontRightData.motorSpeed.push(ITCTEST.FrontRight.MotorSpeed);
+      dispatch( setFrontRightData(this.frontRightData) );
+    }
+
+    if (ITCTEST.RearLeft) {
+      if (this.rearLeftData.latDistance.length >= 292) {
+        this.rearLeftData.latDistance.shift();
+        this.rearLeftData.yawAngle.shift();
+        this.rearLeftData.motorTorque.shift();
+        this.rearLeftData.motorSpeed.shift();
+      }
+      this.rearLeftData.latDistance.push(ITCTEST.RearLeft.LatDistance);
+      this.rearLeftData.yawAngle.push(ITCTEST.RearLeft.YawAngle);
+      this.rearLeftData.motorTorque.push(ITCTEST.RearLeft.MotorTorque);
+      this.rearLeftData.motorSpeed.push(ITCTEST.RearLeft.MotorSpeed);
+      dispatch( setRearLeftData(this.rearLeftData) );
+    }
+
+    if (ITCTEST.RearRight) {
+      if (this.rearRightData.latDistance.length >= 292) {
+        this.rearRightData.latDistance.shift();
+        this.rearRightData.yawAngle.shift();
+        this.rearRightData.motorTorque.shift();
+        this.rearRightData.motorSpeed.shift();
+      }
+      this.rearRightData.latDistance.push(ITCTEST.RearRight.LatDistance);
+      this.rearRightData.yawAngle.push(ITCTEST.RearRight.YawAngle);
+      this.rearRightData.motorTorque.push(ITCTEST.RearRight.MotorTorque);
+      this.rearRightData.motorSpeed.push(ITCTEST.RearRight.MotorSpeed);
+      dispatch( setRearRightData(this.rearRightData) );
+    }
+
+    if (ITCTEST.Vehicle) {
+      // console.log('json.Vehicle:', json.Vehicle);
+      this.setMotorControlData.position = ITCTEST.Vehicle.Position;
+      this.setMotorControlData.curv = ITCTEST.Vehicle.Radius;
+      this.setMotorControlData.speed = ITCTEST.Vehicle.Speed;
+      dispatch( setMotorControlData(this.setMotorControlData) );
+    }
+
+    if (ITCTEST.FrontWheelset) {
+      // console.log('json.FrontWheelset:', json.FrontWheelset);
+      this.setFrontWheelsetData.position = ITCTEST.FrontWheelset.Position;
+      this.setFrontWheelsetData.trackCurve = ITCTEST.FrontWheelset.TrackCurve;
+      this.setFrontWheelsetData.attackAngle = ITCTEST.FrontWheelset.AttackAngle;
+      this.setFrontWheelsetData.steeringRatio = ITCTEST.FrontWheelset.SteeringRatio;
+      dispatch( setFrontWheelsetData(this.setFrontWheelsetData) );
+    }
+
+    if (ITCTEST.RearWheelset) {
+      this.setRearWheelsetData.position = ITCTEST.RearWheelset.Position;
+      this.setRearWheelsetData.trackCurve = ITCTEST.RearWheelset.TrackCurve;
+      this.setRearWheelsetData.attackAngle = ITCTEST.RearWheelset.AttackAngle;
+      this.setRearWheelsetData.steeringRatio = ITCTEST.RearWheelset.SteeringRatio;
+      dispatch( setRearWheelsetData(this.setRearWheelsetData) );
+    }
+  
+    if (ITCSETUP.FrontLeftMotor) {
+      this.frontLeftMotorData.rpm = ITCSETUP.FrontLeftMotor.RPM;
+      this.frontLeftMotorData.torque = ITCSETUP.FrontLeftMotor.Torque;
+      this.frontLeftMotorData.a = ITCSETUP.FrontLeftMotor.A;
+      this.frontLeftMotorData.b = ITCSETUP.FrontLeftMotor.B;
+      this.frontLeftMotorData.c = ITCSETUP.FrontLeftMotor.C;
+      this.frontLeftMotorData.temp = ITCSETUP.FrontLeftMotor.Temp;
+      dispatch( setFrontLeftMotorData(this.frontLeftMotorData) );
+    }
+    
+    if (ITCSETUP.FrontRightMotor) {
+      this.frontRightMotorData.rpm = ITCSETUP.FrontRightMotor.RPM;
+      this.frontRightMotorData.torque = ITCSETUP.FrontRightMotor.RPM;
+      this.frontRightMotorData.a = ITCSETUP.FrontRightMotor.A;
+      this.frontRightMotorData.b = ITCSETUP.FrontRightMotor.B;
+      this.frontRightMotorData.c = ITCSETUP.FrontRightMotor.C;
+      this.frontRightMotorData.temp = ITCSETUP.FrontRightMotor.Temp;
+      dispatch( setFrontRightMotorData(this.frontRightMotorData) );
+    }
+
+    if (ITCSETUP.RearLeftMotor) {
+      this.rearLeftMotorData.rpm = ITCSETUP.RearLeftMotor.RPM;
+      this.rearLeftMotorData.torque = ITCSETUP.RearLeftMotor.Torque;
+      this.rearLeftMotorData.a = ITCSETUP.RearLeftMotor.A;
+      this.rearLeftMotorData.b = ITCSETUP.RearLeftMotor.B;
+      this.rearLeftMotorData.c = ITCSETUP.RearLeftMotor.C;
+      this.rearLeftMotorData.temp = ITCSETUP.RearLeftMotor.Temp;
+      dispatch( setRearLeftMotorData(this.rearLeftMotorData) );
+    }
+
+    if (ITCSETUP.RearRightMotor) {
+      this.rearRightMotorData.rpm = ITCSETUP.RearRightMotor.RPM;
+      this.rearRightMotorData.torque = ITCSETUP.RearRightMotor.Torque;
+      this.rearRightMotorData.a = ITCSETUP.RearRightMotor.A;
+      this.rearRightMotorData.b = ITCSETUP.RearRightMotor.B;
+      this.rearRightMotorData.c = ITCSETUP.RearRightMotor.C;
+      this.rearRightMotorData.temp = ITCSETUP.RearRightMotor.Temp;    
+      dispatch( setRearRightMotorData(this.rearRightMotorData) );
+    }
+    
+    if (ITCSETUP.FrontLeft) {
+      this.ITCSETUP_FrontLeftData.laserX = ITCSETUP.FrontLeft.LaserX;
+      this.ITCSETUP_FrontLeftData.laserY = ITCSETUP.FrontLeft.LaserY;
+      dispatch( setItcSetupFrontLeftData(this.ITCSETUP_FrontLeftData) );
+    }
+
+    if (ITCSETUP.FrontRight) {
+      this.ITCSETUP_FrontRightData.laserX = ITCSETUP.FrontRight.LaserX;
+      this.ITCSETUP_FrontRightData.laserY = ITCSETUP.FrontRight.LaserY;
+      this.ITCSETUP_FrontRightData.gyroZ = ITCSETUP.FrontRight.GyroZ;
+      dispatch( setItcSetupFrontRightData(this.ITCSETUP_FrontRightData) );
+    }
+ 
+    if (ITCSETUP.RearLeft) {
+      this.ITCSETUP_RearLeftData.laserX = ITCSETUP.RearLeft.LaserX;
+      this.ITCSETUP_RearLeftData.laserY = ITCSETUP.RearLeft.LaserY;
+      dispatch( setItcSetupRearLeftData(this.ITCSETUP_RearLeftData) );
+    }
+
+    if (ITCSETUP.RearRight) {
+      this.ITCSETUP_RearRightData.laserX = ITCSETUP.RearRight.LaserX;
+      this.ITCSETUP_RearRightData.laserY = ITCSETUP.RearRight.LaserY;
+      this.ITCSETUP_RearRightData.gyroZ = ITCSETUP.RearRight.GyroZ;
+      dispatch( setItcSetupRearRightData(this.ITCSETUP_RearRightData) );
+    }
+ 
+
+    
+    if (ITCSETUP.FrontAxleLeftLaser) {
+      this.setFrontSensorData.lxA = ITCSETUP.FrontAxleLeftLaser.YA_0;
+      this.setFrontSensorData.lxS = ITCSETUP.FrontAxleLeftLaser.YS_0;
+      
+      this.setFrontSensorData.ly1A = ITCSETUP.FrontAxleLeftLaser.YA_1;
+      this.setFrontSensorData.ly1S = ITCSETUP.FrontAxleLeftLaser.YS_1;
+      
+      this.setFrontSensorData.ly2A = ITCSETUP.FrontAxleLeftLaser.YA_1;
+      this.setFrontSensorData.ly2S = ITCSETUP.FrontAxleLeftLaser.YS_1;
+      
+      this.setFrontSensorData.rxA = ITCSETUP.FrontAxleRightLaser.YA_0;
+      this.setFrontSensorData.rxS = ITCSETUP.FrontAxleRightLaser.YS_0;
+      
+      this.setFrontSensorData.ry1A = ITCSETUP.FrontAxleRightLaser.YA_1;
+      this.setFrontSensorData.ry1S = ITCSETUP.FrontAxleRightLaser.YS_1;
+      
+      this.setFrontSensorData.ry2A = ITCSETUP.FrontAxleRightLaser.YA_1;
+      this.setFrontSensorData.ry2S = ITCSETUP.FrontAxleRightLaser.YS_1;
+      
+      this.setFrontSensorData.gA = ITCSETUP.FrontAxleGyro.GyroA;
+      this.setFrontSensorData.gS = ITCSETUP.FrontAxleGyro.GyroS;
+      dispatch( setFrontSensorData(this.setFrontSensorData) )
+    }
+
+     if (ITCSETUP.RearAxleLeftLaser) {
+      this.setRearSensorData.lxA = getRandomFloat(-10,10);
+      
+      this.setRearSensorData.lxA = ITCSETUP.RearAxleLeftLaser.YA_0;
+      this.setRearSensorData.lxS = ITCSETUP.RearAxleLeftLaser.YS_0;
+      
+      this.setRearSensorData.ly1A = ITCSETUP.RearAxleLeftLaser.YA_1;
+      this.setRearSensorData.ly1S = ITCSETUP.RearAxleLeftLaser.YS_1;
+      
+      this.setRearSensorData.ly2A = ITCSETUP.RearAxleLeftLaser.YA_1;
+      this.setRearSensorData.ly2S = ITCSETUP.RearAxleLeftLaser.YS_1;
+      
+      this.setRearSensorData.rxA = ITCSETUP.RearAxleRightLaser.YA_0;
+      this.setRearSensorData.rxS = ITCSETUP.RearAxleRightLaser.YS_0;
+      
+      this.setRearSensorData.ry1A = ITCSETUP.RearAxleRightLaser.YA_1;
+      this.setRearSensorData.ry1S = ITCSETUP.RearAxleRightLaser.YS_1;
+      
+      this.setRearSensorData.ry2A = ITCSETUP.RearAxleRightLaser.YA_1;
+      this.setRearSensorData.ry2S = ITCSETUP.RearAxleRightLaser.YS_1;
+      
+      this.setRearSensorData.gA = ITCSETUP.RearAxleGyro.GyroA;
+      this.setRearSensorData.gS = ITCSETUP.RearAxleGyro.GyroS;
+      dispatch( setRearSensorData(this.setRearSensorData) )
+    }
+
+
+
+  }
+  
   thick() {
     const { dispatch } = this.props;
 
@@ -503,21 +605,6 @@ class App extends Component {
 
     dispatch( setDriveInfoData(this.setDriveInfoData) )
 
-    this.setFrontLaserData.lx = getRandomFloat(-10,10);
-    this.setFrontLaserData.ly = getRandomFloat(-10,10);
-    this.setFrontLaserData.rx = getRandomFloat(-10,10);
-    this.setFrontLaserData.ry = getRandomFloat(-10,10);
-    this.setFrontLaserData.g = getRandomFloat(-5,5);
-
-    dispatch( setFrontLaserData(this.setFrontLaserData) )
-
-    this.setRearLaserData.lx = getRandomFloat(-10,10);
-    this.setRearLaserData.ly = getRandomFloat(-10,10);
-    this.setRearLaserData.rx = getRandomFloat(-10,10);
-    this.setRearLaserData.ry = getRandomFloat(-10,10);
-    this.setRearLaserData.g = getRandomFloat(-5,5);
-
-    dispatch( setRearLaserData(this.setRearLaserData) )
 
     if (this.setDriveData.speed.length >= 234) {
       this.setDriveData.speed.shift();
@@ -537,39 +624,6 @@ class App extends Component {
 
     dispatch( setDriveData(this.setDriveData) )
 
-    this.setFrontSensorData.lxA = getRandomFloat(-10,10);
-    this.setFrontSensorData.lxS = getRandomFloat(-10,10);
-    this.setFrontSensorData.ly1A = getRandomFloat(-10,10);
-    this.setFrontSensorData.ly1S = getRandomFloat(-10,10);
-    this.setFrontSensorData.ly2A = getRandomFloat(-10,10);
-    this.setFrontSensorData.ly2S = getRandomFloat(-10,10);
-    this.setFrontSensorData.rxA = getRandomFloat(-10,10);
-    this.setFrontSensorData.rxS = getRandomFloat(-10,10);
-    this.setFrontSensorData.ry1A = getRandomFloat(-10,10);
-    this.setFrontSensorData.ry1S = getRandomFloat(-10,10);
-    this.setFrontSensorData.ry2A = getRandomFloat(-10,10);
-    this.setFrontSensorData.ry2S = getRandomFloat(-10,10);
-    this.setFrontSensorData.gA = getRandomFloat(-5,5);
-    this.setFrontSensorData.gS = getRandomFloat(-5,5);
-
-    dispatch( setFrontSensorData(this.setFrontSensorData) )
-
-    this.setRearSensorData.lxA = getRandomFloat(-10,10);
-    this.setRearSensorData.lxS = getRandomFloat(-10,10);
-    this.setRearSensorData.ly1A = getRandomFloat(-10,10);
-    this.setRearSensorData.ly1S = getRandomFloat(-10,10);
-    this.setRearSensorData.ly2A = getRandomFloat(-10,10);
-    this.setRearSensorData.ly2S = getRandomFloat(-10,10);
-    this.setRearSensorData.rxA = getRandomFloat(-10,10);
-    this.setRearSensorData.rxS = getRandomFloat(-10,10);
-    this.setRearSensorData.ry1A = getRandomFloat(-10,10);
-    this.setRearSensorData.ry1S = getRandomFloat(-10,10);
-    this.setRearSensorData.ry2A = getRandomFloat(-10,10);
-    this.setRearSensorData.ry2S = getRandomFloat(-10,10);
-    this.setRearSensorData.gA = getRandomFloat(-5,5);
-    this.setRearSensorData.gS = getRandomFloat(-5,5);
-
-    dispatch( setRearSensorData(this.setRearSensorData) )
 
     //hsc
 
@@ -649,70 +703,23 @@ class App extends Component {
     return (
       <Router>
         <div>
+          <Websocket
+            url={`ws://${this.hostname}:8181/`}
+            onMessage={this.handleData} debug={false}
+          />
           <div>
-            <Route exact path="/main" component={ViewMain}/>
-            <Route path="/itcrun" component={ViewITCRun}/>
-            <Route path="/setup" component={ViewSetup}/>
-            <Route path="/train" component={ViewTrain}/>
-            <Route path="/spec" component={ViewSpec}/>
-            <Route path="/test" component={ViewTest} />
-            <Route path="/test2" component={ViewTest2} />
-            <Route path="/testsetuppanel" component={ViewTestSetupPanel} />
-
-            {/*페이지 정리*/}
+            
             <Route path="/m1/main" component={ViewM1Main} />
             <Route path="/m1/run" component={ViewM1Run} />
             <Route path="/m1/setup" component={ViewM1Setup} />
             <Route path="/m1/spec" component={ViewM1Spec} />
 
-            <Route path="/m2/main" component={ViewM2Main} />
-            <Route path="/m2/run" component={ViewM2Run} />
-            <Route path="/m2/setup" component={ViewM2Setup} />
-            <Route path="/m2/spec" component={ViewM2Spec} />
-
-            <Route path="/m3/main" component={ViewM3Main} />
-            <Route path="/m3/run" component={ViewM3Run} />
-            <Route path="/m3/setup" component={ViewM3Setup} />
-            <Route path="/m3/spec" component={ViewM3Spec} />
-
           </div>
-          {/*===============삭제하세요(임시메뉴)===============*/}
-          <div
-            style={{
-              width: '600px',
-              background: '#000',
-              color: '#fff',
-              position: 'absolute',
-              bottom: '0px',
-              left: '50%',
-              zIndex: '15',
-              textAlign: 'center',
-              marginLeft: '-300px'
-            }}
-          >
-            <span>M1 </span>
-            <a href="/m1/main">main </a>
-            <a href="/m1/run">run </a>
-            <a href="/m1/setup">setup </a>
-            <a href="/m1/spec">spec </a>
-            <span>M2 </span>
-            <a href="/m2/main">main </a>
-            <a href="/m2/run">run </a>
-            <a href="/m2/setup">setup </a>
-            <a href="/m2/spec">spec </a>
-            <span>M3 </span>
-            <a href="/m3/main">main </a>
-            <a href="/m3/run">run </a>
-            <a href="/m3/setup">setup </a>
-            <a href="/m3/spec">spec </a>
-          </div>
-          {/*===============삭제하세요(임시메뉴)END===============*/}
-          
           <div 
             className="navi"
             style={{
-              //background: 'url(/img/navi-bg.png)'
-              background: 'url(/img/navi-drive-bg.png)'
+              background: 'url(/img/navi-bg.png)'
+              // background: 'url(/img/navi-drive-bg.png)'
             }}
           >
             <div className="copy">
@@ -731,7 +738,7 @@ class App extends Component {
             >
               <ul>
                 <li className="navTop2">
-                  <NavLink to="/main" activeClassName="navOn" style={{position: 'relative'}}>
+                  <NavLink to="/m1/main" activeClassName="navOn" style={{position: 'relative'}}>
                     <img src="/img/navi1.png" alt="main" />
                     <div
                       style={{
@@ -747,7 +754,7 @@ class App extends Component {
                   </NavLink>
                 </li>
                 <li className="navTop3">
-                  <NavLink to="/itcrun" activeClassName="navOn" style={{position: 'relative'}}>
+                  <NavLink to="/m1/run" activeClassName="navOn" style={{position: 'relative'}}>
                     <img src="/img/navi2.png" alt="ITC Run" />
                     <div
                       style={{
@@ -763,7 +770,7 @@ class App extends Component {
                   </NavLink>
                 </li>
                 <li className="navTop3">
-                  <NavLink to="/setup" activeClassName="navOn" style={{position: 'relative'}}>
+                  <NavLink to="/m1/setup" activeClassName="navOn" style={{position: 'relative'}}>
                     <img src="/img/navi3.png" alt="Setup" />
                     <div
                       style={{
@@ -779,7 +786,7 @@ class App extends Component {
                   </NavLink>
                 </li>
                 <li className="navTop2">
-                  <NavLink to="/spec" activeClassName="navOn" style={{position: 'relative'}}>
+                  <NavLink to="/m1/spec" activeClassName="navOn" style={{position: 'relative'}}>
                     <img src="/img/navi4.png" alt="Spec" />
                     <div
                       style={{

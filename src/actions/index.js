@@ -24,6 +24,14 @@ export const SET_BCU_M_BOGIE_DATA = 'SET_BCU_M_BOGIE_DATA';
 export const SET_BCU_T_BOGIE_DATA = 'SET_BCU_T_BOGIE_DATA';
 export const SET_DRIVE_INFO_DATA = 'SET_DRIVE_INFO_DATA';
 
+// ITC_SETUP ================================================================
+export const SET_ITCSETUP_FRONT_LEFT_DATA = 'SET_ITCSETUP_FRONT_LEFT_DATA';
+export const SET_ITCSETUP_FRONT_RIGHT_DATA = 'SET_ITCSETUP_FRONT_RIGHT_DATA';
+export const SET_ITCSETUP_REAR_LEFT_DATA = 'SET_ITCSETUP_REAR_LEFT_DATA';
+export const SET_ITCSETUP_REAR_RIGHT_DATA = 'SET_ITCSETUP_REAR_RIGHT_DATA';
+// ==========================================================================
+
+
 //DRIVE =======================================================
 export const SET_DRIVE_DATA = 'SET_DRIVE_DATA';
 
@@ -37,6 +45,35 @@ export const SET_FRONT_WHEELSET_HSC_DATA = 'SET_FRONT_WHEELSET_HSC_DATA';
 export const SET_REAR_WHEELSET_HSC_DATA = 'SET_REAR_WHEELSET_HSC_DATA';
 
 // HSC_SETUP =======================================================
+
+
+// ITC_SETUP ================================================================
+export const setItcSetupFrontLeftData = (data) => {
+  return {
+    type: SET_ITCSETUP_FRONT_LEFT_DATA,
+    data
+  }
+}
+export const setItcSetupFrontRightData = (data) => {
+  return {
+    type: SET_ITCSETUP_FRONT_RIGHT_DATA,
+    data
+  }
+}
+export const setItcSetupRearLeftData = (data) => {
+  return {
+    type: SET_ITCSETUP_REAR_LEFT_DATA,
+    data
+  }
+}
+export const setItcSetupRearRightData = (data) => {
+  return {
+    type: SET_ITCSETUP_REAR_RIGHT_DATA,
+    data
+  }
+}
+// ==========================================================================
+
 
 export const setFrontLeftData = (data) => {
   return {
