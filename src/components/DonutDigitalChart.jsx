@@ -48,6 +48,22 @@ export default class DonutDigitalChart extends Component {
         lineValueShift = 0;
         lineMax = 3000;
         break;
+      case 'sylinder stroke':
+        lineValueShift = 10;
+        lineMax = 20;
+        break;
+      case 'yaw angle':
+        lineValueShift = 5;
+        lineMax = 10;
+        break;
+      case 'a port pressure':
+        lineValueShift = 0;
+        lineMax = 50;
+        break;
+      case 'b port pressure':
+        lineValueShift = 0;
+        lineMax = 150;
+        break;
     }
     
     let value = 0;

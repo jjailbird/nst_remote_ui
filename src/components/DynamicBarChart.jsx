@@ -32,6 +32,22 @@ export default class DynamicBarChart extends Component {
         barValueShift = 0;
         barMax = 3000;
         break;
+      case 'sylinder stroke':
+        barValueShift = 10;
+        barMax = 20;
+        break;
+      case 'yaw angle':
+        barValueShift = 5;
+        barMax = 10;
+        break;
+      case 'a port pressure':
+        barValueShift = 0;
+        barMax = 50;
+        break;
+      case 'b port pressure':
+        barValueShift = 0;
+        barMax = 150;
+        break;
     }
 
     if(data && data.length > 0) {

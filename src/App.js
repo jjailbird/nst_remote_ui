@@ -295,28 +295,28 @@ class App extends Component {
 
     //hsc    
     this.frontLeftHscData = {};
-    this.frontLeftHscData.latDistance = [];
+    this.frontLeftHscData.sylinder = [];
     this.frontLeftHscData.yawAngle = [];
-    this.frontLeftHscData.motorTorque = [];
-    this.frontLeftHscData.motorSpeed = [];
+    this.frontLeftHscData.aPort = [];
+    this.frontLeftHscData.bPort = [];
 
     this.frontRightHscData = {};
-    this.frontRightHscData.latDistance = [];
+    this.frontRightHscData.sylinder = [];
     this.frontRightHscData.yawAngle = [];
-    this.frontRightHscData.motorTorque = [];
-    this.frontRightHscData.motorSpeed = [];
+    this.frontRightHscData.aPort = [];
+    this.frontRightHscData.bPort = [];
 
     this.rearLeftHscData = {};
-    this.rearLeftHscData.latDistance = [];
+    this.rearLeftHscData.sylinder = [];
     this.rearLeftHscData.yawAngle = [];
-    this.rearLeftHscData.motorTorque = [];
-    this.rearLeftHscData.motorSpeed = [];
+    this.rearLeftHscData.aPort = [];
+    this.rearLeftHscData.bPort = [];
 
     this.rearRightHscData = {};
-    this.rearRightHscData.latDistance = [];
+    this.rearRightHscData.sylinder = [];
     this.rearRightHscData.yawAngle = [];
-    this.rearRightHscData.motorTorque = [];
-    this.rearRightHscData.motorSpeed = [];
+    this.rearRightHscData.aPort = [];
+    this.rearRightHscData.bPort = [];
 
     this.setMotorControlHscData =  {};
     this.setMotorControlHscData.position = 0;
@@ -573,55 +573,55 @@ class App extends Component {
 
     //hsc
 
-    if (this.frontLeftHscData.latDistance.length >= 292) {
-      this.frontLeftHscData.latDistance.shift();
+    if (this.frontLeftHscData.sylinder.length >= 292) {
+      this.frontLeftHscData.sylinder.shift();
       this.frontLeftHscData.yawAngle.shift();
-      this.frontLeftHscData.motorTorque.shift();
-      this.frontLeftHscData.motorSpeed.shift();
+      this.frontLeftHscData.aPort.shift();
+      this.frontLeftHscData.bPort.shift();
     }
-    this.frontLeftHscData.latDistance.push(getRandomFloat(-10,10));
+    this.frontLeftHscData.sylinder.push(getRandomFloat(-10,10));
     this.frontLeftHscData.yawAngle.push(getRandomFloat(-5,5));
-    this.frontLeftHscData.motorTorque.push(getRandomInt(0,3000));
-    this.frontLeftHscData.motorSpeed.push(getRandomInt(0,3000));
+    this.frontLeftHscData.aPort.push(getRandomInt(0,50));
+    this.frontLeftHscData.bPort.push(getRandomInt(0,150));
 
     dispatch( setFrontLeftHscData(this.frontLeftHscData) );
 
-    if (this.frontRightHscData.latDistance.length >= 292) {
-      this.frontRightHscData.latDistance.shift();
+    if (this.frontRightHscData.sylinder.length >= 292) {
+      this.frontRightHscData.sylinder.shift();
       this.frontRightHscData.yawAngle.shift();
-      this.frontRightHscData.motorTorque.shift();
-      this.frontRightHscData.motorSpeed.shift();
+      this.frontRightHscData.aPort.shift();
+      this.frontRightHscData.bPort.shift();
     }
-    this.frontRightHscData.latDistance.push(getRandomFloat(-10,10));
+    this.frontRightHscData.sylinder.push(getRandomFloat(-10,10));
     this.frontRightHscData.yawAngle.push(getRandomFloat(-5,5));
-    this.frontRightHscData.motorTorque.push(getRandomInt(0,3000));
-    this.frontRightHscData.motorSpeed.push(getRandomInt(0,3000));
+    this.frontRightHscData.aPort.push(getRandomInt(0,50));
+    this.frontRightHscData.bPort.push(getRandomInt(0,150));
     
     dispatch( setFrontRightHscData(this.frontRightHscData) );
 
-    if (this.rearLeftHscData.latDistance.length >= 292) {
-      this.rearLeftHscData.latDistance.shift();
+    if (this.rearLeftHscData.sylinder.length >= 292) {
+      this.rearLeftHscData.sylinder.shift();
       this.rearLeftHscData.yawAngle.shift();
-      this.rearLeftHscData.motorTorque.shift();
-      this.rearLeftHscData.motorSpeed.shift();
+      this.rearLeftHscData.aPort.shift();
+      this.rearLeftHscData.bPort.shift();
     }
-    this.rearLeftHscData.latDistance.push(getRandomFloat(-10,10));
+    this.rearLeftHscData.sylinder.push(getRandomFloat(-10,10));
     this.rearLeftHscData.yawAngle.push(getRandomFloat(-5,5));
-    this.rearLeftHscData.motorTorque.push(getRandomInt(0,3000));
-    this.rearLeftHscData.motorSpeed.push(getRandomInt(0,3000));
+    this.rearLeftHscData.aPort.push(getRandomInt(0,50));
+    this.rearLeftHscData.bPort.push(getRandomInt(0,150));
     
     dispatch( setRearLeftHscData(this.rearLeftHscData) );
 
-    if (this.rearRightHscData.latDistance.length >= 292) {
-      this.rearRightHscData.latDistance.shift();
+    if (this.rearRightHscData.sylinder.length >= 292) {
+      this.rearRightHscData.sylinder.shift();
       this.rearRightHscData.yawAngle.shift();
-      this.rearRightHscData.motorTorque.shift();
-      this.rearRightHscData.motorSpeed.shift();
+      this.rearRightHscData.aPort.shift();
+      this.rearRightHscData.bPort.shift();
     }
-    this.rearRightHscData.latDistance.push(getRandomFloat(-10,10));
+    this.rearRightHscData.sylinder.push(getRandomFloat(-10,10));
     this.rearRightHscData.yawAngle.push(getRandomFloat(-5,5));
-    this.rearRightHscData.motorTorque.push(getRandomInt(0,3000));
-    this.rearRightHscData.motorSpeed.push(getRandomInt(0,3000));
+    this.rearRightHscData.aPort.push(getRandomInt(0,50));
+    this.rearRightHscData.bPort.push(getRandomInt(0,150));
     
     dispatch( setRearRightHscData(this.rearRightHscData) );
 

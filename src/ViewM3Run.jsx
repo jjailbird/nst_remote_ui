@@ -3,7 +3,7 @@ import SliderWeightFactor from './components/SliderWeightFactor';
 import ControlSwitchGroup from './components/ControlSwitchGroup';
 import ControlSwitchButton from './components/ControlSwitchButton';
 import ControlSwitchCheckBox from './components/ControlSwitchCheckBox';
-import GraphTabContainer from './components/GraphTabContainer';
+import GraphTabHscContainer from './components/GraphTabHscContainer';
 import MotorControlTabContainer from './components/MotorControlTabContainer';
 import RailroadTrail from './components/RailroadTrail';
 import DonutDivideLeftChart from './components/DonutDivideLeftChart';
@@ -104,8 +104,8 @@ class ViewM3Run extends Component {
                 Live Cam Mode
               </div>
             </div>
-            <GraphTabContainer data={frontLeftHscData.data} title="Front Left"/>
-            <GraphTabContainer data={rearLeftHscData.data} title="Rear Left"/>
+            <GraphTabHscContainer data={frontLeftHscData.data} title="Front Left"/>
+            <GraphTabHscContainer data={rearLeftHscData.data} title="Rear Left"/>
             <PanelControlButtonsLeft />
           </div>
           <div className="motor-control-modeBox pull-left">
@@ -134,38 +134,53 @@ class ViewM3Run extends Component {
                   ]} 
                 />
                 <ControlSwitchButton 
-                  title="CONTROL MODE" 
+                  title="ZERO POSITIONING" 
                   activeBgColor="rgba(255,255,255,0.3)" 
                   textColor="#fff" 
                   padding="3px 20px" 
                   buttons={[
-                    { idx: 1, title: 'Torque', value: 'Torque' }, 
-                    { idx: 2, title: 'Speed', value: 'Speed' }
+                    { idx: 1, title: 'Auto', value: 'Auto' }, 
+                    { idx: 2, title: 'Zero', value: 'Zero' }
                   ]}
                 />
               </div>
-              <div className="modeConfig1-listBox2">
-                <div className="listBox2-childBox pull-left">
+              <div style={{padding: '3px 0'}}>
                   <ControlSwitchCheckBox
                     title="SENSOR TYPE"
                     activeBgColor="rgba(201,195,53,0.7)" 
                     textColor="#fff" 
                     padding="3px 17px 3px 27px" 
                     buttons={[
-                      { idx: 1, title: 'Laser-X', value: 'Laser-X' }, 
-                      { idx: 2, title: 'Laser-Y', value: 'Laser-Y' }, 
-                      { idx: 3, title: 'Gyro', value: 'Gyro' }
+                      { idx: 1, title: 'LVDT', value: 'LVDT' }, 
+                      { idx: 2, title: 'Gyro', value: 'Gyro' }
                     ]}
                   />
+                  <span style={{padding: '10px'}} ></span>
+                  <ControlSwitchButton
+                    title="CONTROL TYPE"
+                    activeBgColor="rgba(255,255,255,0.3)" 
+                    textColor="#fff" 
+                    padding="3px 19px" 
+                    buttons={[
+                      { idx: 1, title: 'Passive', value: 'Passive' }, 
+                      { idx: 2, title: 'Active A', value: 'Active A' }, 
+                      { idx: 3, title: 'Active A2', value: 'Active A2' }, 
+                      { idx: 4, title: 'Active B', value: 'Active B' }, 
+                      { idx: 5, title: 'Active B2', value: 'Active B2' }
+                    ]}
+                  />
+              </div>
+              <div className="modeConfig1-listBox2">
+                <div className="listBox2-childBox pull-left">
                   <div className="listBox2-controlBox">
                     <div className="listBox2-controlBoxTitle">
-                      WEIGHT FACTOR – Lateral Sensor
+                      STEERING RATIO - ACTIVE A MODE
                     </div>
                     <div className="listBox2-controlBoxControl">
                       <SliderWeightFactor value="-15.5" />
                     </div>
                     <div className="listBox2-controlBoxTitle">
-                      WEIGHT FACTOR – Yaw Sensor
+                      STEERING RATIO - ACTIVE A2 MODE
                     </div>
                     <div className="listBox2-controlBoxControl">
                       <SliderWeightFactor value="-10" />
@@ -173,25 +188,15 @@ class ViewM3Run extends Component {
                   </div>
                 </div>
                 <div className="listBox2-childBox pull-right">
-                  <ControlSwitchButton
-                    title="CONTROL TYPE"
-                    activeBgColor="rgba(255,255,255,0.3)" 
-                    textColor="#fff" 
-                    padding="3px 20px" 
-                    buttons={[
-                      { idx: 1, title: 'Lateral Position', value: 'Lateral Position' }, 
-                      { idx: 2, title: 'Yaw Angle', value: 'Yaw Angle' }
-                    ]}
-                  />
                   <div className="listBox2-controlBox">
                     <div className="listBox2-controlBoxTitle">
-                      WEIGHT FACTOR – Control Mode
+                      STEERING RATIO - ACTIVE B MODE
                     </div>
                     <div className="listBox2-controlBoxControl">
                       <SliderWeightFactor value="-5" />
                     </div>
                     <div className="listBox2-controlBoxTitle">
-                      WEIGHT FACTOR – Control Type
+                      STEERING RATIO - ACTIVE B2 MODE
                     </div>
                     <div className="listBox2-controlBoxControl">
                       <SliderWeightFactor value="0" />
@@ -395,8 +400,8 @@ class ViewM3Run extends Component {
                 Recording Mode
               </div>
             </div>
-            <GraphTabContainer data={frontRightHscData.data} title="Front Right"/>
-            <GraphTabContainer data={rearRightHscData.data} title="Rear Right"/>
+            <GraphTabHscContainer data={frontRightHscData.data} title="Front Right"/>
+            <GraphTabHscContainer data={rearRightHscData.data} title="Rear Right"/>
             <PanelControlButtonsRight />
           </div>
         </div>

@@ -49,13 +49,13 @@ export default class GraphTabHscContainer extends Component {
               <DynamicBarChart data={data.sylinder} unit="mm" name="sylinder stroke" barColor="#6f934f"/>
               <DynamicBarChart data={data.yawAngle} unit="deg" name="yaw angle" barColor="#6f934f"/>
               <DynamicBarChart data={data.aPort} unit="kpa" name="a port pressure" barColor="#2c68a8"/>
-              <DynamicBarChart data={data.bPort} unit="kpa" name="a port pressure" barColor="#2c68a8"/>
+              <DynamicBarChart data={data.bPort} unit="kpa" name="b port pressure" barColor="#2c68a8"/>
             </div>
             <div className={type != 'LINE' ? 'hide' : ''}>
               <DynamicLineChart data={data.sylinder} unit="mm" name="lat. distance"/>
               <DynamicLineChart data={data.yawAngle} unit="deg" name="yaw angle" />
               <DynamicLineChart data={data.aPort} unit="kpa" name="a port pressure" />
-              <DynamicLineChart data={data.bPort} unit="kpa" name="a port pressure" />              
+              <DynamicLineChart data={data.bPort} unit="kpa" name="b port pressure" />              
             </div>
 
           </div>        
