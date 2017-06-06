@@ -39,10 +39,10 @@ class ViewM3Setup extends Component {
           </div>
           <div className="conBoxArea">
             <div className="setupSection pull-left">
-              <div className="setupBoxArea">
+              <div className="setupBoxArea hsc">
                 <div className="setupBox pull-left">
                   <div className="setupBoxTitle">
-                    pid gain tuning-front
+                    pi gain tuning-front
                   </div>
                   <div className="setupBoxCon">
                     <div className="setTitle">
@@ -63,7 +63,49 @@ class ViewM3Setup extends Component {
                 </div>
                 <div className="setupBox pull-right">
                   <div className="setupBoxTitle">
-                    pid gain tuning-rear
+                    pi gain tuning-rear
+                  </div>
+                  <div className="setupBoxCon">
+                        <div className="setupTitle">
+                          p gain
+                        </div>
+                        <div className="setupGainTunning">
+                          <SliderWeightFactor value="-10" />
+                        </div>
+                        <div className="setupTitle">
+                          i gain
+                        </div>
+                        <div className="setupGainTunning">
+                          <SliderWeightFactor value="-0" />
+                        </div>
+                  </div>
+                </div>
+              </div>
+              <div className="setupBoxArea hsc">
+                <div className="setupBox pull-left">
+                  <div className="setupBoxTitle">
+                    pi gain tuning-front
+                  </div>
+                  <div className="setupBoxCon">
+                    <div className="setTitle">
+                        <div className="setupTitle">
+                          p gain
+                        </div>
+                        <div className="setupGainTunning">
+                          <SliderWeightFactor value="-15" />
+                        </div>
+                        <div className="setupTitle">
+                          i gain
+                        </div>
+                        <div className="setupGainTunning">
+                          <SliderWeightFactor value="-5" />
+                        </div>
+                    </div>
+                  </div>
+                </div>
+                <div className="setupBox pull-right">
+                  <div className="setupBoxTitle">
+                    pi gain tuning-rear
                   </div>
                   <div className="setupBoxCon">
                         <div className="setupTitle">
@@ -91,9 +133,9 @@ class ViewM3Setup extends Component {
                         <LaserDonutCircleChart 
                           data={frontLaserData.data.lx} 
                           unit="mm" 
-                          name="Laser - X" 
+                          name="STEER FORCE" 
                           dataName = 'lx'
-                          strokeColor="rgba(44,106,170,0.7)" 
+                          strokeColor="rgba(201,53,53,0.7)" 
                           strokeColorLine="rgba(255,255,255,0.2)" 
                           donutWidth="47" 
                           donutStrokeWidth="6"
@@ -105,9 +147,9 @@ class ViewM3Setup extends Component {
                         <LaserDonutCircleChart 
                           data={frontLaserData.data.ly} 
                           unit="mm" 
-                          name="Laser - Y" 
+                          name="LVDT" 
                           dataName = 'ly'
-                          strokeColor="rgba(201,53,53,0.7)" 
+                          strokeColor="rgba(44,106,170,0.7)" 
                           strokeColorLine="rgba(255,255,255,0.2)" 
                           donutWidth="47" 
                           donutStrokeWidth="6"
@@ -119,9 +161,9 @@ class ViewM3Setup extends Component {
                         <LaserDonutCircleChart 
                           data={rearLaserData.data.lx} 
                           unit="mm" 
-                          name="Laser - X" 
+                          name="STEER FORCE" 
                           dataName = 'lx'
-                          strokeColor="rgba(44,106,170,0.7)" 
+                          strokeColor="rgba(201,53,53,0.7)" 
                           strokeColorLine="rgba(255,255,255,0.2)" 
                           donutWidth="47" 
                           donutStrokeWidth="6"
@@ -133,9 +175,9 @@ class ViewM3Setup extends Component {
                         <LaserDonutCircleChart 
                           data={rearLaserData.data.ly} 
                           unit="mm" 
-                          name="Laser - Y" 
+                          name="LVDT" 
                           dataName = 'ly'
-                          strokeColor="rgba(201,53,53,0.7)" 
+                          strokeColor="rgba(44,106,170,0.7)" 
                           strokeColorLine="rgba(255,255,255,0.2)" 
                           donutWidth="47" 
                           donutStrokeWidth="6"
@@ -163,9 +205,9 @@ class ViewM3Setup extends Component {
                         <LaserDonutCircleChart 
                           data={frontLaserData.data.rx} 
                           unit="mm" 
-                          name="Laser - X" 
+                          name="STEER FORCE" 
                           dataName = 'rx'
-                          strokeColor="rgba(44,106,170,0.7)" 
+                          strokeColor="rgba(201,53,53,0.7)" 
                           strokeColorLine="rgba(255,255,255,0.2)" 
                           donutWidth="47" 
                           donutStrokeWidth="6"
@@ -177,9 +219,9 @@ class ViewM3Setup extends Component {
                         <LaserDonutCircleChart 
                           data={frontLaserData.data.ry} 
                           unit="mm" 
-                          name="Laser - Y" 
+                          name="LVDT" 
                           dataName = 'ry'
-                          strokeColor="rgba(201,53,53,0.7)" 
+                          strokeColor="rgba(44,106,170,0.7)" 
                           strokeColorLine="rgba(255,255,255,0.2)" 
                           donutWidth="47" 
                           donutStrokeWidth="6"
@@ -191,9 +233,9 @@ class ViewM3Setup extends Component {
                         <LaserDonutCircleChart 
                           data={rearLaserData.data.rx} 
                           unit="mm" 
-                          name="Laser - X" 
+                          name="STEER FORCE" 
                           dataName = 'rx'
-                          strokeColor="rgba(44,106,170,0.7)" 
+                          strokeColor="rgba(201,53,53,0.7)" 
                           strokeColorLine="rgba(255,255,255,0.2)" 
                           donutWidth="47" 
                           donutStrokeWidth="6"
@@ -205,9 +247,9 @@ class ViewM3Setup extends Component {
                         <LaserDonutCircleChart 
                           data={rearLaserData.data.ry} 
                           unit="mm" 
-                          name="Laser - Y" 
+                          name="LVDT" 
                           dataName = 'ry'
-                          strokeColor="rgba(201,53,53,0.7)" 
+                          strokeColor="rgba(44,106,170,0.7)" 
                           strokeColorLine="rgba(255,255,255,0.2)" 
                           donutWidth="47" 
                           donutStrokeWidth="6"
@@ -234,7 +276,7 @@ class ViewM3Setup extends Component {
               </div>
               <div className="setupBox x2 marginTop10">
                 <div className="setupBoxTitle">
-                  motor bogie description
+                 trailer bogie description
                 </div>
                   <div className="setupBoxCon setupBoxConDesc">
                     <div className="setupDescBox pull-left">
@@ -325,7 +367,7 @@ class ViewM3Setup extends Component {
               <div className="setupBoxArea">
                 <div className="setupBox2 pull-left">
                   <div className="setupBoxTitle">
-                    front left motor
+                    front left cylinder
                   </div>
                   <div className="setupBoxCon">
                     <div className="setupMotorGraph pull-left">
@@ -333,7 +375,7 @@ class ViewM3Setup extends Component {
                         <div className="pie-graph pull-left">
                           <MotorDonutChart 
                             data={frontLeftMotorData.data.a} 
-                            unit="A" 
+                            unit="Kpa" 
                             name="A-cur" 
                             strokeColor="#fff" 
                             strokeColorLine="rgba(255,255,255,0.3)" 
@@ -346,21 +388,8 @@ class ViewM3Setup extends Component {
                         <div className="pie-graph pull-left">
                           <MotorDonutChart 
                             data={frontLeftMotorData.data.b} 
-                            unit="A" 
+                            unit="Kpa" 
                             name="B-cur" 
-                            strokeColor="#fff" 
-                            strokeColorLine="rgba(255,255,255,0.3)" 
-                            donutWidth="48" 
-                            donutStrokeWidth="6"
-                            valueFontSize="35px"
-                            valueFontColor="#fff"
-                          />
-                        </div>
-                        <div className="pie-graph pull-left">
-                          <MotorDonutChart 
-                            data={frontLeftMotorData.data.c} 
-                            unit="A" 
-                            name="C-cur" 
                             strokeColor="#fff" 
                             strokeColorLine="rgba(255,255,255,0.3)" 
                             donutWidth="48" 
@@ -378,18 +407,18 @@ class ViewM3Setup extends Component {
                           <MotorGaugeBar data={frontLeftMotorData.data.rpm} name="rpm" unit=""/>
                         </div>
                         <div className="bar-graph pull-right">
-                          <MotorGaugeBar data={frontLeftMotorData.data.torque} name="torque" unit="Nm"/>
+                          <MotorGaugeBar data={frontLeftMotorData.data.torque} name="torque" unit="mm"/>
                         </div>
                       </div>
                     </div>
                     <div className="setupMotorImage pull-right">
-                      <img src="/img/sample/setup-motor.png"/>
+                      <img src="/img/setup-hsc-motor.png"/>
                     </div>
                   </div>
                 </div>
                 <div className="setupBox2 pull-right">
                   <div className="setupBoxTitle">
-                    front right motor
+                    front right cylinder
                   </div>
                   <div className="setupBoxCon">
                     <div className="setupMotorGraph pull-left">
@@ -397,7 +426,7 @@ class ViewM3Setup extends Component {
                         <div className="pie-graph pull-left">
                           <MotorDonutChart 
                             data={frontRightMotorData.data.a} 
-                            unit="A" 
+                            unit="Kpa" 
                             name="A-cur" 
                             strokeColor="#fff" 
                             strokeColorLine="rgba(255,255,255,0.3)" 
@@ -410,21 +439,8 @@ class ViewM3Setup extends Component {
                         <div className="pie-graph pull-left">
                           <MotorDonutChart 
                             data={frontRightMotorData.data.b} 
-                            unit="A" 
+                            unit="Kpa" 
                             name="B-cur" 
-                            strokeColor="#fff" 
-                            strokeColorLine="rgba(255,255,255,0.3)" 
-                            donutWidth="48" 
-                            donutStrokeWidth="6"
-                            valueFontSize="35px"
-                            valueFontColor="#fff"
-                          />
-                        </div>
-                        <div className="pie-graph pull-left">
-                          <MotorDonutChart 
-                            data={frontRightMotorData.data.c} 
-                            unit="A" 
-                            name="C-cur" 
                             strokeColor="#fff" 
                             strokeColorLine="rgba(255,255,255,0.3)" 
                             donutWidth="48" 
@@ -447,7 +463,7 @@ class ViewM3Setup extends Component {
                       </div>
                     </div>
                     <div className="setupMotorImage pull-right">
-                      <img src="/img/sample/setup-motor.png"/>
+                      <img src="/img/setup-hsc-motor.png"/>
                     </div>
                   </div>
                 </div>
@@ -455,7 +471,7 @@ class ViewM3Setup extends Component {
               <div className="setupBoxArea marginTop10">
                 <div className="setupBox2 pull-left">
                   <div className="setupBoxTitle">
-                    rear left motor
+                    rear left cylinder
                   </div>
                   <div className="setupBoxCon">
                     <div className="setupMotorGraph pull-left">
@@ -463,7 +479,7 @@ class ViewM3Setup extends Component {
                         <div className="pie-graph pull-left">
                           <MotorDonutChart 
                             data={rearLeftMotorData.data.a} 
-                            unit="A" 
+                            unit="Kpa" 
                             name="A-cur" 
                             strokeColor="#fff" 
                             strokeColorLine="rgba(255,255,255,0.3)" 
@@ -476,21 +492,8 @@ class ViewM3Setup extends Component {
                         <div className="pie-graph pull-left">
                           <MotorDonutChart 
                             data={rearLeftMotorData.data.b} 
-                            unit="A" 
+                            unit="Kpa" 
                             name="B-cur" 
-                            strokeColor="#fff" 
-                            strokeColorLine="rgba(255,255,255,0.3)" 
-                            donutWidth="48" 
-                            donutStrokeWidth="6"
-                            valueFontSize="35px"
-                            valueFontColor="#fff"
-                          />
-                        </div>
-                        <div className="pie-graph pull-left">
-                          <MotorDonutChart 
-                            data={rearLeftMotorData.data.c} 
-                            unit="A" 
-                            name="C-cur" 
                             strokeColor="#fff" 
                             strokeColorLine="rgba(255,255,255,0.3)" 
                             donutWidth="48" 
@@ -513,13 +516,13 @@ class ViewM3Setup extends Component {
                       </div>
                     </div>
                     <div className="setupMotorImage pull-right">
-                      <img src="/img/sample/setup-motor.png"/>
+                      <img src="/img/setup-hsc-motor.png"/>
                     </div>
                   </div>
                 </div>
                 <div className="setupBox2 pull-right">
                   <div className="setupBoxTitle">
-                    rear right motor
+                    rear right cylinder
                   </div>
                   <div className="setupBoxCon">
                     <div className="setupMotorGraph pull-left">
@@ -527,7 +530,7 @@ class ViewM3Setup extends Component {
                         <div className="pie-graph pull-left">
                           <MotorDonutChart 
                             data={rearRightMotorData.data.a} 
-                            unit="A" 
+                            unit="Kpa" 
                             name="A-cur" 
                             strokeColor="#fff" 
                             strokeColorLine="rgba(255,255,255,0.3)" 
@@ -540,21 +543,8 @@ class ViewM3Setup extends Component {
                         <div className="pie-graph pull-left">
                           <MotorDonutChart 
                             data={rearRightMotorData.data.b} 
-                            unit="A" 
+                            unit="Kpa" 
                             name="B-cur" 
-                            strokeColor="#fff" 
-                            strokeColorLine="rgba(255,255,255,0.3)" 
-                            donutWidth="48" 
-                            donutStrokeWidth="6"
-                            valueFontSize="35px"
-                            valueFontColor="#fff"
-                          />
-                        </div>
-                        <div className="pie-graph pull-left">
-                          <MotorDonutChart 
-                            data={rearRightMotorData.data.c} 
-                            unit="A" 
-                            name="C-cur" 
                             strokeColor="#fff" 
                             strokeColorLine="rgba(255,255,255,0.3)" 
                             donutWidth="48" 
@@ -577,7 +567,7 @@ class ViewM3Setup extends Component {
                       </div>
                     </div>
                     <div className="setupMotorImage pull-right">
-                      <img src="/img/sample/setup-motor.png"/>
+                      <img src="/img/setup-hsc-motor.png"/>
                     </div>
                   </div>
                 </div>

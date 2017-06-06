@@ -1121,3 +1121,19 @@ ul.setupDescList li{
 .tepvBoxInnerBtnsGroup:last-child{
   margin-bottom:0px;
 }
+
+.hsc .setupBox{
+  height:130px;
+}
+.hsc .setupTitle{
+  float:left;
+  width:70px;
+  padding: 0px 10px 0;
+}
+.hsc .setupGainTunning .slider .value {width: 12%;}
+.hsc .rangeslider {width: 85%;}
+.hsc .setupGainTunning {
+    padding: 0px 10px 0px;
+    overflow: hidden;
+    margin: 5px 0 14px;
+}

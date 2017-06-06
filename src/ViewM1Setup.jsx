@@ -383,7 +383,7 @@ class ViewM1Setup extends Component {
                       </div>
                     </div>
                     <div className="setupMotorImage pull-right">
-                      <img src="/img/sample/setup-motor.png"/>
+                      <img src="/img/setup-motor.png"/>
                     </div>
                   </div>
                 </div>
@@ -447,7 +447,7 @@ class ViewM1Setup extends Component {
                       </div>
                     </div>
                     <div className="setupMotorImage pull-right">
-                      <img src="/img/sample/setup-motor.png"/>
+                      <img src="/img/setup-motor.png"/>
                     </div>
                   </div>
                 </div>
@@ -513,7 +513,7 @@ class ViewM1Setup extends Component {
                       </div>
                     </div>
                     <div className="setupMotorImage pull-right">
-                      <img src="/img/sample/setup-motor.png"/>
+                      <img src="/img/setup-motor.png"/>
                     </div>
                   </div>
                 </div>
@@ -577,7 +577,7 @@ class ViewM1Setup extends Component {
                       </div>
                     </div>
                     <div className="setupMotorImage pull-right">
-                      <img src="/img/sample/setup-motor.png"/>
+                      <img src="/img/setup-motor.png"/>
                     </div>
                   </div>
                 </div>
