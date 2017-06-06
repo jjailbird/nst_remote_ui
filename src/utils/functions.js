@@ -13,3 +13,12 @@ export function isInt(n){
 export function isFloat(n){
     return Number(n) === n && n % 1 !== 0;
 }
+
+export function getToggledValues(values, value) {
+  const i = values.indexOf(value);
+  if (i === -1)
+    values.push(value);
+  else
+    values.splice(i,1);
+  return values;
+}
