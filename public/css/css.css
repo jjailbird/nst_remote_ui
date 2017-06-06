@@ -282,7 +282,7 @@ body{
 .graphBtnBox a.active{
   background: rgba(255,255,255,0.3);
 }
-.graphBtnBox span.btnGroupType-inline a{
+span.btnGroupType-inline a{
   padding: 3px 3px 3px;
   display: inline-block;
   width: 56px;
@@ -292,7 +292,7 @@ body{
   font-weight: bold;
   border: 1px solid rgba(255,255,255,0.4);
 }
-.graphBtnBox span.btnGroupType-inline a.active{
+span.btnGroupType-inline a.active{
   background: rgba(255,255,255,0.3);
 }
 .motor-control-modeTitle{
@@ -334,7 +334,7 @@ body{
   float: right;
 }
 .modeConfig3{
-  margin-top:10px;
+  margin-top:0px;
 }
 .modeConfig1-listBox1{}
 .modeConfig1-listBox1 > span{
