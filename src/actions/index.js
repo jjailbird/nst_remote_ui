@@ -12,6 +12,8 @@ export const SET_FRONT_WHEELSET_DATA = 'SET_FRONT_WHEELSET_DATA';
 export const SET_REAR_WHEELSET_DATA = 'SET_REAR_WHEELSET_DATA';
 export const SET_FRONT_LASER_DATA = 'SET_FRONT_LASER_DATA';
 export const SET_REAR_LASER_DATA = 'SET_REAR_LASER_DATA';
+export const SET_FRONT_SENSOR_DATA = 'SET_FRONT_SENSOR_DATA';
+export const SET_REAR_SENSOR_DATA = 'SET_REAR_SENSOR_DATA';
 
 // TEST_SETUP =======================================================
 export const SET_BMS_SOC_DATA = 'SET_BMS_SOC_DATA';
@@ -148,6 +150,18 @@ export const setRearLaserData = (data) => {
 export const setDriveData = (data) => {
   return {
     type: SET_DRIVE_DATA,
+    data
+  }
+}
+export const setFrontSensorData = (data) => {
+  return {
+    type: SET_FRONT_SENSOR_DATA,
+    data
+  }
+}
+export const setRearSensorData = (data) => {
+  return {
+    type: SET_REAR_SENSOR_DATA,
     data
   }
 }

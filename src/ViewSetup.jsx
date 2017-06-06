@@ -9,8 +9,8 @@ import MotorDonutChart from './components/MotorDonutChart';
 import LaserDonutCircleChart from './components/LaserDonutCircleChart';
 import DonutCircleChart from './components/DonutCircleChart';
 import LaserDonutDigitalChart from './components/LaserDonutDigitalChart';
-import LaserBarChartA from './components/LaserBarChartA'
-import LaserBarChartS from './components/LaserBarChartS'
+import LaserBarChart from './components/LaserBarChart';
+import LaserTabContainer from './components/LaserTabContainer';
 
 import { connect } from 'react-redux';
 
@@ -23,6 +23,8 @@ class ViewSetup extends Component {
       rearRightMotorData,
       frontLaserData,
       rearLaserData,
+      frontSensorData,
+      rearSensorData,
       motorControlData
     } = this.props;
     return (
@@ -82,11 +84,7 @@ class ViewSetup extends Component {
               <div className="setupBox x2 noneTitle marginTop10">
                   <div className="setupBoxCon">
                     <div className="setPiedata-image">
-                        <img src="img/sample/setupsample1.png"/>
-                    </div>
-                    <div className="setPiedata-btns graphBtnBox">
-                      <a href="">FRT</a>
-                      <a href="" className="active">SIDE</a>
+                        <LaserTabContainer />
                     </div>
                     <div className="setPiedata-pieGroups pull-left">
                       <div className="setPiedata-pieGrape pie1">
@@ -594,17 +592,16 @@ class ViewSetup extends Component {
                       <div className="axleTitle">left laser sensor</div>
                       <div className="axleGraphBox">
                         <div className="axleGraphBoxGroup">
-                          <LaserBarChartA data={frontLaserData.data.lx} dataName="lx" barColor="rgba(44,106,170,0.7)" />
-                          <LaserBarChartS fillHeight={5} dataName="lx" barColor="rgba(44,106,170,0.7)" />
-                          {/*세팅값을 입력하면 고정되는 구조인지?고정값이면 구체적 수치입력방법(=5.5)vs퍼센트입력방법(=55) 현재는 수치입력으로 해놓음*/}
+                          <LaserBarChart data={frontSensorData.data.ly1A} name="A" dataName="ly1A" barColor="red" />
+                          <LaserBarChart data={frontSensorData.data.ly1S} name="S" dataName="ly1S" barColor="red" />
                         </div>
                         <div className="axleGraphBoxGroup">
-                          <LaserBarChartA data={frontLaserData.data.lx} dataName="lx" barColor="rgba(44,106,170,0.7)" />
-                          <LaserBarChartS fillHeight={5} dataName="lx" barColor="rgba(44,106,170,0.7)" />
+                          <LaserBarChart data={frontSensorData.data.ly2A} name="A" dataName="ly2A" barColor="red" />
+                          <LaserBarChart data={frontSensorData.data.ly2S} name="S" dataName="ly2S" barColor="red" />
                         </div>
                         <div className="axleGraphBoxGroup">
-                          <LaserBarChartA data={frontLaserData.data.ly} dataName="ly" barColor="rgba(201,53,53,0.7)" />
-                          <LaserBarChartS fillHeight={5} dataName="ly" barColor="rgba(201,53,53,0.7)" />
+                          <LaserBarChart data={frontSensorData.data.lxA} name="A" dataName="rxA" barColor="blue" />
+                          <LaserBarChart data={frontSensorData.data.lxS} name="S" dataName="rxS" barColor="blue" />
                         </div>
                       </div>
                     </div>
@@ -612,16 +609,16 @@ class ViewSetup extends Component {
                       <div className="axleTitle">right laser sensor</div>
                       <div className="axleGraphBox">
                         <div className="axleGraphBoxGroup">
-                          <LaserBarChartA data={frontLaserData.data.rx} dataName="rx" barColor="rgba(44,106,170,0.7)" />
-                          <LaserBarChartS fillHeight={5} dataName="rx" barColor="rgba(44,106,170,0.7)" />
+                          <LaserBarChart data={frontSensorData.data.ry1A} name="A" dataName="ry1A" barColor="red" />
+                          <LaserBarChart data={frontSensorData.data.ry1S} name="S" dataName="ry1S" barColor="red" />
                         </div>
                         <div className="axleGraphBoxGroup">
-                          <LaserBarChartA data={frontLaserData.data.rx} dataName="rx" barColor="rgba(44,106,170,0.7)" />
-                          <LaserBarChartS fillHeight={5} dataName="rx" barColor="rgba(44,106,170,0.7)" />
+                          <LaserBarChart data={frontSensorData.data.ry2A} name="A" dataName="ry2A" barColor="red" />
+                          <LaserBarChart data={frontSensorData.data.ry2S} name="S" dataName="ry2S" barColor="red" />
                         </div>
                         <div className="axleGraphBoxGroup">
-                          <LaserBarChartA data={frontLaserData.data.ry} dataName="ry" barColor="rgba(201,53,53,0.7)" />
-                          <LaserBarChartS fillHeight={5} dataName="ry" barColor="rgba(201,53,53,0.7)" />
+                          <LaserBarChart data={frontSensorData.data.rxA} name="A" dataName="rxA" barColor="blue" />
+                          <LaserBarChart data={frontSensorData.data.rxS} name="S" dataName="rxS" barColor="blue" />
                         </div>
                       </div>
                     </div>
@@ -629,8 +626,8 @@ class ViewSetup extends Component {
                       <div className="axleTitle">gyro</div>
                       <div className="axleGraphBox">
                         <div className="axleGraphBoxGroup">
-                          <LaserBarChartA data={frontLaserData.data.g} dataName="g" barColor="rgba(137,182,89,1)" />
-                          <LaserBarChartS fillHeight={3} dataName="g" barColor="rgba(137,182,89,1)" />
+                          <LaserBarChart data={frontSensorData.data.gA} name="A" dataName="gA" barColor="green" />
+                          <LaserBarChart data={frontSensorData.data.gS} name="S" dataName="gS" barColor="green" />
                         </div>
                       </div>
                     </div>
@@ -649,16 +646,16 @@ class ViewSetup extends Component {
                       <div className="axleTitle">left laser sensor</div>
                       <div className="axleGraphBox">
                         <div className="axleGraphBoxGroup">
-                          <LaserBarChartA data={rearLaserData.data.lx} dataName="lx" barColor="rgba(44,106,170,0.7)" />
-                          <LaserBarChartS fillHeight={5} dataName="lx" barColor="rgba(44,106,170,0.7)" />
+                          <LaserBarChart data={rearSensorData.data.ly1A} name="A" dataName="ly1A" barColor="red" />
+                          <LaserBarChart data={rearSensorData.data.ly1S} name="S" dataName="ly1S" barColor="red" />
                         </div>
                         <div className="axleGraphBoxGroup">
-                          <LaserBarChartA data={rearLaserData.data.lx} dataName="lx" barColor="rgba(44,106,170,0.7)" />
-                          <LaserBarChartS fillHeight={5} dataName="lx" barColor="rgba(44,106,170,0.7)" />
+                          <LaserBarChart data={rearSensorData.data.ly2A} name="A" dataName="ly2A" barColor="red" />
+                          <LaserBarChart data={rearSensorData.data.ly2S} name="S" dataName="ly2S" barColor="red" />
                         </div>
                         <div className="axleGraphBoxGroup">
-                          <LaserBarChartA data={rearLaserData.data.ly} dataName="ly" barColor="rgba(201,53,53,0.7)" />
-                          <LaserBarChartS fillHeight={5} dataName="ly" barColor="rgba(201,53,53,0.7)" />
+                          <LaserBarChart data={rearSensorData.data.lxA} name="A" dataName="rxA" barColor="blue" />
+                          <LaserBarChart data={rearSensorData.data.lxS} name="S" dataName="rxS" barColor="blue" />
                         </div>
                       </div>
                     </div>
@@ -666,16 +663,16 @@ class ViewSetup extends Component {
                       <div className="axleTitle">right laser sensor</div>
                       <div className="axleGraphBox">
                         <div className="axleGraphBoxGroup">
-                          <LaserBarChartA data={rearLaserData.data.rx} dataName="lx" barColor="rgba(44,106,170,0.7)" />
-                          <LaserBarChartS fillHeight={5} dataName="rx" barColor="rgba(44,106,170,0.7)" />
+                          <LaserBarChart data={rearSensorData.data.ry1A} name="A" dataName="ry1A" barColor="red" />
+                          <LaserBarChart data={rearSensorData.data.ry1S} name="S" dataName="ry1S" barColor="red" />
                         </div>
                         <div className="axleGraphBoxGroup">
-                          <LaserBarChartA data={rearLaserData.data.rx} dataName="lx" barColor="rgba(44,106,170,0.7)" />
-                          <LaserBarChartS fillHeight={5} dataName="rx" barColor="rgba(44,106,170,0.7)" />
+                          <LaserBarChart data={rearSensorData.data.ry2A} name="A" dataName="ry2A" barColor="red" />
+                          <LaserBarChart data={rearSensorData.data.ry2S} name="S" dataName="ry2S" barColor="red" />
                         </div>
                         <div className="axleGraphBoxGroup">
-                          <LaserBarChartA data={rearLaserData.data.ry} dataName="ly" barColor="rgba(201,53,53,0.7)" />
-                          <LaserBarChartS fillHeight={5} dataName="ry" barColor="rgba(201,53,53,0.7)" />
+                          <LaserBarChart data={rearSensorData.data.rxA} name="A" dataName="rxA" barColor="blue" />
+                          <LaserBarChart data={rearSensorData.data.rxS} name="S" dataName="rxS" barColor="blue" />
                         </div>
                       </div>
                     </div>
@@ -683,8 +680,8 @@ class ViewSetup extends Component {
                       <div className="axleTitle">gyro</div>
                       <div className="axleGraphBox">
                         <div className="axleGraphBoxGroup">
-                          <LaserBarChartA data={rearLaserData.data.g} dataName="g" barColor="rgba(137,182,89,1)" />
-                          <LaserBarChartS fillHeight={3} dataName="g" barColor="rgba(137,182,89,1)" />
+                          <LaserBarChart data={rearSensorData.data.gA} name="A" dataName="gA" barColor="green" />
+                          <LaserBarChart data={rearSensorData.data.gS} name="S" dataName="gS" barColor="green" />
                         </div>
                       </div>
                     </div>
@@ -714,6 +711,8 @@ function mapStateToProps(state){
       rearRightMotorData: state.rearRightMotorData,
       frontLaserData: state.frontLaserData,
       rearLaserData: state.rearLaserData,
+      frontSensorData: state.frontSensorData,
+      rearSensorData: state.rearSensorData,
       motorControlData: state.motorControlData
     }
 }

@@ -1,58 +1,109 @@
 import React, { Component } from 'react';
+import DriveDonutDivideLeftChart from './components/DriveDonutDivideLeftChart';
+import DriveRailroadTrail from './components/DriveRailroadTrail';
 
-export default class ViewTrain extends Component {
+import { connect } from 'react-redux';
+
+class ViewTrain extends Component {
   render() {
+    const { 
+      driveData
+    } = this.props;
   return (
 
     <div>
       <div className="trainNavi">
+        {/*
         <a href="">Forward CAM</a>
-        <a href="" className="active">Backward CAM</a>
+        <a href="" className="active">Backward CAM</a>*/}
       </div>
       <div className="trainControlBox tcBoxLeft">
         <div className="tcTitle">
           hyundai rotem company
         </div>
-        <div className="tcCompass">
-          <img src="img/sample/tc_location.png"/>
+        <div
+          style = {{
+            marginTop: '80px'
+          }}
+        >
         </div>
         <div className="tcBatteryPieBox">
-          <div className="tcbTitle">traction battery</div>
-          <img src="img/sample/tc_battery_pie1.png"/>
+            <DriveDonutDivideLeftChart 
+              data={driveData.data.tracBatt} 
+              unit="V" 
+              name="traction battery" 
+              strokeColor="rgba(201,53,53,0.7)" 
+              strokeColorLine="rgba(255,255,255,0.7)" 
+              donutWidth="50" 
+              donutStrokeWidth="8"
+              valueFontSize="25px"
+              valueFontColor="#fff"
+            />
         </div>
         <div className="tcBatteryPieBox">
-          <div className="tcbTitle">control battery</div>
-          <img src="img/sample/tc_battery_pie2.png"/>
+            <DriveDonutDivideLeftChart 
+              data={driveData.data.contBatt} 
+              unit="V" 
+              name="control battery" 
+              strokeColor="rgba(201,53,53,0.7)" 
+              strokeColorLine="rgba(255,255,255,0.7)" 
+              donutWidth="50" 
+              donutStrokeWidth="8"
+              valueFontSize="25px"
+              valueFontColor="#fff"
+            />
         </div>
         <div className="tcBatteryPieBox">
-          <div className="tcbTitle">max inverer temp</div>
-          <img src="img/sample/tc_battery_pie3.png"/>
+            <DriveDonutDivideLeftChart 
+              data={driveData.data.maxInvTemp} 
+              unit="℃" 
+              name="max inverer temp" 
+              strokeColor="rgba(201,195,53,0.85)" 
+              strokeColorLine="rgba(255,255,255,0.7)" 
+              donutWidth="50" 
+              donutStrokeWidth="8"
+              valueFontSize="25px"
+              valueFontColor="#fff"
+            />
         </div>
         <div className="tcBatteryPieBox">
-          <div className="tcbTitle">max motor temp</div>
-          <img src="img/sample/tc_battery_pie4.png"/>
+            <DriveDonutDivideLeftChart 
+              data={driveData.data.maxMotorTemp} 
+              unit="℃" 
+              name="max motor temp" 
+              strokeColor="rgba(201,195,53,0.85)" 
+              strokeColorLine="rgba(255,255,255,0.7)" 
+              donutWidth="50" 
+              donutStrokeWidth="8"
+              valueFontSize="25px"
+              valueFontColor="#fff"
+            />
         </div>
-        <div className="tControlBtnBox">
+        <div className="tControlBtnBox" style={{marginTop: '30px'}}>
           <div className="tcBtn">
             <div className="tcbTitle y">power</div>
-            <img src="img/sample/tc_toggle.png"/>
+            <img src="img/tc_toggle_on.png"/>
+            {/*<img src="img/tc_toggle_off.png"/>*/}
           </div>
           <div className="tcBtn">
             <div className="tcbTitle y">light</div>
-            <img src="img/sample/tc_toggle.png"/>
+            {/*<img src="img/tc_toggle_on.png"/>*/}
+            <img src="img/tc_toggle_off.png"/>
           </div>
           <div className="tcBtn">
             <div className="tcbTitle r">itc</div>
-            <img src="img/sample/tc_toggle.png"/>
+            <img src="img/tc_toggle_on.png"/>
+            {/*<img src="img/tc_toggle_off.png"/>*/}
           </div>
           <div className="tcBtn">
             <div className="tcbTitle b">hsc</div>
-            <img src="img/sample/tc_toggle.png"/>
+            <img src="img/tc_toggle_on.png"/>
+            {/*<img src="img/tc_toggle_off.png"/>*/}
           </div>
         </div>
       </div>
       <div className="trainControlBox tcBoxRight">
-        <div className="tcDayCountBox">
+        <div className="tcDayCountBox" style={{marginBottom: '25px'}}>
           <div className="tcCountBox">
             <div className="tccTitle">
               test day
@@ -67,9 +118,8 @@ export default class ViewTrain extends Component {
           </div>
         </div>
         <div className="tcPositionBox">
-          <div className="tcPosition">
-            <div className="tcpTitle">Vehicle position</div>
-            <img src="img/sample/tc_position.png"/>
+          <div className="tcPosition" style={{width: '204px'}}>
+            <DriveRailroadTrail value={driveData.data.position} valueMax="250" />
           </div>
         </div>
       </div>
@@ -80,9 +130,33 @@ export default class ViewTrain extends Component {
         <img src="img/sample/train_pie1.png"/>
       </div>
       <div className="contBox">
+        <div
+          style={{
+            position: 'absolute',
+            width: '500px',
+            top: '85px',
+            right: '260px',
+            zIndex: '50',
+            borderRadius: '15px'
+          }}
+          class="trainBackViewBox">
+            <video
+              autoPlay
+              loop
+              style={{
+                width: '500px',
+                borderRadius: '50px'
+              }}
+            >
+              <source src="/video/train_view_back.mp4"></source>
+            </video>
+        </div>
         <div className="trainViewVideo">
-          <video autoplay loop>
-            <source src="video/train_view_back.mp4"></source>
+          <video
+            autoPlay
+            loop
+          >
+            <source src="video/train_view_front.mp4"></source>
           </video>
         </div>
       </div>
@@ -92,3 +166,11 @@ export default class ViewTrain extends Component {
   );
   }
 }
+
+function mapStateToProps(state){
+    return {
+      driveData: state.driveData
+    }
+}
+
+export default connect(mapStateToProps)(ViewTrain);

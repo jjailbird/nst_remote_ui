@@ -41,7 +41,6 @@ body{
   width:1920px;
   bottom:0px;
   left:0px;
-  background:url(../img/navi-bg.png);
   height:126px;
   z-index:10;
   overflow: hidden;
@@ -57,9 +56,10 @@ body{
 .navi .navi-btns ul li{
   width:180px;
   float:left;
+  height: 100px;
 }
 .navi .navi-btns ul li.navTop1{padding-top:28px;}
-.navi .navi-btns ul li.navTop2{padding-top:13px;}
+.navi .navi-btns ul li.navTop2{padding-top:20px;}
 .navi .navi-btns ul li.navTop3{padding-top:5px;}
 .navi .navi-btns ul li a{
   display: block;
@@ -71,7 +71,12 @@ body{
 .navi .navi-btns ul li a.navOn img{
   opacity: 1;
 }
-
+.navi .navi-btns ul li a .navText{
+  color:rgba(255,255,255,0.45)
+}
+.navi .navi-btns ul li a.navOn  .navText{
+  color:rgba(255,255,255,1)
+}
 .copy, .ver{
   z-index:10;
   position:absolute;

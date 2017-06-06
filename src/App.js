@@ -20,6 +20,8 @@ import {
   setDriveInfoData,
   setFrontLaserData,
   setRearLaserData,
+  setFrontSensorData,
+  setRearSensorData,
   setDriveData
 } from './actions';
 
@@ -236,6 +238,38 @@ class App extends Component {
     this.setDriveData.position = 0;
     this.setDriveData.trat = 0;
     this.setDriveData.brake = 0;
+
+    this.setFrontSensorData = {};
+    this.setFrontSensorData.lxA = 0;
+    this.setFrontSensorData.lxS = 0;
+    this.setFrontSensorData.ly1A = 0;
+    this.setFrontSensorData.ly1S = 0;
+    this.setFrontSensorData.ly2A = 0;
+    this.setFrontSensorData.ly2S = 0;
+    this.setFrontSensorData.rxA = 0;
+    this.setFrontSensorData.rxS = 0;
+    this.setFrontSensorData.ry1A = 0;
+    this.setFrontSensorData.ry1S = 0;
+    this.setFrontSensorData.ry2A = 0;
+    this.setFrontSensorData.ry2S = 0;
+    this.setFrontSensorData.gA = 0;
+    this.setFrontSensorData.gS = 0;
+
+    this.setRearSensorData = {};
+    this.setRearSensorData.lxA = 0;
+    this.setRearSensorData.lxS = 0;
+    this.setRearSensorData.ly1A = 0;
+    this.setRearSensorData.ly1S = 0;
+    this.setRearSensorData.ly2A = 0;
+    this.setRearSensorData.ly2S = 0;
+    this.setRearSensorData.rxA = 0;
+    this.setRearSensorData.rxS = 0;
+    this.setRearSensorData.ry1A = 0;
+    this.setRearSensorData.ry1S = 0;
+    this.setRearSensorData.ry2A = 0;
+    this.setRearSensorData.ry2S = 0;
+    this.setRearSensorData.gA = 0;
+    this.setRearSensorData.gS = 0;
   }
   componentDidMount() {
     this.timer = setInterval(this.thick, 1000 / 30);
@@ -437,6 +471,41 @@ class App extends Component {
     //this.setDriveData.trat = getRandomFloat(,);//최대최소값이 없음;;;
     //this.setDriveData.brake = getRandomFloat(,);
 
+    dispatch( setDriveData(this.setDriveData) )
+
+    this.setFrontSensorData.lxA = getRandomFloat(-10,10);
+    this.setFrontSensorData.lxS = getRandomFloat(-10,10);
+    this.setFrontSensorData.ly1A = getRandomFloat(-10,10);
+    this.setFrontSensorData.ly1S = getRandomFloat(-10,10);
+    this.setFrontSensorData.ly2A = getRandomFloat(-10,10);
+    this.setFrontSensorData.ly2S = getRandomFloat(-10,10);
+    this.setFrontSensorData.rxA = getRandomFloat(-10,10);
+    this.setFrontSensorData.rxS = getRandomFloat(-10,10);
+    this.setFrontSensorData.ry1A = getRandomFloat(-10,10);
+    this.setFrontSensorData.ry1S = getRandomFloat(-10,10);
+    this.setFrontSensorData.ry2A = getRandomFloat(-10,10);
+    this.setFrontSensorData.ry2S = getRandomFloat(-10,10);
+    this.setFrontSensorData.gA = getRandomFloat(-5,5);
+    this.setFrontSensorData.gS = getRandomFloat(-5,5);
+
+    dispatch( setFrontSensorData(this.setFrontSensorData) )
+
+    this.setRearSensorData.lxA = getRandomFloat(-10,10);
+    this.setRearSensorData.lxS = getRandomFloat(-10,10);
+    this.setRearSensorData.ly1A = getRandomFloat(-10,10);
+    this.setRearSensorData.ly1S = getRandomFloat(-10,10);
+    this.setRearSensorData.ly2A = getRandomFloat(-10,10);
+    this.setRearSensorData.ly2S = getRandomFloat(-10,10);
+    this.setRearSensorData.rxA = getRandomFloat(-10,10);
+    this.setRearSensorData.rxS = getRandomFloat(-10,10);
+    this.setRearSensorData.ry1A = getRandomFloat(-10,10);
+    this.setRearSensorData.ry1S = getRandomFloat(-10,10);
+    this.setRearSensorData.ry2A = getRandomFloat(-10,10);
+    this.setRearSensorData.ry2S = getRandomFloat(-10,10);
+    this.setRearSensorData.gA = getRandomFloat(-5,5);
+    this.setRearSensorData.gS = getRandomFloat(-5,5);
+
+    dispatch( setRearSensorData(this.setRearSensorData) )
   }
   render() {
     return (
@@ -452,38 +521,90 @@ class App extends Component {
             <Route path="/test2" component={ViewTest2} />
             <Route path="/testsetuppanel" component={ViewTestSetupPanel} />
           </div>
-          <div className="navi">
+          <div 
+            className="navi"
+            style={{
+              //background: 'url(img/navi-bg.png)'
+              background: 'url(img/navi-drive-bg.png)'
+            }}
+          >
             <div className="copy">
               <img src="img/copy.png" alt="copyright"/>
             </div>
             <div className="ver">
               Ver.0.00001
             </div>
-            <div className="navi-btns">
+            <div
+              className="navi-btns"
+              style = {{
+                width: '722px',
+                margin: '0 auto',
+                overflow: 'hidden'
+              }}
+            >
               <ul>
-                <li className="navTop1">
-                  <NavLink to="/main" activeClassName="navOn">
-                    <img src="img/navi1.png" alt="main" />
-                  </NavLink>
-                </li>
                 <li className="navTop2">
-                  <NavLink to="/itcrun" activeClassName="navOn">
-                    <img src="img/navi2.png" alt="ITC Run" />
+                  <NavLink to="/main" activeClassName="navOn" style={{position: 'relative'}}>
+                    <img src="img/navi1.png" alt="main" />
+                    <div
+                      style={{
+                        width: '100%',
+                        fontSize: '17px',
+                        textTransform: 'uppercase',
+                        position: 'absolute',
+                        top: '56px',
+                        textAlign: 'center'
+                      }}
+                      className="navText"
+                    >main</div>
                   </NavLink>
                 </li>
                 <li className="navTop3">
-                  <NavLink to="/setup" activeClassName="navOn">
+                  <NavLink to="/itcrun" activeClassName="navOn" style={{position: 'relative'}}>
+                    <img src="img/navi2.png" alt="ITC Run" />
+                    <div
+                      style={{
+                        width: '100%',
+                        fontSize: '17px',
+                        textTransform: 'uppercase',
+                        position: 'absolute',
+                        top: '56px',
+                        textAlign: 'center'
+                      }}
+                      className="navText"
+                    >itc run</div>
+                  </NavLink>
+                </li>
+                <li className="navTop3">
+                  <NavLink to="/setup" activeClassName="navOn" style={{position: 'relative'}}>
                     <img src="img/navi3.png" alt="Setup" />
+                    <div
+                      style={{
+                        width: '100%',
+                        fontSize: '17px',
+                        textTransform: 'uppercase',
+                        position: 'absolute',
+                        top: '56px',
+                        textAlign: 'center'
+                      }}
+                      className="navText"
+                    >setup</div>
                   </NavLink>
                 </li>
                 <li className="navTop2">
-                  <NavLink to="/spec" activeClassName="navOn">
+                  <NavLink to="/spec" activeClassName="navOn" style={{position: 'relative'}}>
                     <img src="img/navi4.png" alt="Spec" />
-                  </NavLink>
-                </li>
-                <li className="navTop1">
-                  <NavLink to="/" activeClassName="navOn">
-                    <img src="img/navi5.png" alt="Demo" />
+                    <div
+                      style={{
+                        width: '100%',
+                        fontSize: '17px',
+                        textTransform: 'uppercase',
+                        position: 'absolute',
+                        top: '56px',
+                        textAlign: 'center'
+                      }}
+                      className="navText"
+                    >spec</div>
                   </NavLink>
                 </li>
               </ul>
