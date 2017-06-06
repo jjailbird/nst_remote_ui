@@ -30,7 +30,7 @@ export default class MotorGaugeBar extends Component {
     }
     return (
       <div>
-        <div className="bar-graph-title">{name} {value} <small>{unit}</small></div>
+        <div className="bar-graph-title">{name} {value.toFixed(1)} <small>{unit}</small></div>
         <div className="barBox">
           <div className="barFill"
             style={{

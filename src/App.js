@@ -212,6 +212,7 @@ class App extends Component {
   }
   componentDidMount() {
      // this.timer = setInterval(this.thick, 1000 / 30);
+    /*
     this.socket = new WebSocket('ws://localhost:8181/');
     this.socket.onmessage = e => {
       var json = JSON.parse(e.data);
@@ -219,83 +220,152 @@ class App extends Component {
       // this.currentData = json;
       // setTimeout(this.handleData, 10);
     } 
-
+    */
   }
-  testConsole(data) {
-    console.log('testConsole:', data);
-  }
-
-  handleData(json) {
-    // const json = this.currentData;
+  handleData(data) {
+    const json = JSON.parse(data); 
+    const ITCTEST = json.ITCTEST ? json.ITCTEST : {};
+    const ITCSETUP = json.ITCSETUP ? json.ITCSETUP : {}; 
     const { dispatch } = this.props;
     // const json = JSON.parse(data);
     // console.log('webSocket Received:', json);
    
-    if (json.FrontLeft) {
+    if (ITCTEST.FrontLeft) {
       if (this.frontLeftData.latDistance.length >= 292) {
         this.frontLeftData.latDistance.shift();
         this.frontLeftData.yawAngle.shift();
         this.frontLeftData.motorTorque.shift();
         this.frontLeftData.motorSpeed.shift();
       }
-      this.frontLeftData.latDistance.push(json.FrontLeft.LatDistance);
-      this.frontLeftData.yawAngle.push(json.FrontLeft.YawAngle);
-      this.frontLeftData.motorTorque.push(json.FrontLeft.MotorTorque);
-      this.frontLeftData.motorSpeed.push(json.FrontLeft.MotorSpeed);
+      this.frontLeftData.latDistance.push(ITCTEST.FrontLeft.LatDistance);
+      this.frontLeftData.yawAngle.push(ITCTEST.FrontLeft.YawAngle);
+      this.frontLeftData.motorTorque.push(ITCTEST.FrontLeft.MotorTorque);
+      this.frontLeftData.motorSpeed.push(ITCTEST.FrontLeft.MotorSpeed);
       dispatch( setFrontLeftData(this.frontLeftData) );
     }
 
-    if (json.FrontRight) {
+    if (ITCTEST.FrontRight) {
       if (this.frontRightData.latDistance.length >= 292) {
         this.frontRightData.latDistance.shift();
         this.frontRightData.yawAngle.shift();
         this.frontRightData.motorTorque.shift();
         this.frontRightData.motorSpeed.shift();
       }
-      this.frontRightData.latDistance.push(json.FrontRight.LatDistance);
-      this.frontRightData.yawAngle.push(json.FrontRight.YawAngle);
-      this.frontRightData.motorTorque.push(json.FrontRight.MotorTorque);
-      this.frontRightData.motorSpeed.push(json.FrontRight.MotorSpeed);
+      this.frontRightData.latDistance.push(ITCTEST.FrontRight.LatDistance);
+      this.frontRightData.yawAngle.push(ITCTEST.FrontRight.YawAngle);
+      this.frontRightData.motorTorque.push(ITCTEST.FrontRight.MotorTorque);
+      this.frontRightData.motorSpeed.push(ITCTEST.FrontRight.MotorSpeed);
       dispatch( setFrontRightData(this.frontRightData) );
     }
 
-    if (json.RearLeft) {
+    if (ITCTEST.RearLeft) {
       if (this.rearLeftData.latDistance.length >= 292) {
         this.rearLeftData.latDistance.shift();
         this.rearLeftData.yawAngle.shift();
         this.rearLeftData.motorTorque.shift();
         this.rearLeftData.motorSpeed.shift();
       }
-      this.rearLeftData.latDistance.push(json.RearLeft.LatDistance);
-      this.rearLeftData.yawAngle.push(json.RearLeft.YawAngle);
-      this.rearLeftData.motorTorque.push(json.RearLeft.MotorTorque);
-      this.rearLeftData.motorSpeed.push(json.RearLeft.MotorSpeed);
+      this.rearLeftData.latDistance.push(ITCTEST.RearLeft.LatDistance);
+      this.rearLeftData.yawAngle.push(ITCTEST.RearLeft.YawAngle);
+      this.rearLeftData.motorTorque.push(ITCTEST.RearLeft.MotorTorque);
+      this.rearLeftData.motorSpeed.push(ITCTEST.RearLeft.MotorSpeed);
       dispatch( setRearLeftData(this.rearLeftData) );
     }
 
-    if (json.RearRight) {
+    if (ITCTEST.RearRight) {
       if (this.rearRightData.latDistance.length >= 292) {
         this.rearRightData.latDistance.shift();
         this.rearRightData.yawAngle.shift();
         this.rearRightData.motorTorque.shift();
         this.rearRightData.motorSpeed.shift();
       }
-      this.rearRightData.latDistance.push(json.RearRight.LatDistance);
-      this.rearRightData.yawAngle.push(json.RearRight.YawAngle);
-      this.rearRightData.motorTorque.push(json.RearRight.MotorTorque);
-      this.rearRightData.motorSpeed.push(json.RearRight.MotorSpeed);
+      this.rearRightData.latDistance.push(ITCTEST.RearRight.LatDistance);
+      this.rearRightData.yawAngle.push(ITCTEST.RearRight.YawAngle);
+      this.rearRightData.motorTorque.push(ITCTEST.RearRight.MotorTorque);
+      this.rearRightData.motorSpeed.push(ITCTEST.RearRight.MotorSpeed);
       dispatch( setRearRightData(this.rearRightData) );
     }
 
+    if (ITCTEST.Vehicle) {
+      // console.log('json.Vehicle:', json.Vehicle);
+      this.setMotorControlData.position = ITCTEST.Vehicle.Position;
+      this.setMotorControlData.curv = ITCTEST.Vehicle.Radius;
+      this.setMotorControlData.speed = ITCTEST.Vehicle.Speed;
+      dispatch( setMotorControlData(this.setMotorControlData) );
+    }
 
+    if (ITCTEST.FrontWheelset) {
+      // console.log('json.FrontWheelset:', json.FrontWheelset);
+      this.setFrontWheelsetData.position = ITCTEST.FrontWheelset.Position;
+      this.setFrontWheelsetData.trackCurve = ITCTEST.FrontWheelset.TrackCurve;
+      this.setFrontWheelsetData.attackAngle = ITCTEST.FrontWheelset.AttackAngle;
+      this.setFrontWheelsetData.steeringRatio = ITCTEST.FrontWheelset.SteeringRatio;
+      dispatch( setFrontWheelsetData(this.setFrontWheelsetData) );
+    }
+
+    if (ITCTEST.RearWheelset) {
+      this.setRearWheelsetData.position = ITCTEST.RearWheelset.Position;
+      this.setRearWheelsetData.trackCurve = ITCTEST.RearWheelset.TrackCurve;
+      this.setRearWheelsetData.attackAngle = ITCTEST.RearWheelset.AttackAngle;
+      this.setRearWheelsetData.steeringRatio = ITCTEST.RearWheelset.SteeringRatio;
+      dispatch( setRearWheelsetData(this.setRearWheelsetData) );
+    }
+  
+    if (ITCSETUP.FrontLeftMotor) {
+      this.frontLeftMotorData.rpm = ITCSETUP.FrontLeftMotor.RPM;
+      this.frontLeftMotorData.torque = ITCSETUP.FrontLeftMotor.Torque;
+      this.frontLeftMotorData.a = ITCSETUP.FrontLeftMotor.A;
+      this.frontLeftMotorData.b = ITCSETUP.FrontLeftMotor.B;
+      this.frontLeftMotorData.c = ITCSETUP.FrontLeftMotor.C;
+      this.frontLeftMotorData.temp = ITCSETUP.FrontLeftMotor.Temp;
+      dispatch( setFrontLeftMotorData(this.frontLeftMotorData) );
+    }
     
+    if (ITCSETUP.FrontRightMotor) {
+      this.frontRightMotorData.rpm = ITCSETUP.FrontRightMotor.RPM;
+      this.frontRightMotorData.torque = ITCSETUP.FrontRightMotor.RPM;
+      this.frontRightMotorData.a = ITCSETUP.FrontRightMotor.A;
+      this.frontRightMotorData.b = ITCSETUP.FrontRightMotor.B;
+      this.frontRightMotorData.c = ITCSETUP.FrontRightMotor.C;
+      this.frontRightMotorData.temp = ITCSETUP.FrontRightMotor.Temp;
+      dispatch( setFrontRightMotorData(this.frontRightMotorData) );
+    }
+
+    if (ITCSETUP.RearLeftMotor) {
+      this.rearLeftMotorData.rpm = ITCSETUP.RearLeftMotor.RPM;
+      this.rearLeftMotorData.torque = ITCSETUP.RearLeftMotor.Torque;
+      this.rearLeftMotorData.a = ITCSETUP.RearLeftMotor.A;
+      this.rearLeftMotorData.b = ITCSETUP.RearLeftMotor.B;
+      this.rearLeftMotorData.c = ITCSETUP.RearLeftMotor.C;
+      this.rearLeftMotorData.temp = ITCSETUP.RearLeftMotor.Temp;
+      dispatch( setRearLeftMotorData(this.rearLeftMotorData) );
+    }
+
+    if (ITCSETUP.RearRightMotor) {
+      this.rearRightMotorData.rpm = ITCSETUP.RearRightMotor.RPM;
+      this.rearRightMotorData.torque = ITCSETUP.RearRightMotor.Torque;
+      this.rearRightMotorData.a = ITCSETUP.RearRightMotor.A;
+      this.rearRightMotorData.b = ITCSETUP.RearRightMotor.B;
+      this.rearRightMotorData.c = ITCSETUP.RearRightMotor.C;
+      this.rearRightMotorData.temp = ITCSETUP.RearRightMotor.Temp;    
+      dispatch( setRearRightMotorData(this.rearRightMotorData) );
+    }
+
     /*
-    dispatch( setItcTestData({
-      frontLeftData: this.frontLeftData,
-      frontRightData: this.frontRightData,
-      rearLeftData: this.rearLeftData,
-      rearRightData: this.rearRightData
-    }) );
+    if (ITCSETUP.)
+    this.setFrontLaserData.lx = getRandomFloat(-10,10);
+    this.setFrontLaserData.ly = getRandomFloat(-10,10);
+    this.setFrontLaserData.rx = getRandomFloat(-10,10);
+    this.setFrontLaserData.ry = getRandomFloat(-10,10);
+    this.setFrontLaserData.g = getRandomFloat(-5,5);
+    dispatch( setFrontLaserData(this.setFrontLaserData) )
+
+    this.setRearLaserData.lx = getRandomFloat(-10,10);
+    this.setRearLaserData.ly = getRandomFloat(-10,10);
+    this.setRearLaserData.rx = getRandomFloat(-10,10);
+    this.setRearLaserData.ry = getRandomFloat(-10,10);
+    this.setRearLaserData.g = getRandomFloat(-5,5);
+    dispatch( setRearLaserData(this.setRearLaserData) )
     */
 
   }
@@ -354,59 +424,14 @@ class App extends Component {
     
     dispatch( setRearRightData(this.rearRightData) );
 
-    this.frontLeftMotorData.rpm = getRandomInt(0,3000);
-    this.frontLeftMotorData.torque = getRandomInt(0,3000);
-    this.frontLeftMotorData.a = getRandomInt(0,500);
-    this.frontLeftMotorData.b = getRandomInt(0,500);
-    this.frontLeftMotorData.c = getRandomInt(0,500);
-    this.frontLeftMotorData.temp = getRandomInt(0,100);
-    dispatch( setFrontLeftMotorData(this.frontLeftMotorData) );
 
-    this.frontRightMotorData.rpm = getRandomInt(0,3000);
-    this.frontRightMotorData.torque = getRandomInt(0,3000);
-    this.frontRightMotorData.a = getRandomInt(0,500);
-    this.frontRightMotorData.b = getRandomInt(0,500);
-    this.frontRightMotorData.c = getRandomInt(0,500);
-    this.frontRightMotorData.temp = getRandomInt(0,100);
-    dispatch( setFrontRightMotorData(this.frontRightMotorData) );
-
-    this.rearLeftMotorData.rpm = getRandomInt(0,3000);
-    this.rearLeftMotorData.torque = getRandomInt(0,3000);
-    this.rearLeftMotorData.a = getRandomInt(0,500);
-    this.rearLeftMotorData.b = getRandomInt(0,500);
-    this.rearLeftMotorData.c = getRandomInt(0,500);
-    this.rearLeftMotorData.temp = getRandomInt(0,100);
-    
-    dispatch( setRearLeftMotorData(this.rearLeftMotorData) );
-
-    this.rearRightMotorData.rpm = getRandomInt(0,3000);
-    this.rearRightMotorData.torque = getRandomInt(0,3000);
-    this.rearRightMotorData.a = getRandomInt(0,500);
-    this.rearRightMotorData.b = getRandomInt(0,500);
-    this.rearRightMotorData.c = getRandomInt(0,500);
-    this.rearRightMotorData.temp = getRandomInt(0,100);    
-      
-    dispatch( setRearRightMotorData(this.rearRightMotorData) );
 
     this.setMotorControlData.position = getRandomFloat(0,250);
     this.setMotorControlData.curv = getRandomInt(0,10000);
     this.setMotorControlData.speed = getRandomFloat(0,60);
-      
     dispatch( setMotorControlData(this.setMotorControlData) );
 
-    this.setFrontWheelsetData.position = getRandomFloat(0,250);
-    this.setFrontWheelsetData.trackCurve = getRandomFloat(0,10000);
-    this.setFrontWheelsetData.attackAngle = getRandomFloat(-5,5);
-    this.setFrontWheelsetData.steeringRatio = getRandomFloat(0,2);
-
-    dispatch( setFrontWheelsetData(this.setFrontWheelsetData) );
-
-    this.setRearWheelsetData.position = getRandomFloat(0,250);
-    this.setRearWheelsetData.trackCurve = getRandomFloat(0,10000);
-    this.setRearWheelsetData.attackAngle = getRandomFloat(-5,5);
-    this.setRearWheelsetData.steeringRatio = getRandomFloat(0,2);
-
-    dispatch( setRearWheelsetData(this.setRearWheelsetData) );
+    
 
     this.setBmsSocData.cell1 = getRandomFloat(-10,10);
     this.setBmsSocData.cell2 = getRandomFloat(-5,5);
@@ -440,14 +465,12 @@ class App extends Component {
     this.setBcuMBogieData.b2 = getRandomFloat(0,10000);
     this.setBcuMBogieData.b3 = getRandomFloat(-5,5);
     this.setBcuMBogieData.b4 = getRandomFloat(0,2);
-
     dispatch( setBcuMBogieData(this.setBcuMBogieData) )
 
     this.setBcuTBogieData.b1 = getRandomFloat(0,250);
     this.setBcuTBogieData.b2 = getRandomFloat(0,10000);
     this.setBcuTBogieData.b3 = getRandomFloat(-5,5);
     this.setBcuTBogieData.b4 = getRandomFloat(0,2);
-
     dispatch( setBcuTBogieData(this.setBcuTBogieData) )
 
     if (this.setDriveInfoData.speed.length >= 234) {
@@ -459,24 +482,8 @@ class App extends Component {
     this.setDriveInfoData.soc = getRandomFloat(0,90);
     this.setDriveInfoData.tract = getRandomFloat(0,30);
     this.setDriveInfoData.brake = getRandomFloat(0,10);
-
     dispatch( setDriveInfoData(this.setDriveInfoData) )
 
-    this.setFrontLaserData.lx = getRandomFloat(-10,10);
-    this.setFrontLaserData.ly = getRandomFloat(-10,10);
-    this.setFrontLaserData.rx = getRandomFloat(-10,10);
-    this.setFrontLaserData.ry = getRandomFloat(-10,10);
-    this.setFrontLaserData.g = getRandomFloat(-5,5);
-
-    dispatch( setFrontLaserData(this.setFrontLaserData) )
-
-    this.setRearLaserData.lx = getRandomFloat(-10,10);
-    this.setRearLaserData.ly = getRandomFloat(-10,10);
-    this.setRearLaserData.rx = getRandomFloat(-10,10);
-    this.setRearLaserData.ry = getRandomFloat(-10,10);
-    this.setRearLaserData.g = getRandomFloat(-5,5);
-
-    dispatch( setRearLaserData(this.setRearLaserData) )
 
     if (this.setDriveData.speed.length >= 234) {
       this.setDriveData.speed.shift();
@@ -499,12 +506,10 @@ class App extends Component {
     return (
       <Router>
         <div>
-          {/*
           <Websocket
             url={`ws://${this.hostname}:8181/`}
             onMessage={this.handleData} debug={false}
           />
-          */}
           <div>
             <Route exact path="/main" component={ViewMain}/>
             <Route path="/itcrun" component={ViewITCRun}/>
