@@ -727,7 +727,7 @@ class App extends Component {
                         textAlign: 'center'
                       }}
                       className="navText"
-                    >itc run</div>
+                    >HSC run</div>
                   </NavLink>
                 </li>
                 <li className="navTop3">
