@@ -676,38 +676,6 @@ class App extends Component {
             <Route path="/m3/spec" component={ViewM3Spec} />
 
           </div>
-          {/*===============삭제하세요(임시메뉴)===============*/}
-          <div
-            style={{
-              width: '600px',
-              background: '#000',
-              color: '#fff',
-              position: 'absolute',
-              bottom: '0px',
-              left: '50%',
-              zIndex: '15',
-              textAlign: 'center',
-              marginLeft: '-300px'
-            }}
-          >
-            <span>M1 </span>
-            <a href="/m1/main">main </a>
-            <a href="/m1/run">run </a>
-            <a href="/m1/setup">setup </a>
-            <a href="/m1/spec">spec </a>
-            <span>M2 </span>
-            <a href="/m2/main">main </a>
-            <a href="/m2/run">run </a>
-            <a href="/m2/setup">setup </a>
-            <a href="/m2/spec">spec </a>
-            <span>M3 </span>
-            <a href="/m3/main">main </a>
-            <a href="/m3/run">run </a>
-            <a href="/m3/setup">setup </a>
-            <a href="/m3/spec">spec </a>
-          </div>
-          {/*===============삭제하세요(임시메뉴)END===============*/}
-          
           <div 
             className="navi"
             style={{
@@ -731,7 +699,7 @@ class App extends Component {
             >
               <ul>
                 <li className="navTop2">
-                  <NavLink to="/main" activeClassName="navOn" style={{position: 'relative'}}>
+                  <NavLink to="/m3/main" activeClassName="navOn" style={{position: 'relative'}}>
                     <img src="/img/navi1.png" alt="main" />
                     <div
                       style={{
@@ -747,7 +715,7 @@ class App extends Component {
                   </NavLink>
                 </li>
                 <li className="navTop3">
-                  <NavLink to="/itcrun" activeClassName="navOn" style={{position: 'relative'}}>
+                  <NavLink to="/m3/run" activeClassName="navOn" style={{position: 'relative'}}>
                     <img src="/img/navi2.png" alt="ITC Run" />
                     <div
                       style={{
@@ -763,7 +731,7 @@ class App extends Component {
                   </NavLink>
                 </li>
                 <li className="navTop3">
-                  <NavLink to="/setup" activeClassName="navOn" style={{position: 'relative'}}>
+                  <NavLink to="/m3/setup" activeClassName="navOn" style={{position: 'relative'}}>
                     <img src="/img/navi3.png" alt="Setup" />
                     <div
                       style={{
@@ -779,7 +747,7 @@ class App extends Component {
                   </NavLink>
                 </li>
                 <li className="navTop2">
-                  <NavLink to="/spec" activeClassName="navOn" style={{position: 'relative'}}>
+                  <NavLink to="/m3/spec" activeClassName="navOn" style={{position: 'relative'}}>
                     <img src="/img/navi4.png" alt="Spec" />
                     <div
                       style={{
