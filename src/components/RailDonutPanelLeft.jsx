@@ -41,7 +41,7 @@ export default class RailDonutPanelLeft extends Component {
               left: '0',
               top: '78px'
             }}
-            classNmae="frontText"
+            className="frontText"
           >
             <div
               style={{

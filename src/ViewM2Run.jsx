@@ -9,7 +9,7 @@ import { connect } from 'react-redux';
 class ViewM2Run extends Component {
   render() {
     const { 
-      driveData, driveLever
+      driveData, driveLever, directionSwitch
     } = this.props;
 
     let driveLeverValue = 0;
@@ -40,6 +40,13 @@ class ViewM2Run extends Component {
         driveLeverValue = 3;
         break;
     }
+    
+
+    const videoFrontSrc = directionSwitch === "1" ? "/video/train_view_front.mp4" : "/video/train_view_back.mp4";
+    const videoRearSrc = directionSwitch === "0" ? "/video/train_view_front.mp4" : "/video/train_view_back.mp4";
+
+    console.log('directionSwitch', directionSwitch, videoFrontSrc);
+
     
   return (
 
@@ -180,7 +187,7 @@ class ViewM2Run extends Component {
                 borderRadius: '50px'
               }}
             >
-              <source src="/video/train_view_back.mp4"></source>
+              <source src={videoRearSrc}></source>
             </video>
         </div>
         <div className="trainViewVideo">
@@ -188,7 +195,7 @@ class ViewM2Run extends Component {
             autoPlay
             loop
           >
-            <source src="/video/train_view_front.mp4"></source>
+            <source src={videoFrontSrc}></source>
           </video>
         </div>
       </div>
@@ -202,7 +209,8 @@ class ViewM2Run extends Component {
 function mapStateToProps(state){
     return {
       driveData: state.driveData,
-      driveLever: state.setDriveLever.data
+      driveLever: state.setDriveLever.data,
+      directionSwitch: state.setDirectionSwitch.data
     }
 }
 
