@@ -94,7 +94,7 @@ export default class RailDonutPanelLeft extends Component {
               left: '0',
               top: '80px'
             }}
-            classNmae="frontText"
+            className="frontText"
           >
             <div
               style={{
@@ -248,7 +248,7 @@ export default class RailDonutPanelLeft extends Component {
               height: '353px',
               background: 'url(/img/train_pie2.png)'
             }}
-            classNmae="backGraph"
+            className="backGraph"
           >
 
           </div>
