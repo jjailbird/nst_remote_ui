@@ -96,12 +96,12 @@ class ViewM3Run extends Component {
                 </div>
                 <video
                   id="videoLeft"
-                  src="/video/sample.mp4"
+                  src="/video/T_Left_org.mp4"
                   style={{
                     transform: 'rotate(180deg)'
                   }}
                   autoPlay="true"
-                />
+                />                
               </div>
               <div className="panelTitle">
                 Live Cam Mode
@@ -395,9 +395,9 @@ class ViewM3Run extends Component {
                 </div>
                 <video
                   id="videoRight"
-                  src="/video/sample.mp4"
+                  src="/video/T_Right_org.mp4"
                   style={{
-                    transform: 'rotate(180deg)'
+                    // transform: 'rotate(180deg)'
                   }}
                   autoPlay="true"
                 />
