@@ -11,6 +11,42 @@ import RailroadTrailStartStop from './components/RailroadTrailStartStop';
 import { connect } from 'react-redux';
 
 class ViewM2Setup extends Component {
+  constructor(props) {
+    super(props);
+    this.hostname = window.location.hostname;
+    this.onRunSwitchClick = this.onRunSwitchClick.bind(this);
+    // this.sendMessageToDevice = this.sendMessageToDevice.bind(this);
+  }
+  sendCommandToDevice(command) {
+    var ws = new WebSocket(`ws://${this.hostname}:8181/`);
+    this.send = function (message, callback) {
+      this.waitForConnection(function () {
+          ws.send(message);
+          ws.close();
+          if (typeof callback !== 'undefined') {
+              callback();
+          }
+      }, 100);
+    };
+
+    this.waitForConnection = function (callback, interval) {
+      if (ws.readyState === 1) {
+        callback();
+      } else {
+        var that = this;
+        // optional: implement backoff for interval here
+        setTimeout(function () {
+            that.waitForConnection(callback, interval);
+        }, interval);
+      }
+    };
+    this.send(command);
+  }
+
+  onRunSwitchClick(value) {
+    const command = value === "on" ? "S1" : "S0";
+    this.sendCommandToDevice(command);
+  }
   render() {
     const { 
       bmsSocData,
@@ -492,6 +528,7 @@ class ViewM2Setup extends Component {
                           padding="7px 0px" 
                           value="on"
                           width='50%'
+                          onChange={this.onRunSwitchClick}
                           buttons={[
                             { idx: 1, title: 'START', value: 'on' }, 
                             { idx: 2, title: 'STOP', value: 'off' }

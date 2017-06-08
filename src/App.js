@@ -61,10 +61,10 @@ import ViewM2Run from './ViewM2Run';
 import ViewM2Setup from './ViewM2Setup';
 import ViewM2Spec from './ViewM2Spec';
 
-
 class App extends Component {
   constructor(props) {
     super(props);
+    this.hostname = window.location.hostname;
     this.handleData = this.handleData.bind(this);
     this.thick = this.thick.bind(this);
     this.frontLeftData = {};
@@ -285,7 +285,7 @@ class App extends Component {
     this.setRearWheelsetHscData.steeringRatio = 0;
   }
   componentDidMount() {
-    this.timer = setInterval(this.thick, 1000 / 30);
+    // this.timer = setInterval(this.thick, 1000 / 30);
   }
   handleData(data) {
     const json = JSON.parse(data); 
