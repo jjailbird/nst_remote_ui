@@ -48,7 +48,7 @@ import './components/css/TestSetupGaugeBar.css'
 
 import {
   BrowserRouter as Router,
-  Route,
+  Route, Redirect,
   NavLink
 } from 'react-router-dom';
 
@@ -650,26 +650,8 @@ class App extends Component {
       <Router>
         <div>
           <div>
-            <Route exact path="/main" component={ViewMain}/>
-            <Route path="/itcrun" component={ViewITCRun}/>
-            <Route path="/setup" component={ViewSetup}/>
-            <Route path="/train" component={ViewTrain}/>
-            <Route path="/spec" component={ViewSpec}/>
-            <Route path="/test" component={ViewTest} />
-            <Route path="/test2" component={ViewTest2} />
-            <Route path="/testsetuppanel" component={ViewTestSetupPanel} />
-
             {/*페이지 정리*/}
-            <Route path="/m1/main" component={ViewM1Main} />
-            <Route path="/m1/run" component={ViewM1Run} />
-            <Route path="/m1/setup" component={ViewM1Setup} />
-            <Route path="/m1/spec" component={ViewM1Spec} />
-
-            <Route path="/m2/main" component={ViewM2Main} />
-            <Route path="/m2/run" component={ViewM2Run} />
-            <Route path="/m2/setup" component={ViewM2Setup} />
-            <Route path="/m2/spec" component={ViewM2Spec} />
-
+            <Redirect path="/" to="/m3/main" />
             <Route path="/m3/main" component={ViewM3Main} />
             <Route path="/m3/run" component={ViewM3Run} />
             <Route path="/m3/setup" component={ViewM3Setup} />

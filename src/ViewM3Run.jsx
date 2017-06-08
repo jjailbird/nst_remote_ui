@@ -97,7 +97,10 @@ class ViewM3Run extends Component {
                 <video
                   id="videoLeft"
                   src="/video/sample.mp4"
-                  onClick={() => { alert('video clicked!') }}
+                  style={{
+                    transform: 'rotate(180deg)'
+                  }}
+                  autoPlay="true"
                 />
               </div>
               <div className="panelTitle">
@@ -393,7 +396,10 @@ class ViewM3Run extends Component {
                 <video
                   id="videoRight"
                   src="/video/sample.mp4"
-                  onClick={() => { alert('video clicked!') }}
+                  style={{
+                    transform: 'rotate(180deg)'
+                  }}
+                  autoPlay="true"
                 />
               </div>
               <div className="panelTitle">
