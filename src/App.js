@@ -48,71 +48,20 @@ import './components/css/TestSetupGaugeBar.css'
 
 import {
   BrowserRouter as Router,
-  Route,
+  Route,Redirect,
   NavLink
 } from 'react-router-dom';
 
 import { getRandomInt, getRandomFloat } from './utils/functions';
 
-import ViewMain from './ViewMain';
-import ViewITCRun from './ViewITCRun';
-import ViewSetup from './ViewSetup';
-import ViewTrain from './ViewTrain';
-import ViewSpec from './ViewSpec';
-import ViewTest from './ViewTest';
-import ViewTest2 from './ViewTest2';
 import ViewTestSetupPanel from './ViewTestSetupPanel';
 //페이지 정리
-import ViewM1Main from './ViewM1Main';
-import ViewM1Run from './ViewM1Run';
-import ViewM1Setup from './ViewM1Setup';
-import ViewM1Spec from './ViewM1Spec';
 
 import ViewM2Main from './ViewM2Main';
 import ViewM2Run from './ViewM2Run';
 import ViewM2Setup from './ViewM2Setup';
 import ViewM2Spec from './ViewM2Spec';
 
-import ViewM3Main from './ViewM3Main';
-import ViewM3Run from './ViewM3Run';
-import ViewM3Setup from './ViewM3Setup';
-import ViewM3Spec from './ViewM3Spec';
-
-/*
-const Topic = ({ match }) => (
-  <div>
-    <h3>{match.params.topicId}</h3>
-  </div>
-);
-
-const Topics = ({ match }) => (
-  <div>
-    <h2>Topics</h2>
-    <ul>
-      <li>
-        <NavLink to={`${match.url}/rendering`}>
-          Rendering with React
-        </NavLink>
-      </li>
-      <li>
-        <NavLink to={`${match.url}/components`}>
-          Components
-        </NavLink>
-      </li>
-      <li>
-        <NavLink to={`${match.url}/props-v-state`}>
-          Props v. State
-        </NavLink>
-      </li>
-    </ul>
-
-    <Route path={`${match.url}/:topicId`} component={Topic}/>
-    <Route exact path={match.url} render={() => (
-      <h3>Please select a topic.</h3>
-    )}/>
-  </div>
-);
-*/
 
 class App extends Component {
   constructor(props) {
@@ -650,31 +599,12 @@ class App extends Component {
       <Router>
         <div>
           <div>
-            <Route exact path="/main" component={ViewMain}/>
-            <Route path="/itcrun" component={ViewITCRun}/>
-            <Route path="/setup" component={ViewSetup}/>
-            <Route path="/train" component={ViewTrain}/>
-            <Route path="/spec" component={ViewSpec}/>
-            <Route path="/test" component={ViewTest} />
-            <Route path="/test2" component={ViewTest2} />
-            <Route path="/testsetuppanel" component={ViewTestSetupPanel} />
-
             {/*페이지 정리*/}
-            <Route path="/m1/main" component={ViewM1Main} />
-            <Route path="/m1/run" component={ViewM1Run} />
-            <Route path="/m1/setup" component={ViewM1Setup} />
-            <Route path="/m1/spec" component={ViewM1Spec} />
-
-            <Route path="/m2/main" component={ViewM2Main} />
+            <Redirect from="/" to="/m2/main" />
+            <Route exact path="/m2/main" component={ViewM2Main} />
             <Route path="/m2/run" component={ViewM2Run} />
             <Route path="/m2/setup" component={ViewM2Setup} />
             <Route path="/m2/spec" component={ViewM2Spec} />
-
-            <Route path="/m3/main" component={ViewM3Main} />
-            <Route path="/m3/run" component={ViewM3Run} />
-            <Route path="/m3/setup" component={ViewM3Setup} />
-            <Route path="/m3/spec" component={ViewM3Spec} />
-
           </div>
           <div 
             className="navi"
