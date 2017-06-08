@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import DriveDonutDivideLeftChart from './components/DriveDonutDivideLeftChart';
 import DriveRailroadTrail from './components/DriveRailroadTrail';
+import RailDonutPanelLeft from './components/RailDonutPanelLeft'
 
 import { connect } from 'react-redux';
 
@@ -124,10 +125,10 @@ class ViewM2Run extends Component {
         </div>
       </div>
       <div className="trainPie tpLeft">
-        <img src="/img/sample/train_pie2.png"/>
+        <RailDonutPanelLeft data={driveData.data} />
       </div>
       <div className="trainPie tpRight">
-        <img src="/img/sample/train_pie1.png"/>
+        <img src="/img/train_pie2.png"/>
       </div>
       <div className="contBox">
         <div
