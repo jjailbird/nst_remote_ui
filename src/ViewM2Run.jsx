@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import DriveDonutDivideLeftChart from './components/DriveDonutDivideLeftChart';
 import DriveRailroadTrail from './components/DriveRailroadTrail';
 import RailDonutPanelLeft from './components/RailDonutPanelLeft'
+import RailDonutPanelRight from './components/RailDonutPanelRight'
 
 import { connect } from 'react-redux';
 
@@ -128,7 +129,7 @@ class ViewM2Run extends Component {
         <RailDonutPanelLeft data={driveData.data} />
       </div>
       <div className="trainPie tpRight">
-        <img src="/img/train_pie2.png"/>
+        <RailDonutPanelRight data={driveData.data} dType="auto"/>
       </div>
       <div className="contBox">
         <div

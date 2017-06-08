@@ -38,28 +38,49 @@ export default class RailDonutPanelLeft extends Component {
               position: 'absolute',
               width: '353px',
               textAlign: 'center',
-              left: '0'
+              left: '0',
+              top: '78px'
             }}
             classNmae="frontText"
           >
             <div
               style={{
-
+                color: 'rgba(255,255,255,0.5)',
+                fontSize: '25px',
+                fontWeight: 'bold',
+                marginBottom: '8px'
               }}
             >BAT.Temp</div>
             <div
               style={{
                 
               }}
-            >{battTempDisplay}</div>
+            >
+              <span
+                style={{
+                  color: 'rgba(201,195,53,0.5)',
+                  fontSize: '50px',
+                  fontWeight: 'bold',
+                  paddingBottom: '4px',
+                  lineHeight: '45px',
+                  borderBottom: '4px solid rgba(201,195,53,0.5)'
+                }}
+              >{battTempDisplay} ℃</span>
+            </div>
             <div
               style={{
-                
+                marginTop: '40px',
+                color: 'rgba(255,255,255,0.5)',
+                fontSize: '30px',
+                fontWeight: 'bold'
               }}
             >SOC %</div>
             <div
               style={{
-                
+                color: 'rgba(201,195,53,0.5)',
+                fontSize: '80px',
+                fontWeight: 'bold',
+                lineHeight: '62px'
               }}
             >{socDisplay}</div>
           </div>
