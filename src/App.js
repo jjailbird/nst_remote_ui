@@ -1,3 +1,4 @@
+import Websocket from 'react-websocket';
 import { connect } from 'react-redux';
 import { 
   setFrontLeftData,
@@ -53,8 +54,6 @@ import {
 } from 'react-router-dom';
 
 import { getRandomInt, getRandomFloat } from './utils/functions';
-
-import ViewTestSetupPanel from './ViewTestSetupPanel';
 //페이지 정리
 
 import ViewM2Main from './ViewM2Main';
@@ -66,6 +65,7 @@ import ViewM2Spec from './ViewM2Spec';
 class App extends Component {
   constructor(props) {
     super(props);
+    this.handleData = this.handleData.bind(this);
     this.thick = this.thick.bind(this);
     this.frontLeftData = {};
     this.frontLeftData.latDistance = [];
@@ -287,6 +287,15 @@ class App extends Component {
   componentDidMount() {
     this.timer = setInterval(this.thick, 1000 / 30);
   }
+  handleData(data) {
+    const json = JSON.parse(data); 
+    const ITCTEST = json.ITCTEST ? json.ITCTEST : {};
+    const ITCSETUP = json.ITCSETUP ? json.ITCSETUP : {}; 
+    const { dispatch } = this.props;
+    // const json = JSON.parse(data);
+    console.log('webSocket Received:', json)
+  }
+
   thick() {
     const { dispatch } = this.props;
 
@@ -598,6 +607,10 @@ class App extends Component {
     return (
       <Router>
         <div>
+          <Websocket
+            url={`ws://${this.hostname}:8181/`}
+            onMessage={this.handleData} debug={false}
+          />
           <div>
             {/*페이지 정리*/}
             <Redirect from="/" to="/m2/main" />
