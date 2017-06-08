@@ -1,12 +1,14 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-export default class ControlSwitchButtonOnOff extends Component {
+export default class ControlSwitchButtonOnOffPatch extends Component {
   constructor (props, context) {
     super(props, context);
+    /*
     this.state = {
       value: this.props.value
     };
+    */
     this.handleChange = this.handleChange.bind(this);
   }
   handleChange(e) {
@@ -15,17 +17,20 @@ export default class ControlSwitchButtonOnOff extends Component {
       this.props.onChange(value);
     }
     
+    /*
     this.setState({
       value: value
     });
+    */
   }
   render() {
-    const { value } = this.state;
+    console.log('this.props:', this.props, 'this.state:', this.state);
+    const { value } = this.props;
     const { title, buttons, onBgColor, offBgColor, onTextColor, offTextColor, padding, width } = this.props;
     
     let activeBgColor = 0;
     let activeTextColor = 0;
-    if(value == 'on'){
+    if(value === 'on'){
       activeBgColor = onBgColor;
       activeTextColor = onTextColor;
     }else{
@@ -76,7 +81,7 @@ export default class ControlSwitchButtonOnOff extends Component {
   }
 }
 
-ControlSwitchButtonOnOff.propTypes = {
+ControlSwitchButtonOnOffPatch.propTypes = {
   title: PropTypes.string,
   value: PropTypes.string,
   buttons: PropTypes.array,

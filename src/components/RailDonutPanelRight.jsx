@@ -6,7 +6,7 @@ export default class RailDonutPanelLeft extends Component {
     super(props);
   }
   render() {
-    const { data, dType } = this.props;
+    const { data, dType, lever } = this.props;
     let value = 0;
     let valueDType = 0;
     let valueSpeed = 0;
@@ -40,9 +40,13 @@ export default class RailDonutPanelLeft extends Component {
     
     if(data) {
       value = data
-      valueDType = value.fwd;
+      // valueDType = value.fwd;
       valueSpeed = value.speed;
     }
+    if (lever) {
+      valueDType = lever;
+    }
+
 
     if(valueDType > 0){
       driveDir = 'FWD';

@@ -30,7 +30,10 @@ import {
   setRearRightHscData,
   setMotorControlHscData,
   setFrontWheelsetHscData,
-  setRearWheelsetHscData
+  setRearWheelsetHscData,
+  setRunSwitch,
+  setDirectionSwitch,
+  setDriveLever
 } from './actions';
 
 import React, { Component } from 'react';
@@ -285,7 +288,7 @@ class App extends Component {
     this.setRearWheelsetHscData.steeringRatio = 0;
   }
   componentDidMount() {
-    // this.timer = setInterval(this.thick, 1000 / 30);
+    this.timer = setInterval(this.thick, 1000 / 1);
   }
   handleData(data) {
     const json = JSON.parse(data); 
@@ -293,7 +296,24 @@ class App extends Component {
     const ITCSETUP = json.ITCSETUP ? json.ITCSETUP : {}; 
     const { dispatch } = this.props;
     // const json = JSON.parse(data);
-    console.log('webSocket Received:', json)
+    // console.log('webSocket Received:', json)
+    const command = json.command ? json.command : null;
+
+    if (command) {
+      console.log('command:', command);
+      switch(command.charAt(0)) {
+        case 's':
+          dispatch( setRunSwitch(command.charAt(1)) );
+          break;
+        case 'd':
+          dispatch( setDirectionSwitch(command.charAt(1)) );
+          break;          
+        case 'n':
+          dispatch( setDriveLever(command.charAt(1)) );
+          break;          
+      }
+    }
+
   }
 
   thick() {

@@ -9,8 +9,38 @@ import { connect } from 'react-redux';
 class ViewM2Run extends Component {
   render() {
     const { 
-      driveData
+      driveData, driveLever
     } = this.props;
+
+    let driveLeverValue = 0;
+    
+    switch(driveLever) {
+      case "0":
+        driveLeverValue = -3;
+        break;
+      case "1":
+        driveLeverValue = -2;
+        break;
+      case "2":
+        driveLeverValue = -1;
+        break;
+      case "3":
+        driveLeverValue = 0;
+        break;
+      case "4":
+        driveLeverValue = 1;
+        break;
+      case "5":
+        driveLeverValue = 1;
+        break;
+      case "6":
+        driveLeverValue = 2;
+        break;
+      case "7":
+        driveLeverValue = 3;
+        break;
+    }
+    
   return (
 
     <div>
@@ -129,7 +159,7 @@ class ViewM2Run extends Component {
         <RailDonutPanelLeft data={driveData.data} />
       </div>
       <div className="trainPie tpRight">
-        <RailDonutPanelRight data={driveData.data} dType="auto"/>
+        <RailDonutPanelRight data={driveData.data} dType="auto" lever={driveLeverValue} />
       </div>
       <div className="contBox">
         <div
@@ -141,7 +171,7 @@ class ViewM2Run extends Component {
             zIndex: '50',
             borderRadius: '15px'
           }}
-          class="trainBackViewBox">
+          className="trainBackViewBox">
             <video
               autoPlay
               loop
@@ -171,7 +201,8 @@ class ViewM2Run extends Component {
 
 function mapStateToProps(state){
     return {
-      driveData: state.driveData
+      driveData: state.driveData,
+      driveLever: state.setDriveLever.data
     }
 }
 

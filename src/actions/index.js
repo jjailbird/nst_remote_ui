@@ -23,6 +23,13 @@ export const SET_INV_TEMP_DATA = 'SET_INV_TEMP_DATA';
 export const SET_BCU_M_BOGIE_DATA = 'SET_BCU_M_BOGIE_DATA';
 export const SET_BCU_T_BOGIE_DATA = 'SET_BCU_T_BOGIE_DATA';
 export const SET_DRIVE_INFO_DATA = 'SET_DRIVE_INFO_DATA';
+// ===================================================================
+
+// TEST_SETUP COMMAND ================================================
+export const SET_RUN_SWITCH = 'SET_RUN_SWITCH';
+export const SET_DIRECTION_SWITCH = 'SET_DIRECTION_SWITCH';
+export const SET_DRIVE_LEVER = 'SET_DRIVE_LEVER';
+// ===================================================================
 
 //DRIVE =======================================================
 export const SET_DRIVE_DATA = 'SET_DRIVE_DATA';
@@ -215,6 +222,27 @@ export const setFrontWheelsetHscData = (data) => {
 export const setRearWheelsetHscData = (data) => {
   return {
     type: SET_REAR_WHEELSET_HSC_DATA,
+    data
+  }
+}
+
+export const setRunSwitch = (data) => {
+  return {
+    type: SET_RUN_SWITCH,
+    data
+  }
+}
+
+export const setDirectionSwitch = (data) => {
+  return {
+    type: SET_DIRECTION_SWITCH,
+    data
+  }
+}
+
+export const setDriveLever = (data) => {
+  return {
+    type: SET_DRIVE_LEVER,
     data
   }
 }

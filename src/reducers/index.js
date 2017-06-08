@@ -24,6 +24,14 @@ import invTempData from './invTempData';
 import bcuMBogieData from './bcuMBogieData';
 import bcuMTogieData from './bcuTBogieData';
 import driveInfoData from './driveInfoData';
+// ===================================================================
+
+// TEST_SETUP COMMAND ================================================
+import setRunSwitch from './setRunSwitch';
+import setDirectionSwitch from './setDirectionSwitch';
+import setDriveLever from './setDriveLever'
+// ===================================================================
+
 
 //DRIVE =======================================================
 import driveData from './driveData';
@@ -68,7 +76,10 @@ const reducers = combineReducers({
   rearRightHscData,
   motorControlHscData,
   frontWheelsetHscData,
-  rearWheelsetHscData
+  rearWheelsetHscData,
+  setRunSwitch,
+  setDirectionSwitch,
+  setDriveLever
 });
 
 export default reducers;

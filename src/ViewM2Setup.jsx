@@ -2,11 +2,14 @@ import React, { Component } from 'react';
 import PanelControlButtonsLeft from './components/PanelControlButtonsLeft';
 import PanelControlButtonsRight from './components/PanelControlButtonsRight';
 import ControlSwitchButtonOnOff from './components/ControlSwitchButtonOnOff';
+import ControlSwitchButtonOnOffPatch from './components/ControlSwitchButtonOnOffPatch';
 import TestSetupPanelDataContainer from './components/TestSetupPanelDataContainer';
 import TestSetupPanelDataContainerDonutChart from './components/TestSetupPanelDataContainerDonutChart';
 import TestSetupGaugeBar from './components/TestSetupGaugeBar';
 import DynamicLineChart2 from './components/DynamicLineChart2';
 import RailroadTrailStartStop from './components/RailroadTrailStartStop';
+
+import { setRunSwitch, setDirectionSwitch } from './actions';
 
 import { connect } from 'react-redux';
 
@@ -15,6 +18,7 @@ class ViewM2Setup extends Component {
     super(props);
     this.hostname = window.location.hostname;
     this.onRunSwitchClick = this.onRunSwitchClick.bind(this);
+    this.onDirectionSwitchClick = this.onDirectionSwitchClick.bind(this);
     // this.sendMessageToDevice = this.sendMessageToDevice.bind(this);
   }
   sendCommandToDevice(command) {
@@ -42,9 +46,16 @@ class ViewM2Setup extends Component {
     };
     this.send(command);
   }
-
   onRunSwitchClick(value) {
+    const { dispatch } = this.props;
     const command = value === "on" ? "S1" : "S0";
+    dispatch( setRunSwitch(command.charAt(1)) );
+    this.sendCommandToDevice(command);
+  }
+  onDirectionSwitchClick(value) {
+    const { dispatch } = this.props;
+    const command = value === "on" ? "D1" : "D0";
+    dispatch( setDirectionSwitch(command.charAt(1)) );
     this.sendCommandToDevice(command);
   }
   render() {
@@ -56,8 +67,14 @@ class ViewM2Setup extends Component {
       bcuMBogieData,
       bcuMTogieData,
       driveInfoData,
-      motorControlData
+      motorControlData,
+      runSwitch,
+      directionSwitch
     } = this.props;
+    const runSwitchValue = runSwitch === "0" ? "off" : "on";
+    const directionSwitchValue = directionSwitch === "0" ? "off" : "on";
+    // console.log('runSwitch:', runSwitchValue);
+
     return (
 
         <div className="contBox">
@@ -449,15 +466,16 @@ class ViewM2Setup extends Component {
                     <span className="testPanelBoxTitleFull">
                       RUN DIRECTION
                     </span>
-                    <ControlSwitchButtonOnOff
+                    <ControlSwitchButtonOnOffPatch
                       title=""
                       onBgColor="rgba(21,163,80,0.5)" 
                       offBgColor="rgba(201,53,53,0.5)" 
                       onTextColor="#fff"  
                       offTextColor="#fff" 
                       padding="7px 0px" 
-                      value="on"
+                      value={directionSwitchValue}
                       width='50%'
+                      onChange={this.onDirectionSwitchClick}
                       buttons={[
                         { idx: 1, title: 'Foward', value: 'on' }, 
                         { idx: 2, title: 'Reverse', value: 'off' }
@@ -519,14 +537,14 @@ class ViewM2Setup extends Component {
                           padding: '8px 5px'
                         }}
                       >
-                        <ControlSwitchButtonOnOff
+                        <ControlSwitchButtonOnOffPatch
                           title=""
                           onBgColor="rgba(21,163,80,0.5)" 
                           offBgColor="rgba(201,53,53,0.5)" 
                           onTextColor="#fff"  
                           offTextColor="#fff" 
                           padding="7px 0px" 
-                          value="on"
+                          value={runSwitchValue}
                           width='50%'
                           onChange={this.onRunSwitchClick}
                           buttons={[
@@ -1074,6 +1092,7 @@ class ViewM2Setup extends Component {
 }
 
 function mapStateToProps(state){
+    console.log(state);
     return {
       bmsSocData: state.bmsSocData,
       bmsTempData: state.bmsTempData,
@@ -1082,7 +1101,9 @@ function mapStateToProps(state){
       bcuMBogieData: state.bcuMBogieData,
       bcuMTogieData: state.bcuMTogieData,
       driveInfoData: state.driveInfoData,
-      motorControlData: state.motorControlData
+      motorControlData: state.motorControlData,
+      runSwitch: state.setRunSwitch.data,
+      directionSwitch: state.setDirectionSwitch.data
     }
 }
 
