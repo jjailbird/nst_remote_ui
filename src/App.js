@@ -65,7 +65,6 @@ import ViewM1Run from './ViewM1Run';
 import ViewM1Setup from './ViewM1Setup';
 import ViewM1Spec from './ViewM1Spec';
 
-
 class App extends Component {
   constructor(props) {
     super(props);
@@ -228,6 +227,7 @@ class App extends Component {
   }
   componentDidMount() {
     // this.timer = setInterval(this.thick, 1000 / 30);
+    
   }
   handleData(data) {
     const json = JSON.parse(data); 
