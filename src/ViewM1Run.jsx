@@ -96,8 +96,11 @@ class ViewM1Run extends Component {
                 </div>
                 <video
                   id="videoLeft"
-                  src="/video/sample.mp4"
-                  onClick={() => { alert('video clicked!') }}
+                  src="/video/M_Left_org.mp4"
+                  autoPlay="true"
+                  style={{
+                    transform: 'rotate(180deg)'
+                  }}
                 />
               </div>
               <div className="panelTitle">
@@ -387,8 +390,11 @@ class ViewM1Run extends Component {
                 </div>
                 <video
                   id="videoRight"
-                  src="/video/sample.mp4"
-                  onClick={() => { alert('video clicked!') }}
+                  src="/video/M_Right_org.mp4"
+                  style={{
+                    // transform: 'rotate(180deg)'
+                  }}
+                  autoPlay="true"
                 />
               </div>
               <div className="panelTitle">
