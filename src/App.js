@@ -53,7 +53,7 @@ import './components/css/TestSetupGaugeBar.css'
 
 import {
   BrowserRouter as Router,
-  Route,
+  Route,Redirect,
   NavLink
 } from 'react-router-dom';
 
@@ -708,7 +708,7 @@ class App extends Component {
             onMessage={this.handleData} debug={false}
           />
           <div>
-            
+            <Redirect from="/" to="/m1/main" />
             <Route path="/m1/main" component={ViewM1Main} />
             <Route path="/m1/run" component={ViewM1Run} />
             <Route path="/m1/setup" component={ViewM1Setup} />
