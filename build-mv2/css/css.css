@@ -1,0 +1,1123 @@
+/**************************************************************************공통*************************************************************************************/
+* {margin:0;padding:0;box-sizing: border-box;}
+a,a:hover,a:active{
+  color:#fff;
+  text-decoration: none;
+}
+ul{
+  padding:0px;
+  margin:0px;
+  list-style: none;
+}
+html{
+  height: 100%;
+  outline: 0;
+}
+body{
+  padding:0px;
+  margin:0px;
+  width:100%;
+  height: 100%;
+  overflow:hidden;
+  background:url(../img/bg.png);
+}
+.pull-left{float:left;}
+.pull-right{float:right;}
+.txt-left{text-align: left;}
+.txt-right{text-align: right;}
+
+.title{
+  position:absolute;
+  width:100%;
+  font-size:25px;
+  font-weight:bold;
+  text-transform: uppercase;
+  padding:25px;
+  color:#0b3d5d;
+  z-index:10;
+}
+.navi{
+  position:absolute;
+  width:1920px;
+  bottom:0px;
+  left:0px;
+  height:126px;
+  z-index:10;
+  overflow: hidden;
+}
+.navi .navi-btns{    
+  width: 900px;
+  margin: 0 auto;
+  overflow: hidden;
+}
+.navi .navi-btns ul{
+
+}
+.navi .navi-btns ul li{
+  width:180px;
+  float:left;
+  height: 100px;
+}
+.navi .navi-btns ul li.navTop1{padding-top:28px;}
+.navi .navi-btns ul li.navTop2{padding-top:20px;}
+.navi .navi-btns ul li.navTop3{padding-top:5px;}
+.navi .navi-btns ul li a{
+  display: block;
+  text-align: center;
+}
+.navi .navi-btns ul li a img{
+  opacity: 0.45;
+}
+.navi .navi-btns ul li a.navOn img{
+  opacity: 1;
+}
+.navi .navi-btns ul li a .navText{
+  color:rgba(255,255,255,0.45)
+}
+.navi .navi-btns ul li a.navOn  .navText{
+  color:rgba(255,255,255,1)
+}
+.copy, .ver{
+  z-index:10;
+  position:absolute;
+  bottom:15px;
+}
+.copy{
+  right:25px;
+}
+.ver{
+  left:25px;
+  font-weight:bold;
+  color:rgba(255,255,255,0.4);
+  font-size:16px;
+}
+.con-login{
+  width:1920px;
+  height:1080px;
+  background:url(../img/v1-index-bg.png);
+  position:relative;
+}
+.con-loginBoxArea{
+  position:absolute;
+  width:100%;
+  padding-top:131px;
+  z-index:9;
+}
+.con-loginBox{
+  width:667px;
+  height:302px;
+  margin:0 auto;
+  background:url(../img/v1-index-loginBox.png);
+  overflow: hidden;
+}
+.con-loginTitle{
+  width:1082px;
+  height:543px;
+  margin:0 auto;
+}
+.login-form{
+  width:420px;
+  margin:110px auto 0;
+}
+.login-form .login-pw{
+  width:100%;
+  display:block;
+  padding: 12px 5px;
+  box-sizing: border-box;
+  margin-bottom: 24px;
+  text-align: center;
+  font-size: 26px;
+  letter-spacing: 9px;
+  border-radius: 5px;
+  border: none;
+  border: 2px solid #d5d5d5;
+}
+.login-form .login-submit{
+  width:100%;
+  display:block;
+  padding: 12px 5px;
+  font-size: 26px;
+  font-weight: bold;
+  background: #2d5c90;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+}
+.trailViewArea .contBox{
+  position: relative;
+}
+.contBox{
+
+}
+.trailViewArea .contBox .trainBackViewBox{
+  position: absolute;
+  width: 500px;
+  top: 85px;
+  right: 260px;
+  z-index: 50;
+  border-radius: 15px;
+}
+.trailViewArea .contBox .trainBackViewBox video{
+  width:500px;
+  border-radius: 50px;
+}
+.contBox .headArea{
+  padding:25px 35px 17px;
+  overflow: hidden;
+}
+.contBox .headLeft{
+
+}
+.contBox .headRight{
+  text-transform: uppercase;
+  font-weight:bold;
+  color:#fff;
+  text-align: right;
+  font-size:15px;
+}
+.conBoxArea{
+  min-height:500px;
+  margin:0px 35px;
+}
+/********************************************************/
+
+.left-w-camBox{
+  width:450px;
+  min-height:800px;
+}
+.motor-control-modeBox{
+  width:900px;
+  margin:0 25px;
+  background:rgba(0,0,0,0.5);
+  min-height:816px;
+  border:1px solid rgba(255,255,255,0.48);
+}
+.right-w-camBox{
+  width:450px;
+  min-height:800px;
+}
+.conBoxArea>div>div.panelBox{
+  width:100%;
+  height:294px;
+}
+.conBoxArea>div>div.panelBox .videoBox{
+  position:relative;
+}
+.videoOverInfo{
+  position:absolute;
+  z-index: 12;
+  color:#fff;
+}
+.videoOverInfo.voiCount{
+  top:10px;
+  left:15px;
+  font-size:23px;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+.videoOverInfo.voiDate{
+  top:10px;
+  right:15px;
+  font-size:12px;
+  text-align: right;
+}
+.conBoxArea>div>div.panelBox video{
+  width:450px;
+  height: 255px;
+  border:3px solid rgba(255,255,255,0.4);
+}
+.conBoxArea>div>div.panelBox .panelTitle{
+  padding: 2px 0 9px;
+  font-weight:bold;
+  color:#fff;
+  text-align: right;
+  text-transform: uppercase;
+  font-size:18px;
+}
+.conBoxArea>div>div.panelBox.recording video{
+  border:3px solid rgba(255,247,51,0.7);
+}
+.conBoxArea>div>div.panelBox.recording .panelTitle{
+  color:rgba(255,247,51,0.7);
+}
+.conBoxArea>div>div.panelBox.graphBox{
+  height:267px;
+  margin-bottom:0px;
+  height:267px;
+}
+.panelBox.graphBox .graphType{
+  border:1px solid rgba(255,255,255,0.4);
+  height:222px;
+  position:relative;
+  background: rgba(0,0,0,0.3);
+}
+.panelBox.graphBox .graphType .graphTopTitle{
+  color: #fff;
+  text-transform: uppercase;
+  padding: 11px;
+  display: inline-block;
+  border-right: 0px solid rgba(255,255,255,0.4);
+  border-bottom: 1px solid rgba(255,255,255,0.4);
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  z-index: 10;
+  font-size: 14px;
+  font-weight:bold;
+  background: rgba(0,0,0,0.5);
+}
+.conBoxArea>div>div.panelBox.graphBox:last-child{
+  margin-bottom:0px;
+}
+.graphBtnBox{
+  overflow: hidden;
+  text-align: right;
+  margin-top:  10px;
+}
+.graphBtnBox a{
+  padding: 3px 3px 3px;
+  display: inline-block;
+  width: 56px;
+  background: rgba(0,0,0,0.5);
+  text-align: center;
+  font-size: 12px;
+  font-weight: bold;
+  border: 1px solid rgba(255,255,255,0.4);
+}
+.graphBtnBox a.active{
+  background: rgba(255,255,255,0.3);
+}
+.graphBtnBox span.btnGroupType-inline a{
+  padding: 3px 3px 3px;
+  display: inline-block;
+  width: 56px;
+  background: rgba(0,0,0,0.5);
+  text-align: center;
+  font-size: 12px;
+  font-weight: bold;
+  border: 1px solid rgba(255,255,255,0.4);
+}
+.graphBtnBox span.btnGroupType-inline a.active{
+  background: rgba(255,255,255,0.3);
+}
+
+.motorConTab span.btnGroupType-inline a{
+  padding: 3px 3px 3px;
+  display: inline-block;
+  width: 56px;
+  background: rgba(0,0,0,0.5);
+  text-align: center;
+  font-size: 12px;
+  font-weight: bold;
+  border: 1px solid rgba(255,255,255,0.4);
+}
+.motorConTab span.btnGroupType-inline a.active{
+  background: rgba(255,255,255,0.3);
+}
+.motor-control-modeTitle{
+  font-size:20px;
+  padding:9px 15px;
+  border-bottom: 1px solid rgba(255,255,255,0.4);
+  text-align:center;
+  color:#fff;
+}
+.configBox{
+  color: #fff;
+  padding: 0px 30px;
+  margin-top:23px;
+  overflow: hidden;
+}
+.modeConfig1{}
+.modeConfig2{
+  margin-top:18px;
+}
+.modeConfig2 .motorConTab{
+  width:365px;
+}
+.modeConfig2 .motorConRail{
+  width:100px;
+}
+.modeConfig2 .motorConPie{
+  width: 362px;
+  padding: 0 16px;
+  margin-left: 10px;
+}
+.modeConfig2 .motorConPie .motorConPieBox1{
+  overflow: hidden;
+  margin-top:15px;
+}
+.modeConfig2 .motorConPie .motorConPieBox1 .motorConPieBox1Child{
+  float: left;
+}
+.modeConfig2 .motorConPie .motorConPieBox1 .motorConPieBox1Child:last-child{
+  float: right;
+}
+.modeConfig3{
+  margin-top:10px;
+}
+.modeConfig1-listBox1{}
+.modeConfig1-listBox1 > span{
+  width: 305px;
+  overflow: hidden;
+  display: inline-block;
+}
+.modeConfig1-listBox1 > span.confBigTitle{
+  font-size: 20px;
+  font-weight: bold;
+  width: 209px;
+  margin-right: 12px;
+}
+.btnGroupType-inline > span.confTitle{
+  font-size:11px;
+  margin: 0 16px 0 0px;
+}/*
+.btnGroupType-inline > a{
+  background:rgba(0,0,0,0.7);
+  border: 1px solid rgba(255,255,255,0.4);
+  padding: 3px 20px;
+  display: inline-block;
+  font-size: 12px;
+}
+.btnGroupType-inline a.active{
+  background: rgba(255,255,255,0.3);
+}*/
+.btnGroupType-inline.yellowButton > a{
+  background:rgba(0,0,0,0);
+  border: 1px solid rgba(255,255,255,0.4);
+  padding: 3px 25px;
+  display: inline-block;
+  font-size: 12px;
+}
+.btnGroupType-inline.yellowButton a.active{
+  background: rgba(201,195,53,0.7);
+  color:#000;
+}
+.btnGroupType-inline.btnGroupCheckBox > a{
+  background:rgba(0,0,0,0.4);
+  border: 1px solid rgba(255,255,255,0.4);
+  padding: 3px 14px;
+  display: inline-block;
+  font-size: 12px;
+}
+.btnGroupType-inline.btnGroupCheckBox > a > span{
+  width:11px;
+  height:11px;
+  border: 1px solid rgba(255,255,255,0.4);
+  background:rgba(0,0,0,0.5);
+  display: inline-block;
+  margin-right:6px;
+  margin-top:4px;
+}
+.btnGroupType-inline.btnGroupCheckBox a.active{
+  background:rgba(0,0,0,0.4);
+}
+.btnGroupType-inline.btnGroupCheckBox > a.active > span{
+  background: rgba(201,195,53,0.7);
+}
+.configBox a.active{
+  background: rgba(255,255,255,0.3);
+}
+.modeConfig1-listBox2{
+  margin-top: 8px;
+  overflow: hidden;
+}
+.modeConfig1-listBox2 .listBox2-childBox{
+  width: 400px;
+  min-height: 100px;
+}
+.modeConfig2-graphBox{
+  margin-top:15px;
+}
+.modeConfig3-childBox{
+  overflow: hidden;
+}
+.modeConfig3-childBox .modeConfig3-childBoxTitle{
+  width:360px;
+}
+ul.modeConfig3-list{
+  width:100%;
+  border: 1px solid rgba(255,255,255,0.4);
+  margin-top:10px;
+}
+ul.modeConfig3-list li{
+  border-bottom: 1px solid rgba(255,255,255,0.4);
+  padding:8px 15px;
+  font-size:13px;
+  box-sizing: border-box;
+}
+ul.modeConfig3-list li span{
+  color:#fff;
+  display: inline-block;
+}
+ul.modeConfig3-list li span:nth-child(1){width:38%;}
+ul.modeConfig3-list li span:nth-child(2){width:20%;text-align: center;}
+ul.modeConfig3-list li span:last-child{width:38%;}
+
+.listBox2-controlBox{
+}
+.listBox2-controlBox .listBox2-controlBoxTitle{
+  font-size:12px;
+  text-align: left;
+  margin-top:10px;
+}
+.listBox2-controlBox .listBox2-controlBoxControl{
+  margin-top:10px;
+  text-align: left;
+}
+.graphTypeContents{
+  width: 450px;
+  height: 178px;
+  margin-top: 43px;
+  box-sizing: border-box;
+  padding: 0 18px;
+  overflow: hidden;
+}
+.graphTypeContents img{
+  width:430px;
+  height:178px;
+}
+/********************************************************/
+.setupSection{
+  width:916px;
+  height:818px;
+}
+.setupBoxArea{
+  overflow: hidden;
+}
+.setupBoxArea .setupBox:first-child{
+  border-right:none;
+}
+.setupBox{
+  width:458px;
+  border:1px solid rgba(255,255,255,0.4);
+  height:259px;
+  background: rgba(0,0,0,0.3);
+}
+.setupBox2{
+  width:448px;
+  border:1px solid rgba(255,255,255,0.4);
+  height:259px;
+  background: rgba(0,0,0,0.3);
+}
+.setupBox.x2{
+  clear: both;
+  width:915px;
+}
+div[class*="setupBox"] .setupBoxTitle{
+  background: rgba(0,0,0,0.5);
+  border-bottom: 1px solid rgba(255,255,255,0.4);
+  width: 100%;
+  color: #fff;
+  text-align: center;
+  font-weight: 600;
+  font-size: 22px;
+  text-transform: uppercase;
+  padding: 0;
+  line-height: 50px;
+  height: 50px;
+}
+div[class*="setupBox"] .sensorSetUp{
+  position: relative;
+  text-align: left;
+  padding-left: 26px;
+}
+div[class*="setupBox"] .setupBoxTitle.sensorSetUp span{
+  position: absolute;
+  text-align: left;
+  line-height: 9px;
+  top: 8px;
+  right:10px;
+}
+div[class*="setupBox"] .setupBoxTitle span small{
+  font-size: 9px;
+  text-align: left;
+  font-weight: normal;
+  line-height: 15px;
+}
+.marginTop10{
+  margin-top:20px;
+}
+.setupBoxCon{
+  width:448px;
+  height: 159px;
+  box-sizing: border-box;
+  padding:10px;
+  position:relative;
+}
+.x2 .setupBoxCon{
+  width:915px;
+}
+.noneTitle .setupBoxCon{
+  height:259px;
+}
+.setupTitle{
+  color:#fff;
+  font-size:13px;
+  padding:10px 10px 0;
+  text-transform: uppercase;
+  font-weight: bold;
+}
+.setupGainTunning{
+  padding:10px 10px 0px;
+  overflow: hidden;
+  margin: 10px 0 14px;
+}
+.setPiedata-image{
+  width:400px;
+  height:164px;
+  margin: 32px auto 0;
+  text-align: center;
+}
+.setPiedata-btns{
+  position:absolute;
+  z-index: 15;
+  width:120px;
+  height: 30px;
+  left:50%;
+  margin-left:-60px;
+  top:180px;
+}
+.setPiedata-pieGroups{
+  position:absolute;
+  width:263px;
+  height:256px;
+  top:0px;
+}
+.setPiedata-pieGroups.pull-left{
+  left:0px;
+}
+.setPiedata-pieGroups.pull-right{
+  right:0px;
+}
+.setPiedata-pieGrape{
+  position: absolute;
+  width:110px;
+  height:47px;
+  z-index: 15;
+  margin:15px;
+}
+.setPiedata-pieGrape.pie1{
+  top:0px;
+  left:0px;
+}
+.setPiedata-pieGrape.pie2{
+  top:0px;
+  right:0px;
+}
+.setPiedata-pieGrape.pie3{
+  bottom:0px;
+  left:0px;
+}
+.setPiedata-pieGrape.pie4{
+  bottom:0px;
+  right:0px;
+}
+.setPiedata-pieGrape.pieCenter{
+  position: relative;
+  width:137px;
+  height:113px;
+  margin: 68px auto 0;
+}
+.setupDescBox{
+  width:410px;
+}
+.setupDescBoxBtns{
+  clear: both;
+  margin-top:10px;
+}
+ul.setupDescList{
+  margin-top:3px;
+}
+ul.setupDescList li{
+  font-size:11px;
+  padding:4px 15px;
+}
+.setupDescBoxBtnsInline{
+  color:#fff;
+  text-transform: uppercase;
+}
+.setupMotorGraph{
+  width:224px;
+}
+.setupMotorImage{
+  width:204px;
+  text-align: center;
+}
+.setupMotorGraph .setupMotorGraphList:first-child{
+  margin-top:0px;
+}
+.setupMotorGraphList{
+  overflow: hidden;
+  margin-top:8px;
+}
+.setupMotorGraphList .pie-graph{
+  width:74px;
+  text-align: center;
+}
+.setupMotorGraphList .motor-temp{
+  display: block;
+  border: 1px solid rgba(255,255,255,0.4);
+  background:rgba(0,0,0,0.4);
+  color:#fff;
+  text-align: center;
+  font-size: 13px;
+  padding: 10px 0;
+  margin: 0 7px;
+}
+.setupMotorGraphList .motor-temp > span.mTRed{
+  color:red;
+  font-weight: bold;
+  font-size:22px;
+  line-height: 0.1em;
+  margin: 10px 5px 20px;
+}
+.setupMotorGraphList .bar-graph{
+  width:110px;
+}
+.setupMotorGraphList .bar-graph.pull-left{
+  padding-left:8px;
+}
+.setupMotorGraphList .bar-graph.pull-right{
+  padding-right:8px;
+}
+.setupMotorGraphList .bar-graph .bar-graph-title{
+  font-size:11px;
+  margin-bottom:3px;
+  color:#fff;
+  text-transform: uppercase;
+}
+.setupMotorGraphList .bar-graph .bar-graph-title small{
+  text-transform: capitalize;
+}
+.setupMotorGraphList .bar-graph .barBox{
+  border:1px solid rgba(255,255,255,0.4);
+  padding: 2px;
+  height: 45px;
+  position: relative;
+}
+.setupMotorGraphList .bar-graph .barBox .barFill{
+  position: absolute;
+  width:96px;
+  background:#949a3f;
+  height:50%;
+  bottom:0px;
+  left:0px;
+  margin: 2px;
+}
+
+.axleBox{
+  float: left;
+  margin-right: 18px;
+  margin-left: 10px;
+  padding: 0 5px 0;
+  text-align: center;
+}
+.axleBox1,.axleBox2{
+  width:153px;
+}
+.axleBox3{
+  margin-right:0px;
+}
+.axleBox .axleTitle{
+  color:#fff;
+  text-transform: uppercase;
+  font-size:12px;
+  text-align: center;
+}
+.axleGraphBox{
+  margin-top:10px;
+  overflow: hidden;
+}
+.axleGraphBox .axleGraphBoxGroup:last-child{
+  margin-right:0px;
+}
+.axleGraphBoxGroup{
+  width:41px;
+  float:left;
+  margin-right:10px;
+}
+.axleGraphBoxGroup .axleGraphBoxBarGraph:first-child{
+  margin-right:9px;
+}
+.axleGraphBoxBarGraph{
+  float:left;
+  margin-bottom:5px;
+}
+.axleGraphBoxBarGraph .BarGraphTitle{
+  text-align: center;
+  color:#fff;
+  font-size:12px;
+}
+.axleGraphBoxBarGraph .BarGraphOutLine{
+  border:1px solid rgba(255,255,255,0.4);
+  width:16px;
+  height:93px;
+  position: relative;
+}
+.axleGraphBoxBarGraph .BarGraphOutLine .BarGraphFill{
+  position: absolute;
+  bottom:2px;
+  width:10px;
+  margin-left:2px;
+  margin-right:2px;
+  background:#2c69ab;
+}
+.axleGraphBoxBarGraph .BarGraphOutLine .BarGraphFill.bgColorRed{
+  background:#a32c34;
+}
+.axleGraphBoxBarGraph .BarGraphOutLine .BarGraphFill.bgColorGreen{
+  background:#6f9351;
+}
+.axleGraphBoxGroupBtn{
+  clear:both;
+  margin-top:5px;
+}
+.axleGraphBoxGroupBtn a{
+  display:block;
+  color:#fff;
+  text-align: center;
+  background:rgba(0,0,0,0.5);
+  border:1px solid rgba(255,255,255,0.4);
+  padding:1px 3px 2px;
+  font-size:12px;
+  text-transform:uppercase;
+}
+
+.trainViewVideo{
+}
+.trainViewVideo video{  
+  width:100%;
+  height:100%;
+}
+.trainNavi{
+  width:684px;
+  height:81px;
+  z-index: 15;
+  position: absolute;
+  left:50%;
+  margin-left:-342px;
+  top:0px;
+  background:url('/img/train_navi.png');
+  text-align: center;
+  padding-top: 15px;
+  font-weight: bold;
+}
+.trainNavi a{
+  color:rgba(255,255,255,0.4);
+  padding:8px;
+  display:inline-block;
+}
+.trainNavi a.active{
+  color:rgba(255,255,255,1);
+}
+.trainControlBox{
+  position:absolute;
+  z-index: 15;
+  top:0px;
+  width:450px;
+  height:650px;
+}
+.tcBoxLeft{
+  left:0px;
+  padding-left:40px;
+  padding-top:20px;
+}
+.tcBoxLeft .tcTitle{
+  text-transform: uppercase;
+  font-weight: bold;
+  color: #fff;
+  text-align: left;
+  font-size: 15px;
+}
+.tcCompass{
+  margin-top:10px;
+  padding:10px 0;
+}
+.tcBatteryPieBox{
+  margin-top:10px;
+}
+.tcBatteryPieBox .tcbTitle{
+  color:#fff;
+  margin-bottom:10px;
+  font-weight:bold;
+  text-transform: uppercase;
+  font-size:13px;
+}
+.tcBoxRight{
+  right:0px;
+  padding-right:40px;
+  padding-top:20px;
+}
+.trainPie{
+  position:absolute;
+  bottom:40px;
+  z-index: 15;
+  width:353px;
+  height:353px;
+}
+.tpLeft{
+  left:51px;
+}
+.tpRight{
+  right:51px;
+}
+.tControlBtnBox{
+  overflow: hidden;
+  margin-top:10px;
+  width:220px;
+}
+.tControlBtnBox .tcBtn{
+  float: left;
+  width:80px;
+  margin-right:15px;
+}
+.tControlBtnBox .tcBtn:first-child{
+}
+.tControlBtnBox .tcBtn:nth-child(2n){
+}
+.tControlBtnBox .tcBtn:nth-child(3){
+}
+.tcbTitle{
+  font-weight: bold;
+  font-size: 15px;
+  text-transform: uppercase;
+  margin-bottom:5px;
+}
+.tcbTitle.y{color:yellow;}
+.tcbTitle.r{color:red;}
+.tcbTitle.b{color:blue;}
+
+.tcDayCountBox{
+  overflow: hidden;
+  text-transform: uppercase;
+  margin-bottom:55px;
+}
+.tcDayCountBox .tcCountBox{
+  float:right;
+  text-align: center;
+  width:200px;
+}
+.tcDayCountBox .tcCountBox .tccTitle{
+  font-size:40px;
+  font-weight:bold;
+  color:rgba(247,255,126,0.7);
+}
+.tcDayCountBox .tcCountBox .tccCount{
+  width:100%;
+  background:rgba(0,0,0,0.5);
+  color:#fff;
+  padding:5px;
+  font-size:25px;
+  font-weight:bold;
+  margin-top:10px;
+}
+.tcDayCountBox .tccDayBox{
+  float:right;
+  color:#fff;
+  font-weight:bold;
+  text-align: right;
+  font-size:13px;
+  text-transform: capitalize;
+  margin-top: 11px;
+  margin-right: 20px;
+  text-shadow: 1px 1px #000;
+}
+.tcPositionBox{}
+.tcPositionBox .tcPosition{
+  width: 195px;
+  float: right;
+  text-align: center;
+}
+.tcPositionBox .tcpTitle{
+  color:#fff;
+  text-transform: uppercase;
+  font-weight:bold;
+  text-align: center;
+  margin-bottom:20px;
+}
+.setupBoxAreaAxle{}
+.setupBoxAreaAxle .setupBox{
+  height: 210px;
+}
+.setupBoxAxleBtn{
+  height: 48px !important;
+  border: 1px solid rgba(255,255,255,0.4);
+  border-top: none;
+  clear: both;
+  width: 100%;
+  overflow: hidden;
+}
+.setupBoxAxleBtnBox{
+  width:150px;
+  margin:0 auto;
+  margin-top: 8px;
+}
+.setupBoxAxleBtnBox a{
+  width: 72px;
+  padding: 7px 20px 5px;
+  border: 1px solid rgba(255,255,255,0.4);
+  background: rgba(0,0,0,0.5);
+  color: #fff;
+  font-weight: bold;
+  font-size: 12px;
+  text-align: center;
+}
+.setupBoxAxleBtnBox a:first-child{
+  margin-right:5px;
+  float:left;
+}
+.setupBoxAxleBtnBox a:last-child{
+  float:right;
+}
+.setupBoxConDesc{
+  padding:15px 30px;
+}
+.specContBox{
+  position:relative;
+}
+.specHeadArea{}
+.specHeadArea .specTitle{
+  color:#fff;
+  font-size:14px;
+  font-weight:bold;
+  text-transform: uppercase;
+}
+.specBoxImgArea{
+  margin-left: 500px;
+  width: 1400px;
+  text-align: center;
+}
+.specBoxDataArea{
+  padding-left:35px;
+  top:80px;
+  position:absolute;
+}
+.specBoxDataArea .specDataBox{
+  border: 1px solid rgba(255,255,255,0.4);
+  border-bottom:none;
+  background:rgba(0,0,0,0.5);
+  width:400px;
+  font-weight: bold;
+  color:#fff;
+}
+.specBoxDataArea .specDataBox .sdbTitle{  
+  padding:15px 25px;
+  border-bottom: 1px solid rgba(255,255,255,0.4);
+  color:yellow;
+  font-size:19px;
+  text-transform: uppercase;
+}
+.specBoxDataArea .specDataBox .sdbContent{  
+  padding:20px 25px;
+  border-bottom: 1px solid rgba(255,255,255,0.4);
+}
+
+.hide {
+  display: none;
+}
+
+.videoOverInfo{}
+.videoOverInfo .voiData{
+  overflow: hidden;
+  display: block;
+}
+
+.testPanelBox{
+  background: rgba(0,0,0,0.3);
+  position:relative;
+  border:1px solid rgba(255,255,255,0.3);
+}
+.testSetupPanelDataBox{
+  min-height:261px;
+  margin-top:16px;
+  padding:15px 18px;
+}
+.testSetupPanelDataBox:first-child{
+  margin-top:0px;
+}
+
+
+.testPanelBox .testPanelBoxTitle{
+  color: #fff;
+  text-transform: uppercase;
+  padding: 11px 16px;
+  display: inline-block;
+  border-right: 0px solid rgba(255,255,255,0.4);
+  border-bottom: 1px solid rgba(255,255,255,0.4);
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  z-index: 10;
+  font-size: 20px;
+  font-weight:bold;
+  background: rgba(0,0,0,0.5);
+}
+.testPanelBox .tspdInner{
+  width: 264px;
+  /*background:rgba(255,255,255,0.2);*/
+  padding-top: 45px;
+  position: relative;
+}
+.tepvBox{
+  width:294px;
+  min-height:293px;
+}
+
+.tepvBoxInner{
+  width:100%;
+  min-height:100px;
+  padding:15px 22px;
+}
+.tepvBoxInner.boxVehicleStatus{
+  height:815px;
+}
+.tepvBoxInner.tepvDataBox{
+  height:178px;
+}
+
+.testPanelBoxTitleFull{
+  color: #fff;
+  text-transform: uppercase;
+  padding: 11px 16px;
+  display: inline-block;
+  border-right: 0px solid rgba(255,255,255,0.4);
+  border-bottom: 1px solid rgba(255,255,255,0.4);
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  z-index: 10;
+  font-size: 20px;
+  font-weight:bold;
+  background: rgba(0,0,0,0.5);
+  width:100%;
+  text-align: center;
+}
+.tractBrakeBox{
+  margin-top:16px;
+}
+.tractBrakeBox .boxTract{
+  width:147px;
+}
+.tractBrakeBox .boxBrake{
+  width:147px;
+}
+.tractBrakeBox .testPanelBox{
+  height:264px;
+}
+.testSetupPanelvehicleBox .testPanelBox{
+  padding-top:65px;
+
+}
+.tepvBoxInnerImg{
+  width: 82px;
+}
+.tepvBoxInnerBtns{
+  width:135px;
+  min-height:50px;
+}
+.tepvBoxInnerBtnsGroup{
+  margin-bottom: 12px;
+}
+.tepvBoxInnerBtnsGroup:last-child{
+  margin-bottom:0px;
+}
