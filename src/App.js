@@ -288,7 +288,7 @@ class App extends Component {
     this.setRearWheelsetHscData.steeringRatio = 0;
   }
   componentDidMount() {
-    this.timer = setInterval(this.thick, 1000 / 1);
+    this.timer = setInterval(this.thick, 1000 / 30);
   }
   handleData(data) {
     const json = JSON.parse(data); 
