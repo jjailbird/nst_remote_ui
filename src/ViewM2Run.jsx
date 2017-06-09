@@ -15,28 +15,26 @@ class ViewM2Run extends Component {
     let driveLeverValue = 0;
     
     switch(driveLever) {
-      case "0":
+      case "1":
+      case "2":
         driveLeverValue = -3;
         break;
-      case "1":
+      case "3":
         driveLeverValue = -2;
         break;
-      case "2":
+      case "4":
         driveLeverValue = -1;
         break;
-      case "3":
+      case "5":
         driveLeverValue = 0;
         break;
-      case "4":
-        driveLeverValue = 1;
-        break;
-      case "5":
-        driveLeverValue = 1;
-        break;
       case "6":
-        driveLeverValue = 2;
+        driveLeverValue = 1;
         break;
       case "7":
+        driveLeverValue = 2;
+        break;
+      case "8":
         driveLeverValue = 3;
         break;
     }
