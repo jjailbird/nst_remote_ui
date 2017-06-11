@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-export default class MotorTemp extends Component {
+export default class FluidTemp extends Component {
   constructor(props) {
     super(props);
   }
@@ -13,7 +13,7 @@ export default class MotorTemp extends Component {
     }
     return (
       <div className="motor-temp">
-          <span>Motor Temp</span> <span className="mTRed">{tempValue}</span><span>℃</span>
+          <span>FLUID Temp</span> <span className="mTRed">{tempValue}</span><span>℃</span>
       </div>
     );
   }

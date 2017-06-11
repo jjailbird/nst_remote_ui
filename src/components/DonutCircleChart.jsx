@@ -77,7 +77,7 @@ export default class DonutCircleChart extends Component {
         <div
           style={{
             textAlign: 'center',
-            width: donutWidth,
+            width: `${donutWidth}px`,
             position: 'absolute',
             left: '54px',
             top: '12px',

@@ -52,7 +52,7 @@ export default class LaserBarChartA extends Component {
           <div 
             className="BarGraphFill" 
             style={{
-              height: `${barPx}`,
+              height: `${barPx}px`,
               background: `${barColor}`
             }}
           ></div>

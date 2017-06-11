@@ -20,6 +20,13 @@ export default class MotorGaugeBar extends Component {
       case 'torque':
         barMax = 3000;
         break;
+      case 'force':
+        barMax = 3000000;
+        break;
+      case 'stroke':
+        barMax = 3000;
+        break;
+
     }
     
     if(data) {
@@ -30,7 +37,7 @@ export default class MotorGaugeBar extends Component {
     }
     return (
       <div>
-        <div className="bar-graph-title">{name} {value} <small>{unit}</small></div>
+        <div className="bar-graph-title">{name} {value.toFixed(1)} <small>{unit}</small></div>
         <div className="barBox">
           <div className="barFill"
             style={{

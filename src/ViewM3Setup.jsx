@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import SliderWeightFactor from './components/SliderWeightFactor';
 import ControlSwitchButton from './components/ControlSwitchButton';
-import MotorTemp from './components/MotorTemp';
+import FluidTemp from './components/FluidTemp';
 import MotorGaugeBar from './components/MotorGaugeBar';
 import PanelControlButtonsLeft from './components/PanelControlButtonsLeft';
 import PanelControlButtonsRight from './components/PanelControlButtonsRight';
@@ -400,14 +400,14 @@ class ViewM3Setup extends Component {
                         </div>
                       </div>{/*setupMotorGraphList END*/}
                       <div className="setupMotorGraphList">
-                        <MotorTemp data={frontLeftMotorData.data.temp}/>
+                        <FluidTemp data={frontLeftMotorData.data.temp}/>
                       </div>
                       <div className="setupMotorGraphList">
                         <div className="bar-graph pull-left">
-                          <MotorGaugeBar data={frontLeftMotorData.data.rpm} name="rpm" unit=""/>
+                          <MotorGaugeBar data={frontLeftMotorData.data.rpm} name="force" unit="N"/>
                         </div>
                         <div className="bar-graph pull-right">
-                          <MotorGaugeBar data={frontLeftMotorData.data.torque} name="torque" unit="mm"/>
+                          <MotorGaugeBar data={frontLeftMotorData.data.torque} name="stroke" unit="mm"/>
                         </div>
                       </div>
                     </div>
@@ -451,7 +451,7 @@ class ViewM3Setup extends Component {
                         </div>
                       </div>{/*setupMotorGraphList END*/}
                       <div className="setupMotorGraphList">
-                        <MotorTemp data={frontRightMotorData.data.temp}/>
+                        <FluidTemp data={frontRightMotorData.data.temp}/>
                       </div>
                       <div className="setupMotorGraphList">
                         <div className="bar-graph pull-left">
@@ -504,7 +504,7 @@ class ViewM3Setup extends Component {
                         </div>
                       </div>{/*setupMotorGraphList END*/}
                       <div className="setupMotorGraphList">
-                        <MotorTemp data={rearLeftMotorData.data.temp}/>
+                        <FluidTemp data={rearLeftMotorData.data.temp}/>
                       </div>
                       <div className="setupMotorGraphList">
                         <div className="bar-graph pull-left">
@@ -555,7 +555,7 @@ class ViewM3Setup extends Component {
                         </div>
                       </div>{/*setupMotorGraphList END*/}
                       <div className="setupMotorGraphList">
-                        <MotorTemp data={rearRightMotorData.data.temp}/>
+                        <FluidTemp data={rearRightMotorData.data.temp}/>
                       </div>
                       <div className="setupMotorGraphList">
                         <div className="bar-graph pull-left">
