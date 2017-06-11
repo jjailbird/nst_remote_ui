@@ -67,7 +67,8 @@ class ViewM2Setup extends Component {
       bcuMBogieData,
       bcuMTogieData,
       driveInfoData,
-      motorControlData,
+      driveData,
+      // motorControlData,
       runSwitch,
       directionSwitch
     } = this.props;
@@ -349,7 +350,7 @@ class ViewM2Setup extends Component {
                 style={{
                   width: '100%',
                   minHeight: '200px',
-                overflow: 'hidden'
+                  overflow: 'hidden'
                 }}
               >
                 <div
@@ -371,9 +372,9 @@ class ViewM2Setup extends Component {
                     <div
                       className="pull-left"
                       style={{
-                        height: '100px;',
+                        height: '100px',
                         width: '146px',
-                        padding: '65px 18px 15px',
+                        padding: '57px 18px 15px',
                         background: 'rgba(0,0,0,0.3)',
                         position: 'relative',
                         border: '1px solid rgba(255,255,255,0.3)'
@@ -400,9 +401,9 @@ class ViewM2Setup extends Component {
                     <div
                       className="pull-right"
                       style={{
-                        height: '100px;',
+                        height: '100px',
                         width: '146px',
-                        padding: '65px 22px 15px',
+                        padding: '57px 22px 15px',
                         background: 'rgba(0,0,0,0.3)',
                         position: 'relative',
                         border: '1px solid rgba(255,255,255,0.3)'
@@ -663,7 +664,7 @@ class ViewM2Setup extends Component {
                       marginBottom: '16px'
                     }}
                   >
-                    <RailroadTrailStartStop value={motorControlData.data.position} name="VEHICLE POSITION" unit="m" start={10} stop={200} />
+                    <RailroadTrailStartStop value={driveData.data.position} name="VEHICLE POSITION" unit="m" start={0} stop={250} />
                   </div>
                   <div
                     style={{
@@ -678,7 +679,7 @@ class ViewM2Setup extends Component {
                   >
                     <div
                       style={{
-                        width: '100%;',
+                        width: '100%',
                         fontSize: '21px',
                         fontWeight: 'bold',
                         color: '#fff',
@@ -688,7 +689,7 @@ class ViewM2Setup extends Component {
                     >Drive mode Status</div>
                     <div
                       style={{
-                        width: '100%;',
+                        width: '100%',
                         fontSize: '28px',
                         fontWeight: 'bold',
                         color: '#fff673',
@@ -1092,18 +1093,21 @@ class ViewM2Setup extends Component {
 }
 
 function mapStateToProps(state){
-    console.log(state);
+    // console.log(state);
     return {
       bmsSocData: state.bmsSocData,
       bmsTempData: state.bmsTempData,
       invTempData: state.invTempData,
-      invVoltData: state.invTempData,
+      invVoltData: state.invVoltData,
       bcuMBogieData: state.bcuMBogieData,
       bcuMTogieData: state.bcuMTogieData,
       driveInfoData: state.driveInfoData,
-      motorControlData: state.motorControlData,
+      // motorControlData: state.motorControlData,
+      driveData: state.driveData,
+      // DIO Command =================================
       runSwitch: state.setRunSwitch.data,
       directionSwitch: state.setDirectionSwitch.data
+      // =============================================
     }
 }
 

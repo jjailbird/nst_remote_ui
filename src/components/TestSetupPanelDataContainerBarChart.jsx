@@ -18,52 +18,64 @@ export default class TestSetupPanelDataContainerBarChart extends Component {
     //console.log('titletitle = ',title)
     switch(title) {
       case 'PACK #1':
-        barValueShift = 10;
-        barMax = 20;
+        barValueShift = 0;
+        barMax = 100;
         break;
       case 'PACK #2':
-        barValueShift = 5;
-        barMax = 10;
+        barValueShift = 0;
+        barMax = 100;
         break;
       case 'PACK #3':
         barValueShift = 0;
-        barMax = 3000;
+        barMax = 100;
         break;
       case 'PACK #4':
         barValueShift = 0;
-        barMax = 3000;
+        barMax = 100;
         break;
       case 'INV #1':
-        barValueShift = 10;
-        barMax = 20;
+        barValueShift = 0;
+        if (unit === '℃')
+          barMax = 100;
+        else
+          barMax = 900;
         break;
       case 'INV #2':
-        barValueShift = 5;
-        barMax = 10;
+        barValueShift = 0;
+        if (unit === '℃')
+          barMax = 100;
+        else
+          barMax = 900;
         break;
       case 'INV #3':
         barValueShift = 0;
-        barMax = 3000;
+        if (unit === '℃')
+          barMax = 100;
+        else
+          barMax = 900;
         break;
       case 'INV #4':
         barValueShift = 0;
-        barMax = 3000;
+        if (unit === '℃')
+          barMax = 100;
+        else
+          barMax = 900;
         break;
       case 'Caliper #1':
         barValueShift = 0;
-        barMax = 250;
+        barMax = 900;
         break;
       case 'Caliper #2':
         barValueShift = 0;
-        barMax = 10000;
+        barMax = 900;
         break;
       case 'Caliper #3':
-        barValueShift = 5;
-        barMax = 10;
+        barValueShift = 0;
+        barMax = 900;
         break;
       case 'Caliper #4':
         barValueShift = 0;
-        barMax = 2;
+        barMax = 900;
         break;
     }
 
@@ -114,7 +126,7 @@ export default class TestSetupPanelDataContainerBarChart extends Component {
                 className="barFill"
                 style={{
                 background: `${barColor}`,
-                width: `${barPx}`,
+                width: `${barPx}px`,
                 height: '9px'
                 }}
             ></div>

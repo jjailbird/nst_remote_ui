@@ -16,10 +16,10 @@ export default class TestSetupGaugeBar extends Component {
     
     switch(name) {
       case 'tract':
-        barMax = 30;
+        barMax = 60;
         break;
       case 'brake':
-        barMax = 10;
+        barMax = 40;
         break;
     }
     

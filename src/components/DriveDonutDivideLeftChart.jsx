@@ -37,12 +37,12 @@ export default class DriveDonutDivideLeftChart extends Component {
     
     switch(name) {
       case 'traction battery':
-        lineValueShift = -300;
-        valueMax = 600;
+        lineValueShift = 300;
+        valueMax = lineValueShift + 900;
         break;
       case 'control battery':
-        lineValueShift = -10;
-        valueMax = 30;
+        lineValueShift = 10;
+        valueMax = lineValueShift + 40;
         break;
       case 'max inverer temp':
         lineValueShift = 0;

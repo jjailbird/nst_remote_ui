@@ -24,7 +24,7 @@ export default class ControlSwitchButtonOnOffPatch extends Component {
     */
   }
   render() {
-    console.log('this.props:', this.props, 'this.state:', this.state);
+    // console.log('this.props:', this.props, 'this.state:', this.state);
     const { value } = this.props;
     const { title, buttons, onBgColor, offBgColor, onTextColor, offTextColor, padding, width } = this.props;
     

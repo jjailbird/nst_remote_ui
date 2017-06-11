@@ -4,7 +4,8 @@ const defaultState = {
   b1: 0,
   b2: 0,
   b3: 0,
-  b4: 0
+  b4: 0,
+  tTogieAvg: 0
 }
 
 export default function bcuTBogie(state = { data: defaultState }, action) {

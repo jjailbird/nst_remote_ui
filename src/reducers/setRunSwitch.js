@@ -1,6 +1,6 @@
 import { SET_RUN_SWITCH } from '../actions';
 
-const defaultState = 0;
+const defaultState = 1;
 
 export default function setRunSwitch(state = { data: defaultState }, action) {
   switch(action.type) {

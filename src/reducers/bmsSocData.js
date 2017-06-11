@@ -4,7 +4,8 @@ const defaultState = {
   cell1: 0,
   cell2: 0,
   cell3: 0,
-  cell4: 0
+  cell4: 0,
+  socTotal: 0
 }
 
 export default function bmsSocData(state = { data: defaultState }, action) {

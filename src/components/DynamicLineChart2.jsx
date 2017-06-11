@@ -17,7 +17,7 @@ export default class DynamicLineChart2 extends Component {
     switch(name) {
       case 'Vehicle Speed':
         lineValueShift = 0;
-        lineMax = 15;
+        lineMax = 60;
         break;
     }
     //console.log('recieved data:', data);
@@ -31,6 +31,7 @@ export default class DynamicLineChart2 extends Component {
         lineValue = item + lineValueShift ;
         linePercent = (lineValue / lineMax) * 100; 
         linePx = lineFull - Math.round((lineFull * linePercent) / 100); 
+        lineFull - linePx;
         points += `${idx},${linePx+1} `;
       });
       // console.log(points);

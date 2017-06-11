@@ -11,40 +11,55 @@ export default class TestSetupPanelDataContainer extends Component {
     let dataTypeL2 = '';
     let dataTypeL3 = '';
     let dataTypeL4 = '';
+    let dataTypeL5 = 0;
     let dataTypeR1 = '';
     let dataTypeR2 = '';
     let dataTypeR3 = '';
     let dataTypeR4 = '';
+    let dataTypeR5 = 0;
     switch(compTitle) {
       case 'BMS':
         dataTypeL1 = dataLeft.cell1;
         dataTypeL2 = dataLeft.cell2;
         dataTypeL3 = dataLeft.cell3;
         dataTypeL4 = dataLeft.cell4;
+        
         dataTypeR1 = dataRight.cell1;
         dataTypeR2 = dataRight.cell2;
         dataTypeR3 = dataRight.cell3;
         dataTypeR4 = dataRight.cell4;
+        
+        dataTypeL5 = dataLeft.socTotal;
+        dataTypeR5 = dataRight.tempAvg;
+
         break;
       case 'INV':
         dataTypeL1 = dataLeft.inv1;
         dataTypeL2 = dataLeft.inv2;
         dataTypeL3 = dataLeft.inv3;
         dataTypeL4 = dataLeft.inv4;
+
         dataTypeR1 = dataRight.inv1;
         dataTypeR2 = dataRight.inv2;
         dataTypeR3 = dataRight.inv3;
         dataTypeR4 = dataRight.inv4;
+
+        dataTypeL5 = dataLeft.invAvg;
+        dataTypeR5 = dataRight.tempAvg;
         break;
       case 'BCU':
         dataTypeL1 = dataLeft.b1;
         dataTypeL2 = dataLeft.b2;
         dataTypeL3 = dataLeft.b3;
         dataTypeL4 = dataLeft.b4;
+        
         dataTypeR1 = dataRight.b1;
         dataTypeR2 = dataRight.b2;
         dataTypeR3 = dataRight.b3;
         dataTypeR4 = dataRight.b4;
+
+        dataTypeL5 = dataLeft.mBogieAvg;
+        dataTypeR5 = dataRight.tBogieAvg;
         break;
     }
     
@@ -76,7 +91,7 @@ export default class TestSetupPanelDataContainer extends Component {
               }}
             >
               <TestPanelDataDonutCircleChart 
-                data={dataTypeL1} 
+                data={dataTypeL5} 
                 unit={unitLeft}
                 name={cNameLeft} 
                 cCase={cCaseLeft}
@@ -116,7 +131,7 @@ export default class TestSetupPanelDataContainer extends Component {
               }}
             >
               <TestPanelDataDonutCircleChart 
-                data={dataTypeL1} 
+                data={dataTypeR5} 
                 unit={unitRight}
                 name={cNameRight} 
                 cCase={cCaseRight}

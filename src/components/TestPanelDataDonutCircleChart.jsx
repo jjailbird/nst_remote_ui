@@ -38,28 +38,32 @@ export default class TestPanelDataDonutCircleChart extends Component {
     
     switch(cCase) {
       case 'BMS SOC':
-        lineValueShift = 10;
-        valueMax = 20;
+        lineValueShift = 0;
+        valueMax = 100;
         break;
       case 'BMS TEMP':
         lineValueShift = 10;
         valueMax = 20;
         break;
       case 'INV OUT VOLT':
-        lineValueShift = 10;
-        valueMax = 20;
+        lineValueShift = 0;
+        valueMax = 900;
         break;
       case 'INV TEMP':
-        lineValueShift = 10;
-        valueMax = 20;
+        lineValueShift = 0;
+        valueMax = 100;
         break;
       case 'BCU M Bogie':
         lineValueShift = 0;
-        valueMax = 250;
+        valueMax = 900;
         break;
       case 'BCU T Bogie':
         lineValueShift = 0;
-        valueMax = 250;
+        valueMax = 900;
+        break;
+      case 'BCU T Bogie':
+        lineValueShift = 0;
+        valueMax = 900;
         break;
     }
     
@@ -88,7 +92,7 @@ export default class TestPanelDataDonutCircleChart extends Component {
         <div
           style={{
             textAlign: 'center',
-            width: donutWidth,
+            width: `${donutWidth}px` ,
             position: 'absolute',
             left: '74px',
             top: '17px',

@@ -57,7 +57,7 @@ export default class RailroadTrailStartStop extends Component {
   render() {    
     const {value, name, unit ,start, stop} = this.props;//stop 포인트위치부터 circle위치까지의 거리 값을 넣어야 할거같은데;;; 잘 모르겠네요
     const changePosition = value - stop;//<----틀린듯.ㅜㅜ
-    const valueDisplay = isFloat(value) ? changePosition.toFixed(2) : changePosition;
+    const valueDisplay = isFloat(value) ? value.toFixed(2) : value;
     return (
       <div>
         <div
