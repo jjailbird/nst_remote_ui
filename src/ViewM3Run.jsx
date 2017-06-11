@@ -100,7 +100,7 @@ class ViewM3Run extends Component {
                   style={{
                     transform: 'rotate(180deg)'
                   }}
-                  autoPlay="true"
+                  // autoPlay="false"
                 />                
               </div>
               <div className="panelTitle">
@@ -399,7 +399,7 @@ class ViewM3Run extends Component {
                   style={{
                     // transform: 'rotate(180deg)'
                   }}
-                  autoPlay="true"
+                  // autoPlay="false"
                 />
               </div>
               <div className="panelTitle">
@@ -422,7 +422,9 @@ function mapStateToProps(state){
       frontRightHscData: state.frontRightHscData,
       rearLeftHscData: state.rearLeftHscData,
       rearRightHscData: state.rearRightHscData,
+      
       motorControlHscData: state.motorControlHscData,
+      
       frontWheelsetHscData: state.frontWheelsetHscData,
       rearWheelsetHscData: state.rearWheelsetHscData
     }

@@ -65,7 +65,7 @@ export default class DynamicBarChart extends Component {
             className="barGraphBar"
             style={{
               backgroundColor: barColor,
-              width: barPx
+              width: `${barPx}px`
             }}
           >
           </div>
