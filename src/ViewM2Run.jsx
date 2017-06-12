@@ -3,6 +3,8 @@ import DriveDonutDivideLeftChart from './components/DriveDonutDivideLeftChart';
 import DriveRailroadTrail from './components/DriveRailroadTrail';
 import RailDonutPanelLeft from './components/RailDonutPanelLeft'
 import RailDonutPanelRight from './components/RailDonutPanelRight'
+import RailDonutGraphLeft from './components/RailDonutGraphLeft'
+import RailDonuGraphRight from './components/RailDonutGraphRight'
 
 import { connect } from 'react-redux';
 

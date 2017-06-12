@@ -39,7 +39,8 @@ export default class RailDonutPanelLeft extends Component {
               width: '353px',
               textAlign: 'center',
               left: '0',
-              top: '78px'
+              top: '78px',
+              zIndex: '999'
             }}
             className="frontText"
           >
@@ -85,6 +86,18 @@ export default class RailDonutPanelLeft extends Component {
             >{socDisplay}</div>
           </div>
           <div
+            className="svgArea"
+            style={{
+              width: '353px',
+              height: '353px',
+              position: 'absolute',
+              zIndex: '990',
+              background: 'rgba(0,0,0,0.5)'
+            }}
+          >
+          
+          </div>
+          <div
             style={{
               width: '353px',
               height: '353px',
@@ -92,7 +105,6 @@ export default class RailDonutPanelLeft extends Component {
             }}
             className="backGraph"
           >
-
           </div>
       </div>
     );
