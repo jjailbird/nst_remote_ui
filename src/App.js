@@ -66,7 +66,7 @@ import ViewM3Spec from './ViewM3Spec';
 class App extends Component {
   constructor(props) {
     super(props);
-    this.hostname = window.location.hostname;
+    this.hostname = window.location.hostname; // 192.168.0.2;
     this.handleData = this.handleData.bind(this);
     //this.thick = this.thick.bind(this);
     
@@ -452,15 +452,7 @@ class App extends Component {
       this.setRearSensorData.gA = HSCSETUP.AxleRearGyro.GyroA; // getRandomFloat(-5,5);
       this.setRearSensorData.gS = HSCSETUP.AxleRearGyro.GyroS; // getRandomFloat(-5,5);
       dispatch( setRearSensorData(this.setRearSensorData) )
-
-
-
     }
-
-
-
-    // const json = JSON.parse(data);
-    // console.log('webSocket Received:', json);
   }
   
   render() {
@@ -483,8 +475,8 @@ class App extends Component {
           <div 
             className="navi"
             style={{
-              //background: 'url(/img/navi-bg.png)'
-              background: 'url(/img/navi-drive-bg.png)'
+              background: 'url(/img/navi-bg.png)'
+              // background: 'url(/img/navi-drive-bg.png)'
             }}
           >
             <div className="copy">
