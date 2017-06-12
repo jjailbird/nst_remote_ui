@@ -27,6 +27,7 @@ import {
   Route, Redirect,
   NavLink
 } from 'react-router-dom';
+import { withRouter } from 'react-router';
 
 import { getRandomInt, getRandomFloat } from './utils/functions';
 //페이지 정리
@@ -41,7 +42,7 @@ class App extends Component {
     super(props);
     this.hostname = window.location.hostname;
     this.handleData = this.handleData.bind(this);
-    
+    this.changeNaviBackground = this.changeNaviBackground.bind(this);
     // used variables =========================================
     this.setBmsSocData = {};
     this.setBmsSocData.cell1 = 0;
@@ -200,11 +201,23 @@ class App extends Component {
     }
 
   }
-  
+  changeNaviBackground(src) {
+    const navi = document.getElementById('naviMenu');
+    if(navi) {
+      navi.style.backgroundImage = `url(${src})`;
+    }
+    
+  }
   render() {
+    const ChangeTracker = withRouter(({match, location, history}) => {
+      const backgroundSrc = location.pathname === '/m2/run' ?  '/img/navi-drive-bg.png' : '/img/navi-bg.png';
+      this.changeNaviBackground(backgroundSrc);
+      return false;
+    })
     return (
       <Router>
         <div>
+          <ChangeTracker />
           <Websocket
             url={`ws://${this.hostname}:8181/`}
             onMessage={this.handleData} debug={false}
@@ -217,11 +230,12 @@ class App extends Component {
             <Route path="/m2/setup" component={ViewM2Setup} />
             <Route path="/m2/spec" component={ViewM2Spec} />
           </div>
-          <div 
+          <div
+            id="naviMenu" 
             className="navi"
             style={{
-              //background: 'url(/img/navi-bg.png)'
-              background: 'url(/img/navi-drive-bg.png)'
+              background: 'url(/img/navi-bg.png)'
+              // background: 'url(/img/navi-drive-bg.png)'
             }}
           >
             <div className="copy">
