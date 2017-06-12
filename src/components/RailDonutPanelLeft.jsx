@@ -100,7 +100,7 @@ export default class RailDonutPanelLeft extends Component {
             <DashBoardPieChart 
               data={data.battTemp} 
               unit="℃" 
-              name="max motor temp" 
+              name="battTemp" 
               strokeColor="rgba(201,53,53,0.5)" 
               strokeColorLine="rgba(255,255,255,0.0)" 
               donutWidth="343" 
@@ -124,7 +124,7 @@ export default class RailDonutPanelLeft extends Component {
             <DashBoardPieChart 
               data={data.soc} 
               unit="℃" 
-              name="max motor temp" 
+              name="soc" 
               strokeColor="rgba(53,129,201,0.5)" 
               strokeColorLine="rgba(255,255,255,0.0)" 
               donutWidth="343" 

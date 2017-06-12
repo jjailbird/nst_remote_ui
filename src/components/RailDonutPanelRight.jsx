@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { isFloat } from '../utils/functions';
+import DashBoardPieChart from './DashBoardPieChart';
 
 export default class RailDonutPanelLeft extends Component {
   constructor(props) {
@@ -241,6 +242,78 @@ export default class RailDonutPanelLeft extends Component {
                 lineHeight: '62px'
               }}
             >{speedDisplay}</div>
+          </div>
+          <div
+            className="svgArea"
+            style={{
+              width: '353px',
+              height: '353px',
+              position: 'absolute',
+              zIndex: '992',
+              border: '0px solid #fff',
+              padding: '40px 41px'
+            }}
+          >
+            <DashBoardPieChart 
+              data={data.speed} 
+              unit="℃" 
+              name="speed" 
+              strokeColor="rgba(201,53,53,0.5)" 
+              strokeColorLine="rgba(255,255,255,0.0)" 
+              donutWidth="269" 
+              donutStrokeWidth="30"
+              degree="-222"
+              dashPercent="36.3"
+              flip=""//좌우 반전 빈칸이면 원래 모양
+            />
+          </div>
+          <div
+            className="svgArea"
+            style={{
+              width: '353px',
+              height: '353px',
+              position: 'absolute',
+              zIndex: '992',
+              border: '0px solid #fff',
+              padding: '40px 32px'
+            }}
+          >
+            <DashBoardPieChart 
+              data={data.brake} 
+              unit="℃" 
+              name="brake" 
+              strokeColor="rgba(53,129,201,0.5)" 
+              strokeColorLine="rgba(255,255,255,0.0)" 
+              donutWidth="280" 
+              donutStrokeWidth="30"
+              degree="-222"
+              dashPercent="36.3"
+              flip="scale(-1,1)"//좌우 반전 빈칸이면 원래 모양
+            />
+          </div>
+          <div
+            className="svgArea"
+            style={{
+              width: '353px',
+              height: '353px',
+              position: 'absolute',
+              zIndex: '992',
+              border: '0px solid #fff',
+              padding: '0px'
+            }}
+          >
+            <DashBoardPieChart 
+              data={data.trat} 
+              unit="℃" 
+              name="trat" 
+              strokeColor="rgba(201,195,53,0.85)" 
+              strokeColorLine="rgba(255,255,255,0.0)" 
+              donutWidth="353" 
+              donutStrokeWidth="30"
+              degree="-222"
+              dashPercent="73.8"
+              flip=""//좌우 반전 빈칸이면 원래 모양
+            />
           </div>
           <div
             style={{

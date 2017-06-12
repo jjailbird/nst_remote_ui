@@ -36,21 +36,25 @@ export default class DashBoardPieChart extends Component {
     let linePx = 0; 
     
     switch(name) {
-      case 'traction battery':
-        lineValueShift = 300;
-        valueMax = lineValueShift + 900;
-        break;
-      case 'control battery':
-        lineValueShift = 10;
-        valueMax = lineValueShift + 40;
-        break;
-      case 'max inverer temp':
+      case 'battTemp':
         lineValueShift = 0;
         valueMax = 100;
         break;
-      case 'max motor temp':
+      case 'soc':
         lineValueShift = 0;
         valueMax = 100;
+        break;
+      case 'speed':
+        lineValueShift = 0;
+        valueMax = 60;
+        break;
+      case 'brake':
+        lineValueShift = 0;
+        valueMax = 40;
+        break;
+      case 'trat':
+        lineValueShift = 0;
+        valueMax = 60;
         break;
     }
     

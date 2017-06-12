@@ -195,8 +195,8 @@ class App extends Component {
       this.setDriveData.fwd = TESTDRIVE.CircleRight.FWD; // getRandomInt(-3,3);
       this.setDriveData.speed = TESTDRIVE.CircleRight.Speed; // getRandomFloat(0,60);
       this.setDriveData.position = TESTDRIVE.CircleRight.Position; // getRandomFloat(0,250);
-      //this.setDriveData.trat = getRandomFloat(,);//최대최소값이 없음;;;
-      //this.setDriveData.brake = getRandomFloat(,);
+      this.setDriveData.trat = TESTDRIVE.CircleRight.Trat;
+      this.setDriveData.brake = TESTDRIVE.CircleRight.Brake;
       dispatch( setDriveData(this.setDriveData) )
     }
 
