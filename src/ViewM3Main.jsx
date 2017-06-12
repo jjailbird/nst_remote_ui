@@ -30,6 +30,21 @@ export default class ViewM3Main extends Component {
         <div className="head">
           <div className="title">hyundai rotem company</div>
         </div>
+        <video
+          id="videoLeft"
+          src="/video/WIRE_CC_View.mp4"
+          autoPlay="true"
+          loop="true"
+          width="1000"
+          height="600"
+          style={{
+            position: 'absolute',
+            left: '50%',
+            marginLeft: '-500px',
+            zIndex: '8',
+            marginTop: '260px'
+          }}
+        />
         <div
           className="con-login"
           style={{
@@ -42,7 +57,8 @@ export default class ViewM3Main extends Component {
               textAlign: 'center',
               position: 'absolute',
               width: '100%',
-              marginTop: '50px'
+              marginTop: '50px',
+              zIndex: '50'
             }}
           >
             <img src="/img/main_title3.png" alt="main_title1.png" />
