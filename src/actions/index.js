@@ -26,9 +26,11 @@ export const SET_DRIVE_INFO_DATA = 'SET_DRIVE_INFO_DATA';
 // ===================================================================
 
 // TEST_SETUP COMMAND ================================================
+export const SET_EMERGENCY_STOP = 'SET_EMERGENCY_STOP';
 export const SET_RUN_SWITCH = 'SET_RUN_SWITCH';
 export const SET_DIRECTION_SWITCH = 'SET_DIRECTION_SWITCH';
 export const SET_DRIVE_LEVER = 'SET_DRIVE_LEVER';
+export const SET_DRIVE_MODE = 'SET_DRIVE_MODE';
 // ===================================================================
 
 //DRIVE =======================================================
@@ -226,6 +228,15 @@ export const setRearWheelsetHscData = (data) => {
   }
 }
 
+
+//  [DIO] command ============================================
+export const setEmergencyStop = (data) => {
+  return {
+    type: SET_EMERGENCY_STOP,
+    data
+  }
+}
+
 export const setRunSwitch = (data) => {
   return {
     type: SET_RUN_SWITCH,
@@ -246,3 +257,13 @@ export const setDriveLever = (data) => {
     data
   }
 }
+
+export const setDriveMode = (data) => {
+  return {
+    type: SET_DRIVE_MODE,
+    data
+  }
+}
+
+
+// =========================================================

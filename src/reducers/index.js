@@ -27,9 +27,11 @@ import driveInfoData from './driveInfoData';
 // ===================================================================
 
 // TEST_SETUP COMMAND ================================================
+import setEmergencyStop from './setEmergencyStop';
 import setRunSwitch from './setRunSwitch';
 import setDirectionSwitch from './setDirectionSwitch';
 import setDriveLever from './setDriveLever'
+import setDriveMode from './setDriveMode'
 // ===================================================================
 
 
@@ -77,9 +79,11 @@ const reducers = combineReducers({
   motorControlHscData,
   frontWheelsetHscData,
   rearWheelsetHscData,
+  setEmergencyStop,
   setRunSwitch,
   setDirectionSwitch,
-  setDriveLever
+  setDriveLever,
+  setDriveMode
 });
 
 export default reducers;

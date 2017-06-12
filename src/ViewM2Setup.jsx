@@ -9,7 +9,7 @@ import TestSetupGaugeBar from './components/TestSetupGaugeBar';
 import DynamicLineChart2 from './components/DynamicLineChart2';
 import RailroadTrailStartStop from './components/RailroadTrailStartStop';
 
-import { setRunSwitch, setDirectionSwitch } from './actions';
+import { setRunSwitch, setDirectionSwitch, setDriveMode } from './actions';
 
 import { connect } from 'react-redux';
 
@@ -19,6 +19,7 @@ class ViewM2Setup extends Component {
     this.hostname = window.location.hostname;
     this.onRunSwitchClick = this.onRunSwitchClick.bind(this);
     this.onDirectionSwitchClick = this.onDirectionSwitchClick.bind(this);
+    this.onDriveModeChanged = this.onDriveModeChanged.bind(this);
     // this.sendMessageToDevice = this.sendMessageToDevice.bind(this);
   }
   sendCommandToDevice(command) {
@@ -58,6 +59,10 @@ class ViewM2Setup extends Component {
     dispatch( setDirectionSwitch(command.charAt(1)) );
     this.sendCommandToDevice(command);
   }
+  onDriveModeChanged(value) {
+    const { dispatch } = this.props;
+    dispatch( setDriveMode(value) );
+  }
   render() {
     const { 
       bmsSocData,
@@ -70,11 +75,33 @@ class ViewM2Setup extends Component {
       driveData,
       // motorControlData,
       runSwitch,
-      directionSwitch
+      directionSwitch,
+      driveMode,
+      emergencyStop
     } = this.props;
     const runSwitchValue = runSwitch === "0" ? "off" : "on";
     const directionSwitchValue = directionSwitch === "0" ? "off" : "on";
     // console.log('runSwitch:', runSwitchValue);
+    let sDriveModeStatus = '';
+    let sDriveModeStatusColor = '#fff673';
+    switch(driveMode) {
+      case 'ST':
+        sDriveModeStatus = 'SHUNT READY';
+        break;
+      case 'Manual':
+        sDriveModeStatus = 'MANUAL READY';
+        break;
+      case 'Auto':
+        sDriveModeStatus = 'AUTO READY';
+        break;
+    }
+    console.log('emergencyStop:', emergencyStop);
+
+    if(emergencyStop == 0) {
+      sDriveModeStatus = 'EMERGENCY STOP!';
+      sDriveModeStatusColor = 'red';
+    }
+
 
     return (
 
@@ -439,14 +466,15 @@ class ViewM2Setup extends Component {
                     <span className="testPanelBoxTitleFull">
                       DRIVE SETTING
                     </span>
-                    <ControlSwitchButtonOnOff
+                    <ControlSwitchButtonOnOffPatch
                       title=""
                       onBgColor="#919138" 
                       offBgColor="#848695" 
                       onTextColor="#000"  
                       offTextColor="#000" 
                       padding="7px 0px" 
-                      value="ST"
+                      value={driveMode}
+                      onChange={this.onDriveModeChanged}
                       width='33.33%'
                       buttons={[
                         { idx: 1, title: 'ST', value: 'ST' }, 
@@ -584,7 +612,7 @@ class ViewM2Setup extends Component {
 
                         }}
                       >
-                      RUN SWITCH
+                      BMS SWITCH
                       </div>
                       <div
                         style={{
@@ -600,7 +628,7 @@ class ViewM2Setup extends Component {
                           onTextColor="#fff"  
                           offTextColor="#fff" 
                           padding="7px 0px" 
-                          value="on"
+                          value="off"
                           width='50%'
                           buttons={[
                             { idx: 1, title: 'START', value: 'on' }, 
@@ -626,7 +654,7 @@ class ViewM2Setup extends Component {
 
                         }}
                       >
-                      RUN SWITCH
+                      APC RUN
                       </div>
                       <div
                         style={{
@@ -642,7 +670,7 @@ class ViewM2Setup extends Component {
                           onTextColor="#fff"  
                           offTextColor="#fff" 
                           padding="7px 0px" 
-                          value="on"
+                          value="off"
                           width='50%'
                           buttons={[
                             { idx: 1, title: 'START', value: 'on' }, 
@@ -692,10 +720,12 @@ class ViewM2Setup extends Component {
                         width: '100%',
                         fontSize: '28px',
                         fontWeight: 'bold',
-                        color: '#fff673',
+                        color: sDriveModeStatusColor, // '#fff673',
                         padding: '15px'
                       }}
-                    >Manual Ready!</div>
+                    >
+                      {sDriveModeStatus}
+                    </div>
                   </div>
                 </div>
                 <div
@@ -1093,7 +1123,7 @@ class ViewM2Setup extends Component {
 }
 
 function mapStateToProps(state){
-    // console.log(state);
+    //console.log('emergencyStop:', state.setEmergencyStop.data);
     return {
       bmsSocData: state.bmsSocData,
       bmsTempData: state.bmsTempData,
@@ -1105,8 +1135,10 @@ function mapStateToProps(state){
       // motorControlData: state.motorControlData,
       driveData: state.driveData,
       // DIO Command =================================
+      emergencyStop: state.setEmergencyStop.data,
       runSwitch: state.setRunSwitch.data,
-      directionSwitch: state.setDirectionSwitch.data
+      directionSwitch: state.setDirectionSwitch.data,
+      driveMode: state.setDriveMode.data
       // =============================================
     }
 }

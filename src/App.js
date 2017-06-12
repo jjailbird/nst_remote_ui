@@ -5,7 +5,7 @@ import {
   setInvVoltData, setInvTempData,
   setBcuMBogieData, setBcuTBogieData,
   setDriveInfoData, setDriveData,
-  setRunSwitch, setDirectionSwitch, setDriveLever
+  setEmergencyStop, setRunSwitch, setDirectionSwitch, setDriveLever
 } from './actions';
 
 import React, { Component } from 'react';
@@ -122,7 +122,7 @@ class App extends Component {
           dispatch( setDriveLever(command.charAt(1)) );
           break;          
         case 'e':
-          dispatch( setDriveLever(command.charAt(1)) );
+          dispatch( setEmergencyStop(command.charAt(1)) );
           dispatch( setRunSwitch(command.charAt(1)) );
           break;          
       }
