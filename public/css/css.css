@@ -1137,3 +1137,7 @@ ul.setupDescList li{
     overflow: hidden;
     margin: 5px 0 14px;
 }
+
+.keyboard-wrapper {
+  bottom: 415px !important;
+}

@@ -24,7 +24,7 @@ import './components/css/TestSetupGaugeBar.css'
 
 import {
   BrowserRouter as Router,
-  Route,Redirect,
+  Route, Redirect,
   NavLink
 } from 'react-router-dom';
 
@@ -104,17 +104,13 @@ class App extends Component {
   }
   handleData(data) {
     const json = JSON.parse(data); 
-    // const ITCTEST = json.ITCTEST ? json.ITCTEST : {};
-    // const ITCSETUP = json.ITCSETUP ? json.ITCSETUP : {}; 
     const TESTDRIVE = json.TESTDRIVE ? json.TESTDRIVE : null;
     const TESTSETUP = json.TESTSETUP ? json.TESTSETUP : null;
     const { dispatch } = this.props;
-    // const json = JSON.parse(data);
-    // console.log('webSocket Received:', json)
     const command = json.command ? json.command : null;
 
     if (command) {
-      // console.log('command:', command);
+      console.log('command:', command);
       switch(command.charAt(0)) {
         case 's':
           dispatch( setRunSwitch(command.charAt(1)) );
@@ -124,6 +120,10 @@ class App extends Component {
           break;          
         case 'n':
           dispatch( setDriveLever(command.charAt(1)) );
+          break;          
+        case 'e':
+          dispatch( setDriveLever(command.charAt(1)) );
+          dispatch( setRunSwitch(command.charAt(1)) );
           break;          
       }
     }

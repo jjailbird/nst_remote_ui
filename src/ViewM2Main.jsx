@@ -1,6 +1,23 @@
 import React, { Component } from 'react';
+import KeyboardedInput from 'react-touch-screen-keyboard';
+import 'react-touch-screen-keyboard/src/Keyboard.css';
 
 export default class ViewM2Main extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+        open: false,
+        value: ''
+    };
+    this.onInput = this.handleInput.bind(this);
+    this.handleOnChange = this.handleOnChange.bind(this);
+  }
+  handleInput(input) {
+    this.setState({ value: input });
+  }
+  handleOnChange(){
+
+  }
   render() {
     return (
       <div>
@@ -47,8 +64,16 @@ export default class ViewM2Main extends Component {
                   margin: '0px auto 0'
                 }}
               >
-                <input type="password" className="login-pw" />
+                <KeyboardedInput
+                  enabled
+                  className="login-pw"
+                  type="password"
+                  defaultKeyboard="us"
+                  onChange={this.handleOnChange}
+                /> 
+                {/*<input type="password" className="login-pw" />*/}
                 <input type="button" className="login-submit" value="Check in" />
+                
               </div>
             </div>
           </div>
