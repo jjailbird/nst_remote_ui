@@ -455,10 +455,10 @@ class ViewM3Setup extends Component {
                       </div>
                       <div className="setupMotorGraphList">
                         <div className="bar-graph pull-left">
-                          <MotorGaugeBar data={frontRightMotorData.data.rpm} name="rpm" unit=""/>
+                          <MotorGaugeBar data={frontRightMotorData.data.rpm} name="force" unit=""/>
                         </div>
                         <div className="bar-graph pull-right">
-                          <MotorGaugeBar data={frontRightMotorData.data.torque} name="torque" unit="Nm"/>
+                          <MotorGaugeBar data={frontRightMotorData.data.torque} name="stroke" unit="Nm"/>
                         </div>
                       </div>
                     </div>
@@ -508,10 +508,10 @@ class ViewM3Setup extends Component {
                       </div>
                       <div className="setupMotorGraphList">
                         <div className="bar-graph pull-left">
-                          <MotorGaugeBar data={rearLeftMotorData.data.rpm} name="rpm" unit=""/>
+                          <MotorGaugeBar data={rearLeftMotorData.data.rpm} name="force" unit=""/>
                         </div>
                         <div className="bar-graph pull-right">
-                          <MotorGaugeBar data={rearLeftMotorData.data.torque} name="torque" unit="Nm"/>
+                          <MotorGaugeBar data={rearLeftMotorData.data.torque} name="stroke" unit="Nm"/>
                         </div>
                       </div>
                     </div>
@@ -559,10 +559,10 @@ class ViewM3Setup extends Component {
                       </div>
                       <div className="setupMotorGraphList">
                         <div className="bar-graph pull-left">
-                          <MotorGaugeBar data={rearRightMotorData.data.rpm} name="rpm" unit=""/>
+                          <MotorGaugeBar data={rearRightMotorData.data.rpm} name="force" unit=""/>
                         </div>
                         <div className="bar-graph pull-right">
-                          <MotorGaugeBar data={rearRightMotorData.data.torque} name="torque" unit="Nm"/>
+                          <MotorGaugeBar data={rearRightMotorData.data.torque} name="stroke" unit="Nm"/>
                         </div>
                       </div>
                     </div>

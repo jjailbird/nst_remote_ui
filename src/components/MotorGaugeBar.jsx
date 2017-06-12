@@ -12,6 +12,7 @@ export default class MotorGaugeBar extends Component {
     let barMax = 0; 
     let barPercent = 0; 
     let barPx = 0; 
+    let barValueShift =0;
     
     switch(name) {
       case 'rpm':
@@ -25,14 +26,15 @@ export default class MotorGaugeBar extends Component {
         barMax = 12000;
         break;
       case 'stroke':
-        barMax = 3000;
+        barValueShift = 20;
+        barMax = 40;
         break;
 
     }
     
     if(data) {
       //value = data;
-      barValue = value;
+      barValue = value + barValueShift;
       barPercent = (barValue / barMax) * 100; 
       barPx = Math.round((barFull * barPercent) / 100); 
     }
