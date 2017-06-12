@@ -35,19 +35,22 @@ export default class LaserDonutCircleChart extends Component {
     let valueMax = 0; 
     let valuePercent = 0; 
     let linePx = 0; 
+    let value = 0;
+    value = data;
     
     switch(dataName) {
-      case 'lx':
-        lineValueShift = 10;
-        valueMax = 20;
+      case 'force':
+        lineValueShift = 0;
+        valueMax = 20000;
+        value = value / 1000;
         break;
-      case 'ly':
-        lineValueShift = 10;
-        valueMax = 20;
+      case 'lvdt':
+        lineValueShift = 20;
+        valueMax = 40;
         break;
-      case 'rx':
-        lineValueShift = 10;
-        valueMax = 20;
+      case 'gyro':
+        lineValueShift = 5;
+        valueMax = 10;
         break;
       case 'ry':
         lineValueShift = 10;
@@ -59,10 +62,8 @@ export default class LaserDonutCircleChart extends Component {
         break;
     }
     
-    let value = 0;
 
     if(data) {
-      value = data;
       lineValue = value + lineValueShift;
       valuePercent = (lineValue / valueMax) * 100; 
       linePx = (lineFull * valuePercent) / 100;
@@ -75,7 +76,7 @@ export default class LaserDonutCircleChart extends Component {
     return (
       <div
         style={{
-          width: '100px',
+          width: dataName =='force'?'120px' : '100px',
           height: '50px',
           textAlign: 'right',
           float: 'left',
@@ -87,7 +88,7 @@ export default class LaserDonutCircleChart extends Component {
             textAlign: 'center',
             width: donutWidth,
             position: 'absolute',
-            left: '53px',
+            left:  dataName =='force'?'73px' : '53px',
             top: '16px',
             fontSize: '10px',
             fontWeight: 'bold',

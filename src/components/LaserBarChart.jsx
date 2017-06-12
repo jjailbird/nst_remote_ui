@@ -7,7 +7,7 @@ export default class LaserBarChartA extends Component {
   render() {
     const { data, name, dataName, barColor } = this.props;
     let value = 0;
-    const barFull = 87;
+    const barFull = 75;
     let barValue = 0;
     let barMax = 0; 
     let barPercent = 0; 
@@ -28,20 +28,20 @@ export default class LaserBarChartA extends Component {
     
     switch(dataName) {
       case 'lxA':
-        lineValueShift = 10;
-        barMax = 20;
+        lineValueShift = 0;
+        barMax = 500;
         break;
       case 'lxS':
-        lineValueShift = 10;
-        barMax = 20;
+        lineValueShift = 0;
+        barMax = 500;
         break;
       case 'ly1A':
-        lineValueShift = 10;
-        barMax = 20;
+        lineValueShift = 0;
+        barMax = 500;
         break;
       case 'ly1S':
-        lineValueShift = 10;
-        barMax = 20;
+        lineValueShift = 0;
+        barMax = 500;
         break;
       case 'ly2A':
         lineValueShift = 10;
@@ -52,20 +52,20 @@ export default class LaserBarChartA extends Component {
         barMax = 20;
         break;
       case 'rxA':
-        lineValueShift = 10;
-        barMax = 20;
+        lineValueShift = 0;
+        barMax = 500;
         break;
       case 'rxS':
-        lineValueShift = 10;
-        barMax = 20;
+        lineValueShift = 0;
+        barMax = 500;
         break;
       case 'ry1A':
-        lineValueShift = 10;
-        barMax = 20;
+        lineValueShift = 0;
+        barMax = 500;
         break;
       case 'ry1S':
-        lineValueShift = 10;
-        barMax = 20;
+        lineValueShift = 0;
+        barMax = 500;
         break;
       case 'ry2A':
         lineValueShift = 10;

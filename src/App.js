@@ -68,7 +68,7 @@ class App extends Component {
     super(props);
     this.hostname = window.location.hostname;
     this.handleData = this.handleData.bind(this);
-    this.thick = this.thick.bind(this);
+    //this.thick = this.thick.bind(this);
     
     // used variables ==============================================
     this.frontLeftHscData = {};
@@ -462,143 +462,7 @@ class App extends Component {
     // const json = JSON.parse(data);
     // console.log('webSocket Received:', json);
   }
-  thick() {
-    const { dispatch } = this.props;
-
-    if (this.frontLeftData.latDistance.length >= 292) {
-      this.frontLeftData.latDistance.shift();
-      this.frontLeftData.yawAngle.shift();
-      this.frontLeftData.motorTorque.shift();
-      this.frontLeftData.motorSpeed.shift();
-    }
-    this.frontLeftData.latDistance.push(getRandomFloat(-10,10));
-    this.frontLeftData.yawAngle.push(getRandomFloat(-5,5));
-    this.frontLeftData.motorTorque.push(getRandomInt(0,3000));
-    this.frontLeftData.motorSpeed.push(getRandomInt(0,3000));
-    dispatch( setFrontLeftData(this.frontLeftData) );
-
-    if (this.frontRightData.latDistance.length >= 292) {
-      this.frontRightData.latDistance.shift();
-      this.frontRightData.yawAngle.shift();
-      this.frontRightData.motorTorque.shift();
-      this.frontRightData.motorSpeed.shift();
-    }
-    this.frontRightData.latDistance.push(getRandomFloat(-10,10));
-    this.frontRightData.yawAngle.push(getRandomFloat(-5,5));
-    this.frontRightData.motorTorque.push(getRandomInt(0,3000));
-    this.frontRightData.motorSpeed.push(getRandomInt(0,3000));
-    dispatch( setFrontRightData(this.frontRightData) );
-
-    if (this.rearLeftData.latDistance.length >= 292) {
-      this.rearLeftData.latDistance.shift();
-      this.rearLeftData.yawAngle.shift();
-      this.rearLeftData.motorTorque.shift();
-      this.rearLeftData.motorSpeed.shift();
-    }
-    this.rearLeftData.latDistance.push(getRandomFloat(-10,10));
-    this.rearLeftData.yawAngle.push(getRandomFloat(-5,5));
-    this.rearLeftData.motorTorque.push(getRandomInt(0,3000));
-    this.rearLeftData.motorSpeed.push(getRandomInt(0,3000));
-    dispatch( setRearLeftData(this.rearLeftData) );
-
-    if (this.rearRightData.latDistance.length >= 292) {
-      this.rearRightData.latDistance.shift();
-      this.rearRightData.yawAngle.shift();
-      this.rearRightData.motorTorque.shift();
-      this.rearRightData.motorSpeed.shift();
-    }
-    this.rearRightData.latDistance.push(getRandomFloat(-10,10));
-    this.rearRightData.yawAngle.push(getRandomFloat(-5,5));
-    this.rearRightData.motorTorque.push(getRandomInt(0,3000));
-    this.rearRightData.motorSpeed.push(getRandomInt(0,3000));
-    dispatch( setRearRightData(this.rearRightData) );
-
-    this.setMotorControlData.position = getRandomFloat(0,250);
-    this.setMotorControlData.curv = getRandomInt(0,10000);
-    this.setMotorControlData.speed = getRandomFloat(0,60);
-    dispatch( setMotorControlData(this.setMotorControlData) );
-
-    this.setFrontWheelsetData.position = getRandomFloat(0,250);
-    this.setFrontWheelsetData.trackCurve = getRandomFloat(0,10000);
-    this.setFrontWheelsetData.attackAngle = getRandomFloat(-5,5);
-    this.setFrontWheelsetData.steeringRatio = getRandomFloat(0,2);
-    dispatch( setFrontWheelsetData(this.setFrontWheelsetData) );
-
-    this.setRearWheelsetData.position = getRandomFloat(0,250);
-    this.setRearWheelsetData.trackCurve = getRandomFloat(0,10000);
-    this.setRearWheelsetData.attackAngle = getRandomFloat(-5,5);
-    this.setRearWheelsetData.steeringRatio = getRandomFloat(0,2);
-    dispatch( setRearWheelsetData(this.setRearWheelsetData) );
-
-    this.setBmsSocData.cell1 = getRandomFloat(-10,10);
-    this.setBmsSocData.cell2 = getRandomFloat(-5,5);
-    this.setBmsSocData.cell3 = getRandomFloat(0,3000);
-    this.setBmsSocData.cell4 = getRandomFloat(0,3000);
-    dispatch( setBmsSocData(this.setBmsSocData) );
-
-    this.setBmsTempData.cell1 = getRandomFloat(-10,10);
-    this.setBmsTempData.cell2 = getRandomFloat(-5,5);
-    this.setBmsTempData.cell3 = getRandomFloat(0,3000);
-    this.setBmsTempData.cell4 = getRandomFloat(0,3000);
-    dispatch( setBmsTempData(this.setBmsTempData) );
-
-    this.setInvVoltData.inv1 = getRandomFloat(-10,10);
-    this.setInvVoltData.inv2 = getRandomFloat(-5,5);
-    this.setInvVoltData.inv3 = getRandomFloat(0,3000);
-    this.setInvVoltData.inv4 = getRandomFloat(0,3000);
-    dispatch( setInvVoltData(this.setInvVoltData) );
-
-    this.setInvTempData.inv1 = getRandomFloat(-10,10);
-    this.setInvTempData.inv2 = getRandomFloat(-5,5);
-    this.setInvTempData.inv3 = getRandomFloat(0,3000);
-    this.setInvTempData.inv4 = getRandomFloat(0,3000);
-    dispatch( setInvTempData(this.setInvTempData) );
-
-    this.setBcuMBogieData.b1 = getRandomFloat(0,250);
-    this.setBcuMBogieData.b2 = getRandomFloat(0,10000);
-    this.setBcuMBogieData.b3 = getRandomFloat(-5,5);
-    this.setBcuMBogieData.b4 = getRandomFloat(0,2);
-
-    dispatch( setBcuMBogieData(this.setBcuMBogieData) )
-    this.setBcuTBogieData.b1 = getRandomFloat(0,250);
-    this.setBcuTBogieData.b2 = getRandomFloat(0,10000);
-    this.setBcuTBogieData.b3 = getRandomFloat(-5,5);
-    this.setBcuTBogieData.b4 = getRandomFloat(0,2);
-
-    dispatch( setBcuTBogieData(this.setBcuTBogieData) )
-
-    if (this.setDriveInfoData.speed.length >= 234) {
-      this.setDriveInfoData.speed.shift();
-    }
-    this.setDriveInfoData.notch = getRandomInt(-3,3);
-    this.setDriveInfoData.speed.push(getRandomFloat(0,15));
-    this.setDriveInfoData.soc = getRandomFloat(0,90);
-    this.setDriveInfoData.tract = getRandomFloat(0,30);
-    this.setDriveInfoData.brake = getRandomFloat(0,10);
-    dispatch( setDriveInfoData(this.setDriveInfoData) )
-
-
-    if (this.setDriveData.speed.length >= 234) {
-      this.setDriveData.speed.shift();
-    }
-    this.setDriveData.tracBatt = getRandomFloat(300,900);
-    this.setDriveData.contBatt = getRandomFloat(10,40);
-    this.setDriveData.maxInvTemp = getRandomFloat(0,100);
-    this.setDriveData.maxMotorTemp = getRandomFloat(0,100);
-    this.setDriveData.battTemp = getRandomFloat(0,100);
-    this.setDriveData.soc = getRandomFloat(0,100);
-    this.setDriveData.fwd = getRandomInt(-3,3);
-    this.setDriveData.speed = getRandomFloat(0,60);
-    this.setDriveData.position = getRandomFloat(0,250);
-    //this.setDriveData.trat = getRandomFloat(,);//최대최소값이 없음;;;
-    //this.setDriveData.brake = getRandomFloat(,);
-    dispatch( setDriveData(this.setDriveData) )
-
-    
-
-    //hsc
-
-  }
+  
   render() {
     return (
       <Router>

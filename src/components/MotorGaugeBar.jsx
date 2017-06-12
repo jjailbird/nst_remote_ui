@@ -7,7 +7,7 @@ export default class MotorGaugeBar extends Component {
   render() {
     const { data, name, unit } = this.props;
     let value = data;
-    const barFull = 38;
+    const barFull = 204;
     let barValue = 0;
     let barMax = 0; 
     let barPercent = 0; 
@@ -39,12 +39,23 @@ export default class MotorGaugeBar extends Component {
       barPx = Math.round((barFull * barPercent) / 100); 
     }
     return (
-      <div>
+      <div
+        style={{
+          marginLeft: '8px',
+          marginBottom: '5px'
+        }}
+      >
         <div className="bar-graph-title">{name} {value.toFixed(1)} <small>{unit}</small></div>
-        <div className="barBox">
+        <div
+          style={{
+            width: '210px',
+            height: '12px'
+          }}
+          className="barBox">
           <div className="barFill"
             style={{
-              height: barPx
+              height: '6px',
+              width: barPx
             }}
           >
           </div>

@@ -33,14 +33,14 @@ export default class LaserTabContainer extends Component {
         <div
           className="motorControlTabImg"
           style={{
-            marginTop: '17px'
+            marginTop: '55px'
           }}
         >
           <div className={type !== 'FRT' ? 'hide' : ''}>
-            <img src="/img/sample/setupsample1-1.png" alt="img/motor-control1.png"/>
+            <img src="/img/hscSetupFRT.png" alt="img/motor-control1.png"/>
           </div>
           <div className={type !== 'SIDE' ? 'hide' : ''}>
-            <img src="/img/sample/setupsample1-2.png" alt="img/motor-control2.png"/>
+            <img src="/img/hscSetupSIDE.png" alt="img/motor-control2.png"/>
           </div>
         </div>
       </div>
