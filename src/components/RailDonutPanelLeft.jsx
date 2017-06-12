@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { isFloat } from '../utils/functions';
+import DashBoardPieChart from './DashBoardPieChart';
 
 export default class RailDonutPanelLeft extends Component {
   constructor(props) {
@@ -92,10 +93,46 @@ export default class RailDonutPanelLeft extends Component {
               height: '353px',
               position: 'absolute',
               zIndex: '990',
-              background: 'rgba(0,0,0,0.5)'
+              border: '0px solid #fff',
+              padding: '5px'
             }}
           >
-          
+            <DashBoardPieChart 
+              data={data.battTemp} 
+              unit="℃" 
+              name="max motor temp" 
+              strokeColor="rgba(201,53,53,0.5)" 
+              strokeColorLine="rgba(255,255,255,0.0)" 
+              donutWidth="343" 
+              donutStrokeWidth="35"
+              degree="-222"
+              dashPercent="36.3"
+              flip=""//좌우 반전 빈칸이면 원래 모양
+            />
+          </div>
+          <div
+            className="svgArea"
+            style={{
+              width: '353px',
+              height: '353px',
+              position: 'absolute',
+              zIndex: '992',
+              border: '0px solid #fff',
+              padding: '5px'
+            }}
+          >
+            <DashBoardPieChart 
+              data={data.soc} 
+              unit="℃" 
+              name="max motor temp" 
+              strokeColor="rgba(53,129,201,0.5)" 
+              strokeColorLine="rgba(255,255,255,0.0)" 
+              donutWidth="343" 
+              donutStrokeWidth="35"
+              degree="-222"
+              dashPercent="36.3"
+              flip="scale(-1,1)"//좌우 반전 빈칸이면 원래 모양
+            />
           </div>
           <div
             style={{

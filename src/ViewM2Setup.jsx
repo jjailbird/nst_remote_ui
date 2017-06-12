@@ -95,7 +95,7 @@ class ViewM2Setup extends Component {
         sDriveModeStatus = 'AUTO READY';
         break;
     }
-    console.log('emergencyStop:', emergencyStop);
+    //console.log('emergencyStop:', emergencyStop);
 
     if(emergencyStop == 0) {
       sDriveModeStatus = 'EMERGENCY STOP!';
@@ -401,7 +401,7 @@ class ViewM2Setup extends Component {
                       style={{
                         height: '100px',
                         width: '146px',
-                        padding: '57px 18px 15px',
+                        padding: '59px 22px 45px',
                         background: 'rgba(0,0,0,0.3)',
                         position: 'relative',
                         border: '1px solid rgba(255,255,255,0.3)'
@@ -430,7 +430,7 @@ class ViewM2Setup extends Component {
                       style={{
                         height: '100px',
                         width: '146px',
-                        padding: '57px 22px 15px',
+                        padding: '59px 22px 45px',
                         background: 'rgba(0,0,0,0.3)',
                         position: 'relative',
                         border: '1px solid rgba(255,255,255,0.3)'
@@ -457,7 +457,7 @@ class ViewM2Setup extends Component {
                   </div>{/*우측 버튼영역 Power light 부모요소 END*/}
                   <div
                     style={{
-                        padding: '55px 22px 5px',
+                        padding: '61px 22px 12px',
                         border: '1px solid rgba(255,255,255,0.3)',
                         position: 'relative',
                         background: 'rgba(0,0,0,0.3)'
@@ -485,9 +485,9 @@ class ViewM2Setup extends Component {
                   </div>
                   <div
                     style={{
-                        padding: '55px 22px 5px',
+                        padding: '61px 22px 12px',
                         border: '1px solid rgba(255,255,255,0.3)',
-                        marginBottom: '16px',
+                        marginBottom: '17px',
                         position: 'relative',
                         background: 'rgba(0,0,0,0.3)'
                     }}
@@ -510,29 +510,7 @@ class ViewM2Setup extends Component {
                         { idx: 2, title: 'Reverse', value: 'off' }
                       ]}
                     />
-                  </div>
-                  <div
-                    style={{
-                        border: '1px solid rgba(255,255,255,0.3)',
-                        width: '100%',
-                        height: '196px',
-                        background: 'rgba(0,0,0,0.3)'
-                    }}
-                  >
-                  <DynamicLineChart2 data={driveInfoData.data.speed} unit="km/h" name="Vehicle Speed"/>
-                  </div>
-                </div>
-                <div
-                  className="tspcRightButtonBoxChild"
-                  style={{
-                    background: 'rgba(0,0,0,0)',
-                    width: '292px',
-                    height: '534px',
-                    float: 'right',
-                    marginBottom: '16px'
-                  }}
-                > 
-                  <div 
+                  </div>                  <div 
                     style={{
                       border: '1px solid rgba(255,255,255,0.3)',
                       padding: '8px',
@@ -681,6 +659,28 @@ class ViewM2Setup extends Component {
                     </div>
                     {/*----------button Area END-----------*/}
                   </div>
+                </div>
+                <div
+                  className="tspcRightButtonBoxChild"
+                  style={{
+                    background: 'rgba(0,0,0,0)',
+                    width: '292px',
+                    height: '534px',
+                    float: 'right',
+                    marginBottom: '14px'
+                  }}
+                > 
+                  <div
+                    style={{
+                        border: '1px solid rgba(255,255,255,0.3)',
+                        width: '100%',
+                        height: '196px',
+                        background: 'rgba(0,0,0,0.3)',
+                        marginBottom: '14px'
+                    }}
+                  >
+                  <DynamicLineChart2 data={driveInfoData.data.speed} unit="km/h" name="Vehicle Speed"/>
+                  </div>
                   <div
                     style={{
                       border: '1px solid rgba(255,255,255,0.3)',
@@ -688,7 +688,7 @@ class ViewM2Setup extends Component {
                       width: '100%',
                       background: 'rgba(0,0,0,0.3)',
                       overflow: 'hidden',
-                      height: '193px',
+                      height: '181px',
                       marginBottom: '16px'
                     }}
                   >
