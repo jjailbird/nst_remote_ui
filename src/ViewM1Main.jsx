@@ -37,6 +37,12 @@ export default class ViewM1Main extends Component {
             position: 'relative'
           }}
         >
+          <video
+            autoPlay="true"
+            src="/video/main.mp4"
+            style={{
+            }}
+          />
           <div
             style={{
               textAlign: 'center',
