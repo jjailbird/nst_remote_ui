@@ -1121,3 +1121,7 @@ ul.setupDescList li{
 .tepvBoxInnerBtnsGroup:last-child{
   margin-bottom:0px;
 }
+
+.keyboard-wrapper {
+  bottom: 415px !important;
+}
