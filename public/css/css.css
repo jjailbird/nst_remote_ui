@@ -103,6 +103,7 @@ body{
   padding-top:131px;
   z-index:9;
 }
+/*
 .con-loginBox{
   width:667px;
   height:302px;
@@ -110,6 +111,7 @@ body{
   background:url(../img/v1-index-loginBox.png);
   overflow: hidden;
 }
+*/
 .con-loginTitle{
   width:1082px;
   height:543px;
