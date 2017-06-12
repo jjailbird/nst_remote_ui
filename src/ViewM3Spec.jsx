@@ -1,60 +1,68 @@
 import React, { Component } from 'react';
+import ReactSWF from 'react-swf';
 
 export default class ViewMain extends Component {
   render() {
     return (
         <div className="contBox specContBox">
-            <div className="headArea specHeadArea">
-                    <div className="specTitle">hyundai rotem company</div>
-            </div>
-                <div className="specBoxDataArea">
-                    <div className="specDataBox">
-                        <div className="sdbTitle">Bogie</div>
-                        <div className="sdbContent">
-Tupe<br/>
-Running Speed (Operation / Design)<br/>
-Axle load<br/>
-Wheelbase<br/>
-Track gauge<br/>
-Wheel diameter (Mew / Worn)<br/>
-Min. radius of curvature in main / depot<br/>
-Weight (Motor)<br/>
-Bogie height (Operation / Design)<br/>
-Axle load<br/>
-Wheelbase<br/>
-Track gauge<br/>
-Wheel diameter (Mew / Worn)<br/>
-Min. radius of curvature in main / depot<br/>
-Weight (Motor)
-                        </div>
-                        <div className="sdbTitle">SHS-T</div>
-                        <div className="sdbContent">
-Tupe<br/>
-Running Speed (Operation / Design)<br/>
-Axle load<br/>
-Wheelbase<br/>
-Track gauge<br/>
-Wheel diameter (Mew / Worn)<br/>
-Min. radius of curvature in main / depot<br/>
-Weight (Motor)<br/>
-Bogie height (Operation / Design)<br/>
-Axle load<br/>
-Wheelbase<br/>
-Track gauge<br/>
-Wheel diameter (Mew / Worn)<br/>
-Min. radius of curvature in main / depot<br/>
-Weight (Motor)
-                        </div>
-                    </div>
-                </div>
+          <div
+            style={{
+              width: '950px',
+              height: '960px',
+              position: 'absolute',
+              zIndex: '9999',
+              left: '0px',
+              top: '0px',
+              padding: '45px'
+            }}
+          >
             <div
-                className="conBoxArea specBoxImgArea"
-                style={{
-                    marginLeft: '300px'
-                }}
+              style={{
+                textTransform: 'uppercase',
+                fontSize: '20px',
+                marginBottom: '10px',
+                color: '#fff'
+              }}
+            >hyundai rotem company</div>
+            <div
+              style={{
+                color: '#c9c335',
+                fontSize: '30px',
+                marginBottom: '5px',
+                fontWeight: 'bold'
+              }}
+            >Sharp Curve Running System Trailer Bogie Specifications</div>
+            <div
+              style={{
+                fontSize: '34px',
+                fontWeight: 'bold',
+                color: '#fff'
+              }}
+            >급곡선 주행시스템 견인 대차 사양</div>
+            <div
+              style={{
+                marginTop: '35px'
+              }}
             >
-                    <img src="/img/spec3.png" />
+              <img src="/img/specmv3.png" />
             </div>
+          </div>
+          <div
+              className="conBoxArea specBoxImgArea"
+              style={{
+                  marginLeft: '00px'
+              }}
+          >
+            <ReactSWF
+              src="/img/fl_03.swf"
+              id="guid_001"
+              width="1920"
+              height="1080"
+              wmode="transparent"
+              loop
+              play
+            />
+          </div>
         </div>
     );
   }
