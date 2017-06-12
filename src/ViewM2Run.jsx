@@ -69,7 +69,7 @@ class ViewM2Run extends Component {
         </div>
         <div className="trainControlBox tcBoxLeft">
           <div className="tcTitle">
-            hyundai rotem company {directionSwitch} {runSwitch}
+            hyundai rotem company
           </div>
           <div
             style = {{
