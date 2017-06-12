@@ -11,9 +11,9 @@ export default class PanelControlButtonsLeft extends Component {
           textAlign: 'left'         
         }}
       >
-        <a href="">CAP</a>
-        <a href="">REC</a>
-        <a href="">SAVE</a>
+        <a href="javascript:void(0)">CAP</a>
+        <a href="javascript:void(0)">REC</a>
+        <a href="javascript:void(0)">SAVE</a>
       </div>
     );
   }

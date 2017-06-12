@@ -30,6 +30,19 @@ export default class ViewM1Main extends Component {
         <div className="head">
           <div className="title">hyundai rotem company</div>
         </div>
+        <video
+          id="videoLeft"
+          src="/video/WIRE_BB_View.mp4"
+          autoPlay="true"
+          loop="true"
+          style={{
+            position: 'absolute',
+            left: '50%',
+            marginLeft: '-400px',
+            zIndex: '8',
+            marginTop: '320px'
+          }}
+        />
         <div
           className="con-login"
           style={{
@@ -37,20 +50,13 @@ export default class ViewM1Main extends Component {
             position: 'relative'
           }}
         >
-        {/*
-          <video
-            autoPlay="true"
-            src="/video/main.mp4"
-            style={{
-            }}
-          />
-          */}
           <div
             style={{
               textAlign: 'center',
               position: 'absolute',
               width: '100%',
-              marginTop: '50px'
+              marginTop: '50px',
+              zIndex: '50'
             }}
           >
             <img src="/img/main_title1.png" alt="main_title1.png" />
