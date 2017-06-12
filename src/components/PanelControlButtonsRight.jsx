@@ -11,9 +11,9 @@ export default class PanelControlButtonsRight extends Component {
           textAlign: 'right'         
         }}
       >
-        <a href="">DEFAULT</a>
-        <a href="">RESTORE</a>
-        <a href="">SET SAVE</a>
+        <a href="javascript:void(0)">DEFAULT</a>
+        <a href="javascript:void(0)">RESTORE</a>
+        <a href="javascript:void(0)">SET SAVE</a>
       </div>
     );
   }
