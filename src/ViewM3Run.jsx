@@ -50,7 +50,7 @@ class ViewM3Run extends Component {
                     fontWeight: 'bold'
                   }}
                 >
-                  left wheel cam
+                  front wheel cam
                 </div>
                 <div className="videoOverInfo voiDate">
                   2017.9.9 MON<br />20:20 30
@@ -335,7 +335,7 @@ class ViewM3Run extends Component {
             </div>
           </div>
           <div className="right-w-camBox pull-right">
-            <div className="panelBox recording">
+            <div className="panelBox recording-">
               <div className="videoBox">
                 <div className="videoOverInfo voiCount">
                   Test Day : 001
@@ -349,7 +349,7 @@ class ViewM3Run extends Component {
                     fontWeight: 'bold'
                   }}
                 >
-                  right wheel cam
+                  rear wheel cam
                 </div>
                 <div className="videoOverInfo voiDate">
                   2017.9.9 MON<br />20:20 30
@@ -403,7 +403,7 @@ class ViewM3Run extends Component {
                 />
               </div>
               <div className="panelTitle">
-                Recording Mode
+                Live Cam Mode
               </div>
             </div>
             <GraphTabHscContainer data={frontRightHscData.data} title="Front Right"/>

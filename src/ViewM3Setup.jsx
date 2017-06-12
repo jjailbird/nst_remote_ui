@@ -32,7 +32,7 @@ class ViewM3Setup extends Component {
         <div className="contBox">
           <div className="headArea">
             <div className="headLeft pull-left">
-              <img src="/img/titlev1-setup.png" />
+              <img src="/img/titlev3-setup.png" />
             </div>
             <div className="headRight pull-right">                
               hyundai rotem company
