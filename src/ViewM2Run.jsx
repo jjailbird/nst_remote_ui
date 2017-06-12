@@ -163,7 +163,6 @@ class ViewM2Run extends Component {
               </div>
             </div>
             <div className="tccDayBox">
-              Weather 15℃ Cloudy<br />
               2017.9.9 Mon 20:20 32
             </div>
           </div>
