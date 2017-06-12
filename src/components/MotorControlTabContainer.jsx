@@ -5,7 +5,7 @@ export default class MotorControlTabContainer extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      type: 'ISO'
+      type: 'IST'
     };
     this.onButtonChange = this.onButtonChange.bind(this);
   }
@@ -23,7 +23,7 @@ export default class MotorControlTabContainer extends Component {
         <ControlSwitchGroup
             value={this.state.type}
             buttons={[
-            { idx: 1, title: 'ISO', value: 'ISO' },
+            { idx: 1, title: 'IST', value: 'IST' },
             { idx: 2, title: 'SIDE', value: 'SIDE' },
             { idx: 3, title: 'FRT', value: 'FRT' },
             { idx: 4, title: 'TOP', value: 'TOP' }
@@ -36,7 +36,7 @@ export default class MotorControlTabContainer extends Component {
             marginTop: '17px'
           }}
         >
-          <div className={type !== 'ISO' ? 'hide' : ''}>
+          <div className={type !== 'IST' ? 'hide' : ''}>
             <img src="/img/motor-control1.png" alt="img/motor-control1.png"/>
           </div>
           <div className={type !== 'SIDE' ? 'hide' : ''}>

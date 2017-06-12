@@ -398,7 +398,7 @@ class ViewM1Run extends Component {
                 />
               </div>
               <div className="panelTitle">
-                Recording Mode
+                LIVE CAM MODE
               </div>
             </div>
             <GraphTabContainer data={frontRightData.data} title="Front Right"/>

@@ -11,6 +11,7 @@ import DonutCircleChart from './components/DonutCircleChart';
 import LaserDonutDigitalChart from './components/LaserDonutDigitalChart';
 import LaserBarChart from './components/LaserBarChart';
 import LaserTabContainer from './components/LaserTabContainer';
+import MotorBogieDescTab from './components/MotorBogieDescTab';
 
 import { connect } from 'react-redux';
 
@@ -242,88 +243,7 @@ class ViewM1Setup extends Component {
                 <div className="setupBoxTitle">
                   motor bogie description
                 </div>
-                  <div className="setupBoxCon setupBoxConDesc">
-                    <div className="setupDescBox pull-left">
-                      <ul className="modeConfig3-list setupDescList">
-                        <li>
-                            <span>WEELBASE</span>
-                            <span>:</span>
-                            <span>1. 8 m</span>
-                        </li>
-                        <li>
-                            <span>WEIGHT</span>
-                            <span>:</span>
-                            <span>7.0 ton</span>
-                        </li>
-                        <li>
-                            <span>WHEEL DIA</span>
-                            <span>:</span>
-                            <span>660 mm</span>
-                        </li>
-                        <li>
-                            <span>BOGIE DIST</span>
-                            <span>:</span>
-                            <span>18 m</span>
-                        </li>
-                        <li>
-                            <span>BRAKE SYSTEM</span>
-                            <span>:</span>
-                            <span>Hydraulic</span>
-                        </li>
-                        <li>
-                            <span>Traction Link</span>
-                            <span>:</span>
-                            <span>Mono Link</span>
-                        </li>
-                      </ul>
-                    </div>
-                    <div className="setupDescBox pull-right">
-                      <ul className="modeConfig3-list setupDescList">
-                        <li>
-                            <span>Primary Spring</span>
-                            <span>:</span>
-                            <span>Rubber</span>
-                        </li>
-                        <li>
-                            <span>Max Disp. X</span>
-                            <span>:</span>
-                            <span>14 mm</span>
-                        </li>
-                        <li>
-                            <span>Max Disp. Y</span>
-                            <span>:</span>
-                            <span>6 mm</span>
-                        </li>
-                        <li>
-                            <span>Motor Type</span>
-                            <span>:</span>
-                            <span>PMSM</span>
-                        </li>
-                        <li>
-                            <span>MAX BRAKE PRESSURE</span>
-                            <span>:</span>
-                            <span>300Pa</span>
-                        </li>
-                        <li>
-                            <span>MAX MOTOR TORQUE</span>
-                            <span>:</span>
-                            <span>500Nm</span>
-                        </li>
-                      </ul>
-                    </div>
-                    <div className="setupDescBoxBtns pull-right">
-                      <ControlSwitchButton 
-                        title="Car MASS" 
-                        activeBgColor="rgba(255,255,255,0.3)" 
-                        textColor="#fff" 
-                        padding="3px 20px" 
-                        buttons={[
-                          { idx: 1, title: 'TARE', value: 'TARE' }, 
-                          { idx: 2, title: 'FULL', value: 'FULL' }
-                        ]}
-                      />
-                    </div>
-                  </div>
+                <MotorBogieDescTab />
               </div>
               <PanelControlButtonsLeft />
             </div>
@@ -380,10 +300,10 @@ class ViewM1Setup extends Component {
                         <MotorTemp data={frontLeftMotorData.data.temp}/>
                       </div>
                       <div className="setupMotorGraphList">
-                        <div className="bar-graph pull-left">
+                        <div className="bar-graph">
                           <MotorGaugeBar data={frontLeftMotorData.data.rpm} name="rpm" unit=""/>
                         </div>
-                        <div className="bar-graph pull-right">
+                        <div className="bar-graph">
                           <MotorGaugeBar data={frontLeftMotorData.data.torque} name="torque" unit="Nm"/>
                         </div>
                       </div>
@@ -444,10 +364,10 @@ class ViewM1Setup extends Component {
                         <MotorTemp data={frontRightMotorData.data.temp}/>
                       </div>
                       <div className="setupMotorGraphList">
-                        <div className="bar-graph pull-left">
+                        <div className="bar-graph">
                           <MotorGaugeBar data={frontRightMotorData.data.rpm} name="rpm" unit=""/>
                         </div>
-                        <div className="bar-graph pull-right">
+                        <div className="bar-graph">
                           <MotorGaugeBar data={frontRightMotorData.data.torque} name="torque" unit="Nm"/>
                         </div>
                       </div>
@@ -510,10 +430,10 @@ class ViewM1Setup extends Component {
                         <MotorTemp data={rearLeftMotorData.data.temp}/>
                       </div>
                       <div className="setupMotorGraphList">
-                        <div className="bar-graph pull-left">
+                        <div className="bar-graph">
                           <MotorGaugeBar data={rearLeftMotorData.data.rpm} name="rpm" unit=""/>
                         </div>
-                        <div className="bar-graph pull-right">
+                        <div className="bar-graph">
                           <MotorGaugeBar data={rearLeftMotorData.data.torque} name="torque" unit="Nm"/>
                         </div>
                       </div>
@@ -574,10 +494,10 @@ class ViewM1Setup extends Component {
                         <MotorTemp data={rearRightMotorData.data.temp}/>
                       </div>
                       <div className="setupMotorGraphList">
-                        <div className="bar-graph pull-left">
+                        <div className="bar-graph">
                           <MotorGaugeBar data={rearRightMotorData.data.rpm} name="rpm" unit=""/>
                         </div>
-                        <div className="bar-graph pull-right">
+                        <div className="bar-graph">
                           <MotorGaugeBar data={rearRightMotorData.data.torque} name="torque" unit="Nm"/>
                         </div>
                       </div>
