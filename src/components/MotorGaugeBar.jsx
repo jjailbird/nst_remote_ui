@@ -6,7 +6,7 @@ export default class MotorGaugeBar extends Component {
   }
   render() {
     const { data, name, unit } = this.props;
-    let value = 0;
+    let value = data;
     const barFull = 38;
     let barValue = 0;
     let barMax = 0; 
@@ -21,7 +21,8 @@ export default class MotorGaugeBar extends Component {
         barMax = 3000;
         break;
       case 'force':
-        barMax = 3000000;
+        value = value / 1000;
+        barMax = 12000;
         break;
       case 'stroke':
         barMax = 3000;
@@ -30,7 +31,7 @@ export default class MotorGaugeBar extends Component {
     }
     
     if(data) {
-      value = data;
+      //value = data;
       barValue = value;
       barPercent = (barValue / barMax) * 100; 
       barPx = Math.round((barFull * barPercent) / 100); 
