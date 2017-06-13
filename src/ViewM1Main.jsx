@@ -35,12 +35,14 @@ export default class ViewM1Main extends Component {
           src="/video/WIRE_BB_View.mp4"
           autoPlay="true"
           loop="true"
+          width="1200"
+          height="780"
           style={{
             position: 'absolute',
             left: '50%',
-            marginLeft: '-400px',
+            marginLeft: '-600px',
             zIndex: '8',
-            marginTop: '320px'
+            marginTop: '180px'
           }}
         />
         <div
