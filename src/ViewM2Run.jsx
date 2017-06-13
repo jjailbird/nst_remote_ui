@@ -10,8 +10,8 @@ import { connect } from 'react-redux';
 
 class ViewM2Run extends Component {
   componentDidMount(){
+    /*
     const { runSwitch } = this.props;
-
     const frontVideo = document.getElementById("frontVideo");
     const rearVideo = document.getElementById("rearVideo");
     
@@ -20,7 +20,8 @@ class ViewM2Run extends Component {
       rearVideo.play();
     } 
     
-    // alert(frontVideo.id);
+    alert(frontVideo.id);
+    */
   }
   render() {
     const { 
@@ -58,7 +59,7 @@ class ViewM2Run extends Component {
 
     const videoFrontSrc = directionSwitch == 1 ? "/video/train_view_front.mp4" : "/video/train_view_back.mp4";
     const videoRearSrc = directionSwitch == 0 ? "/video/train_view_front.mp4" : "/video/train_view_back.mp4";
-
+    const moviePlay = runSwitch == 0 ? false : true;
     // console.log('directionSwitch', directionSwitch, videoFrontSrc);
     return (
 
@@ -193,7 +194,7 @@ class ViewM2Run extends Component {
           >
             <video
               id="rearVideo"
-              // autoPlay
+              autoPlay={moviePlay}
               loop
               style={{
                 width: '500px',
@@ -206,7 +207,7 @@ class ViewM2Run extends Component {
           <div className="trainViewVideo">
             <video
               id="frontVideo"
-              // autoPlay
+              autoPlay={moviePlay}
               loop
             >
               <source src={videoFrontSrc}></source>

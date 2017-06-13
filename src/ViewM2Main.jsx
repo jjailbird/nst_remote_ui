@@ -45,7 +45,7 @@ export default class ViewM2Main extends Component {
             left: '50%',
             marginLeft: '-400px',
             zIndex: '8',
-            marginTop: '310px'
+            marginTop: '350px'
           }}
         />        
         <div
