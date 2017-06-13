@@ -80,8 +80,8 @@ class ViewM2Setup extends Component {
       emergencyStop,
       dispatch
     } = this.props;
-    const runSwitchValue = runSwitch === "0" ? "off" : "on";
-    const directionSwitchValue = directionSwitch === "0" ? "off" : "on";
+    const runSwitchValue = runSwitch === 0 ? "off" : "on";
+    const directionSwitchValue = directionSwitch === 0 ? "off" : "on";
     // console.log('runSwitch:', runSwitchValue);
     let sDriveModeStatus = '';
     let sDriveModeStatusColor = '#fff673';

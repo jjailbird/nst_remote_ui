@@ -206,7 +206,31 @@ class App extends Component {
     if(navi) {
       navi.style.backgroundImage = `url(${src})`;
     }
-    
+  }
+  sendCommandToDevice(command) {
+    var ws = new WebSocket(`ws://${this.hostname}:8181/`);
+    this.send = function (message, callback) {
+      this.waitForConnection(function () {
+          ws.send(message);
+          ws.close();
+          if (typeof callback !== 'undefined') {
+              callback();
+          }
+      }, 100);
+    };
+
+    this.waitForConnection = function (callback, interval) {
+      if (ws.readyState === 1) {
+        callback();
+      } else {
+        var that = this;
+        // optional: implement backoff for interval here
+        setTimeout(function () {
+            that.waitForConnection(callback, interval);
+        }, interval);
+      }
+    };
+    this.send(command);
   }
   render() {
     const ChangeTracker = withRouter(({match, location, history}) => {
