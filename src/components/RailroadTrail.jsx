@@ -23,13 +23,8 @@ export default class RailroadTrail extends Component {
     const distancePercent = (distance / distanceMax) * 100;
     const distancePx = Math.round((length * distancePercent) / 100);
 
-    const pos = railPath.getPointAtLength(distancePx);
+    const pos = railPath.getPointAtLength(length - distancePx);
     const dot = document.getElementById('circleTrain');
-
-
-    // console.log('length:', length);
-    // console.log('w:', w, 'h:', h);
-    // console.log('pos:', pos);
 
     dot.setAttribute('cx', pos.x);
     dot.setAttribute('cy', pos.y);
