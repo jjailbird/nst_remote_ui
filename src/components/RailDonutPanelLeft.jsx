@@ -87,6 +87,15 @@ export default class RailDonutPanelLeft extends Component {
             >{socDisplay}</div>
           </div>
           <div
+            style={{
+              width: '353px',
+              height: '353px',
+              position: 'absolute',
+              zIndex: '995',
+              border: '0px solid #fff'
+            }}
+          ><img src="/img/train_pie1_grid.png" /></div>
+          <div
             className="svgArea"
             style={{
               width: '353px',
@@ -104,7 +113,7 @@ export default class RailDonutPanelLeft extends Component {
               strokeColor="rgba(201,53,53,0.5)" 
               strokeColorLine="rgba(255,255,255,0.0)" 
               donutWidth="343" 
-              donutStrokeWidth="35"
+              donutStrokeWidth="30"
               degree="-222"
               dashPercent="36.3"
               flip=""//좌우 반전 빈칸이면 원래 모양
@@ -128,7 +137,7 @@ export default class RailDonutPanelLeft extends Component {
               strokeColor="rgba(53,129,201,0.5)" 
               strokeColorLine="rgba(255,255,255,0.0)" 
               donutWidth="343" 
-              donutStrokeWidth="35"
+              donutStrokeWidth="30"
               degree="-222"
               dashPercent="36.3"
               flip="scale(-1,1)"//좌우 반전 빈칸이면 원래 모양
