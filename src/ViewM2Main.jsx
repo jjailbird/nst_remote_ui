@@ -38,20 +38,20 @@ export default class ViewM2Main extends Component {
           src="/video/WIRE_AA_View.mp4"
           autoPlay="true"
           loop="true"
-          width="1200"
-          height="780"
+          width="800"
+          height="480"
           style={{
             position: 'absolute',
             left: '50%',
-            marginLeft: '-600px',
+            marginLeft: '-400px',
             zIndex: '8',
-            marginTop: '180px'
+            marginTop: '310px'
           }}
         />        
         <div
           className="con-login"
           style={{
-            background: 'url(/img/main_bg2.png)',
+            // background: 'url(/img/main_bg2.png)',
             position: 'relative'
           }}
         >
