@@ -1,6 +1,6 @@
 import { SET_DIRECTION_SWITCH } from '../actions';
 
-const defaultState = 1;
+const defaultState = 0;
 
 export default function setDirectionSwitch(state = { data: defaultState }, action) {
   switch(action.type) {

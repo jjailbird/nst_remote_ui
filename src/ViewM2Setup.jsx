@@ -9,7 +9,7 @@ import TestSetupGaugeBar from './components/TestSetupGaugeBar';
 import DynamicLineChart2 from './components/DynamicLineChart2';
 import RailroadTrailStartStop from './components/RailroadTrailStartStop';
 
-import { setRunSwitch, setDirectionSwitch, setDriveMode } from './actions';
+import { setRunSwitch, setDirectionSwitch, setDriveMode, setEmergencyStop } from './actions';
 
 import { connect } from 'react-redux';
 
@@ -77,7 +77,8 @@ class ViewM2Setup extends Component {
       runSwitch,
       directionSwitch,
       driveMode,
-      emergencyStop
+      emergencyStop,
+      dispatch
     } = this.props;
     const runSwitchValue = runSwitch === "0" ? "off" : "on";
     const directionSwitchValue = directionSwitch === "0" ? "off" : "on";
@@ -99,9 +100,10 @@ class ViewM2Setup extends Component {
     if (runSwitchValue === "on") {
       sDriveModeStatus = sDriveModeStatus.replace('READY', 'ACTIVE');
       sDriveModeStatusColor = 'red';
+      dispatch(setEmergencyStop(0));
     }
 
-    if(emergencyStop == 0) {
+    if(emergencyStop == 1) {
       sDriveModeStatus = 'EMERGENCY STOP!';
       sDriveModeStatusColor = 'red';
     }

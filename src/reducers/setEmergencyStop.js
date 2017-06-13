@@ -1,6 +1,6 @@
 import { SET_EMERGENCY_STOP } from '../actions';
 
-const defaultState = 1;
+const defaultState = 0;
 
 export default function setEmergencyStop(state = { data: defaultState }, action) {
   switch(action.type) {

@@ -33,6 +33,21 @@ export default class ViewM2Main extends Component {
         <div className="head">
           <div className="title">hyundai rotem company</div>
         </div>
+        <video
+          id="videoLeft"
+          src="/video/WIRE_AA_View.mp4"
+          autoPlay="true"
+          loop="true"
+          width="1200"
+          height="780"
+          style={{
+            position: 'absolute',
+            left: '50%',
+            marginLeft: '-600px',
+            zIndex: '8',
+            marginTop: '180px'
+          }}
+        />        
         <div
           className="con-login"
           style={{
@@ -45,7 +60,8 @@ export default class ViewM2Main extends Component {
               textAlign: 'center',
               position: 'absolute',
               width: '100%',
-              marginTop: '50px'
+              marginTop: '50px',
+              zIndex: '50',
             }}
           >
             <img src="/img/main_title2.png" alt="main_title1.png" />
