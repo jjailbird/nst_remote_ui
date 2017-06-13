@@ -14,11 +14,12 @@ class ViewM2Run extends Component {
 
     const frontVideo = document.getElementById("frontVideo");
     const rearVideo = document.getElementById("rearVideo");
-
+    
     if (runSwitch === 1) {
       frontVideo.play();
       rearVideo.play();
     } 
+    
     // alert(frontVideo.id);
   }
   render() {
