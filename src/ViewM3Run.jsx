@@ -100,7 +100,7 @@ class ViewM3Run extends Component {
                   style={{
                     transform: 'rotate(180deg)'
                   }}
-                  // autoPlay="false"
+                  autoPlay="true"
                 />                
               </div>
               <div className="panelTitle">
@@ -399,7 +399,7 @@ class ViewM3Run extends Component {
                   style={{
                     // transform: 'rotate(180deg)'
                   }}
-                  // autoPlay="false"
+                  autoPlay="true"
                 />
               </div>
               <div className="panelTitle">
