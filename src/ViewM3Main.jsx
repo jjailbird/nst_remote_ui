@@ -35,14 +35,14 @@ export default class ViewM3Main extends Component {
           src="/video/WIRE_CC_View.mp4"
           autoPlay="true"
           loop="true"
-          width="1000"
-          height="600"
+          width="1200"
+          height="780"
           style={{
             position: 'absolute',
             left: '50%',
-            marginLeft: '-500px',
+             marginLeft: '-600px',
             zIndex: '8',
-            marginTop: '260px'
+            marginTop: '180px'
           }}
         />
         <div

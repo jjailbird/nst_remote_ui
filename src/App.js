@@ -66,7 +66,7 @@ import ViewM3Spec from './ViewM3Spec';
 class App extends Component {
   constructor(props) {
     super(props);
-    this.hostname = window.location.hostname; // 192.168.0.2;
+    this.hostname = '192.168.0.2'; //window.location.hostname;
     this.handleData = this.handleData.bind(this);
     //this.thick = this.thick.bind(this);
     
