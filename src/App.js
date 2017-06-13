@@ -113,16 +113,16 @@ class App extends Component {
     if (command) {
       console.log('command:', command);
       switch(command.charAt(0)) {
-        case 's':
+        case 'S':
           dispatch( setRunSwitch(command.charAt(1)) );
           break;
-        case 'd':
+        case 'D':
           dispatch( setDirectionSwitch(command.charAt(1)) );
           break;          
-        case 'n':
+        case 'N':
           dispatch( setDriveLever(command.charAt(1)) );
           break;          
-        case 'e':
+        case 'E':
           dispatch( setEmergencyStop(command.charAt(1)) );
           dispatch( setRunSwitch(command.charAt(1)) );
           break;          

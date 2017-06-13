@@ -49,13 +49,13 @@ class ViewM2Setup extends Component {
   }
   onRunSwitchClick(value) {
     const { dispatch } = this.props;
-    const command = value === "on" ? "S1" : "S0";
+    const command = value === "on" ? "s1" : "s0";
     dispatch( setRunSwitch(command.charAt(1)) );
     this.sendCommandToDevice(command);
   }
   onDirectionSwitchClick(value) {
     const { dispatch } = this.props;
-    const command = value === "on" ? "D1" : "D0";
+    const command = value === "on" ? "d1" : "d0";
     dispatch( setDirectionSwitch(command.charAt(1)) );
     this.sendCommandToDevice(command);
   }
@@ -96,6 +96,10 @@ class ViewM2Setup extends Component {
         break;
     }
     //console.log('emergencyStop:', emergencyStop);
+    if (runSwitchValue === "on") {
+      sDriveModeStatus = sDriveModeStatus.replace('READY', 'ACTIVE');
+      sDriveModeStatusColor = 'red';
+    }
 
     if(emergencyStop == 0) {
       sDriveModeStatus = 'EMERGENCY STOP!';
