@@ -237,7 +237,7 @@ export default class RailDonutPanelLeft extends Component {
             >SPEED km/h</div>
             <div
               style={{
-                color: 'rgba(201,53,53,0.5)',
+                color: 'rgba(201,53,53,1)',
                 fontSize: '67px',
                 fontWeight: 'bold',
                 lineHeight: '62px'

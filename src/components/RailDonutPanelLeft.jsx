@@ -60,7 +60,7 @@ export default class RailDonutPanelLeft extends Component {
             >
               <span
                 style={{
-                  color: 'rgba(201,53,53,0.5)',
+                  color: 'rgba(201,53,53,1)',
                   fontSize: '50px',
                   fontWeight: 'bold',
                   paddingBottom: '4px',
@@ -79,7 +79,7 @@ export default class RailDonutPanelLeft extends Component {
             >SOC %</div>
             <div
               style={{
-                color: 'rgba(53,129,201,0.5)',
+                color: 'rgba(53,129,201,1)',
                 fontSize: '80px',
                 fontWeight: 'bold',
                 lineHeight: '62px'
