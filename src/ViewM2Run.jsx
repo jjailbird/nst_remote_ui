@@ -8,8 +8,130 @@ import RailDonuGraphRight from './components/RailDonutGraphRight'
 
 import { connect } from 'react-redux';
 
+// import Script from 'react-load-script'
+import Websocket from 'react-websocket';
+
 class ViewM2Run extends Component {
+  constructor(props) {
+    super(props);
+    this.hostname = window.location.hostname;
+    this.host = window.location.host;
+    
+    this.sourceBuffer = null;
+    this.buffer = [];	
+    this.mediaSource = null;
+    this.video = null;
+    this.wsSocket = null;
+    
+    this.mediaSource = null;
+    this.video = null;
+
+    this.readFromBuffer = this.readFromBuffer.bind(this);
+    this.keepaliveTimer = this.keepaliveTimer.bind(this);
+    this.onWebSocketData = this.onWebSocketData.bind(this);
+    this.onFileReaderOnload = this.onFileReaderOnload.bind(this);
+    this.onMediaSourceOpen = this.onMediaSourceOpen.bind(this);
+    this.onVideoPlay = this.onVideoPlay.bind(this);
+    this.H5SWebSocketClient = this.H5SWebSocketClient.bind(this);
+  }
+  H5SWebSocketClient(){
+    var socket;
+    try {
+      console.log('window.location.protocol', window.location.protocol);
+      if (window.location.protocol == "http:") 
+      {
+
+        socket = new WebSocket('ws://' + window.location.host + '/h5sws');
+        console.log('websocket','ws://' + window.location.host + '/h5sws');
+      }
+      if (window.location.protocol == "https:")
+      {	
+        //alert(window.location.host);
+        // console.log(window.location.host);
+        socket = new WebSocket('wss://' + window.location.host + '/h5sws');			 
+      }
+      console.log(window.location.host);
+    } catch (e) {
+      alert('error');
+      return;
+    }
+    return socket;
+  }
+
+	readFromBuffer(){
+		console.log('readFromBuffer');
+		if (this.buffer.length === 0 || !this.sourceBuffer || this.sourceBuffer.updating) 
+		{
+		  return;
+		}
+		try {
+		  var data = this.buffer.shift();
+		  this.sourceBuffer.appendBuffer(data);
+		} catch (e) {
+		  console.log(e);
+		}
+	};
+	
+	keepaliveTimer(){
+		console.log('keepaliveTimer', 'keepalive');
+		this.wsSocket.send("keepalive");
+	}
+
+	onWebSocketData(msg){
+    var blob = msg.data; 
+    // var blob = msg; // when using react-websocket
+		console.log('blob', blob);
+		var fileReader = new FileReader();
+    fileReader.onload = this.onFileReaderOnload;
+    /*
+    fileReader.onload = function () {
+      console.log('this.result', this.result);
+			this.buffer.push(this.result);
+			this.readFromBuffer();
+    };
+    */
+    fileReader.readAsArrayBuffer(blob);
+  }  
+  onFileReaderOnload(e){
+    console.log('onFileReaderOnload! parameter',e);
+    this.buffer.push(e.target.result);
+    this.readFromBuffer();
+  }
+  onMediaSourceOpen(){
+    console.log('mediaSource', 'sourceopen!');
+    this.video.play();
+    //var strCodec = 'video/mp4; codecs="avc1.420028"';
+    //var strCodec = 'video/mp4; codecs="avc1.42E01E"';
+    const strCodec = 'video/mp4; codecs="avc1.640029"';
+    this.sourceBuffer = this.mediaSource.addSourceBuffer(strCodec);
+    this.mediaSource.duration = Infinity;
+    this.sourceBuffer.addEventListener('updateend', this.readFromBuffer);
+  }
+  
+  onVideoPlay(){
+    console.log('video', 'play!');
+    this.wsSocket = this.H5SWebSocketClient();
+    this.wsSocket.onmessage = this.onWebSocketData;
+    setInterval(this.keepaliveTimer, 1000);	
+  }
+
   componentDidMount(){
+        
+    window.MediaSource = window.MediaSource || window.WebKitMediaSource;
+    if (!window.MediaSource) {
+      console.log('MediaSource API is not available');
+    }
+  
+    this.mediaSource = new window.MediaSource();
+    this.video = document.getElementById('frontVideo');
+  
+    /* var video = document.querySelector('h5sVideo'); */
+    //alert(video);
+    this.video.src = window.URL.createObjectURL(this.mediaSource);
+  
+    this.mediaSource.addEventListener('sourceopen', this.onMediaSourceOpen);
+  
+    this.video.addEventListener('play', this.onVideoPlay, false);
     /*
     const { runSwitch } = this.props;
     const frontVideo = document.getElementById("frontVideo");
@@ -62,8 +184,13 @@ class ViewM2Run extends Component {
     const moviePlay = runSwitch == 0 ? false : true;
     // console.log('directionSwitch', directionSwitch, videoFrontSrc);
     return (
-
-      <div>
+      <div ref={el => (this.instance = el)}>
+        {/*
+        <Websocket
+          url={`ws://${this.host}/h5sws`}
+          onMessage={this.onWebSocketData} debug={false}
+        />
+        */}
         <div className="trainNavi">
           {/*
           <a href="">Forward CAM</a>
@@ -194,8 +321,8 @@ class ViewM2Run extends Component {
           >
             <video
               id="rearVideo"
-              autoPlay={moviePlay}
-              loop
+              // autoPlay={moviePlay}
+              // loop
               style={{
                 width: '500px',
                 borderRadius: '50px'
@@ -207,10 +334,10 @@ class ViewM2Run extends Component {
           <div className="trainViewVideo">
             <video
               id="frontVideo"
-              autoPlay={moviePlay}
-              loop
+              // autoPlay={moviePlay}
+              // loop
             >
-              <source src={videoFrontSrc}></source>
+              
             </video>
           </div>
         </div>

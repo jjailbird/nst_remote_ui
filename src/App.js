@@ -41,6 +41,7 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.hostname = window.location.hostname;
+    // this.hostname = window.location.host;
     this.handleData = this.handleData.bind(this);
     this.changeNaviBackground = this.changeNaviBackground.bind(this);
     // used variables =========================================
@@ -101,9 +102,11 @@ class App extends Component {
     this.setDriveData.brake = 0;
  }
   componentDidMount() {
+    // console.log('this.hostname',this.hostname);
     // this.timer = setInterval(this.thick, 1000);
   }
   handleData(data) {
+    // console.log("socket handleData", data);
     const json = JSON.parse(data); 
     const TESTDRIVE = json.TESTDRIVE ? json.TESTDRIVE : null;
     const TESTSETUP = json.TESTSETUP ? json.TESTSETUP : null;
@@ -199,7 +202,7 @@ class App extends Component {
       this.setDriveData.brake = TESTDRIVE.CircleRight.Brake;
       dispatch( setDriveData(this.setDriveData) )
     }
-
+    
   }
   changeNaviBackground(src) {
     const navi = document.getElementById('naviMenu');
@@ -244,6 +247,7 @@ class App extends Component {
           <ChangeTracker />
           <Websocket
             url={`ws://${this.hostname}:8181/`}
+            // url={`ws://${this.hostname}/h5sws`}
             onMessage={this.handleData} debug={false}
           />
           <div>
