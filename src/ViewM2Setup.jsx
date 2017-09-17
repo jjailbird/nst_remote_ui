@@ -115,6 +115,7 @@ class ViewM2Setup extends Component {
           <div className="headArea">
             <div className="headLeft pull-left">
               <img src="/img/titlev2-setup.png" alt="titlev2-setup"/>
+              <span id="pageHiddenTitle" style={{display: 'none'}}>TEST_SETUP_PANEL</span>
             </div>
             <div className="headRight pull-right">                
               hyundai rotem company

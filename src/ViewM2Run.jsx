@@ -38,19 +38,18 @@ class ViewM2Run extends Component {
     var socket;
     try {
       console.log('window.location.protocol', window.location.protocol);
+      // let wsConnectionString = 'ws://' + window.location.host + '/h5sws';
+      let wsConnectionString = 'ws://localhost:8801/h5sws2';
       if (window.location.protocol == "http:") 
       {
-
-        socket = new WebSocket('ws://' + window.location.host + '/h5sws');
-        console.log('websocket','ws://' + window.location.host + '/h5sws');
       }
       if (window.location.protocol == "https:")
       {	
-        //alert(window.location.host);
-        // console.log(window.location.host);
-        socket = new WebSocket('wss://' + window.location.host + '/h5sws');			 
+        wsConnectionString = 'wss://' + window.location.host + '/h5sws';			 
       }
-      console.log(window.location.host);
+      socket = new WebSocket(wsConnectionString);
+     
+      console.log('websocket',wsConnectionString);
     } catch (e) {
       alert('error');
       return;
