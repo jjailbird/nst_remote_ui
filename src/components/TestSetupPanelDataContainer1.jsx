@@ -5,7 +5,11 @@ import TestPanelDataDonutCircleChart from './TestPanelDataDonutCircleChart'
 
 export default class TestSetupPanelDataContainer1 extends Component {
   render() {
-    const { dataLeft, dataRight, compTitle1, compTitle2, nameLeft, nameRight, unitLeft, unitRight, cNameLeft, cNameRight, barTitle, CompColor } = this.props;
+    const { dataLeft, dataRight, 
+      compTitle1, compTitle2, 
+      nameLeft, nameRight, 
+      unitLeft1, unitLeft2, unitRight1, unitRight2, cNameLeft1, cNameRight1, cNameLeft2, cNameRight2,
+      barTitle, CompColor } = this.props;
     //console.log('get graph dataLeft:', dataLeft);  
     let dataTypeL1 = '';
     let dataTypeL2 = '';
@@ -63,8 +67,8 @@ export default class TestSetupPanelDataContainer1 extends Component {
         break;
     }
     
-    const cCaseLeft = `${compTitle1} ${cNameLeft}`;
-    const cCaseRight = `${compTitle2} ${cNameLeft}`;
+    const cCaseLeft = `${compTitle1} ${cNameLeft1}`;
+    const cCaseRight = `${compTitle2} ${cNameRight1}`;
 
     return (
       <div className="testPanelBox testSetupPanelDataBox">
@@ -93,8 +97,8 @@ export default class TestSetupPanelDataContainer1 extends Component {
             >
               <TestPanelDataDonutCircleChart 
                 data={dataTypeL5} 
-                unit={unitLeft}
-                name={cNameLeft} 
+                unit={unitLeft1}
+                name={cNameLeft1} 
                 cCase={cCaseLeft}
                 strokeColor={CompColor}
                 strokeColorLine="rgba(255,255,255,0.2)" 
@@ -104,7 +108,7 @@ export default class TestSetupPanelDataContainer1 extends Component {
                 valueFontColor="#fff"
               />
             </div>
-            <TestSetupPanelDataContainerBarChart data={dataTypeL1} title={`${barTitle}1`} unit={unitLeft} barColor={CompColor}/>
+            <TestSetupPanelDataContainerBarChart data={dataTypeL1} title={`${barTitle}1`} unit={unitLeft1} barColor={CompColor}/>
           </div>
           <div className="tspdBarBox" style={{ marginTop: '40px' }}>
             <div
@@ -118,8 +122,8 @@ export default class TestSetupPanelDataContainer1 extends Component {
             >
               <TestPanelDataDonutCircleChart 
                 data={dataTypeL5} 
-                unit={unitLeft}
-                name={cNameLeft} 
+                unit={unitLeft2}
+                name={cNameLeft2} 
                 cCase={cCaseLeft}
                 strokeColor={CompColor}
                 strokeColorLine="rgba(255,255,255,0.2)" 
@@ -129,7 +133,7 @@ export default class TestSetupPanelDataContainer1 extends Component {
                 valueFontColor="#fff"
               />
             </div>
-            <TestSetupPanelDataContainerBarChart data={dataTypeL1} title={`${barTitle}1`} unit={unitLeft} barColor={CompColor}/>
+            <TestSetupPanelDataContainerBarChart data={dataTypeL1} title={`${barTitle}1`} unit={unitLeft2} barColor={CompColor}/>
           </div>
         </div>
         <span className="testPanelBoxTitle right" style={{ marginLeft: '316px', borderLeft: '1px solid rgba(255,255,255,0.4)' }}>
@@ -157,8 +161,8 @@ export default class TestSetupPanelDataContainer1 extends Component {
             >
               <TestPanelDataDonutCircleChart 
                 data={dataTypeL5} 
-                unit={unitLeft}
-                name={cNameLeft} 
+                unit={unitRight1}
+                name={cNameRight1} 
                 cCase={cCaseLeft}
                 strokeColor={CompColor}
                 strokeColorLine="rgba(255,255,255,0.2)" 
@@ -168,8 +172,8 @@ export default class TestSetupPanelDataContainer1 extends Component {
                 valueFontColor="#fff"
               />
             </div>
-            <TestSetupPanelDataContainerBarChart data={dataTypeL1} title={`${barTitle}1`} unit={unitLeft} barColor={CompColor}/>
-            <TestSetupPanelDataContainerBarChart data={dataTypeL1} title={`${barTitle}1`} unit={unitLeft} barColor={CompColor}/>
+            <TestSetupPanelDataContainerBarChart data={dataTypeL1} title={`${barTitle}1`} unit={unitRight1} barColor={CompColor}/>
+            <TestSetupPanelDataContainerBarChart data={dataTypeL1} title={`${barTitle}2`} unit={unitRight1} barColor={CompColor}/>
           </div>
           <div className="tspdBarBox">
             <div
@@ -183,8 +187,8 @@ export default class TestSetupPanelDataContainer1 extends Component {
             >
               <TestPanelDataDonutCircleChart 
                 data={dataTypeL5} 
-                unit={unitLeft}
-                name={cNameLeft} 
+                unit={unitRight2}
+                name={cNameRight2} 
                 cCase={cCaseLeft}
                 strokeColor={CompColor}
                 strokeColorLine="rgba(255,255,255,0.2)" 
@@ -194,8 +198,8 @@ export default class TestSetupPanelDataContainer1 extends Component {
                 valueFontColor="#fff"
               />
             </div>
-            <TestSetupPanelDataContainerBarChart data={dataTypeL1} title={`${barTitle}1`} unit={unitLeft} barColor={CompColor}/>
-            <TestSetupPanelDataContainerBarChart data={dataTypeL1} title={`${barTitle}1`} unit={unitLeft} barColor={CompColor}/>
+            <TestSetupPanelDataContainerBarChart data={dataTypeL1} title={`${barTitle}1`} unit={unitRight2} barColor={CompColor}/>
+            <TestSetupPanelDataContainerBarChart data={dataTypeL1} title={`${barTitle}2`} unit={unitRight2} barColor={CompColor}/>
           </div>
         </div>        
       </div>

@@ -18,9 +18,43 @@ class ViewM2Setup extends Component {
   constructor(props) {
     super(props);
     this.hostname = window.location.hostname;
-    this.onRunSwitchClick = this.onRunSwitchClick.bind(this);
-    this.onDirectionSwitchClick = this.onDirectionSwitchClick.bind(this);
+
+    // #1
+    this.onPowerChange = this.onPowerChange.bind(this);
+    // s02
+    this.onLightChange = this.onLightChange.bind(this);
+    // s03 -1
+    this.onInvCon1Change = this.onInvCon1Change.bind(this);
+    // s03 -2
+    this.onInvCon2Change = this.onInvCon2Change.bind(this);
+    // s04
+    this.onTbmsChange = this.onTbmsChange.bind(this);
+    // s05
+    this.onDcDcChange = this.onDcDcChange.bind(this);
+    // s06
+    this.onApcChange = this.onApcChange.bind(this);
+    // s07-1
+    this.onInvOut1Change = this.onInvOut1Change.bind(this);
+    // s07-2
+    this.onInvOut2Change = this.onInvOut2Change.bind(this);
+    // s08
+    this.onSbmsChange = this.onSbmsChange.bind(this);
+    // s09
+    this.onSinvChange = this.onSinvChange.bind(this);
+    // s10
+    this.onCameraChange = this.onCameraChange.bind(this);
+    // s11
     this.onDriveModeChanged = this.onDriveModeChanged.bind(this);
+    // s12
+    this.onDirectionSwitchClick = this.onDirectionSwitchClick.bind(this);
+    // s13?
+
+    // s14
+    this.onRunSwitchClick = this.onRunSwitchClick.bind(this);
+    // s15-1
+    this.onHydroBkChange = this.onHydroBkChange.bind(this);
+    // s15-2
+    this.onRegenBkChange = this.onRegenBkChange.bind(this); 
     // this.sendMessageToDevice = this.sendMessageToDevice.bind(this);
   }
   sendCommandToDevice(command) {
@@ -48,22 +82,95 @@ class ViewM2Setup extends Component {
     };
     this.send(command);
   }
-  onRunSwitchClick(value) {
-    const { dispatch } = this.props;
-    const command = value === "on" ? "s1" : "s0";
-    dispatch( setRunSwitch(command.charAt(1)) );
-    this.sendCommandToDevice(command);
+  // sequence start =======================================================
+  // s01
+  onPowerChange(value) {
+    alert('s01:' + value);
   }
+  // s02
+  onLightChange(value) {
+    alert('s02:' + value);
+  }
+  // s03 -1
+  onInvCon1Change(value) {
+    alert('s03-1:' + value);
+  }
+  // s03 -2
+  onInvCon2Change(value) {
+    alert('s03-2:' + value);
+  }
+  // s04
+  onTbmsChange(value) {
+    alert('s04:' + value);
+  }
+  // s05
+  onDcDcChange(value) {
+    alert('s05:' + value);
+  }
+  // s06
+  onApcChange(value) {
+    alert('s06:' + value);
+  }
+  // s07-1
+  onInvOut1Change(value) {
+    alert('s07-1:' + value);
+  }
+  // s07-2
+  onInvOut2Change(value) {
+    alert('s07-2:' + value);
+  }
+  // s08
+  onSbmsChange(value) {
+    alert('s08:' + value);
+  }
+  // s09
+  onSinvChange(value) {
+    alert('s09:' + value);
+  }
+  // s10
+  onCameraChange(value) {
+    alert('s10:' + value);
+  }
+  // s11
+  onDriveModeChanged(value) {
+    alert('s11:' + value);
+    
+    const { dispatch } = this.props;
+    dispatch( setDriveMode(value) );
+  }
+  // s12
   onDirectionSwitchClick(value) {
+    alert('s12:' + value);
+    
     const { dispatch } = this.props;
     const command = value === "on" ? "d1" : "d0";
     dispatch( setDirectionSwitch(command.charAt(1)) );
     this.sendCommandToDevice(command);
   }
-  onDriveModeChanged(value) {
+  // s13 제동 선택?
+
+
+  // s14
+  onRunSwitchClick(value) {
+    alert('s14:' + value);
+    
     const { dispatch } = this.props;
-    dispatch( setDriveMode(value) );
+    const command = value === "on" ? "s1" : "s0";
+    dispatch( setRunSwitch(command.charAt(1)) );
+    this.sendCommandToDevice(command);
   }
+
+  // s15-1
+  onHydroBkChange(value) {
+    alert('s15-1:' + value);
+    
+  }
+  // s15-2
+  onRegenBkChange(value) {
+    alert('s15-2:' + value);
+    
+  }
+
   render() {
     const { 
       bmsSocData,
@@ -139,7 +246,17 @@ class ViewM2Setup extends Component {
                 dataRight={bcuMTogieData.data}
                 compTitle1="C-BMS"
                 compTitle2="S-BMS"
-                nameLeft="" nameRight="" unitLeft="Kpa" unitRight="Kpa" cNameLeft="M Bogie" cNameRight="T Bogie" barTitle="Caliper #" CompColor="#6f9450"/>
+                nameLeft="" nameRight="" 
+                cNameLeft1="SOC"
+                cNameLeft2="OUT VOLT"
+                cNameRight1="SOC"
+                cNameRight2="OUT VOLT" 
+                unitLeft1="%" 
+                unitLeft2="V"
+                unitRight1="%" 
+                unitRight2="V" 
+                barTitle="PACK #" 
+                CompColor="#6f9450"/>
               <PanelControlButtonsLeft />
             </div>
             <div
@@ -169,12 +286,13 @@ class ViewM2Setup extends Component {
                         onTextColor="#000"  
                         offTextColor="#000" 
                         padding="7px 20px" 
-                        value="on"
+                        value="off"
                         width='50%'
                         buttons={[
                           { idx: 1, title: 'on', value: 'on' }, 
                           { idx: 2, title: 'off', value: 'off' }
                         ]}
+                        onChange={this.onInvCon1Change}
                       />
                       <ControlSwitchButtonOnOff
                         title="INV CON2"
@@ -183,12 +301,13 @@ class ViewM2Setup extends Component {
                         onTextColor="#000"  
                         offTextColor="#000" 
                         padding="7px 20px" 
-                        value="on"
+                        value="off"
                         width='50%'
                         buttons={[
                           { idx: 1, title: 'on', value: 'on' }, 
                           { idx: 2, title: 'off', value: 'off' }
                         ]}
+                        onChange={this.onInvCon2Change}
                       />
                       <ControlSwitchButtonOnOff
                         title="T-BMS"
@@ -197,12 +316,13 @@ class ViewM2Setup extends Component {
                         onTextColor="#000"  
                         offTextColor="#000" 
                         padding="7px 20px" 
-                        value="on"
+                        value="off"
                         width='50%'
                         buttons={[
                           { idx: 1, title: 'on', value: 'on' }, 
                           { idx: 2, title: 'off', value: 'off' }
                         ]}
+                        onChange={this.onTbmsChange}
                       />
                       <ControlSwitchButtonOnOff
                         title="DC/DC"
@@ -211,12 +331,13 @@ class ViewM2Setup extends Component {
                         onTextColor="#000"  
                         offTextColor="#000" 
                         padding="7px 20px" 
-                        value="on"
+                        value="off"
                         width='50%'
                         buttons={[
                           { idx: 1, title: 'on', value: 'on' }, 
                           { idx: 2, title: 'off', value: 'off' }
                         ]}
+                        onChange={this.onDcDcChange}
                       />
                       <ControlSwitchButtonOnOff
                         title="APC"
@@ -225,12 +346,13 @@ class ViewM2Setup extends Component {
                         onTextColor="#000"  
                         offTextColor="#000" 
                         padding="7px 20px" 
-                        value="on"
+                        value="off"
                         width='50%'
                         buttons={[
                           { idx: 1, title: 'on', value: 'on' }, 
                           { idx: 2, title: 'off', value: 'off' }
                         ]}
+                        onChange={this.onApcChange}
                       />
                       <ControlSwitchButtonOnOff
                         title="INV OUT1"
@@ -239,12 +361,13 @@ class ViewM2Setup extends Component {
                         onTextColor="#000"  
                         offTextColor="#000" 
                         padding="7px 20px" 
-                        value="on"
+                        value="off"
                         width='50%'
                         buttons={[
                           { idx: 1, title: 'on', value: 'on' }, 
                           { idx: 2, title: 'off', value: 'off' }
                         ]}
+                        onChange={this.onInvOut1Change}
                       />
                       <ControlSwitchButtonOnOff
                         title="INV OUT2"
@@ -259,6 +382,7 @@ class ViewM2Setup extends Component {
                           { idx: 1, title: 'on', value: 'on' }, 
                           { idx: 2, title: 'off', value: 'off' }
                         ]}
+                        onChange={this.onInvOut2Change}
                       />
                       <ControlSwitchButtonOnOff
                         title="S-BMS"
@@ -273,6 +397,7 @@ class ViewM2Setup extends Component {
                           { idx: 1, title: 'on', value: 'on' }, 
                           { idx: 2, title: 'off', value: 'off' }
                         ]}
+                        onChange={this.onSbmsChange}
                       />
                       <ControlSwitchButtonOnOff
                         title="S-INV"
@@ -281,12 +406,13 @@ class ViewM2Setup extends Component {
                         onTextColor="#000"  
                         offTextColor="#000" 
                         padding="7px 20px" 
-                        value="on"
+                        value="off"
                         width='50%'
                         buttons={[
                           { idx: 1, title: 'on', value: 'on' }, 
                           { idx: 2, title: 'off', value: 'off' }
                         ]}
+                        onChange={this.onSinvChange}
                       />
                       <ControlSwitchButtonOnOff
                         title="camera"
@@ -295,12 +421,13 @@ class ViewM2Setup extends Component {
                         onTextColor="#000"  
                         offTextColor="#000" 
                         padding="7px 20px" 
-                        value="on"
+                        value="off"
                         width='50%'
                         buttons={[
                           { idx: 1, title: 'on', value: 'on' }, 
                           { idx: 2, title: 'off', value: 'off' }
                         ]}
+                        onChange={this.onCameraChange}
                       />
                     </div>
                   </div>
@@ -431,12 +558,13 @@ class ViewM2Setup extends Component {
                         onTextColor="#000"  
                         offTextColor="#000" 
                         padding="7px 0px" 
-                        value="on"
+                        value="off"
                         width='50%'
                         buttons={[
                           { idx: 1, title: 'on', value: 'on' }, 
                           { idx: 2, title: 'off', value: 'off' }
                         ]}
+                        onChange={this.onPowerChange}
                       />
                     </div>
                     <div
@@ -466,6 +594,7 @@ class ViewM2Setup extends Component {
                           { idx: 1, title: 'on', value: 'on' }, 
                           { idx: 2, title: 'off', value: 'off' }
                         ]}
+                        onChange={this.onLightChange}
                       />
                     </div>
                   </div>{/*우측 버튼영역 Power light 부모요소 END*/}
@@ -627,6 +756,7 @@ class ViewM2Setup extends Component {
                             { idx: 1, title: 'START', value: 'on' }, 
                             { idx: 2, title: 'STOP', value: 'off' }
                           ]}
+                          onChange={this.onHydroBkChange}
                         />
                       </div>
                     </div>
@@ -670,6 +800,7 @@ class ViewM2Setup extends Component {
                             { idx: 1, title: 'START', value: 'on' }, 
                             { idx: 2, title: 'STOP', value: 'off' }
                           ]}
+                          onChange={this.onRegenBkChange}
                         />
                       </div>
                     </div>
