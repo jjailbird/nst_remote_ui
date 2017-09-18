@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import SliderWeightFactor from './components/SliderWeightFactor';
 import ControlSwitchGroup from './components/ControlSwitchGroup';
 import ControlSwitchButton from './components/ControlSwitchButton';
+import ControlSwitchButtonBlock from './components/ControlSwitchButtonBlock';
 import ControlSwitchCheckBox from './components/ControlSwitchCheckBox';
 import GraphTabHscContainer from './components/GraphTabHscContainer';
 import MotorControlTabContainer from './components/MotorControlTabContainer';
@@ -100,7 +101,7 @@ class ViewM3Run extends Component {
                   style={{
                     transform: 'rotate(180deg)'
                   }}
-                  autoPlay="true"
+                  //autoPlay="true"
                 />                
               </div>
               <div className="panelTitle">
@@ -113,9 +114,9 @@ class ViewM3Run extends Component {
           </div>
           <div className="motor-control-modeBox pull-left">
             <div className="motor-control-modeTitle">
-              MOTOR CONTROL MODE
+              STEERING CONTROL MODE
             </div>
-            <div className="configBox modeConfig1">
+            <div className="configBox modeConfig1" style={{ marginTop: '9px' }}>
               <div className="modeConfig1-listBox1">
                 <span className="confBigTitle">
                   <img
@@ -130,22 +131,37 @@ class ViewM3Run extends Component {
                 <ControlSwitchGroup 
                   title="CONTROL ACTIVE" 
                   type="yellowButton" 
-                  value="on" 
+                  value="On" 
                   buttons={[
-                    { idx: 1, title: 'on', value: 'on' }, 
-                    { idx: 2, title: 'off', value: 'off' }
+                    { idx: 1, title: 'On', value: 'On' }, 
+                    { idx: 2, title: 'Off', value: 'Off' }
                   ]} 
                 />
-                <ControlSwitchButton 
-                  title="ZERO POSITIONING" 
-                  activeBgColor="rgba(255,255,255,0.3)" 
-                  textColor="#fff" 
-                  padding="3px 20px" 
-                  buttons={[
-                    { idx: 1, title: 'Auto', value: 'Auto' }, 
-                    { idx: 2, title: 'Zero', value: 'Zero' }
-                  ]}
-                />
+                <div style={{ display: 'inline-block' }}>
+                  <ControlSwitchButtonBlock 
+                    title="POWER PACK"
+                    titleMargin="0 47px 0 0px" 
+                    activeBgColor="rgba(201,195,53,0.7)" 
+                    textColor="#fff" 
+                    padding="3px 20px" 
+                    buttons={[
+                      { idx: 1, title: 'On', value: 'On' }, 
+                      { idx: 2, title: 'Off', value: 'Off' }
+                    ]}
+                    buttonWidth="72px"
+                  />
+                  <ControlSwitchButtonBlock 
+                    title="ZERO POSITIONING" 
+                    activeBgColor="rgba(255,255,255,0.3)" 
+                    textColor="#fff" 
+                    padding="3px 20px" 
+                    buttons={[
+                      { idx: 1, title: 'Auto', value: 'Auto' }, 
+                      { idx: 2, title: 'Zero', value: 'Zero' }
+                    ]}
+                    buttonWidth="72px"
+                  />
+                </div>
               </div>
               <div style={{padding: '3px 0'}}>
                   <ControlSwitchCheckBox
@@ -399,7 +415,7 @@ class ViewM3Run extends Component {
                   style={{
                     // transform: 'rotate(180deg)'
                   }}
-                  autoPlay="true"
+                  // autoPlay="true"
                 />
               </div>
               <div className="panelTitle">
