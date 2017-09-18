@@ -4,6 +4,7 @@ import PanelControlButtonsRight from './components/PanelControlButtonsRight';
 import ControlSwitchButtonOnOff from './components/ControlSwitchButtonOnOff';
 import ControlSwitchButtonOnOffPatch from './components/ControlSwitchButtonOnOffPatch';
 import TestSetupPanelDataContainer from './components/TestSetupPanelDataContainer';
+import TestSetupPanelDataContainer1 from './components/TestSetupPanelDataContainer1';
 import TestSetupPanelDataContainerDonutChart from './components/TestSetupPanelDataContainerDonutChart';
 import TestSetupGaugeBar from './components/TestSetupGaugeBar';
 import DynamicLineChart2 from './components/DynamicLineChart2';
@@ -107,10 +108,7 @@ class ViewM2Setup extends Component {
       sDriveModeStatus = 'EMERGENCY STOP!';
       sDriveModeStatusColor = 'red';
     }
-
-
     return (
-
         <div className="contBox">
           <div className="headArea">
             <div className="headLeft pull-left">
@@ -130,9 +128,18 @@ class ViewM2Setup extends Component {
                 minHeight: '815px',
               }}
             >
+              {/*
               <TestSetupPanelDataContainer dataLeft={bmsSocData.data} dataRight={bmsTempData.data} compTitle="BMS" nameLeft="BMS SOC" nameRight="BMS Temp" unitLeft="%" unitRight="℃" cNameLeft="SOC" cNameRight="TEMP" barTitle="PACK #" CompColor="#3581c9"/>
+              */}
+              <TestSetupPanelDataContainer dataLeft={bmsSocData.data} dataRight={bmsTempData.data} compTitle="T-BMS" nameLeft="CELL SOC" nameRight="CELL TEMP" unitLeft="%" unitRight="℃" cNameLeft="SOC" cNameRight="TEMP" barTitle="PACK #" CompColor="#3581c9"/> 
               <TestSetupPanelDataContainer dataLeft={invVoltData.data} dataRight={invTempData.data} compTitle="INV" nameLeft="" nameRight="" unitLeft="V" unitRight="℃" cNameLeft="OUT VOLT" cNameRight="TEMP" barTitle="INV #" CompColor="#3581c9"/>
-              <TestSetupPanelDataContainer dataLeft={bcuMBogieData.data} dataRight={bcuMTogieData.data} compTitle="BCU" nameLeft="" nameRight="" unitLeft="Kpa" unitRight="Kpa" cNameLeft="M Bogie" cNameRight="T Bogie" barTitle="Caliper #" CompColor="#6f9450"/>
+              {/*<TestSetupPanelDataContainer dataLeft={bcuMBogieData.data} dataRight={bcuMTogieData.data} compTitle="BCU" nameLeft="" nameRight="" unitLeft="Kpa" unitRight="Kpa" cNameLeft="M Bogie" cNameRight="T Bogie" barTitle="Caliper #" CompColor="#6f9450"/>*/}
+              <TestSetupPanelDataContainer1
+                dataLeft={bcuMBogieData.data}
+                dataRight={bcuMTogieData.data}
+                compTitle1="C-BMS"
+                compTitle2="S-BMS"
+                nameLeft="" nameRight="" unitLeft="Kpa" unitRight="Kpa" cNameLeft="M Bogie" cNameRight="T Bogie" barTitle="Caliper #" CompColor="#6f9450"/>
               <PanelControlButtonsLeft />
             </div>
             <div
@@ -155,7 +162,8 @@ class ViewM2Setup extends Component {
                     </div>
                     <div className="pull-right tepvBoxInnerBtns">
                       <ControlSwitchButtonOnOff
-                        title="signal"
+                        // title="signal"
+                        title="INV CON1"
                         onBgColor="#919138" 
                         offBgColor="#848695" 
                         onTextColor="#000"  
@@ -169,7 +177,7 @@ class ViewM2Setup extends Component {
                         ]}
                       />
                       <ControlSwitchButtonOnOff
-                        title="con m"
+                        title="INV CON2"
                         onBgColor="#919138" 
                         offBgColor="#848695" 
                         onTextColor="#000"  
@@ -183,7 +191,7 @@ class ViewM2Setup extends Component {
                         ]}
                       />
                       <ControlSwitchButtonOnOff
-                        title="bcu m"
+                        title="T-BMS"
                         onBgColor="#919138" 
                         offBgColor="#848695" 
                         onTextColor="#000"  
@@ -197,7 +205,7 @@ class ViewM2Setup extends Component {
                         ]}
                       />
                       <ControlSwitchButtonOnOff
-                        title="bms 1"
+                        title="DC/DC"
                         onBgColor="#919138" 
                         offBgColor="#848695" 
                         onTextColor="#000"  
@@ -211,7 +219,7 @@ class ViewM2Setup extends Component {
                         ]}
                       />
                       <ControlSwitchButtonOnOff
-                        title="bms 2"
+                        title="APC"
                         onBgColor="#919138" 
                         offBgColor="#848695" 
                         onTextColor="#000"  
@@ -225,7 +233,7 @@ class ViewM2Setup extends Component {
                         ]}
                       />
                       <ControlSwitchButtonOnOff
-                        title="inv 1"
+                        title="INV OUT1"
                         onBgColor="#919138" 
                         offBgColor="#848695" 
                         onTextColor="#000"  
@@ -239,7 +247,7 @@ class ViewM2Setup extends Component {
                         ]}
                       />
                       <ControlSwitchButtonOnOff
-                        title="inv 2"
+                        title="INV OUT2"
                         onBgColor="#919138" 
                         offBgColor="#848695" 
                         onTextColor="#000"  
@@ -253,7 +261,7 @@ class ViewM2Setup extends Component {
                         ]}
                       />
                       <ControlSwitchButtonOnOff
-                        title="con t"
+                        title="S-BMS"
                         onBgColor="#919138" 
                         offBgColor="#848695" 
                         onTextColor="#000"  
@@ -267,7 +275,7 @@ class ViewM2Setup extends Component {
                         ]}
                       />
                       <ControlSwitchButtonOnOff
-                        title="bcu t"
+                        title="S-INV"
                         onBgColor="#919138" 
                         offBgColor="#848695" 
                         onTextColor="#000"  
@@ -298,7 +306,6 @@ class ViewM2Setup extends Component {
                   </div>
                 </div>
                 <div className="pull-right tepvBox">
-                  
                   <div className="testPanelBox tepvBoxInner tepvDataBox">
                     <span className="testPanelBoxTitleFull">
                       DRIVE NOTCH
@@ -597,7 +604,8 @@ class ViewM2Setup extends Component {
 
                         }}
                       >
-                      BMS SWITCH
+                      {/*BMS SWITCH*/}
+                      Hydro Bk
                       </div>
                       <div
                         style={{
@@ -639,7 +647,8 @@ class ViewM2Setup extends Component {
 
                         }}
                       >
-                      APC RUN
+                      {/*APC RUN*/}
+                      Regen Bk
                       </div>
                       <div
                         style={{
