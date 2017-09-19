@@ -10,7 +10,10 @@ import TestSetupGaugeBar from './components/TestSetupGaugeBar';
 import DynamicLineChart2 from './components/DynamicLineChart2';
 import RailroadTrailStartStop from './components/RailroadTrailStartStop';
 
-import { setRunSwitch, setDirectionSwitch, setDriveMode, setEmergencyStop } from './actions';
+import { setRunSwitch, setDirectionSwitch, setDriveMode, setEmergencyStop
+  ,setPower ,setLight, setInvCon1, setInvCon2, setTbms, setDcDc, setApc, setInvOut1, setInvOut2
+  ,setSbms ,setSinv, setCamera, setHydroBk, setRegenBk
+} from './actions';
 
 import { connect } from 'react-redux';
 
@@ -18,7 +21,6 @@ class ViewM2Setup extends Component {
   constructor(props) {
     super(props);
     this.hostname = window.location.hostname;
-
     // #1
     this.onPowerChange = this.onPowerChange.bind(this);
     // s02
@@ -85,62 +87,101 @@ class ViewM2Setup extends Component {
   // sequence start =======================================================
   // s01
   onPowerChange(value) {
-    alert('s01:' + value);
+    //alert('s01:' + value);
+    const { dispatch } = this.props;
+    dispatch( setPower(value) );
   }
   // s02
   onLightChange(value) {
-    alert('s02:' + value);
+    const { power, dispatch } = this.props;
+    //alert('power:' + power);
+    //alert('s02:' + value);
+    if(power == 'off' && value == 'on') {
+      alert('You must turn on the POWER');
+      return false;
+    } else {
+      dispatch( setLight(value) );
+    }
   }
   // s03 -1
   onInvCon1Change(value) {
-    alert('s03-1:' + value);
+    //alert('s03-1:' + value);
+    const { light, dispatch } = this.props;
+    if(light == 'off' && value == 'on') {
+      alert('You must turn on the LIGHT');
+      return false;
+    } else {
+      dispatch( setInvCon1(value) );
+    }
   }
   // s03 -2
   onInvCon2Change(value) {
-    alert('s03-2:' + value);
+    //alert('s03-2:' + value);
+    const { invCon1, dispatch } = this.props;
+    if(invCon1 == 'off' && value == 'on') {
+      alert('You must turn on the INV CON1');
+      return false;
+    } else {
+      dispatch( setInvCon2(value) );
+    }
   }
   // s04
   onTbmsChange(value) {
-    alert('s04:' + value);
+    //alert('s04:' + value);
+    const { dispatch } = this.props;
+    dispatch( setTbms(value) );
   }
   // s05
   onDcDcChange(value) {
-    alert('s05:' + value);
+    //alert('s05:' + value);
+    const { dispatch } = this.props;
+    dispatch( setDcDc(value) );
   }
   // s06
   onApcChange(value) {
-    alert('s06:' + value);
+    //alert('s06:' + value);
+    const { dispatch } = this.props;
+    dispatch( setApc(value) );
   }
   // s07-1
   onInvOut1Change(value) {
-    alert('s07-1:' + value);
+    //alert('s07-1:' + value);
+    const { dispatch } = this.props;
+    dispatch( setInvOut1(value) );
   }
   // s07-2
   onInvOut2Change(value) {
-    alert('s07-2:' + value);
+    //alert('s07-2:' + value);
+    const { dispatch } = this.props;
+    dispatch( setInvOut2(value) );
   }
   // s08
   onSbmsChange(value) {
-    alert('s08:' + value);
+    //alert('s08:' + value);
+    const { dispatch } = this.props;
+    dispatch( setSbms(value) );
   }
   // s09
   onSinvChange(value) {
-    alert('s09:' + value);
+    //alert('s09:' + value);
+    const { dispatch } = this.props;
+    dispatch( setSinv(value) );
   }
   // s10
   onCameraChange(value) {
-    alert('s10:' + value);
+    //alert('s10:' + value);
+    const { dispatch } = this.props;
+    dispatch( setCamera(value) );
   }
   // s11
   onDriveModeChanged(value) {
-    alert('s11:' + value);
-    
+    //alert('s11:' + value);
     const { dispatch } = this.props;
     dispatch( setDriveMode(value) );
   }
   // s12
   onDirectionSwitchClick(value) {
-    alert('s12:' + value);
+    //alert('s12:' + value);
     
     const { dispatch } = this.props;
     const command = value === "on" ? "d1" : "d0";
@@ -149,11 +190,9 @@ class ViewM2Setup extends Component {
   }
   // s13 제동 선택?
 
-
   // s14
   onRunSwitchClick(value) {
-    alert('s14:' + value);
-    
+    //alert('s14:' + value);
     const { dispatch } = this.props;
     const command = value === "on" ? "s1" : "s0";
     dispatch( setRunSwitch(command.charAt(1)) );
@@ -162,13 +201,15 @@ class ViewM2Setup extends Component {
 
   // s15-1
   onHydroBkChange(value) {
-    alert('s15-1:' + value);
-    
+    // alert('s15-1:' + value);
+    const { dispatch } = this.props;
+    dispatch( setHydroBk(value) );
   }
   // s15-2
   onRegenBkChange(value) {
-    alert('s15-2:' + value);
-    
+    // alert('s15-2:' + value);
+    const { dispatch } = this.props;
+    dispatch( setRegenBk(value) );
   }
 
   render() {
@@ -186,10 +227,15 @@ class ViewM2Setup extends Component {
       directionSwitch,
       driveMode,
       emergencyStop,
+      // sequence
+      power, light, invCon1, invCon2, tBms, dcDc, apc,
+      invOut1, invOut2, sBms, sInv, camera, hydroBk, regenBk,
+
       dispatch
     } = this.props;
     const runSwitchValue = runSwitch == 0 ? "off" : "on";
     const directionSwitchValue = directionSwitch == 0 ? "off" : "on";
+    
     // console.log('runSwitch:', runSwitchValue);
     let sDriveModeStatus = '';
     let sDriveModeStatusColor = '#fff673';
@@ -286,7 +332,7 @@ class ViewM2Setup extends Component {
                         onTextColor="#000"  
                         offTextColor="#000" 
                         padding="7px 20px" 
-                        value="off"
+                        value={invCon1}
                         width='50%'
                         buttons={[
                           { idx: 1, title: 'on', value: 'on' }, 
@@ -301,7 +347,7 @@ class ViewM2Setup extends Component {
                         onTextColor="#000"  
                         offTextColor="#000" 
                         padding="7px 20px" 
-                        value="off"
+                        value={invCon2}
                         width='50%'
                         buttons={[
                           { idx: 1, title: 'on', value: 'on' }, 
@@ -316,7 +362,7 @@ class ViewM2Setup extends Component {
                         onTextColor="#000"  
                         offTextColor="#000" 
                         padding="7px 20px" 
-                        value="off"
+                        value={tBms}
                         width='50%'
                         buttons={[
                           { idx: 1, title: 'on', value: 'on' }, 
@@ -331,7 +377,7 @@ class ViewM2Setup extends Component {
                         onTextColor="#000"  
                         offTextColor="#000" 
                         padding="7px 20px" 
-                        value="off"
+                        value={dcDc}
                         width='50%'
                         buttons={[
                           { idx: 1, title: 'on', value: 'on' }, 
@@ -346,7 +392,7 @@ class ViewM2Setup extends Component {
                         onTextColor="#000"  
                         offTextColor="#000" 
                         padding="7px 20px" 
-                        value="off"
+                        value={apc}
                         width='50%'
                         buttons={[
                           { idx: 1, title: 'on', value: 'on' }, 
@@ -361,7 +407,7 @@ class ViewM2Setup extends Component {
                         onTextColor="#000"  
                         offTextColor="#000" 
                         padding="7px 20px" 
-                        value="off"
+                        value={invOut1}
                         width='50%'
                         buttons={[
                           { idx: 1, title: 'on', value: 'on' }, 
@@ -376,7 +422,7 @@ class ViewM2Setup extends Component {
                         onTextColor="#000"  
                         offTextColor="#000" 
                         padding="7px 20px" 
-                        value="off"
+                        value={invOut2}
                         width='50%'
                         buttons={[
                           { idx: 1, title: 'on', value: 'on' }, 
@@ -391,7 +437,7 @@ class ViewM2Setup extends Component {
                         onTextColor="#000"  
                         offTextColor="#000" 
                         padding="7px 20px" 
-                        value="off"
+                        value={sBms}
                         width='50%'
                         buttons={[
                           { idx: 1, title: 'on', value: 'on' }, 
@@ -406,7 +452,7 @@ class ViewM2Setup extends Component {
                         onTextColor="#000"  
                         offTextColor="#000" 
                         padding="7px 20px" 
-                        value="off"
+                        value={sInv}
                         width='50%'
                         buttons={[
                           { idx: 1, title: 'on', value: 'on' }, 
@@ -421,7 +467,7 @@ class ViewM2Setup extends Component {
                         onTextColor="#000"  
                         offTextColor="#000" 
                         padding="7px 20px" 
-                        value="off"
+                        value={camera}
                         width='50%'
                         buttons={[
                           { idx: 1, title: 'on', value: 'on' }, 
@@ -553,12 +599,13 @@ class ViewM2Setup extends Component {
                       </span>
                       <ControlSwitchButtonOnOff
                         title=""
+                        ref="powerButton"
                         onBgColor="#919138" 
                         offBgColor="#848695" 
                         onTextColor="#000"  
                         offTextColor="#000" 
                         padding="7px 0px" 
-                        value="off"
+                        value={power}
                         width='50%'
                         buttons={[
                           { idx: 1, title: 'on', value: 'on' }, 
@@ -582,13 +629,14 @@ class ViewM2Setup extends Component {
                         LIGHT
                       </span>
                       <ControlSwitchButtonOnOff
+                        id="btnLight"
                         title=""
                         onBgColor="#919138" 
                         offBgColor="#848695" 
                         onTextColor="#000"  
                         offTextColor="#000" 
                         padding="7px 0px" 
-                        value="off"
+                        value={light}
                         width='50%'
                         buttons={[
                           { idx: 1, title: 'on', value: 'on' }, 
@@ -1270,7 +1318,7 @@ class ViewM2Setup extends Component {
 }
 
 function mapStateToProps(state){
-    //console.log('emergencyStop:', state.setEmergencyStop.data);
+    console.log('state:', state.setM2SetupButtons);
     return {
       bmsSocData: state.bmsSocData,
       bmsTempData: state.bmsTempData,
@@ -1285,7 +1333,22 @@ function mapStateToProps(state){
       emergencyStop: state.setEmergencyStop.data,
       runSwitch: state.setRunSwitch.data,
       directionSwitch: state.setDirectionSwitch.data,
-      driveMode: state.setDriveMode.data
+      driveMode: state.setDriveMode.data,
+
+      power: state.setM2SetupButtons.power, 
+      light: state.setM2SetupButtons.light,
+      invCon1: state.setM2SetupButtons.invCon1,
+      invCon2: state.setM2SetupButtons.invCon2,
+      tBms:state.setM2SetupButtons.tBms,
+      dcDc: state.setM2SetupButtons.dcDc,
+      apc: state.setM2SetupButtons.apc,
+      invOut1: state.setM2SetupButtons.invOut1,
+      invOut2: state.setM2SetupButtons.invOut2,
+      sBms: state.setM2SetupButtons.sBms,
+      sInv: state.setM2SetupButtons.sInv,
+      camera: state.setM2SetupButtons.camera,
+      hydroBk: state.setM2SetupButtons.hydroBk,
+      regenBk: state.setM2SetupButtons.regenBk
       // =============================================
     }
 }

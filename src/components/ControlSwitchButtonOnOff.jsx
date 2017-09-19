@@ -11,18 +11,20 @@ export default class ControlSwitchButtonOnOff extends Component {
   }
   handleChange(e) {
     const value = e.target.dataset.value;
+    let bSet = true;
     if(this.props.onChange) {
-      this.props.onChange(value);
+      bSet = this.props.onChange(value);
     }
-    
-    this.setState({
-      value: value
-    });
+    if(bSet != false) {
+      this.setState({
+        value: value
+      });
+    }
   }
   render() {
     const { value } = this.state;
-    const { title, buttons, onBgColor, offBgColor, onTextColor, offTextColor, padding, width } = this.props;
-    
+    const { id, title, buttons, onBgColor, offBgColor, onTextColor, offTextColor, padding, width } = this.props;
+    const linkId = id ? id : "";
     let activeBgColor = 0;
     let activeTextColor = 0;
     if(value == 'on'){
@@ -51,6 +53,7 @@ export default class ControlSwitchButtonOnOff extends Component {
         <div style={{clear: 'both'}}></div>
         { buttons.map((button) => (
           <a
+            id={`${linkId}_${button.value}`}
             key={button.idx}
             href="#"
             data-value={button.value}//원래는 data-value={button.title} 였는데 타이틀과 값이 달라도 가능할려면 value가 맞는것 같아서 우선 수정
