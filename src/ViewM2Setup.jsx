@@ -10,9 +10,13 @@ import TestSetupGaugeBar from './components/TestSetupGaugeBar';
 import DynamicLineChart2 from './components/DynamicLineChart2';
 import RailroadTrailStartStop from './components/RailroadTrailStartStop';
 
+import KeyboardedInput from 'react-touch-screen-keyboard';
+import 'react-touch-screen-keyboard/src/Keyboard.css';
+import Keyboard from 'react-virtual-keyboard';
+
 import { setRunSwitch, setDirectionSwitch, setDriveMode, setEmergencyStop
   ,setPower ,setLight, setInvCon1, setInvCon2, setTbms, setDcDc, setApc, setInvOut1, setInvOut2
-  ,setSbms ,setSinv, setCamera, setHydroBk, setRegenBk
+  ,setSbms ,setSinv, setCamera, setHydroBk, setRegenBk, setPositionStart, setPositionStop
 } from './actions';
 
 import { connect } from 'react-redux';
@@ -20,7 +24,16 @@ import { connect } from 'react-redux';
 class ViewM2Setup extends Component {
   constructor(props) {
     super(props);
+    this.state = {
+      vehiclePositionStart: 0,
+      vehiclePositionStop: 0
+    };
+    this.NST_test_label = localStorage.getItem("NST_test_label") ? localStorage.getItem("NST_test_label") : 'NST 01';
     this.hostname = window.location.hostname;
+    this.railLength = 250;
+    
+    this.onVehiclePositionStartChange = this.onVehiclePositionStartChange.bind(this);
+    this.onVehiclePositionStopChange = this.onVehiclePositionStopChange.bind(this);
     // #1
     this.onPowerChange = this.onPowerChange.bind(this);
     // s02
@@ -58,6 +71,44 @@ class ViewM2Setup extends Component {
     // s15-2
     this.onRegenBkChange = this.onRegenBkChange.bind(this); 
     // this.sendMessageToDevice = this.sendMessageToDevice.bind(this);
+
+    this.setCurrentPositionStart = this.setCurrentPositionStart.bind(this);
+    this.setCurrentPositionStop = this.setCurrentPositionStop.bind(this);
+  }
+  onVehiclePositionStartChange(value) {
+    let start = value.replace('m', '');
+    start = start.replace(' ', '');
+    start = start.trim();
+
+    const { positionStop } = this.props;
+    if(start >= 0 && start < this.railLength) {
+      this.setState({
+        vehiclePositionStart: start
+      });
+    }
+
+  }
+  onVehiclePositionStopChange(value) {
+    let stop = value.replace('m', '');
+    stop = stop.replace(' ', '');
+    stop = stop.trim();
+
+    const { positionStar } = this.props;
+    if(stop >= 0 && stop <= this.railLength) {
+      this.setState({
+        vehiclePositionStop: stop
+      });
+    }
+  }
+  setCurrentPositionStart() {
+    const { dispatch } = this.props;
+    alert(this.state.vehiclePositionStart);
+    dispatch(setPositionStart(this.state.vehiclePositionStart));
+  }
+  setCurrentPositionStop() {
+    const { dispatch } = this.props;
+    alert(this.state.vehiclePositionStop);
+    dispatch(setPositionStop(this.state.vehiclePositionStop));
   }
   sendCommandToDevice(command) {
     var ws = new WebSocket(`ws://${this.hostname}:8181/`);
@@ -96,19 +147,14 @@ class ViewM2Setup extends Component {
     const { power, dispatch } = this.props;
     //alert('power:' + power);
     //alert('s02:' + value);
-    if(power == 'off' && value == 'on') {
-      alert('You must turn on the POWER');
-      return false;
-    } else {
-      dispatch( setLight(value) );
-    }
+    dispatch( setLight(value) );
   }
   // s03 -1
   onInvCon1Change(value) {
     //alert('s03-1:' + value);
-    const { light, dispatch } = this.props;
-    if(light == 'off' && value == 'on') {
-      alert('You must turn on the LIGHT');
+    const { power, dispatch } = this.props;
+    if(power == 'off' && value == 'on') {
+      alert('You must turn on the POWER');
       return false;
     } else {
       dispatch( setInvCon1(value) );
@@ -128,50 +174,90 @@ class ViewM2Setup extends Component {
   // s04
   onTbmsChange(value) {
     //alert('s04:' + value);
-    const { dispatch } = this.props;
-    dispatch( setTbms(value) );
+    const { invCon2, dispatch } = this.props;
+    if(invCon2 == 'off' && value == 'on') {
+      alert('You must turn on the INV CON2');
+      return false;
+    } else {
+      dispatch( setTbms(value) );
+    }
   }
   // s05
   onDcDcChange(value) {
     //alert('s05:' + value);
-    const { dispatch } = this.props;
-    dispatch( setDcDc(value) );
+    const { tBms, dispatch } = this.props;
+    if(tBms == 'off' && value == 'on') {
+      alert('You must turn on the T-BMS');
+      return false;
+    } else {
+      dispatch( setDcDc(value) );
+    }
   }
   // s06
   onApcChange(value) {
     //alert('s06:' + value);
-    const { dispatch } = this.props;
-    dispatch( setApc(value) );
+    const { dcDc, dispatch } = this.props;
+    if(dcDc == 'off' && value == 'on') {
+      alert('You must turn on the DC/DC');
+      return false;
+    } else {
+      dispatch( setApc(value) );
+    }
   }
   // s07-1
   onInvOut1Change(value) {
     //alert('s07-1:' + value);
-    const { dispatch } = this.props;
-    dispatch( setInvOut1(value) );
+    const { apc, dispatch } = this.props;
+    if(apc == 'off' && value == 'on') {
+      alert('You must turn on the APC');
+      return false;
+    } else {
+      dispatch( setInvOut1(value) );
+    }
   }
   // s07-2
   onInvOut2Change(value) {
     //alert('s07-2:' + value);
-    const { dispatch } = this.props;
-    dispatch( setInvOut2(value) );
+    const { invOut1, dispatch } = this.props;
+    if(invOut1 == 'off' && value == 'on') {
+      alert('You must turn on the INV OUT1');
+      return false;
+    } else {
+      dispatch( setInvOut2(value) );
+    }
   }
   // s08
   onSbmsChange(value) {
     //alert('s08:' + value);
-    const { dispatch } = this.props;
-    dispatch( setSbms(value) );
+    const { invOut2, dispatch } = this.props;
+    if(invOut2 == 'off' && value == 'on') {
+      alert('You must turn on the INV OUT2');
+      return false;
+    } else {
+      dispatch( setSbms(value) );
+    }
   }
   // s09
   onSinvChange(value) {
     //alert('s09:' + value);
-    const { dispatch } = this.props;
-    dispatch( setSinv(value) );
+    const { sBms, dispatch } = this.props;
+    if(sBms == 'off' && value == 'on') {
+      alert('You must turn on the S-BMS');
+      return false;
+    } else {
+      dispatch( setSinv(value) );
+    }
   }
   // s10
   onCameraChange(value) {
     //alert('s10:' + value);
-    const { dispatch } = this.props;
-    dispatch( setCamera(value) );
+    const { sInv, dispatch } = this.props;
+    if(sInv == 'off' && value == 'on') {
+      alert('You must turn on the S-INV');
+      return false;
+    } else {
+      dispatch( setCamera(value) );
+    }
   }
   // s11
   onDriveModeChanged(value) {
@@ -211,7 +297,9 @@ class ViewM2Setup extends Component {
     const { dispatch } = this.props;
     dispatch( setRegenBk(value) );
   }
-
+  componentDidMount() {
+    // alert(this.NST_test_label);
+  }
   render() {
     const { 
       bmsSocData,
@@ -229,9 +317,9 @@ class ViewM2Setup extends Component {
       emergencyStop,
       // sequence
       power, light, invCon1, invCon2, tBms, dcDc, apc,
-      invOut1, invOut2, sBms, sInv, camera, hydroBk, regenBk,
-
-      dispatch
+      invOut1, invOut2, sBms, sInv, camera, hydroBk, regenBk
+      ,positionStart, positionStop
+      ,dispatch
     } = this.props;
     const runSwitchValue = runSwitch == 0 ? "off" : "on";
     const directionSwitchValue = directionSwitch == 0 ? "off" : "on";
@@ -887,7 +975,8 @@ class ViewM2Setup extends Component {
                       marginBottom: '16px'
                     }}
                   >
-                    <RailroadTrailStartStop value={driveData.data.position} name="VEHICLE POSITION" unit="m" start={0} stop={250} />
+                    <div><span>{positionStart} {positionStop}</span></div>
+                    <RailroadTrailStartStop value={driveData.data.position} name="VEHICLE POSITION" unit="m" start={positionStart} stop={positionStop} />
                   </div>
                   <div
                     style={{
@@ -976,22 +1065,17 @@ class ViewM2Setup extends Component {
                             textAlign: 'left'
                           }}
                         >Start Position</div>
-                        <input
-                          value="10.5 m"
-                          style={{
-                            float: 'left',
-                            width: '70px',
-                            background: 'none',
-                            border: '1px solid rgba(255,255,255,0.3)',
-                            color: '#fff',
-                            padding: '7px 5px',
-                            textAlign: 'center',
-                            fontSize: '15px',
-                            marginRight: '5px'
-                          }}
-                        />
+                        <KeyboardedInput
+                          enabled
+                          className="input-vehicel-position"
+                          type="text"
+                          defaultKeyboard="us"
+                          value={`${this.state.vehiclePositionStart} m`}
+                          onChange={this.onVehiclePositionStartChange}
+                        /> 
                         <input
                           value="SET"
+                          onClick={this.setCurrentPositionStart}
                           style={{
                             float: 'left',
                             width: '70px',
@@ -1005,6 +1089,7 @@ class ViewM2Setup extends Component {
                             cursor: 'pointer'
                           }}
                         />
+                       
                       </div>{/*inputGroup END*/}
                       <div
                         className="inputGroup"
@@ -1024,22 +1109,18 @@ class ViewM2Setup extends Component {
                             textAlign: 'left'
                           }}
                         >Stop Position</div>
+                        <KeyboardedInput
+                          enabled
+                          className="input-vehicel-position"
+                          type="text"
+                          defaultKeyboard="us"
+                          value={`${this.state.vehiclePositionStop} m`}
+                          onChange={this.onVehiclePositionStopChange}
+                        /> 
                         <input
-                          value="120 m"
-                          style={{
-                            float: 'left',
-                            width: '70px',
-                            background: 'none',
-                            border: '1px solid rgba(255,255,255,0.3)',
-                            color: '#fff',
-                            padding: '7px 5px',
-                            textAlign: 'center',
-                            fontSize: '15px',
-                            marginRight: '5px'
-                          }}
-                        />
-                        <input
+                          type="button"
                           value="SET"
+                          onClick={this.setCurrentPositionStop}
                           style={{
                             float: 'left',
                             width: '70px',
@@ -1318,7 +1399,7 @@ class ViewM2Setup extends Component {
 }
 
 function mapStateToProps(state){
-    console.log('state:', state.setM2SetupButtons);
+    // console.log('state:', state.setM2SetupButtons);
     return {
       bmsSocData: state.bmsSocData,
       bmsTempData: state.bmsTempData,
@@ -1348,7 +1429,10 @@ function mapStateToProps(state){
       sInv: state.setM2SetupButtons.sInv,
       camera: state.setM2SetupButtons.camera,
       hydroBk: state.setM2SetupButtons.hydroBk,
-      regenBk: state.setM2SetupButtons.regenBk
+      regenBk: state.setM2SetupButtons.regenBk,
+
+      positionStart: state.setM2SetupButtons.positionStart,
+      positionStop: state.setM2SetupButtons.positionStop,
       // =============================================
     }
 }

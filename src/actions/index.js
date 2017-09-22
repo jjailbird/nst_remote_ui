@@ -46,6 +46,9 @@ export const SET_SINV = 'SET_SINV';
 export const SET_CAMERA = 'SET_CAMERA';
 export const SET_HYDRO_BK = 'SET_HYDRO_BK';
 export const SET_REGEN_BK = 'SET_REGEN_BK';
+
+export const SET_POSITION_START = 'SET_POSITION_START';
+export const SET_POSITION_STOP = 'SET_POSITION_STOP';
 // ===================================================================
 
 //DRIVE =======================================================
@@ -281,7 +284,7 @@ export const setDriveMode = (data) => {
   }
 }
 
-// sequence
+// TEST SETUP sequence
 export const setPower = (data) => {
   // console.log('setpower', data);
   return {
@@ -367,5 +370,16 @@ export const setRegenBk = (data) => {
     data
   }
 }
-
+export const setPositionStart = (data) => {
+  return {
+    type: SET_POSITION_START,
+    data
+  }
+}
+export const setPositionStop = (data) => {
+  return {
+    type: SET_POSITION_STOP,
+    data
+  }
+}
 // =========================================================

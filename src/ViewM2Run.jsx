@@ -6,6 +6,9 @@ import RailDonutPanelRight from './components/RailDonutPanelRight'
 import RailDonutGraphLeft from './components/RailDonutGraphLeft'
 import RailDonuGraphRight from './components/RailDonutGraphRight'
 
+import KeyboardedInput from 'react-touch-screen-keyboard';
+import 'react-touch-screen-keyboard/src/Keyboard.css';
+import Clock from 'react-live-clock';
 import { connect } from 'react-redux';
 
 // import Script from 'react-load-script'
@@ -14,6 +17,10 @@ import Websocket from 'react-websocket';
 class ViewM2Run extends Component {
   constructor(props) {
     super(props);
+    this.state = {
+      testLabel: localStorage.getItem("NST_test_label") ? localStorage.getItem("NST_test_label") :'NST 01',
+    };
+
     this.hostname = window.location.hostname;
     this.host = window.location.host;
     
@@ -33,11 +40,13 @@ class ViewM2Run extends Component {
     this.onMediaSourceOpen = this.onMediaSourceOpen.bind(this);
     this.onVideoPlay = this.onVideoPlay.bind(this);
     this.H5SWebSocketClient = this.H5SWebSocketClient.bind(this);
+    this.onTestLabelChange = this.onTestLabelChange.bind(this);
   }
+  // h5ss ==========================================================================
   H5SWebSocketClient(){
     var socket;
     try {
-      console.log('window.location.protocol', window.location.protocol);
+      // console.log('window.location.protocol', window.location.protocol);
       // let wsConnectionString = 'ws://' + window.location.host + '/h5sws';
       let wsConnectionString = 'ws://localhost:8801/h5sws2';
       if (window.location.protocol == "http:") 
@@ -49,7 +58,7 @@ class ViewM2Run extends Component {
       }
       socket = new WebSocket(wsConnectionString);
      
-      console.log('websocket',wsConnectionString);
+      // console.log('websocket',wsConnectionString);
     } catch (e) {
       alert('error');
       return;
@@ -58,7 +67,7 @@ class ViewM2Run extends Component {
   }
 
 	readFromBuffer(){
-		console.log('readFromBuffer');
+		// console.log('readFromBuffer');
 		if (this.buffer.length === 0 || !this.sourceBuffer || this.sourceBuffer.updating) 
 		{
 		  return;
@@ -72,14 +81,14 @@ class ViewM2Run extends Component {
 	};
 	
 	keepaliveTimer(){
-		console.log('keepaliveTimer', 'keepalive');
+		// console.log('keepaliveTimer', 'keepalive');
 		this.wsSocket.send("keepalive");
 	}
 
 	onWebSocketData(msg){
     var blob = msg.data; 
     // var blob = msg; // when using react-websocket
-		console.log('blob', blob);
+		// console.log('blob', blob);
 		var fileReader = new FileReader();
     fileReader.onload = this.onFileReaderOnload;
     /*
@@ -92,12 +101,12 @@ class ViewM2Run extends Component {
     fileReader.readAsArrayBuffer(blob);
   }  
   onFileReaderOnload(e){
-    console.log('onFileReaderOnload! parameter',e);
+    // console.log('onFileReaderOnload! parameter',e);
     this.buffer.push(e.target.result);
     this.readFromBuffer();
   }
   onMediaSourceOpen(){
-    console.log('mediaSource', 'sourceopen!');
+    // console.log('mediaSource', 'sourceopen!');
     this.video.play();
     //var strCodec = 'video/mp4; codecs="avc1.420028"';
     //var strCodec = 'video/mp4; codecs="avc1.42E01E"';
@@ -108,12 +117,22 @@ class ViewM2Run extends Component {
   }
   
   onVideoPlay(){
-    console.log('video', 'play!');
+    // console.log('video', 'play!');
     this.wsSocket = this.H5SWebSocketClient();
     this.wsSocket.onmessage = this.onWebSocketData;
     setInterval(this.keepaliveTimer, 1000);	
   }
-
+  // ============================================================================
+  onTestLabelChange(value) {
+    if (typeof(Storage) !== "undefined") {
+      // Store
+      console.log('localstroage!');
+      localStorage.setItem("NST_test_label", value);
+      // Retrieve
+      // document.getElementById("result").innerHTML = localStorage.getItem("lastname");
+    } 
+    this.setState({ testLabel: value });
+  }
   componentDidMount(){
         
     window.MediaSource = window.MediaSource || window.WebKitMediaSource;
@@ -286,12 +305,17 @@ class ViewM2Run extends Component {
               <div className="tccTitle">
                 test day
               </div>
-              <div className="tccCount">
-                nst 01
-              </div>
+              <KeyboardedInput
+                enabled
+                className="tccCount"
+                type="text"
+                defaultKeyboard="us"
+                value={this.state.testLabel}
+                onChange={this.onTestLabelChange}
+              /> 
             </div>
             <div className="tccDayBox">
-              2017.9.9 Mon 20:20 32
+              <Clock format={'YYYY.MM.DD ddd HH:mm:ss'} ticking={true} timezone={'Asia/Tokyo'} />
             </div>
           </div>
           <div className="tcPositionBox">

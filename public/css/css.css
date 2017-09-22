@@ -911,6 +911,15 @@ ul.setupDescList li{
   font-weight:bold;
   margin-top:10px;
 }
+.tcDayCountBox .tcCountBox input.tccCount{
+  outline: none;
+  text-align: center;
+  -webkit-appearance:none;
+  border: 0;
+  outline: none;
+  outline-offset: 0;
+  padding: 7px 5px;
+}
 .tcDayCountBox .tccDayBox{
   float:right;
   color:#fff;
@@ -1140,4 +1149,23 @@ ul.setupDescList li{
 
 .keyboard-wrapper {
   bottom: 415px !important;
+}
+
+input.input-vehicel-position {
+  float: left;
+  width: 70px;
+  background: none;
+  border: 1px solid rgba(255,255,255,0.3);
+  color: #fff;
+  padding: 7px 5px;
+  text-align: center;
+  font-size: 15px;
+  margin-right: 5px;
+
+}
+.input-vehicel-position:after {
+  position: absolute;
+  right: -4px;
+  top: 10px;
+  content: "m";
 }

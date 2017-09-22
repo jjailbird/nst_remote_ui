@@ -1,9 +1,11 @@
 import { SET_POWER ,SET_LIGHT ,SET_INV_CON1 ,SET_INV_CON2 ,SET_TBMS ,SET_DCDC ,SET_APC
   ,SET_INV_OUT1, SET_INV_OUT2, SET_SBMS, SET_SINV, SET_CAMERA ,SET_HYDRO_BK ,SET_REGEN_BK
+  ,SET_POSITION_START, SET_POSITION_STOP
 } from '../actions';
 
 const initialState = { power: 'off', light: 'off', invCon1: 'off', invCon2: 'off', tBms: 'off', dcDc: 'off', apc: 'off',
-  invOut1: 'off', invOut2: 'off', sBms: 'off', sInv: 'off', camera: 'off', hydroBk: 'off', regenBk: 'off'  
+  invOut1: 'off', invOut2: 'off', sBms: 'off', sInv: 'off', camera: 'off', hydroBk: 'off', regenBk: 'off',
+  positionStart: 0, positionStop: 250 
 }
 
 export default function setM2SetupButtons(state = initialState, action) {
@@ -37,6 +39,10 @@ export default function setM2SetupButtons(state = initialState, action) {
       return { ...state, hydroBk: action.data };
     case SET_REGEN_BK:
       return { ...state, regenBk: action.data };
+    case SET_POSITION_START:
+      return { ...state, positionStart: action.data };
+    case SET_POSITION_STOP:
+      return { ...state, positionStop: action.data };
     default:
       return state;
   } 
