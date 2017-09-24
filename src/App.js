@@ -54,32 +54,63 @@ class App extends Component {
     this.changeNaviBackground = this.changeNaviBackground.bind(this);
     
     // M2SetupData ============================================
-    this.testSetupData = {
-      TBmsSoc1: 0,
-      TBmsSoc2: 0,
-      TBmsSoc3: 0,
-      TBmsSoc4: 0,
-      TBmsTemp1: 0,
-      TBmsTemp2: 0,
-      TBmsTemp3: 0,
-      TBmsTemp4: 0,
-      InvVolt1: 0,
-      InvVolt2: 0,
-      InvVolt3: 0,
-      InvVolt4: 0,
-      InvTemp1: 0,
-      InvTemp2: 0,
-      InvTemp3: 0,
-      InvTemp4: 0,
-      CBmsSoc1: 0,
-      CBmsVolt1: 0,
-      SBmsSoc1: 0,
-      SBmsSoc2: 0,
-      SBmsVolt1: 0,
-      SBmsVolt2: 0
+    this.testSetup = {
+      data: {
+        TBmsSoc1: 0,
+        TBmsSoc2: 0,
+        TBmsSoc3: 0,
+        TBmsSoc4: 0,
+        TBmsTemp1: 0,
+        TBmsTemp2: 0,
+        TBmsTemp3: 0,
+        TBmsTemp4: 0,
+        InvVolt1: 0,
+        InvVolt2: 0,
+        InvVolt3: 0,
+        InvVolt4: 0,
+        InvTemp1: 0,
+        InvTemp2: 0,
+        InvTemp3: 0,
+        InvTemp4: 0,
+        
+        CBmsSoc1: 0,
+        CBmsVolt1: 0,
+        SBmsSoc1: 0,
+        SBmsSoc2: 0,
+        SBmsVolt1: 0,
+        SBmsVolt2: 0,
+  
+        Notch: 0,
+        VehicleSpeed: 0,
+        BatterySoc: 0,
+        Tract: 0,
+        Brake: 0,
+  
+        VehiclePosition: 0
+      },
+      VehicleSpeedArray: []
+ 
     };
     // ========================================================
-    
+    this.setDriveInfoData = {};
+    this.setDriveInfoData.notch = 0;
+    this.setDriveInfoData.speed = [];
+    this.setDriveInfoData.soc = 0;
+    this.setDriveInfoData.tract = 0;
+    this.setDriveInfoData.brake = 0;
+
+    this.setDriveData = {};
+    this.setDriveData.tracBatt = 0;
+    this.setDriveData.contBatt = 0;
+    this.setDriveData.maxInvTemp = 0;
+    this.setDriveData.maxMotorTemp = 0;
+    this.setDriveData.battTemp = 0;
+    this.setDriveData.soc = 0;
+    this.setDriveData.fwd = 0;
+    this.setDriveData.speed = 0;
+    this.setDriveData.position = 0;
+    this.setDriveData.trat = 0;
+    this.setDriveData.brake = 0;
  }
   componentDidMount() {
     // console.log('this.hostname',this.hostname);
@@ -93,7 +124,7 @@ class App extends Component {
     const { dispatch } = this.props;
     const command = json.command ? json.command : null;
     
-    console.log('TESTSETUP', json.TESTSETUP);
+    //console.log('TESTSETUP', json.TESTSETUP);
 
     if (command) {
       console.log('command:', command);
@@ -117,8 +148,12 @@ class App extends Component {
     if (TESTSETUP) {
       
       // M2SetupData ============================================
-      this.testSetupData = TESTSETUP;
-      dispatch(setTestSetupData(this.testSetupData));
+      this.testSetup.data = TESTSETUP;
+      if (this.testSetup.VehicleSpeedArray.length >= 234) {
+        this.testSetup.VehicleSpeedArray.shift();
+      }
+      this.testSetup.VehicleSpeedArray.push(TESTSETUP.VehicleSpeed);
+      dispatch(setTestSetupData(this.testSetup));
       // ========================================================
       /*
       this.setInvVoltData.inv1 = TESTSETUP.INV.Inv1; // getRandomFloat(-10,10);
@@ -148,8 +183,8 @@ class App extends Component {
       this.setBcuTBogieData.b4 = TESTSETUP.BCU.TBogie4; // getRandomFloat(0,2);
       this.setBcuTBogieData.tBogieAvg = TESTSETUP.BCU.TBogieAvg;
       dispatch( setBcuTBogieData(this.setBcuTBogieData) )
-      */
-
+      
+      
       this.setDriveInfoData.notch = TESTSETUP.Drive.Notch // getRandomInt(-3,3);
       if (this.setDriveInfoData.speed.length >= 234) {
         this.setDriveInfoData.speed.shift();
@@ -159,6 +194,7 @@ class App extends Component {
       this.setDriveInfoData.tract = TESTSETUP.Drive.Trat;
       this.setDriveInfoData.brake = TESTSETUP.Drive.Brake;
       dispatch( setDriveInfoData(this.setDriveInfoData) )
+      */
     }
 
     if (TESTDRIVE) {

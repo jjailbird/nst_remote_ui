@@ -6,7 +6,8 @@ import TestPanelDataDonutCircleChart from './TestPanelDataDonutCircleChart'
 export default class TestSetupPanelDataContainer extends Component {
   render() {
     const { dataLeft, dataRight, compTitle, nameLeft, nameRight, unitLeft, unitRight, cNameLeft, cNameRight, barTitle, CompColor } = this.props;
-    //console.log('get graph dataLeft:', dataLeft);  
+    if(compTitle == 'T-BMS')
+      console.log('get graph dataLeft:', dataLeft);  
     let dataLeft1 = '';
     let dataLeft2 = '';
     let dataLeft3 = '';

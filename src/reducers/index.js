@@ -49,6 +49,7 @@ import rearWheelsetHscData from './rearWheelsetHscData';
 // HSC_SETUP =======================================================
 
 import setM2SetupButtons from './setM2SetupButtons';
+import setM2SetupData from './setM2SetupData';
 
 const reducers = combineReducers({ 
   frontLeftData,
@@ -86,7 +87,8 @@ const reducers = combineReducers({
   setDirectionSwitch,
   setDriveLever,
   setDriveMode,
-  setM2SetupButtons
+  setM2SetupButtons,
+  setM2SetupData
 });
 
 export default reducers;

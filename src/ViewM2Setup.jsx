@@ -320,11 +320,12 @@ class ViewM2Setup extends Component {
       power, light, invCon1, invCon2, tBms, dcDc, apc,
       invOut1, invOut2, sBms, sInv, camera, hydroBk, regenBk
       ,positionStart, positionStop
-      ,dispatch
+      ,testSetup, dispatch
     } = this.props;
     const runSwitchValue = runSwitch == 0 ? "off" : "on";
     const directionSwitchValue = directionSwitch == 0 ? "off" : "on";
     
+    console.log('testSetup', testSetup);
     // console.log('runSwitch:', runSwitchValue);
     let sDriveModeStatus = '';
     let sDriveModeStatusColor = '#fff673';
@@ -373,9 +374,11 @@ class ViewM2Setup extends Component {
               {/*
               <TestSetupPanelDataContainer dataLeft={bmsSocData.data} dataRight={bmsTempData.data} compTitle="BMS" nameLeft="BMS SOC" nameRight="BMS Temp" unitLeft="%" unitRight="℃" cNameLeft="SOC" cNameRight="TEMP" barTitle="PACK #" CompColor="#3581c9"/>
               */}
+              {console.log('testSetup', testSetup)}
               <TestSetupPanelDataContainer
                 compTitle="T-BMS" nameLeft="CELL SOC" nameRight="CELL TEMP" unitLeft="%" unitRight="℃" cNameLeft="SOC" cNameRight="TEMP" barTitle="PACK #" CompColor="#3581c9"
-                dataLeft={bmsSocData.data}
+                dataLeft={{data1: testSetup.data.TBmsSoc1, data2: testSetup.data.TBmsSoc2, data3: testSetup.data.TBmsSoc3, data4: testSetup.data.TBmsSoc4}}
+                // dataLeft={bmsTempData.data}
                 dataRight={bmsTempData.data}
               /> 
               <TestSetupPanelDataContainer dataLeft={invVoltData.data} dataRight={invTempData.data} compTitle="INV" nameLeft="" nameRight="" unitLeft="V" unitRight="℃" cNameLeft="OUT VOLT" cNameRight="TEMP" barTitle="INV #" CompColor="#3581c9"/>
@@ -1404,8 +1407,10 @@ class ViewM2Setup extends Component {
 }
 
 function mapStateToProps(state){
-    // console.log('state:', state.setM2SetupButtons);
+    console.log('state:', state.setM2SetupData.testSetup);
     return {
+      testSetup: state.setM2SetupData.testSetup,
+
       bmsSocData: state.bmsSocData,
       bmsTempData: state.bmsTempData,
       invTempData: state.invTempData,

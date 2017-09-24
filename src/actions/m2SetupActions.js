@@ -58,7 +58,7 @@ export const SET_SBMS_VOLT_2 = 'SET_SBMS_VOLT_2';
 
 // TEST SETUP Vehicle Status Buttons ----------------
 export const setTestSetupData = (data) => {
-  // console.log('setpower', data);
+  //console.log('setTestSetupData', data);
   return {
     type: SET_TEST_SETUP_DATA,
     data
