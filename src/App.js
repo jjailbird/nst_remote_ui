@@ -1,12 +1,20 @@
 import Websocket from 'react-websocket';
 import { connect } from 'react-redux';
 import { 
-  setBmsSocData, setBmsTempData,
-  setInvVoltData, setInvTempData,
-  setBcuMBogieData, setBcuTBogieData,
   setDriveInfoData, setDriveData,
   setEmergencyStop, setRunSwitch, setDirectionSwitch, setDriveLever
 } from './actions';
+
+import { 
+  setTbmsSoc1, setTbmsSoc2, setTbmsSoc3, setTbmsSoc4,
+  setTbmsTemp1, setTbmsTemp2, setTbmsTemp3, setTbmsTemp4, 
+  setInvVolt1, setInvVolt2, setInvVolt3, setInvVolt4,
+  setInvTemp1, setInvTemp2, setInvTemp3, setInvTemp4,
+  setCbmsSoc1, setCbmsVolt1,
+  setSbmsSoc1, setSbmsSoc2,
+  setSbmsVolt1, setSbmsVolt2,
+  setTestSetupData
+} from './actions/m2SetupActions';
 
 import React, { Component } from 'react';
 // import logo from './logo.svg';
@@ -44,62 +52,34 @@ class App extends Component {
     // this.hostname = window.location.host;
     this.handleData = this.handleData.bind(this);
     this.changeNaviBackground = this.changeNaviBackground.bind(this);
-    // used variables =========================================
-    this.setBmsSocData = {};
-    this.setBmsSocData.cell1 = 0;
-    this.setBmsSocData.cell2 = 0;
-    this.setBmsSocData.cell3 = 0;
-    this.setBmsSocData.cell4 = 0;
-
-    this.setBmsTempData = {};
-    this.setBmsTempData.cell1 = 0;
-    this.setBmsTempData.cell2 = 0;
-    this.setBmsTempData.cell3 = 0;
-    this.setBmsTempData.cell4 = 0;
-
-    this.setInvVoltData = {};
-    this.setInvVoltData.inv1 = 0;
-    this.setInvVoltData.inv2 = 0;
-    this.setInvVoltData.inv3 = 0;
-    this.setInvVoltData.inv4 = 0;
-
-    this.setInvTempData = {};
-    this.setInvTempData.inv1 = 0;
-    this.setInvTempData.inv2 = 0;
-    this.setInvTempData.inv3 = 0;
-    this.setInvTempData.inv4 = 0;
-
-    this.setBcuMBogieData = {};
-    this.setBcuMBogieData.b1 = 0;
-    this.setBcuMBogieData.b2 = 0;
-    this.setBcuMBogieData.b3 = 0;
-    this.setBcuMBogieData.b4 = 0;
-
-    this.setBcuTBogieData = {};
-    this.setBcuTBogieData.b1 = 0;
-    this.setBcuTBogieData.b2 = 0;
-    this.setBcuTBogieData.b3 = 0;
-    this.setBcuTBogieData.b4 = 0;
-
-    this.setDriveInfoData = {};
-    this.setDriveInfoData.notch = 0;
-    this.setDriveInfoData.speed = [];
-    this.setDriveInfoData.soc = 0;
-    this.setDriveInfoData.tract = 0;
-    this.setDriveInfoData.brake = 0;
-
-    this.setDriveData = {};
-    this.setDriveData.tracBatt = 0;
-    this.setDriveData.contBatt = 0;
-    this.setDriveData.maxInvTemp = 0;
-    this.setDriveData.maxMotorTemp = 0;
-    this.setDriveData.battTemp = 0;
-    this.setDriveData.soc = 0;
-    this.setDriveData.fwd = 0;
-    this.setDriveData.speed = 0;
-    this.setDriveData.position = 0;
-    this.setDriveData.trat = 0;
-    this.setDriveData.brake = 0;
+    
+    // M2SetupData ============================================
+    this.testSetupData = {
+      TBmsSoc1: 0,
+      TBmsSoc2: 0,
+      TBmsSoc3: 0,
+      TBmsSoc4: 0,
+      TBmsTemp1: 0,
+      TBmsTemp2: 0,
+      TBmsTemp3: 0,
+      TBmsTemp4: 0,
+      InvVolt1: 0,
+      InvVolt2: 0,
+      InvVolt3: 0,
+      InvVolt4: 0,
+      InvTemp1: 0,
+      InvTemp2: 0,
+      InvTemp3: 0,
+      InvTemp4: 0,
+      CBmsSoc1: 0,
+      CBmsVolt1: 0,
+      SBmsSoc1: 0,
+      SBmsSoc2: 0,
+      SBmsVolt1: 0,
+      SBmsVolt2: 0
+    };
+    // ========================================================
+    
  }
   componentDidMount() {
     // console.log('this.hostname',this.hostname);
@@ -112,6 +92,8 @@ class App extends Component {
     const TESTSETUP = json.TESTSETUP ? json.TESTSETUP : null;
     const { dispatch } = this.props;
     const command = json.command ? json.command : null;
+    
+    console.log('TESTSETUP', json.TESTSETUP);
 
     if (command) {
       console.log('command:', command);
@@ -133,20 +115,12 @@ class App extends Component {
     }
 
     if (TESTSETUP) {
-      this.setBmsSocData.cell1 = TESTSETUP.BMS.Soc1;
-      this.setBmsSocData.cell2 = TESTSETUP.BMS.Soc2;
-      this.setBmsSocData.cell3 = TESTSETUP.BMS.Soc3;
-      this.setBmsSocData.cell4 = TESTSETUP.BMS.Soc4;
-      this.setBmsSocData.socTotal = TESTSETUP.BMS.SocTotal;
-      dispatch( setBmsSocData(this.setBmsSocData) );
-
-      this.setBmsTempData.cell1 = TESTSETUP.BMS.Temp1;
-      this.setBmsTempData.cell2 = TESTSETUP.BMS.Temp2;
-      this.setBmsTempData.cell3 = TESTSETUP.BMS.Temp3;
-      this.setBmsTempData.cell4 = TESTSETUP.BMS.Temp4;
-      this.setBmsTempData.tempAvg = TESTSETUP.BMS.TempAvg;
-      dispatch( setBmsTempData(this.setBmsTempData) );
-
+      
+      // M2SetupData ============================================
+      this.testSetupData = TESTSETUP;
+      dispatch(setTestSetupData(this.testSetupData));
+      // ========================================================
+      /*
       this.setInvVoltData.inv1 = TESTSETUP.INV.Inv1; // getRandomFloat(-10,10);
       this.setInvVoltData.inv2 = TESTSETUP.INV.Inv2; // getRandomFloat(-5,5);
       this.setInvVoltData.inv3 = TESTSETUP.INV.Inv3; // getRandomFloat(0,3000);
@@ -174,7 +148,7 @@ class App extends Component {
       this.setBcuTBogieData.b4 = TESTSETUP.BCU.TBogie4; // getRandomFloat(0,2);
       this.setBcuTBogieData.tBogieAvg = TESTSETUP.BCU.TBogieAvg;
       dispatch( setBcuTBogieData(this.setBcuTBogieData) )
-
+      */
 
       this.setDriveInfoData.notch = TESTSETUP.Drive.Notch // getRandomInt(-3,3);
       if (this.setDriveInfoData.speed.length >= 234) {

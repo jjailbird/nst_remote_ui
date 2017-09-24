@@ -17,7 +17,8 @@ import Keyboard from 'react-virtual-keyboard';
 import { setRunSwitch, setDirectionSwitch, setDriveMode, setEmergencyStop
   ,setPower ,setLight, setInvCon1, setInvCon2, setTbms, setDcDc, setApc, setInvOut1, setInvOut2
   ,setSbms ,setSinv, setCamera, setHydroBk, setRegenBk, setPositionStart, setPositionStop
-} from './actions';
+  ,setTestSetupData
+} from './actions/m2SetupActions';
 
 import { connect } from 'react-redux';
 
@@ -372,7 +373,11 @@ class ViewM2Setup extends Component {
               {/*
               <TestSetupPanelDataContainer dataLeft={bmsSocData.data} dataRight={bmsTempData.data} compTitle="BMS" nameLeft="BMS SOC" nameRight="BMS Temp" unitLeft="%" unitRight="℃" cNameLeft="SOC" cNameRight="TEMP" barTitle="PACK #" CompColor="#3581c9"/>
               */}
-              <TestSetupPanelDataContainer dataLeft={bmsSocData.data} dataRight={bmsTempData.data} compTitle="T-BMS" nameLeft="CELL SOC" nameRight="CELL TEMP" unitLeft="%" unitRight="℃" cNameLeft="SOC" cNameRight="TEMP" barTitle="PACK #" CompColor="#3581c9"/> 
+              <TestSetupPanelDataContainer
+                compTitle="T-BMS" nameLeft="CELL SOC" nameRight="CELL TEMP" unitLeft="%" unitRight="℃" cNameLeft="SOC" cNameRight="TEMP" barTitle="PACK #" CompColor="#3581c9"
+                dataLeft={bmsSocData.data}
+                dataRight={bmsTempData.data}
+              /> 
               <TestSetupPanelDataContainer dataLeft={invVoltData.data} dataRight={invTempData.data} compTitle="INV" nameLeft="" nameRight="" unitLeft="V" unitRight="℃" cNameLeft="OUT VOLT" cNameRight="TEMP" barTitle="INV #" CompColor="#3581c9"/>
               {/*<TestSetupPanelDataContainer dataLeft={bcuMBogieData.data} dataRight={bcuMTogieData.data} compTitle="BCU" nameLeft="" nameRight="" unitLeft="Kpa" unitRight="Kpa" cNameLeft="M Bogie" cNameRight="T Bogie" barTitle="Caliper #" CompColor="#6f9450"/>*/}
               <TestSetupPanelDataContainer1

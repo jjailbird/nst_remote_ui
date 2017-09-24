@@ -1,3 +1,11 @@
+export const SET_BMS_SOC_DATA = 'SET_BMS_SOC_DATA';
+export const SET_BMS_TEMP_DATA = 'SET_BMS_TEMP_DATA';
+export const SET_INV_VOLT_DATA = 'SET_INV_VOLT_DATA';
+export const SET_INV_TEMP_DATA = 'SET_INV_TEMP_DATA';
+export const SET_BCU_M_BOGIE_DATA = 'SET_BCU_M_BOGIE_DATA';
+export const SET_BCU_T_BOGIE_DATA = 'SET_BCU_T_BOGIE_DATA';
+export const SET_DRIVE_INFO_DATA = 'SET_DRIVE_INFO_DATA';
+
 // ITC_TEST =======================================================
 export const SET_FRONT_LEFT_DATA = 'SET_FRONT_LEFT_DATA';
 export const SET_FRONT_RIGHT_DATA = 'SET_FRONT_RIGHT_DATA';
@@ -14,42 +22,7 @@ export const SET_FRONT_LASER_DATA = 'SET_FRONT_LASER_DATA';
 export const SET_REAR_LASER_DATA = 'SET_REAR_LASER_DATA';
 export const SET_FRONT_SENSOR_DATA = 'SET_FRONT_SENSOR_DATA';
 export const SET_REAR_SENSOR_DATA = 'SET_REAR_SENSOR_DATA';
-
-// TEST_SETUP =======================================================
-export const SET_BMS_SOC_DATA = 'SET_BMS_SOC_DATA';
-export const SET_BMS_TEMP_DATA = 'SET_BMS_TEMP_DATA';
-export const SET_INV_VOLT_DATA = 'SET_INV_VOLT_DATA';
-export const SET_INV_TEMP_DATA = 'SET_INV_TEMP_DATA';
-export const SET_BCU_M_BOGIE_DATA = 'SET_BCU_M_BOGIE_DATA';
-export const SET_BCU_T_BOGIE_DATA = 'SET_BCU_T_BOGIE_DATA';
-export const SET_DRIVE_INFO_DATA = 'SET_DRIVE_INFO_DATA';
-// ===================================================================
-
-// TEST_SETUP COMMAND ================================================
-export const SET_EMERGENCY_STOP = 'SET_EMERGENCY_STOP';
-export const SET_RUN_SWITCH = 'SET_RUN_SWITCH';
-export const SET_DIRECTION_SWITCH = 'SET_DIRECTION_SWITCH';
-export const SET_DRIVE_LEVER = 'SET_DRIVE_LEVER';
-export const SET_DRIVE_MODE = 'SET_DRIVE_MODE';
-
-export const SET_POWER = 'SET_POWER';
-export const SET_LIGHT = 'SET_LIGHT';
-export const SET_INV_CON1 = 'SET_INV_CON1';
-export const SET_INV_CON2 = 'SET_INV_CON2';
-export const SET_TBMS = 'SET_TBMS';
-export const SET_DCDC = 'SET_DCDC';
-export const SET_APC = 'SET_APC';
-export const SET_INV_OUT1 = 'SET_INV_OUT1';
-export const SET_INV_OUT2 = 'SET_INV_OUT2';
-export const SET_SBMS = 'SET_SBMS';
-export const SET_SINV = 'SET_SINV';
-export const SET_CAMERA = 'SET_CAMERA';
-export const SET_HYDRO_BK = 'SET_HYDRO_BK';
-export const SET_REGEN_BK = 'SET_REGEN_BK';
-
-export const SET_POSITION_START = 'SET_POSITION_START';
-export const SET_POSITION_STOP = 'SET_POSITION_STOP';
-// ===================================================================
+// ================================================================
 
 //DRIVE =======================================================
 export const SET_DRIVE_DATA = 'SET_DRIVE_DATA';
@@ -62,6 +35,7 @@ export const SET_REAR_RIGHT_HSC_DATA = 'SET_REAR_RIGHT_HSC_DATA';
 export const SET_MOTOR_CONTROL_HSC_DATA = 'SET_MOTOR_CONTROL_HSC_DATA';
 export const SET_FRONT_WHEELSET_HSC_DATA = 'SET_FRONT_WHEELSET_HSC_DATA';
 export const SET_REAR_WHEELSET_HSC_DATA = 'SET_REAR_WHEELSET_HSC_DATA';
+
 
 // HSC_SETUP =======================================================
 
@@ -245,141 +219,3 @@ export const setRearWheelsetHscData = (data) => {
     data
   }
 }
-
-
-//  [DIO] command ============================================
-
-export const setEmergencyStop = (data) => {
-  return {
-    type: SET_EMERGENCY_STOP,
-    data
-  }
-}
-
-export const setRunSwitch = (data) => {
-  return {
-    type: SET_RUN_SWITCH,
-    data
-  }
-}
-
-export const setDirectionSwitch = (data) => {
-  return {
-    type: SET_DIRECTION_SWITCH,
-    data
-  }
-}
-
-export const setDriveLever = (data) => {
-  return {
-    type: SET_DRIVE_LEVER,
-    data
-  }
-}
-
-export const setDriveMode = (data) => {
-  return {
-    type: SET_DRIVE_MODE,
-    data
-  }
-}
-
-// TEST SETUP sequence
-export const setPower = (data) => {
-  // console.log('setpower', data);
-  return {
-    type: SET_POWER,
-    data
-  }
-}
-export const setLight = (data) => {
-  return {
-    type: SET_LIGHT,
-    data
-  }
-}
-export const setInvCon1 = (data) => {
-  return {
-    type: SET_INV_CON1,
-    data
-  }
-}
-export const setInvCon2 = (data) => {
-  return {
-    type: SET_INV_CON2,
-    data
-  }
-}
-export const setTbms = (data) => {
-  return {
-    type: SET_TBMS,
-    data
-  }
-}
-export const setDcDc = (data) => {
-  return {
-    type: SET_DCDC,
-    data
-  }
-}
-export const setApc = (data) => {
-  return {
-    type: SET_APC,
-    data
-  }
-}
-export const setInvOut1 = (data) => {
-  return {
-    type: SET_INV_OUT1,
-    data
-  }
-}
-export const setInvOut2 = (data) => {
-  return {
-    type: SET_INV_OUT2,
-    data
-  }
-}
-export const setSbms = (data) => {
-  return {
-    type: SET_SBMS,
-    data
-  }
-}
-export const setSinv = (data) => {
-  return {
-    type: SET_SINV,
-    data
-  }
-}
-export const setCamera = (data) => {
-  return {
-    type: SET_CAMERA,
-    data
-  }
-}
-export const setHydroBk = (data) => {
-  return {
-    type: SET_HYDRO_BK,
-    data
-  }
-}
-export const setRegenBk = (data) => {
-  return {
-    type: SET_REGEN_BK,
-    data
-  }
-}
-export const setPositionStart = (data) => {
-  return {
-    type: SET_POSITION_START,
-    data
-  }
-}
-export const setPositionStop = (data) => {
-  return {
-    type: SET_POSITION_STOP,
-    data
-  }
-}
-// =========================================================

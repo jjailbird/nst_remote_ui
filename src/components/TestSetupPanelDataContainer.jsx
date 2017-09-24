@@ -7,62 +7,30 @@ export default class TestSetupPanelDataContainer extends Component {
   render() {
     const { dataLeft, dataRight, compTitle, nameLeft, nameRight, unitLeft, unitRight, cNameLeft, cNameRight, barTitle, CompColor } = this.props;
     //console.log('get graph dataLeft:', dataLeft);  
-    let dataTypeL1 = '';
-    let dataTypeL2 = '';
-    let dataTypeL3 = '';
-    let dataTypeL4 = '';
-    let dataTypeL5 = 0;
-    let dataTypeR1 = '';
-    let dataTypeR2 = '';
-    let dataTypeR3 = '';
-    let dataTypeR4 = '';
-    let dataTypeR5 = 0;
-    switch(compTitle) {
-      case 'BMS':
-        dataTypeL1 = dataLeft.cell1;
-        dataTypeL2 = dataLeft.cell2;
-        dataTypeL3 = dataLeft.cell3;
-        dataTypeL4 = dataLeft.cell4;
-        
-        dataTypeR1 = dataRight.cell1;
-        dataTypeR2 = dataRight.cell2;
-        dataTypeR3 = dataRight.cell3;
-        dataTypeR4 = dataRight.cell4;
-        
-        dataTypeL5 = dataLeft.socTotal;
-        dataTypeR5 = dataRight.tempAvg;
-
-        break;
-      case 'INV':
-        dataTypeL1 = dataLeft.inv1;
-        dataTypeL2 = dataLeft.inv2;
-        dataTypeL3 = dataLeft.inv3;
-        dataTypeL4 = dataLeft.inv4;
-
-        dataTypeR1 = dataRight.inv1;
-        dataTypeR2 = dataRight.inv2;
-        dataTypeR3 = dataRight.inv3;
-        dataTypeR4 = dataRight.inv4;
-
-        dataTypeL5 = dataLeft.invAvg;
-        dataTypeR5 = dataRight.tempAvg;
-        break;
-      case 'BCU':
-        dataTypeL1 = dataLeft.b1;
-        dataTypeL2 = dataLeft.b2;
-        dataTypeL3 = dataLeft.b3;
-        dataTypeL4 = dataLeft.b4;
-        
-        dataTypeR1 = dataRight.b1;
-        dataTypeR2 = dataRight.b2;
-        dataTypeR3 = dataRight.b3;
-        dataTypeR4 = dataRight.b4;
-
-        dataTypeL5 = dataLeft.mBogieAvg;
-        dataTypeR5 = dataRight.tBogieAvg;
-        break;
-    }
+    let dataLeft1 = '';
+    let dataLeft2 = '';
+    let dataLeft3 = '';
+    let dataLeft4 = '';
+    let dataLeftCircle = 0;
+    let dataRight1 = '';
+    let dataRight2 = '';
+    let dataRight3 = '';
+    let dataRight4 = '';
+    let dataRightCircle = 0;
     
+    dataLeft1 = dataLeft.data1;
+    dataLeft2 = dataLeft.data2;
+    dataLeft3 = dataLeft.data3;
+    dataLeft4 = dataLeft.data4;
+    
+    dataRight1 = dataRight.data1;
+    dataRight2 = dataRight.data2;
+    dataRight3 = dataRight.data3;
+    dataRight4 = dataRight.data4;
+    
+    dataLeftCircle = dataLeft.circle;
+    dataRightCircle = dataRight.circel;
+   
     const cCaseLeft = `${compTitle} ${cNameLeft}`;
     const cCaseRight = `${compTitle} ${cNameLeft}`;
 
@@ -91,7 +59,7 @@ export default class TestSetupPanelDataContainer extends Component {
               }}
             >
               <TestPanelDataDonutCircleChart 
-                data={dataTypeL5} 
+                data={dataLeftCircle} 
                 unit={unitLeft}
                 name={cNameLeft} 
                 cCase={cCaseLeft}
@@ -114,10 +82,10 @@ export default class TestSetupPanelDataContainer extends Component {
             >
               {nameLeft} {nameLeft ? `${unitLeft}` : ''} 
             </div>
-            <TestSetupPanelDataContainerBarChart data={dataTypeL1} title={`${barTitle}1`} unit={unitLeft} barColor={CompColor}/>
-            <TestSetupPanelDataContainerBarChart data={dataTypeL2} title={`${barTitle}2`} unit={unitLeft} barColor={CompColor}/>
-            <TestSetupPanelDataContainerBarChart data={dataTypeL3} title={`${barTitle}3`} unit={unitLeft} barColor={CompColor}/>
-            <TestSetupPanelDataContainerBarChart data={dataTypeL4} title={`${barTitle}4`} unit={unitLeft} barColor={CompColor}/>
+            <TestSetupPanelDataContainerBarChart data={dataLeft1} title={`${barTitle}1`} unit={unitLeft} barColor={CompColor}/>
+            <TestSetupPanelDataContainerBarChart data={dataLeft2} title={`${barTitle}2`} unit={unitLeft} barColor={CompColor}/>
+            <TestSetupPanelDataContainerBarChart data={dataLeft3} title={`${barTitle}3`} unit={unitLeft} barColor={CompColor}/>
+            <TestSetupPanelDataContainerBarChart data={dataLeft4} title={`${barTitle}4`} unit={unitLeft} barColor={CompColor}/>
           </div>
         </div>
         <div className="pull-right tspdInner">
@@ -131,7 +99,7 @@ export default class TestSetupPanelDataContainer extends Component {
               }}
             >
               <TestPanelDataDonutCircleChart 
-                data={dataTypeR5} 
+                data={dataRightCircle} 
                 unit={unitRight}
                 name={cNameRight} 
                 cCase={cCaseRight}
@@ -153,10 +121,10 @@ export default class TestSetupPanelDataContainer extends Component {
             >
               {nameRight} {nameRight ? `${unitRight}` : ''} 
             </div>
-            <TestSetupPanelDataContainerBarChart data={dataTypeR1} title={`${barTitle}1`} unit={unitRight} barColor={CompColor}/>
-            <TestSetupPanelDataContainerBarChart data={dataTypeR2} title={`${barTitle}2`} unit={unitRight} barColor={CompColor}/>
-            <TestSetupPanelDataContainerBarChart data={dataTypeR3} title={`${barTitle}3`} unit={unitRight} barColor={CompColor}/>
-            <TestSetupPanelDataContainerBarChart data={dataTypeR4} title={`${barTitle}4`} unit={unitRight} barColor={CompColor}/>
+            <TestSetupPanelDataContainerBarChart data={dataRight1} title={`${barTitle}1`} unit={unitRight} barColor={CompColor}/>
+            <TestSetupPanelDataContainerBarChart data={dataRight2} title={`${barTitle}2`} unit={unitRight} barColor={CompColor}/>
+            <TestSetupPanelDataContainerBarChart data={dataRight3} title={`${barTitle}3`} unit={unitRight} barColor={CompColor}/>
+            <TestSetupPanelDataContainerBarChart data={dataRight4} title={`${barTitle}4`} unit={unitRight} barColor={CompColor}/>
           </div>
         </div>
       </div>
