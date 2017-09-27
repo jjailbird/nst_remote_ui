@@ -1,19 +1,11 @@
 import Websocket from 'react-websocket';
 import { connect } from 'react-redux';
 import { 
-  setDriveInfoData, setDriveData,
-  setEmergencyStop, setRunSwitch, setDirectionSwitch, setDriveLever
-} from './actions';
-
-import { 
-  setTbmsSoc1, setTbmsSoc2, setTbmsSoc3, setTbmsSoc4,
-  setTbmsTemp1, setTbmsTemp2, setTbmsTemp3, setTbmsTemp4, 
-  setInvVolt1, setInvVolt2, setInvVolt3, setInvVolt4,
-  setInvTemp1, setInvTemp2, setInvTemp3, setInvTemp4,
-  setCbmsSoc1, setCbmsVolt1,
-  setSbmsSoc1, setSbmsSoc2,
-  setSbmsVolt1, setSbmsVolt2,
-  setTestSetupData
+  setTestSetupData, 
+  setEmergencyStop, setDriveLever,
+  setInvCon1, setInvCon2, setTbms, setDcDc, setApc, setInvOut1, setInvOut2, setSbms, setSinv, setCamera,
+  setPower ,setLight, setDriveMode, setRunDirection, setRunSwitch, setHydroBk, setRegenBk,
+  setPositionStart, setPositionStop,
 } from './actions/m2SetupActions';
 
 import React, { Component } from 'react';
@@ -56,61 +48,21 @@ class App extends Component {
     // M2SetupData ============================================
     this.testSetup = {
       data: {
-        TBmsSoc1: 0,
-        TBmsSoc2: 0,
-        TBmsSoc3: 0,
-        TBmsSoc4: 0,
-        TBmsTemp1: 0,
-        TBmsTemp2: 0,
-        TBmsTemp3: 0,
-        TBmsTemp4: 0,
-        InvVolt1: 0,
-        InvVolt2: 0,
-        InvVolt3: 0,
-        InvVolt4: 0,
-        InvTemp1: 0,
-        InvTemp2: 0,
-        InvTemp3: 0,
-        InvTemp4: 0,
+        TBmsSoc1: 0, TBmsSoc2: 0, TBmsSoc3: 0, TBmsSoc4: 0,
+        TBmsTemp1: 0, TBmsTemp2: 0, TBmsTemp3: 0, TBmsTemp4: 0,
+        InvVolt1: 0, InvVolt2: 0, InvVolt3: 0, InvVolt4: 0,
+        InvTemp1: 0, InvTemp2: 0, InvTemp3: 0, InvTemp4: 0,
         
-        CBmsSoc1: 0,
-        CBmsVolt1: 0,
-        SBmsSoc1: 0,
-        SBmsSoc2: 0,
-        SBmsVolt1: 0,
-        SBmsVolt2: 0,
+        CBmsSoc1: 0, CBmsVolt1: 0,
+        SBmsSoc1: 0, SBmsSoc2: 0,
+        SBmsVolt1: 0, SBmsVolt2: 0,
   
-        Notch: 0,
-        VehicleSpeed: 0,
-        BatterySoc: 0,
-        Tract: 0,
-        Brake: 0,
-  
-        VehiclePosition: 0
+        Notch: 0, BatterySoc: 0, Tract: 0, Brake: 0,
+        VehicleSpeed: 0, VehiclePosition: 0
       },
       VehicleSpeedArray: []
- 
     };
     // ========================================================
-    this.setDriveInfoData = {};
-    this.setDriveInfoData.notch = 0;
-    this.setDriveInfoData.speed = [];
-    this.setDriveInfoData.soc = 0;
-    this.setDriveInfoData.tract = 0;
-    this.setDriveInfoData.brake = 0;
-
-    this.setDriveData = {};
-    this.setDriveData.tracBatt = 0;
-    this.setDriveData.contBatt = 0;
-    this.setDriveData.maxInvTemp = 0;
-    this.setDriveData.maxMotorTemp = 0;
-    this.setDriveData.battTemp = 0;
-    this.setDriveData.soc = 0;
-    this.setDriveData.fwd = 0;
-    this.setDriveData.speed = 0;
-    this.setDriveData.position = 0;
-    this.setDriveData.trat = 0;
-    this.setDriveData.brake = 0;
  }
   componentDidMount() {
     // console.log('this.hostname',this.hostname);
@@ -133,7 +85,7 @@ class App extends Component {
           dispatch( setRunSwitch(command.charAt(1)) );
           break;
         case 'D':
-          dispatch( setDirectionSwitch(command.charAt(1)) );
+          dispatch( setRunSwitch(command.charAt(1)) );
           break;          
         case 'N':
           dispatch( setDriveLever(command.charAt(1)) );
@@ -155,48 +107,8 @@ class App extends Component {
       this.testSetup.VehicleSpeedArray.push(TESTSETUP.VehicleSpeed);
       dispatch(setTestSetupData(this.testSetup));
       // ========================================================
-      /*
-      this.setInvVoltData.inv1 = TESTSETUP.INV.Inv1; // getRandomFloat(-10,10);
-      this.setInvVoltData.inv2 = TESTSETUP.INV.Inv2; // getRandomFloat(-5,5);
-      this.setInvVoltData.inv3 = TESTSETUP.INV.Inv3; // getRandomFloat(0,3000);
-      this.setInvVoltData.inv4 = TESTSETUP.INV.Inv4; // getRandomFloat(0,3000);
-      this.setInvVoltData.invAvg = TESTSETUP.INV.InvAvg;
-      dispatch( setInvVoltData(this.setInvVoltData) );
-
-      this.setInvTempData.inv1 = TESTSETUP.INV.Temp1; // getRandomFloat(-10,10);
-      this.setInvTempData.inv2 = TESTSETUP.INV.Temp2; // getRandomFloat(-5,5);
-      this.setInvTempData.inv3 = TESTSETUP.INV.Temp3; // getRandomFloat(0,3000);
-      this.setInvTempData.inv4 = TESTSETUP.INV.Temp4; // getRandomFloat(0,3000);
-      this.setInvTempData.tempAvg = TESTSETUP.INV.TempAvg; // getRandomFloat(0,3000);
-      dispatch( setInvTempData(this.setInvTempData) );
-
-      this.setBcuMBogieData.b1 = TESTSETUP.BCU.MBogie1; // getRandomFloat(0,250);
-      this.setBcuMBogieData.b2 = TESTSETUP.BCU.MBogie2; // getRandomFloat(0,10000);
-      this.setBcuMBogieData.b3 = TESTSETUP.BCU.MBogie3; // getRandomFloat(-5,5);
-      this.setBcuMBogieData.b4 = TESTSETUP.BCU.MBogie4; // getRandomFloat(0,2);
-      this.setBcuMBogieData.mBogieAvg = TESTSETUP.BCU.MBogieAvg;
-      dispatch( setBcuMBogieData(this.setBcuMBogieData) )
-
-      this.setBcuTBogieData.b1 = TESTSETUP.BCU.TBogie1; // getRandomFloat(0,250);
-      this.setBcuTBogieData.b2 = TESTSETUP.BCU.TBogie2; // getRandomFloat(0,10000);
-      this.setBcuTBogieData.b3 = TESTSETUP.BCU.TBogie3; // getRandomFloat(-5,5);
-      this.setBcuTBogieData.b4 = TESTSETUP.BCU.TBogie4; // getRandomFloat(0,2);
-      this.setBcuTBogieData.tBogieAvg = TESTSETUP.BCU.TBogieAvg;
-      dispatch( setBcuTBogieData(this.setBcuTBogieData) )
-      
-      
-      this.setDriveInfoData.notch = TESTSETUP.Drive.Notch // getRandomInt(-3,3);
-      if (this.setDriveInfoData.speed.length >= 234) {
-        this.setDriveInfoData.speed.shift();
-      }
-      this.setDriveInfoData.speed.push(TESTSETUP.Drive.Speed);
-      this.setDriveInfoData.soc = TESTSETUP.Drive.Soc;
-      this.setDriveInfoData.tract = TESTSETUP.Drive.Trat;
-      this.setDriveInfoData.brake = TESTSETUP.Drive.Brake;
-      dispatch( setDriveInfoData(this.setDriveInfoData) )
-      */
     }
-
+    /*
     if (TESTDRIVE) {
       // console.log('TESTDRIVE', TESTDRIVE);
       this.setDriveData.tracBatt = TESTDRIVE.SignalLeft.TrcBatt; // getRandomFloat(300,900);
@@ -212,7 +124,7 @@ class App extends Component {
       this.setDriveData.brake = TESTDRIVE.CircleRight.Brake;
       dispatch( setDriveData(this.setDriveData) )
     }
-    
+    */
   }
   changeNaviBackground(src) {
     const navi = document.getElementById('naviMenu');

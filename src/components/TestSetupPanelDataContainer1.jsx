@@ -11,62 +11,41 @@ export default class TestSetupPanelDataContainer1 extends Component {
       unitLeft1, unitLeft2, unitRight1, unitRight2, cNameLeft1, cNameRight1, cNameLeft2, cNameRight2,
       barTitle, CompColor } = this.props;
     //console.log('get graph dataLeft:', dataLeft);  
-    let dataTypeL1 = '';
-    let dataTypeL2 = '';
-    let dataTypeL3 = '';
-    let dataTypeL4 = '';
-    let dataTypeL5 = 0;
-    let dataTypeR1 = '';
-    let dataTypeR2 = '';
-    let dataTypeR3 = '';
-    let dataTypeR4 = '';
-    let dataTypeR5 = 0;
-    switch(compTitle1) {
-      case 'BMS':
-        dataTypeL1 = dataLeft.cell1;
-        dataTypeL2 = dataLeft.cell2;
-        dataTypeL3 = dataLeft.cell3;
-        dataTypeL4 = dataLeft.cell4;
-        
-        dataTypeR1 = dataRight.cell1;
-        dataTypeR2 = dataRight.cell2;
-        dataTypeR3 = dataRight.cell3;
-        dataTypeR4 = dataRight.cell4;
-        
-        dataTypeL5 = dataLeft.socTotal;
-        dataTypeR5 = dataRight.tempAvg;
-
-        break;
-      case 'INV':
-        dataTypeL1 = dataLeft.inv1;
-        dataTypeL2 = dataLeft.inv2;
-        dataTypeL3 = dataLeft.inv3;
-        dataTypeL4 = dataLeft.inv4;
-
-        dataTypeR1 = dataRight.inv1;
-        dataTypeR2 = dataRight.inv2;
-        dataTypeR3 = dataRight.inv3;
-        dataTypeR4 = dataRight.inv4;
-
-        dataTypeL5 = dataLeft.invAvg;
-        dataTypeR5 = dataRight.tempAvg;
-        break;
-      case 'BCU':
-        dataTypeL1 = dataLeft.b1;
-        dataTypeL2 = dataLeft.b2;
-        dataTypeL3 = dataLeft.b3;
-        dataTypeL4 = dataLeft.b4;
-        
-        dataTypeR1 = dataRight.b1;
-        dataTypeR2 = dataRight.b2;
-        dataTypeR3 = dataRight.b3;
-        dataTypeR4 = dataRight.b4;
-
-        dataTypeL5 = dataLeft.mBogieAvg;
-        dataTypeR5 = dataRight.tBogieAvg;
-        break;
-    }
+    let dataLeft1 = '';
+    let dataLeft2 = '';
+    let dataLeft3 = '';
+    let dataLeft4 = '';
+    let dataLeftCircle1 = 0;
+    let dataLeftValueMax1 = 100;
+    let dataLeftCircle2 = 0;
+    let dataLeftValueMax2 = 100;
     
+    let dataRight1 = '';
+    let dataRight2 = '';
+    let dataRight3 = '';
+    let dataRight4 = '';
+    let dataRightCircle1 = 0;
+    let dataRightValueMax1 = 100;
+    let dataRightCircle2 = 0;
+    let dataRightValueMax2 = 100;
+
+    dataLeft1 = dataLeft.data1;
+    dataLeft2 = dataLeft.data2;
+    dataLeftCircle1 = dataLeft.circle1;
+    dataLeftValueMax1 = dataLeft.valueMax1;
+    dataLeftCircle2 = dataLeft.circle2;
+    dataLeftValueMax2 = dataLeft.valueMax2;
+    
+    dataRight1 = dataRight.data1;
+    dataRight2 = dataRight.data2;
+    dataRight3 = dataRight.data3;
+    dataRight4 = dataRight.data4;
+
+    dataRightCircle1 = dataRight.circle1;
+    dataRightValueMax1 = dataRight.valueMax1;
+    dataRightCircle2 = dataRight.circle2;
+    dataRightValueMax2 = dataRight.valueMax2;
+
     const cCaseLeft = `${compTitle1} ${cNameLeft1}`;
     const cCaseRight = `${compTitle2} ${cNameRight1}`;
 
@@ -96,7 +75,7 @@ export default class TestSetupPanelDataContainer1 extends Component {
               }}
             >
               <TestPanelDataDonutCircleChart 
-                data={dataTypeL5} 
+                data={dataLeftCircle1} 
                 unit={unitLeft1}
                 name={cNameLeft1} 
                 cCase={cCaseLeft}
@@ -106,9 +85,10 @@ export default class TestSetupPanelDataContainer1 extends Component {
                 donutStrokeWidth="5"
                 valueFontSize="24px"
                 valueFontColor="#fff"
+                valueMax={dataLeftValueMax1}
               />
             </div>
-            <TestSetupPanelDataContainerBarChart data={dataTypeL1} title={`${barTitle}1`} unit={unitLeft1} barColor={CompColor}/>
+            <TestSetupPanelDataContainerBarChart data={dataLeft1} title={`${barTitle}1`} unit={unitLeft1} barColor={CompColor} valueMax={dataLeftValueMax1} />
           </div>
           <div className="tspdBarBox" style={{ marginTop: '40px' }}>
             <div
@@ -121,7 +101,7 @@ export default class TestSetupPanelDataContainer1 extends Component {
               }}
             >
               <TestPanelDataDonutCircleChart 
-                data={dataTypeL5} 
+                data={dataLeftCircle2} 
                 unit={unitLeft2}
                 name={cNameLeft2} 
                 cCase={cCaseLeft}
@@ -131,9 +111,10 @@ export default class TestSetupPanelDataContainer1 extends Component {
                 donutStrokeWidth="5"
                 valueFontSize="24px"
                 valueFontColor="#fff"
+                valueMax={dataLeftValueMax2}
               />
             </div>
-            <TestSetupPanelDataContainerBarChart data={dataTypeL1} title={`${barTitle}1`} unit={unitLeft2} barColor={CompColor}/>
+            <TestSetupPanelDataContainerBarChart data={dataLeft2} title={`${barTitle}1`} unit={unitLeft2} barColor={CompColor} valueMax={dataLeftValueMax2} />
           </div>
         </div>
         <span className="testPanelBoxTitle right" style={{ marginLeft: '316px', borderLeft: '1px solid rgba(255,255,255,0.4)' }}>
@@ -160,7 +141,7 @@ export default class TestSetupPanelDataContainer1 extends Component {
               }}
             >
               <TestPanelDataDonutCircleChart 
-                data={dataTypeL5} 
+                data={dataRightCircle1} 
                 unit={unitRight1}
                 name={cNameRight1} 
                 cCase={cCaseLeft}
@@ -170,10 +151,11 @@ export default class TestSetupPanelDataContainer1 extends Component {
                 donutStrokeWidth="5"
                 valueFontSize="24px"
                 valueFontColor="#fff"
+                valueMax={dataRightValueMax1}
               />
             </div>
-            <TestSetupPanelDataContainerBarChart data={dataTypeL1} title={`${barTitle}1`} unit={unitRight1} barColor={CompColor}/>
-            <TestSetupPanelDataContainerBarChart data={dataTypeL1} title={`${barTitle}2`} unit={unitRight1} barColor={CompColor}/>
+            <TestSetupPanelDataContainerBarChart data={dataRight1} title={`${barTitle}1`} unit={unitRight1} barColor={CompColor} valueMax={dataRightValueMax1} />
+            <TestSetupPanelDataContainerBarChart data={dataRight2} title={`${barTitle}2`} unit={unitRight1} barColor={CompColor} valueMax={dataRightValueMax1}/>
           </div>
           <div className="tspdBarBox">
             <div
@@ -186,7 +168,7 @@ export default class TestSetupPanelDataContainer1 extends Component {
               }}
             >
               <TestPanelDataDonutCircleChart 
-                data={dataTypeL5} 
+                data={dataRightCircle2} 
                 unit={unitRight2}
                 name={cNameRight2} 
                 cCase={cCaseLeft}
@@ -196,10 +178,11 @@ export default class TestSetupPanelDataContainer1 extends Component {
                 donutStrokeWidth="5"
                 valueFontSize="24px"
                 valueFontColor="#fff"
+                valueMax={dataRightValueMax2}
               />
             </div>
-            <TestSetupPanelDataContainerBarChart data={dataTypeL1} title={`${barTitle}1`} unit={unitRight2} barColor={CompColor}/>
-            <TestSetupPanelDataContainerBarChart data={dataTypeL1} title={`${barTitle}2`} unit={unitRight2} barColor={CompColor}/>
+            <TestSetupPanelDataContainerBarChart data={dataRight3} title={`${barTitle}1`} unit={unitRight2} barColor={CompColor} valueMax={dataRightValueMax2} />
+            <TestSetupPanelDataContainerBarChart data={dataRight4} title={`${barTitle}2`} unit={unitRight2} barColor={CompColor} valueMax={dataRightValueMax2} />
           </div>
         </div>        
       </div>

@@ -1,5 +1,6 @@
 // ITC_TEST =======================================================
 import { combineReducers } from 'redux';
+/*
 import frontLeftData from './frontLeftData';
 import frontRightData from './frontRightData';
 import rearLeftData from './rearLeftData';
@@ -15,8 +16,9 @@ import frontLaserData from './frontLaserData';
 import rearLaserData from './rearLaserData';
 import frontSensorData from './frontSensorData';
 import rearSensorData from './rearSensorData';
-
+*/
 // TEST_SETUP =======================================================
+/*
 import bmsSocData from './bmsSocData';
 import bmsTempData from './bmsTempData';
 import invVoltData from './invVoltData';
@@ -24,14 +26,17 @@ import invTempData from './invTempData';
 import bcuMBogieData from './bcuMBogieData';
 import bcuMTogieData from './bcuTBogieData';
 import driveInfoData from './driveInfoData';
+*/
 // ===================================================================
 
 // TEST_SETUP COMMAND ================================================
+/*
 import setEmergencyStop from './setEmergencyStop';
 import setRunSwitch from './setRunSwitch';
 import setDirectionSwitch from './setDirectionSwitch';
 import setDriveLever from './setDriveLever'
 import setDriveMode from './setDriveMode'
+*/
 // ===================================================================
 
 
@@ -39,6 +44,7 @@ import setDriveMode from './setDriveMode'
 import driveData from './driveData';
 
 // HSC_TEST =======================================================
+/*
 import frontLeftHscData from './frontLeftHscData';
 import frontRightHscData from './frontRightHscData';
 import rearLeftHscData from './rearLeftHscData';
@@ -46,12 +52,14 @@ import rearRightHscData from './rearRightHscData';
 import motorControlHscData from './motorControlHscData';
 import frontWheelsetHscData from './frontWheelsetHscData';
 import rearWheelsetHscData from './rearWheelsetHscData';
+*/
 // HSC_SETUP =======================================================
 
 import setM2SetupButtons from './setM2SetupButtons';
 import setM2SetupData from './setM2SetupData';
 
 const reducers = combineReducers({ 
+  /*
   frontLeftData,
   frontRightData,
   rearLeftData,
@@ -74,7 +82,7 @@ const reducers = combineReducers({
   rearLaserData,
   frontSensorData,
   rearSensorData,
-  driveData,
+  
   frontLeftHscData,
   frontRightHscData,
   rearLeftHscData,
@@ -87,6 +95,11 @@ const reducers = combineReducers({
   setDirectionSwitch,
   setDriveLever,
   setDriveMode,
+
+  */
+  driveData,
+
+  
   setM2SetupButtons,
   setM2SetupData
 });

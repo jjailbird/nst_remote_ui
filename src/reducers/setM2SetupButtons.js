@@ -1,20 +1,21 @@
-import { SET_POWER ,SET_LIGHT ,SET_INV_CON1 ,SET_INV_CON2 ,SET_TBMS ,SET_DCDC ,SET_APC
-  ,SET_INV_OUT1, SET_INV_OUT2, SET_SBMS, SET_SINV, SET_CAMERA ,SET_HYDRO_BK ,SET_REGEN_BK
-  ,SET_POSITION_START, SET_POSITION_STOP
+import { 
+  SET_INV_CON1 ,SET_INV_CON2 ,SET_TBMS ,SET_DCDC ,SET_APC,
+  SET_INV_OUT1, SET_INV_OUT2, SET_SBMS, SET_SINV, SET_CAMERA, 
+  SET_POWER, SET_LIGHT, SET_DRIVE_MODE, SET_RUN_DIRECTION, SET_RUN_SWITCH, SET_HYDRO_BK ,SET_REGEN_BK,
+  SET_POSITION_START, SET_POSITION_STOP,
+  SET_DRIVE_LEVER, SET_EMERGENCY_STOP,
 } from '../actions/m2SetupActions';
 
-const initialState = { power: 'off', light: 'off', invCon1: 'off', invCon2: 'off', tBms: 'off', dcDc: 'off', apc: 'off',
-  invOut1: 'off', invOut2: 'off', sBms: 'off', sInv: 'off', camera: 'off', hydroBk: 'off', regenBk: 'off',
-  positionStart: 0, positionStop: 250 
+const initialState = { 
+  invCon1: 'off', invCon2: 'off', tBms: 'off', dcDc: 'off', apc: 'off',
+  invOut1: 'off', invOut2: 'off', sBms: 'off', sInv: 'off', camera: 'off', 
+  power: 'off', light: 'off', driveMode: 'ST', runDirection: 1, runSwitch: 0, hydroBk: 'off', regenBk: 'off',
+  positionStart: 0, positionStop: 250,
+  driveLever: 0, emergencyStop: 1,
 }
 
 export default function setM2SetupButtons(state = initialState, action) {
   switch(action.type) {
-    case SET_POWER:
-      //console.log('received power', action.data);
-      return { ...state, power: action.data };
-    case SET_LIGHT:
-      return { ...state, light: action.data };
     case SET_INV_CON1:
       return { ...state, invCon1: action.data };
     case SET_INV_CON2:
@@ -35,14 +36,30 @@ export default function setM2SetupButtons(state = initialState, action) {
       return { ...state, sInv: action.data };
     case SET_CAMERA:
       return { ...state, camera: action.data };
+    case SET_POWER:
+      return { ...state, power: action.data };
+    case SET_LIGHT:
+      return { ...state, light: action.data };
     case SET_HYDRO_BK:
       return { ...state, hydroBk: action.data };
     case SET_REGEN_BK:
       return { ...state, regenBk: action.data };
+    case SET_DRIVE_MODE:
+      return { ...state, driveMode: action.data };
+    case SET_RUN_DIRECTION:
+      return { ...state, runDirection: action.data };
+    case SET_RUN_SWITCH:
+      return { ...state, runSwitch: action.data };
     case SET_POSITION_START:
       return { ...state, positionStart: action.data };
     case SET_POSITION_STOP:
       return { ...state, positionStop: action.data };
+
+    case SET_DRIVE_LEVER:
+      return { ...state, driveLever: action.data };
+    case SET_EMERGENCY_STOP:
+      return { ...state, emergencyStop: action.data };
+
     default:
       return state;
   } 

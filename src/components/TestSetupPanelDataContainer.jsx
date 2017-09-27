@@ -6,34 +6,36 @@ import TestPanelDataDonutCircleChart from './TestPanelDataDonutCircleChart'
 export default class TestSetupPanelDataContainer extends Component {
   render() {
     const { dataLeft, dataRight, compTitle, nameLeft, nameRight, unitLeft, unitRight, cNameLeft, cNameRight, barTitle, CompColor } = this.props;
-    if(compTitle == 'T-BMS')
-      console.log('get graph dataLeft:', dataLeft);  
     let dataLeft1 = '';
     let dataLeft2 = '';
     let dataLeft3 = '';
     let dataLeft4 = '';
     let dataLeftCircle = 0;
+    let dataLeftValueMax = 100;
     let dataRight1 = '';
     let dataRight2 = '';
     let dataRight3 = '';
     let dataRight4 = '';
     let dataRightCircle = 0;
+    let dataRightValueMax = 100;
     
     dataLeft1 = dataLeft.data1;
     dataLeft2 = dataLeft.data2;
     dataLeft3 = dataLeft.data3;
     dataLeft4 = dataLeft.data4;
+    dataLeftValueMax = dataLeft.valueMax ? dataLeft.valueMax : 100;
     
     dataRight1 = dataRight.data1;
     dataRight2 = dataRight.data2;
     dataRight3 = dataRight.data3;
     dataRight4 = dataRight.data4;
+    dataRightValueMax = dataRight.valueMax ? dataRight.valueMax : 100;
     
     dataLeftCircle = dataLeft.circle;
-    dataRightCircle = dataRight.circel;
+    dataRightCircle = dataRight.circle;
    
     const cCaseLeft = `${compTitle} ${cNameLeft}`;
-    const cCaseRight = `${compTitle} ${cNameLeft}`;
+    const cCaseRight = `${compTitle} ${cNameRight}`;
 
     return (
       <div className="testPanelBox testSetupPanelDataBox">
@@ -70,6 +72,7 @@ export default class TestSetupPanelDataContainer extends Component {
                 donutStrokeWidth="5"
                 valueFontSize="24px"
                 valueFontColor="#fff"
+                valueMax={dataLeftValueMax}
               />
             </div>
             <div 
@@ -83,10 +86,10 @@ export default class TestSetupPanelDataContainer extends Component {
             >
               {nameLeft} {nameLeft ? `${unitLeft}` : ''} 
             </div>
-            <TestSetupPanelDataContainerBarChart data={dataLeft1} title={`${barTitle}1`} unit={unitLeft} barColor={CompColor}/>
-            <TestSetupPanelDataContainerBarChart data={dataLeft2} title={`${barTitle}2`} unit={unitLeft} barColor={CompColor}/>
-            <TestSetupPanelDataContainerBarChart data={dataLeft3} title={`${barTitle}3`} unit={unitLeft} barColor={CompColor}/>
-            <TestSetupPanelDataContainerBarChart data={dataLeft4} title={`${barTitle}4`} unit={unitLeft} barColor={CompColor}/>
+            <TestSetupPanelDataContainerBarChart data={dataLeft1} title={`${barTitle}1`} unit={unitLeft} barColor={CompColor} valueMax={dataLeftValueMax} />
+            <TestSetupPanelDataContainerBarChart data={dataLeft2} title={`${barTitle}2`} unit={unitLeft} barColor={CompColor} valueMax={dataLeftValueMax} />
+            <TestSetupPanelDataContainerBarChart data={dataLeft3} title={`${barTitle}3`} unit={unitLeft} barColor={CompColor} valueMax={dataLeftValueMax} />
+            <TestSetupPanelDataContainerBarChart data={dataLeft4} title={`${barTitle}4`} unit={unitLeft} barColor={CompColor} valueMax={dataLeftValueMax} />
           </div>
         </div>
         <div className="pull-right tspdInner">
@@ -110,6 +113,7 @@ export default class TestSetupPanelDataContainer extends Component {
                 donutStrokeWidth="5"
                 valueFontSize="24px"
                 valueFontColor="#fff"
+                valueMax={dataRightValueMax}
               />
             </div>
             <div 
@@ -122,10 +126,10 @@ export default class TestSetupPanelDataContainer extends Component {
             >
               {nameRight} {nameRight ? `${unitRight}` : ''} 
             </div>
-            <TestSetupPanelDataContainerBarChart data={dataRight1} title={`${barTitle}1`} unit={unitRight} barColor={CompColor}/>
-            <TestSetupPanelDataContainerBarChart data={dataRight2} title={`${barTitle}2`} unit={unitRight} barColor={CompColor}/>
-            <TestSetupPanelDataContainerBarChart data={dataRight3} title={`${barTitle}3`} unit={unitRight} barColor={CompColor}/>
-            <TestSetupPanelDataContainerBarChart data={dataRight4} title={`${barTitle}4`} unit={unitRight} barColor={CompColor}/>
+            <TestSetupPanelDataContainerBarChart data={dataRight1} title={`${barTitle}1`} unit={unitRight} barColor={CompColor} valueMax={dataRightValueMax} />
+            <TestSetupPanelDataContainerBarChart data={dataRight2} title={`${barTitle}2`} unit={unitRight} barColor={CompColor} valueMax={dataRightValueMax} />
+            <TestSetupPanelDataContainerBarChart data={dataRight3} title={`${barTitle}3`} unit={unitRight} barColor={CompColor} valueMax={dataRightValueMax} />
+            <TestSetupPanelDataContainerBarChart data={dataRight4} title={`${barTitle}4`} unit={unitRight} barColor={CompColor} valueMax={dataRightValueMax} />
           </div>
         </div>
       </div>

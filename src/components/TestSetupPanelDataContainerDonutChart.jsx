@@ -71,7 +71,6 @@ export default class TestSetupPanelDataContainerDonutChart extends Component {
     const valueDisplay = isFloat(value) ? value.toFixed(1) : value;
     const strokeDasharrayValue = `${linePx} ${circleLen - linePx}`;
     
-
     return (
       <div className="testSetupDunutBox">
         <div 

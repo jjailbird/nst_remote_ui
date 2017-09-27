@@ -10,7 +10,7 @@ export default class TestPanelDataDonutCircleChart extends Component {
     // const length = donutRing.getTotalLength();
   }
   render() {
-    const { data, unit, name, cCase, strokeColor, strokeColorLine, donutWidth, donutStrokeWidth, valueFontSize, valueFontColor } = this.props;
+    const { data, unit, name, cCase, strokeColor, strokeColorLine, donutWidth, donutStrokeWidth, valueFontSize, valueFontColor, valueMax, valueShift } = this.props;
     //console.log(valueFontSize, valueFontColor);
     const width = donutWidth;
     const height = width;
@@ -31,11 +31,13 @@ export default class TestPanelDataDonutCircleChart extends Component {
 
     const lineFull = dashLen;   
     let lineValue = 0;
-    let lineValueShift =0;
-    let valueMax = 0; 
+    let lineValueShift = valueShift ? valueShift: 0;
+    
     let valuePercent = 0; 
     let linePx = 0; 
-    
+
+    /*
+    let valueMax = 0; 
     switch(cCase) {
       case 'BMS SOC':
         lineValueShift = 0;
@@ -66,7 +68,7 @@ export default class TestPanelDataDonutCircleChart extends Component {
         valueMax = 900;
         break;
     }
-    
+    */
     let value = 0;
 
     if(data) {

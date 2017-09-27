@@ -6,16 +6,19 @@ export default class TestSetupPanelDataContainerBarChart extends Component {
     super(props);
   }
   render() {
-    const { data, title, unit, barColor } = this.props;
+    const { data, title, unit, barColor, valueMax, valueShift } = this.props;
     //console.log('datadata?? ',data)
     const barFull = 258;   
     let barValue = 0;
-    let barValueShift =0;
-    let barMax = 0; 
+    
+    let barValueShift = valueShift ? valueShift : 0;
+    let barMax = valueMax ? valueMax : 100; 
+    
     let barPercent = 0; 
     let barPx = 0; 
     let value = 0;
     //console.log('titletitle = ',title)
+    /*
     switch(title) {
       case 'PACK #1':
         barValueShift = 0;
@@ -78,7 +81,7 @@ export default class TestSetupPanelDataContainerBarChart extends Component {
         barMax = 900;
         break;
     }
-
+    */
     if(data) {
       value = data;
       barValue = value + barValueShift;

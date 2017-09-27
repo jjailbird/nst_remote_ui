@@ -12,12 +12,14 @@ import RailroadTrailStartStop from './components/RailroadTrailStartStop';
 
 import KeyboardedInput from 'react-touch-screen-keyboard';
 import 'react-touch-screen-keyboard/src/Keyboard.css';
-import Keyboard from 'react-virtual-keyboard';
+// import Keyboard from 'react-virtual-keyboard';
 
-import { setRunSwitch, setDirectionSwitch, setDriveMode, setEmergencyStop
-  ,setPower ,setLight, setInvCon1, setInvCon2, setTbms, setDcDc, setApc, setInvOut1, setInvOut2
-  ,setSbms ,setSinv, setCamera, setHydroBk, setRegenBk, setPositionStart, setPositionStop
-  ,setTestSetupData
+import { 
+  // setTestSetupData, 
+  setEmergencyStop,
+  setInvCon1, setInvCon2, setTbms, setDcDc, setApc, setInvOut1, setInvOut2, setSbms, setSinv, setCamera,
+  setPower ,setLight, setDriveMode, setRunDirection, setRunSwitch, setHydroBk, setRegenBk,
+  setPositionStart, setPositionStop,
 } from './actions/m2SetupActions';
 
 import { connect } from 'react-redux';
@@ -26,8 +28,8 @@ class ViewM2Setup extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      vehiclePositionStart: 0,
-      vehiclePositionStop: 0
+      vehiclePositionStart: this.props.positionStart,
+      vehiclePositionStop: this.props.positionStop
     };
     this.NST_test_label = localStorage.getItem("NST_test_label") ? localStorage.getItem("NST_test_label") : 'NST 01';
     this.hostname = window.location.hostname;
@@ -59,14 +61,15 @@ class ViewM2Setup extends Component {
     this.onSinvChange = this.onSinvChange.bind(this);
     // s10
     this.onCameraChange = this.onCameraChange.bind(this);
+   
     // s11
-    this.onDriveModeChanged = this.onDriveModeChanged.bind(this);
+    this.onDriveModeChange = this.onDriveModeChange.bind(this);
     // s12
-    this.onDirectionSwitchClick = this.onDirectionSwitchClick.bind(this);
+    this.onRunDirectionChange = this.onRunDirectionChange.bind(this);
     // s13?
 
     // s14
-    this.onRunSwitchClick = this.onRunSwitchClick.bind(this);
+    this.onRunSwitchChange = this.onRunSwitchChange.bind(this);
     // s15-1
     this.onHydroBkChange = this.onHydroBkChange.bind(this);
     // s15-2
@@ -81,7 +84,7 @@ class ViewM2Setup extends Component {
     start = start.replace(' ', '');
     start = start.trim();
 
-    const { positionStop } = this.props;
+    // const { positionStop } = this.props;
     if(start >= 0 && start < this.railLength) {
       this.setState({
         vehiclePositionStart: start
@@ -94,7 +97,7 @@ class ViewM2Setup extends Component {
     stop = stop.replace(' ', '');
     stop = stop.trim();
 
-    const { positionStar } = this.props;
+    // const { positionStart } = this.props;
     if(stop >= 0 && stop <= this.railLength) {
       this.setState({
         vehiclePositionStop: stop
@@ -145,7 +148,7 @@ class ViewM2Setup extends Component {
   }
   // s02
   onLightChange(value) {
-    const { power, dispatch } = this.props;
+    const { dispatch } = this.props;
     //alert('power:' + power);
     //alert('s02:' + value);
     dispatch( setLight(value) );
@@ -154,7 +157,7 @@ class ViewM2Setup extends Component {
   onInvCon1Change(value) {
     //alert('s03-1:' + value);
     const { power, dispatch } = this.props;
-    if(power == 'off' && value == 'on') {
+    if(power === 'off' && value === 'on') {
       alert('You must turn on the POWER');
       return false;
     } else {
@@ -165,7 +168,7 @@ class ViewM2Setup extends Component {
   onInvCon2Change(value) {
     //alert('s03-2:' + value);
     const { invCon1, dispatch } = this.props;
-    if(invCon1 == 'off' && value == 'on') {
+    if(invCon1 === 'off' && value === 'on') {
       alert('You must turn on the INV CON1');
       return false;
     } else {
@@ -176,7 +179,7 @@ class ViewM2Setup extends Component {
   onTbmsChange(value) {
     //alert('s04:' + value);
     const { invCon2, dispatch } = this.props;
-    if(invCon2 == 'off' && value == 'on') {
+    if(invCon2 === 'off' && value === 'on') {
       alert('You must turn on the INV CON2');
       return false;
     } else {
@@ -187,7 +190,7 @@ class ViewM2Setup extends Component {
   onDcDcChange(value) {
     //alert('s05:' + value);
     const { tBms, dispatch } = this.props;
-    if(tBms == 'off' && value == 'on') {
+    if(tBms === 'off' && value === 'on') {
       alert('You must turn on the T-BMS');
       return false;
     } else {
@@ -198,7 +201,7 @@ class ViewM2Setup extends Component {
   onApcChange(value) {
     //alert('s06:' + value);
     const { dcDc, dispatch } = this.props;
-    if(dcDc == 'off' && value == 'on') {
+    if(dcDc === 'off' && value === 'on') {
       alert('You must turn on the DC/DC');
       return false;
     } else {
@@ -209,7 +212,7 @@ class ViewM2Setup extends Component {
   onInvOut1Change(value) {
     //alert('s07-1:' + value);
     const { apc, dispatch } = this.props;
-    if(apc == 'off' && value == 'on') {
+    if(apc === 'off' && value === 'on') {
       alert('You must turn on the APC');
       return false;
     } else {
@@ -220,7 +223,7 @@ class ViewM2Setup extends Component {
   onInvOut2Change(value) {
     //alert('s07-2:' + value);
     const { invOut1, dispatch } = this.props;
-    if(invOut1 == 'off' && value == 'on') {
+    if(invOut1 === 'off' && value === 'on') {
       alert('You must turn on the INV OUT1');
       return false;
     } else {
@@ -231,7 +234,7 @@ class ViewM2Setup extends Component {
   onSbmsChange(value) {
     //alert('s08:' + value);
     const { invOut2, dispatch } = this.props;
-    if(invOut2 == 'off' && value == 'on') {
+    if(invOut2 === 'off' && value === 'on') {
       alert('You must turn on the INV OUT2');
       return false;
     } else {
@@ -242,7 +245,7 @@ class ViewM2Setup extends Component {
   onSinvChange(value) {
     //alert('s09:' + value);
     const { sBms, dispatch } = this.props;
-    if(sBms == 'off' && value == 'on') {
+    if(sBms === 'off' && value === 'on') {
       alert('You must turn on the S-BMS');
       return false;
     } else {
@@ -253,7 +256,7 @@ class ViewM2Setup extends Component {
   onCameraChange(value) {
     //alert('s10:' + value);
     const { sInv, dispatch } = this.props;
-    if(sInv == 'off' && value == 'on') {
+    if(sInv === 'off' && value === 'on') {
       alert('You must turn on the S-INV');
       return false;
     } else {
@@ -261,28 +264,27 @@ class ViewM2Setup extends Component {
     }
   }
   // s11
-  onDriveModeChanged(value) {
-    //alert('s11:' + value);
+  onDriveModeChange(value) {
+    // alert('s11:' + value);
     const { dispatch } = this.props;
-    dispatch( setDriveMode(value) );
+    dispatch(setDriveMode(value));
   }
   // s12
-  onDirectionSwitchClick(value) {
-    //alert('s12:' + value);
+  onRunDirectionChange(value) {
     
     const { dispatch } = this.props;
     const command = value === "on" ? "d1" : "d0";
-    dispatch( setDirectionSwitch(command.charAt(1)) );
+    dispatch( setRunDirection(command.charAt(1)) );
     this.sendCommandToDevice(command);
   }
   // s13 제동 선택?
 
   // s14
-  onRunSwitchClick(value) {
+  onRunSwitchChange(value) {
     //alert('s14:' + value);
     const { dispatch } = this.props;
     const command = value === "on" ? "s1" : "s0";
-    dispatch( setRunSwitch(command.charAt(1)) );
+    dispatch(setRunSwitch(command.charAt(1)) );
     this.sendCommandToDevice(command);
   }
 
@@ -300,33 +302,36 @@ class ViewM2Setup extends Component {
   }
   componentDidMount() {
     // alert(this.NST_test_label);
+
   }
   render() {
     const { 
-      bmsSocData,
-      bmsTempData,
-      invVoltData,
-      invTempData,
-      bcuMBogieData,
-      bcuMTogieData,
-      driveInfoData,
-      driveData,
-      // motorControlData,
-      runSwitch,
-      directionSwitch,
-      driveMode,
       emergencyStop,
-      // sequence
-      power, light, invCon1, invCon2, tBms, dcDc, apc,
-      invOut1, invOut2, sBms, sInv, camera, hydroBk, regenBk
-      ,positionStart, positionStop
-      ,testSetup, dispatch
+      // TEST_SETUP_DATA -------------------------------------------
+      VehicleSpeedArray,
+      TBmsSoc1, TBmsSoc2, TBmsSoc3, TBmsSoc4,
+      TBmsTemp1, TBmsTemp2, TBmsTemp3, TBmsTemp4,
+      InvVolt1, InvVolt2, InvVolt3, InvVolt4,
+      InvTemp1, InvTemp2, InvTemp3, InvTemp4,
+      CBmsSoc1, CBmsVolt1, SBmsSoc1, SBmsSoc2, SBmsVolt1, SBmsVolt2,
+      Notch, BatterySoc, Tract, Brake, 
+      VehicleSpeed, VehiclePosition,
+      // -----------------------------------------------------------
+      // Buttons sequence ------------------------------------------
+      invCon1, invCon2, tBms, dcDc, apc,
+      invOut1, invOut2, sBms, sInv, camera,
+      power, light, driveMode, runDirection, runSwitch, hydroBk, regenBk,
+      positionStart, positionStop,
+      // -----------------------------------------------------------
+      dispatch
     } = this.props;
-    const runSwitchValue = runSwitch == 0 ? "off" : "on";
-    const directionSwitchValue = directionSwitch == 0 ? "off" : "on";
     
-    console.log('testSetup', testSetup);
-    // console.log('runSwitch:', runSwitchValue);
+
+    const runSwitchValue = runSwitch === 0 ? "off" : "on";
+    const runDirectionValue = runDirection === 0 ? "off" : "on";
+    
+    // console.log('VehicleSpeedArray', VehicleSpeedArray);
+    // console.log('runDirection:', runDirection, runDirectionValue);
     let sDriveModeStatus = '';
     let sDriveModeStatusColor = '#fff673';
     switch(driveMode) {
@@ -347,7 +352,7 @@ class ViewM2Setup extends Component {
       // dispatch(setEmergencyStop(0));
     }
 
-    if(emergencyStop == 0) {
+    if(emergencyStop === 0) {
       sDriveModeStatus = 'EMERGENCY STOP!';
       sDriveModeStatusColor = 'red';
     }
@@ -374,31 +379,63 @@ class ViewM2Setup extends Component {
               {/*
               <TestSetupPanelDataContainer dataLeft={bmsSocData.data} dataRight={bmsTempData.data} compTitle="BMS" nameLeft="BMS SOC" nameRight="BMS Temp" unitLeft="%" unitRight="℃" cNameLeft="SOC" cNameRight="TEMP" barTitle="PACK #" CompColor="#3581c9"/>
               */}
-              {console.log('testSetup', testSetup)}
               <TestSetupPanelDataContainer
                 compTitle="T-BMS" nameLeft="CELL SOC" nameRight="CELL TEMP" unitLeft="%" unitRight="℃" cNameLeft="SOC" cNameRight="TEMP" barTitle="PACK #" CompColor="#3581c9"
-                dataLeft={{data1: testSetup.data.TBmsSoc1, data2: testSetup.data.TBmsSoc2, data3: testSetup.data.TBmsSoc3, data4: testSetup.data.TBmsSoc4}}
-                // dataLeft={bmsTempData.data}
-                dataRight={bmsTempData.data}
+                dataLeft={{ 
+                  // data1: testSetup.data.TBmsSoc1, data2: testSetup.data.TBmsSoc2, data3: testSetup.data.TBmsSoc3, data4: testSetup.data.TBmsSoc4
+                  // ,circle: (testSetup.data.TBmsSoc1 + testSetup.data.TBmsSoc2 + testSetup.data.TBmsSoc3 + testSetup.data.TBmsSoc4) / 4
+                  data1: TBmsSoc1, data2: TBmsSoc2, data3: TBmsSoc3, data4: TBmsSoc4
+                  ,circle: (TBmsSoc1 + TBmsSoc2 + TBmsSoc3 + TBmsSoc4) / 4
+                  ,valueMax: 100
+
+                }}
+                dataRight={{ 
+                  data1: TBmsTemp1, data2: TBmsTemp2, data3: TBmsTemp3, data4: TBmsTemp4,
+                  circle: (TBmsTemp1 + TBmsTemp2 + TBmsTemp3 + TBmsTemp4) / 4,
+                  valueMax: 100
+                }}
               /> 
-              <TestSetupPanelDataContainer dataLeft={invVoltData.data} dataRight={invTempData.data} compTitle="INV" nameLeft="" nameRight="" unitLeft="V" unitRight="℃" cNameLeft="OUT VOLT" cNameRight="TEMP" barTitle="INV #" CompColor="#3581c9"/>
+              <TestSetupPanelDataContainer
+                compTitle="INV" nameLeft="" nameRight="" unitLeft="V" unitRight="℃" cNameLeft="OUT VOLT" cNameRight="TEMP" barTitle="INV #" CompColor="#3581c9"
+                dataLeft={{
+                  data1: InvVolt1, data2: InvVolt2, data3: InvVolt3, data4: InvVolt4,
+                  circle: (InvVolt1 + InvVolt2 + InvVolt3 + InvVolt4) / 4,
+                  valueMax: 900
+                }} 
+                dataRight={{
+                  data1: InvTemp1, data2: InvTemp2, data3: InvTemp3, data4: InvTemp4,
+                  circle: (InvTemp1 + InvTemp2 + InvTemp3 + InvTemp4) / 4,
+                  valueMax: 100
+                }}
+              />
               {/*<TestSetupPanelDataContainer dataLeft={bcuMBogieData.data} dataRight={bcuMTogieData.data} compTitle="BCU" nameLeft="" nameRight="" unitLeft="Kpa" unitRight="Kpa" cNameLeft="M Bogie" cNameRight="T Bogie" barTitle="Caliper #" CompColor="#6f9450"/>*/}
               <TestSetupPanelDataContainer1
-                dataLeft={bcuMBogieData.data}
-                dataRight={bcuMTogieData.data}
-                compTitle1="C-BMS"
+                compTitle1="C-BMS" 
+                cNameLeft1="SOC" unitLeft1="%" 
+                cNameLeft2="OUT VOLT" unitLeft2="V"
+                dataLeft={{
+                  data1: CBmsSoc1,
+                  data2: CBmsVolt1,
+                  circle1: CBmsSoc1, valueMax1: 100,
+                  circle2: CBmsVolt1, valueMax2: 900, 
+                }}
+                
                 compTitle2="S-BMS"
+                cNameRight1="SOC" unitRight1="%"
+                cNameRight2="OUT VOLT" unitRight2="V"
+                dataRight={{
+                  data1: SBmsSoc1,
+                  data2: SBmsSoc2,
+                  circle1: (SBmsSoc1 + SBmsSoc2) / 2, valueMax1: 100,
+                  data3: SBmsVolt1,
+                  data4: SBmsVolt2,
+                  circle2: (SBmsVolt1 + SBmsVolt2) /2, valueMax2: 900,
+                }}
+
                 nameLeft="" nameRight="" 
-                cNameLeft1="SOC"
-                cNameLeft2="OUT VOLT"
-                cNameRight1="SOC"
-                cNameRight2="OUT VOLT" 
-                unitLeft1="%" 
-                unitLeft2="V"
-                unitRight1="%" 
-                unitRight2="V" 
                 barTitle="PACK #" 
-                CompColor="#6f9450"/>
+                CompColor="#6f9450"
+              />
               <PanelControlButtonsLeft />
             </div>
             <div
@@ -580,7 +617,7 @@ class ViewM2Setup extends Component {
                       DRIVE NOTCH
                     </span>
                     <TestSetupPanelDataContainerDonutChart 
-                      data={driveInfoData.data.notch} 
+                      data={Notch} 
                       unit="DRIVE" 
                       name="notch" 
                       strokeColor="#b23d41" 
@@ -596,7 +633,7 @@ class ViewM2Setup extends Component {
                       VEHICLE SPEED
                     </span>
                     <TestSetupPanelDataContainerDonutChart 
-                      data={driveInfoData.data.speed} 
+                      data={VehicleSpeedArray} 
                       unit="km/h" 
                       name="speed" 
                       strokeColor="#b23d41" 
@@ -612,7 +649,7 @@ class ViewM2Setup extends Component {
                       BATTERY SOC
                     </span>
                     <TestSetupPanelDataContainerDonutChart 
-                      data={driveInfoData.data.soc} 
+                      data={BatterySoc} 
                       unit="%" 
                       name="soc" 
                       strokeColor="#b23d41" 
@@ -630,7 +667,7 @@ class ViewM2Setup extends Component {
                         <span className="testPanelBoxTitleFull">
                           TRACT
                         </span>
-                        <TestSetupGaugeBar data={driveInfoData.data.tract} name="tract" unit="" fillColor="#949a3f"/>
+                        <TestSetupGaugeBar data={Tract} name="tract" unit="" fillColor="#949a3f"/>
                       </div>
                     </div>
 
@@ -639,7 +676,7 @@ class ViewM2Setup extends Component {
                         <span className="testPanelBoxTitleFull">
                           BRAKE
                         </span>
-                        <TestSetupGaugeBar data={driveInfoData.data.brake} name="brake" unit="" fillColor="#949a3f"/>
+                        <TestSetupGaugeBar data={Brake} name="brake" unit="" fillColor="#949a3f"/>
                       </div>
                     </div>
 
@@ -761,7 +798,7 @@ class ViewM2Setup extends Component {
                       offTextColor="#000" 
                       padding="7px 0px" 
                       value={driveMode}
-                      onChange={this.onDriveModeChanged}
+                      onChange={this.onDriveModeChange}
                       width='33.33%'
                       buttons={[
                         { idx: 1, title: 'ST', value: 'ST' }, 
@@ -789,9 +826,9 @@ class ViewM2Setup extends Component {
                       onTextColor="#fff"  
                       offTextColor="#fff" 
                       padding="7px 0px" 
-                      value={directionSwitchValue}
+                      value={runDirectionValue}
                       width='50%'
-                      onChange={this.onDirectionSwitchClick}
+                      onChange={this.onRunDirectionChange}
                       buttons={[
                         { idx: 1, title: 'Foward', value: 'on' }, 
                         { idx: 2, title: 'Reverse', value: 'off' }
@@ -840,7 +877,7 @@ class ViewM2Setup extends Component {
                           padding="7px 0px" 
                           value={runSwitchValue}
                           width='50%'
-                          onChange={this.onRunSwitchClick}
+                          onChange={this.onRunSwitchChange}
                           buttons={[
                             { idx: 1, title: 'START', value: 'on' }, 
                             { idx: 2, title: 'STOP', value: 'off' }
@@ -970,7 +1007,7 @@ class ViewM2Setup extends Component {
                         marginBottom: '14px'
                     }}
                   >
-                  <DynamicLineChart2 data={driveInfoData.data.speed} unit="km/h" name="Vehicle Speed"/>
+                    <DynamicLineChart2 data={VehicleSpeedArray} unit="km/h" name="Vehicle Speed"/>
                   </div>
                   <div
                     style={{
@@ -983,8 +1020,11 @@ class ViewM2Setup extends Component {
                       marginBottom: '16px'
                     }}
                   >
-                    <div><span>{positionStart} {positionStop}</span></div>
-                    <RailroadTrailStartStop value={driveData.data.position} name="VEHICLE POSITION" unit="m" start={positionStart} stop={positionStop} />
+                    <span>{VehiclePosition} {positionStart} {positionStop}</span>
+                    <RailroadTrailStartStop value={VehiclePosition} name="VEHICLE POSITION" unit="m" 
+                      start={positionStart} 
+                      stop={positionStop} 
+                    />
                   </div>
                   <div
                     style={{
@@ -1172,6 +1212,7 @@ class ViewM2Setup extends Component {
                         >Limit Speed</div>
                         <input
                           value="15 km/h"
+                          readOnly
                           style={{
                             float: 'left',
                             width: '115px',
@@ -1205,6 +1246,7 @@ class ViewM2Setup extends Component {
                         >Run Count</div>
                         <input
                           value="0"
+                          readOnly
                           style={{
                             float: 'left',
                             width: '115px',
@@ -1286,6 +1328,7 @@ class ViewM2Setup extends Component {
                         >Limit speed</div>
                         <input
                           value="0"
+                          readOnly
                           style={{
                             float: 'left',
                             width: '115px',
@@ -1331,6 +1374,7 @@ class ViewM2Setup extends Component {
                         >Shunt Speed</div>
                         <input
                           value="0"
+                          readOnly
                           style={{
                             float: 'left',
                             width: '115px',
@@ -1407,27 +1451,63 @@ class ViewM2Setup extends Component {
 }
 
 function mapStateToProps(state){
-    console.log('state:', state.setM2SetupData.testSetup);
+    // console.log('state.setM2SetupButtons.position', state.setM2SetupButtons.positionStart, state.setM2SetupButtons.positionStop);
+    console.log('runSwitch', state.setM2SetupButtons.runSwitch);
+    console.log('runDirection', state.setM2SetupButtons.runDirection);
     return {
-      testSetup: state.setM2SetupData.testSetup,
+      
+      // testSetup: state.setM2SetupData.testSetup,
+      // Bug? 전체 배열값으로 할당하면 re-rendering이 발행하지 않음(변수 데이터 변경을 rendering에서 감지 못하는 버그?)
+      VehicleSpeedArray: state.setM2SetupData.testSetup.VehicleSpeedArray,
+      
+      // T-BMS -----------------------------
+      TBmsSoc1: state.setM2SetupData.testSetup.data.TBmsSoc1,
+      TBmsSoc2: state.setM2SetupData.testSetup.data.TBmsSoc2,
+      TBmsSoc3: state.setM2SetupData.testSetup.data.TBmsSoc3,
+      TBmsSoc4: state.setM2SetupData.testSetup.data.TBmsTemp1,
+      TBmsTemp1: state.setM2SetupData.testSetup.data.TBmsTemp1,
+      TBmsTemp2: state.setM2SetupData.testSetup.data.TBmsTemp2,
+      TBmsTemp3: state.setM2SetupData.testSetup.data.TBmsTemp3,
+      TBmsTemp4: state.setM2SetupData.testSetup.data.TBmsTemp4,
+      // -----------------------------------
 
-      bmsSocData: state.bmsSocData,
-      bmsTempData: state.bmsTempData,
-      invTempData: state.invTempData,
-      invVoltData: state.invVoltData,
-      bcuMBogieData: state.bcuMBogieData,
-      bcuMTogieData: state.bcuMTogieData,
-      driveInfoData: state.driveInfoData,
-      // motorControlData: state.motorControlData,
-      driveData: state.driveData,
+      // INV -------------------------------
+      InvVolt1: state.setM2SetupData.testSetup.data.InvVolt1,
+      InvVolt2: state.setM2SetupData.testSetup.data.InvVolt2,
+      InvVolt3: state.setM2SetupData.testSetup.data.InvVolt3,
+      InvVolt4: state.setM2SetupData.testSetup.data.InvVolt4,
+      InvTemp1: state.setM2SetupData.testSetup.data.InvTemp1,
+      InvTemp2: state.setM2SetupData.testSetup.data.InvTemp2,
+      InvTemp3: state.setM2SetupData.testSetup.data.InvTemp3,
+      InvTemp4: state.setM2SetupData.testSetup.data.InvTemp4,
+      // -----------------------------------
+
+      // C-BMS -----------------------------
+      CBmsSoc1: state.setM2SetupData.testSetup.data.CBmsSoc1,
+      CBmsVolt1: state.setM2SetupData.testSetup.data.CBmsVolt1,
+      // -----------------------------------
+
+      // S-BMS -----------------------------
+      SBmsSoc1: state.setM2SetupData.testSetup.data.SBmsSoc1,
+      SBmsSoc2: state.setM2SetupData.testSetup.data.SBmsSoc2,
+      SBmsVolt1: state.setM2SetupData.testSetup.data.SBmsVolt1,
+      SBmsVolt2: state.setM2SetupData.testSetup.data.SBmsVolt2,
+      // -----------------------------------
+
+      // Vehicle Info ------------------------
+      VehicleSpeed: state.setM2SetupData.testSetup.data.VehicleSpeed,
+      VehiclePosition: state.setM2SetupData.testSetup.data.VehiclePosition,
+      BatterySoc: state.setM2SetupData.testSetup.data.BatterySoc,
+
+      Notch: state.setM2SetupData.testSetup.data.Notch,
+      Tract: state.setM2SetupData.testSetup.data.Tract,
+      Brake: state.setM2SetupData.testSetup.data.Brake,
+      // -----------------------------------
+
       // DIO Command =================================
-      emergencyStop: state.setEmergencyStop.data,
-      runSwitch: state.setRunSwitch.data,
-      directionSwitch: state.setDirectionSwitch.data,
-      driveMode: state.setDriveMode.data,
-
-      power: state.setM2SetupButtons.power, 
-      light: state.setM2SetupButtons.light,
+      emergencyStop: state.setM2SetupButtons.emergencyStop,
+      driveLever: state.setM2SetupButtons.driveLever,
+      
       invCon1: state.setM2SetupButtons.invCon1,
       invCon2: state.setM2SetupButtons.invCon2,
       tBms:state.setM2SetupButtons.tBms,
@@ -1438,6 +1518,12 @@ function mapStateToProps(state){
       sBms: state.setM2SetupButtons.sBms,
       sInv: state.setM2SetupButtons.sInv,
       camera: state.setM2SetupButtons.camera,
+
+      power: state.setM2SetupButtons.power, 
+      light: state.setM2SetupButtons.light,
+      runDirection: state.setM2SetupButtons.runDirection,      
+      runSwitch: state.setM2SetupButtons.runSwitch,
+      driveMode: state.setM2SetupButtons.driveMode,
       hydroBk: state.setM2SetupButtons.hydroBk,
       regenBk: state.setM2SetupButtons.regenBk,
 
