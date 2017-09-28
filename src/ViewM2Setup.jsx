@@ -274,7 +274,7 @@ class ViewM2Setup extends Component {
     
     const { dispatch } = this.props;
     const command = value === "on" ? "d1" : "d0";
-    dispatch( setRunDirection(command.charAt(1)) );
+    dispatch( setRunDirection(parseInt(command.charAt(1))));
     this.sendCommandToDevice(command);
   }
   // s13 제동 선택?
@@ -284,7 +284,7 @@ class ViewM2Setup extends Component {
     //alert('s14:' + value);
     const { dispatch } = this.props;
     const command = value === "on" ? "s1" : "s0";
-    dispatch(setRunSwitch(command.charAt(1)) );
+    dispatch(setRunSwitch(parseInt(command.charAt(1))));
     this.sendCommandToDevice(command);
   }
 
@@ -330,8 +330,8 @@ class ViewM2Setup extends Component {
     const runSwitchValue = runSwitch === 0 ? "off" : "on";
     const runDirectionValue = runDirection === 0 ? "off" : "on";
     
-    // console.log('VehicleSpeedArray', VehicleSpeedArray);
-    // console.log('runDirection:', runDirection, runDirectionValue);
+    // console.log('runSwitchValue', runSwitch, runSwitchValue);
+    // console.log('runDirectionValue:', runDirection, runDirectionValue);
     let sDriveModeStatus = '';
     let sDriveModeStatusColor = '#fff673';
     switch(driveMode) {
@@ -1020,7 +1020,7 @@ class ViewM2Setup extends Component {
                       marginBottom: '16px'
                     }}
                   >
-                    <span>{VehiclePosition} {positionStart} {positionStop}</span>
+                    {/*<span>{VehiclePosition} {positionStart} {positionStop}</span>*/}
                     <RailroadTrailStartStop value={VehiclePosition} name="VEHICLE POSITION" unit="m" 
                       start={positionStart} 
                       stop={positionStop} 
@@ -1452,8 +1452,8 @@ class ViewM2Setup extends Component {
 
 function mapStateToProps(state){
     // console.log('state.setM2SetupButtons.position', state.setM2SetupButtons.positionStart, state.setM2SetupButtons.positionStop);
-    console.log('runSwitch', state.setM2SetupButtons.runSwitch);
-    console.log('runDirection', state.setM2SetupButtons.runDirection);
+    // console.log('runSwitch', state.setM2SetupButtons.runSwitch);
+    // console.log('runDirection', state.setM2SetupButtons.runDirection);
     return {
       
       // testSetup: state.setM2SetupData.testSetup,
