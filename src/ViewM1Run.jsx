@@ -10,6 +10,11 @@ import DonutDivideLeftChart from './components/DonutDivideLeftChart';
 import DonutCircleChart from './components/DonutCircleChart';
 import PanelControlButtonsLeft from './components/PanelControlButtonsLeft';
 import PanelControlButtonsRight from './components/PanelControlButtonsRight';
+// import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
+// import Tabs from 'react-tabs-component';
+import TabPanel from 'react-tab-panel';
+import 'react-tab-panel/index.css';
+import './ViewM1Run.css';
 
 import { connect } from 'react-redux';
 
@@ -115,94 +120,196 @@ class ViewM1Run extends Component {
             <div className="motor-control-modeTitle">
               MOTOR CONTROL MODE
             </div>
-            <div className="configBox modeConfig1">
-              <div className="modeConfig1-listBox1">
-                <span className="confBigTitle">
-                  <img
-                    src="/img/bullet1.png"
-                    alt="img/bullet1.png"
-                    style={{
-                      marginRight: '5px'
-                    }}
-                  />
-                  MODE SELECT
-                </span>
-                <ControlSwitchGroup 
-                  title="CONTROL ACTIVE" 
-                  type="yellowButton" 
-                  value="on" 
-                  buttons={[
-                    { idx: 1, title: 'on', value: 'on' }, 
-                    { idx: 2, title: 'off', value: 'off' }
-                  ]} 
-                />
-                <ControlSwitchButton 
-                  title="CONTROL MODE" 
-                  activeBgColor="rgba(255,255,255,0.3)" 
-                  textColor="#fff" 
-                  padding="3px 20px" 
-                  buttons={[
-                    { idx: 1, title: 'Torque', value: 'Torque' }, 
-                    { idx: 2, title: 'Speed', value: 'Speed' }
-                  ]}
-                />
-              </div>
-              <div className="modeConfig1-listBox2">
-                <div className="listBox2-childBox pull-left">
-                  <ControlSwitchCheckBox
-                    title="SENSOR TYPE"
-                    activeBgColor="rgba(201,195,53,0.7)" 
-                    textColor="#fff" 
-                    padding="3px 17px 3px 27px" 
-                    buttons={[
-                      { idx: 1, title: 'Laser-X', value: 'Laser-X' }, 
-                      { idx: 2, title: 'Laser-Y', value: 'Laser-Y' }, 
-                      { idx: 3, title: 'Gyro', value: 'Gyro' }
-                    ]}
-                  />
-                  <div className="listBox2-controlBox">
-                    <div className="listBox2-controlBoxTitle">
-                      WEIGHT FACTOR – Lateral Sensor
+       
+            <TabPanel className="tab-motor-control-set">
+              <div tabTitle="CONTROL-1">
+                {/* MOTOR CONTROL START ==========================================================*/}
+                <div className="configBox modeConfig1">
+                  <div className="modeConfig1-listBox1">
+                    <span className="confBigTitle">
+                      <img
+                        src="/img/bullet1.png"
+                        alt="img/bullet1.png"
+                        style={{
+                          marginRight: '5px'
+                        }}
+                      />
+                      MODE SELECT
+                    </span>
+                    <ControlSwitchGroup 
+                      title="CONTROL ACTIVE" 
+                      type="yellowButton" 
+                      value="on" 
+                      buttons={[
+                        { idx: 1, title: 'on', value: 'on' }, 
+                        { idx: 2, title: 'off', value: 'off' }
+                      ]} 
+                    />
+                    <ControlSwitchButton 
+                      title="CONTROL MODE" 
+                      activeBgColor="rgba(255,255,255,0.3)" 
+                      textColor="#fff" 
+                      padding="3px 20px" 
+                      buttons={[
+                        { idx: 1, title: 'Torque', value: 'Torque' }, 
+                        { idx: 2, title: 'Speed', value: 'Speed' }
+                      ]}
+                    />
+                  </div>
+                  
+                  <div className="modeConfig1-listBox2">
+                    <div className="listBox2-childBox pull-left">
+                      <ControlSwitchCheckBox
+                        title="SENSOR TYPE"
+                        activeBgColor="rgba(201,195,53,0.7)" 
+                        textColor="#fff" 
+                        padding="3px 17px 3px 27px" 
+                        buttons={[
+                          { idx: 1, title: 'Laser-X', value: 'Laser-X' }, 
+                          { idx: 2, title: 'Laser-Y', value: 'Laser-Y' }, 
+                          { idx: 3, title: 'Gyro', value: 'Gyro' }
+                        ]}
+                      />
+                      <div className="listBox2-controlBox">
+                        <div className="listBox2-controlBoxTitle">
+                          WEIGHT FACTOR – Lateral Sensor
+                        </div>
+                        <div className="listBox2-controlBoxControl">
+                          <SliderWeightFactor value="-15.5" />
+                        </div>
+                        <div className="listBox2-controlBoxTitle">
+                          WEIGHT FACTOR – Yaw Sensor
+                        </div>
+                        <div className="listBox2-controlBoxControl">
+                          <SliderWeightFactor value="-10" />
+                        </div>
+                      </div>
                     </div>
-                    <div className="listBox2-controlBoxControl">
-                      <SliderWeightFactor value="-15.5" />
-                    </div>
-                    <div className="listBox2-controlBoxTitle">
-                      WEIGHT FACTOR – Yaw Sensor
-                    </div>
-                    <div className="listBox2-controlBoxControl">
-                      <SliderWeightFactor value="-10" />
+                    <div className="listBox2-childBox pull-right">
+                      <ControlSwitchButton
+                        title="CONTROL TYPE"
+                        activeBgColor="rgba(255,255,255,0.3)" 
+                        textColor="#fff" 
+                        padding="3px 20px" 
+                        buttons={[
+                          { idx: 1, title: 'Lateral Position', value: 'Lateral Position' }, 
+                          { idx: 2, title: 'Yaw Angle', value: 'Yaw Angle' }
+                        ]}
+                      />
+                      <div className="listBox2-controlBox">
+                        <div className="listBox2-controlBoxTitle">
+                          WEIGHT FACTOR – Control Mode
+                        </div>
+                        <div className="listBox2-controlBoxControl">
+                          <SliderWeightFactor value="-5" />
+                        </div>
+                        <div className="listBox2-controlBoxTitle">
+                          WEIGHT FACTOR – Control Type
+                        </div>
+                        <div className="listBox2-controlBoxControl">
+                          <SliderWeightFactor value="0" />
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>
-                <div className="listBox2-childBox pull-right">
-                  <ControlSwitchButton
-                    title="CONTROL TYPE"
-                    activeBgColor="rgba(255,255,255,0.3)" 
-                    textColor="#fff" 
-                    padding="3px 20px" 
-                    buttons={[
-                      { idx: 1, title: 'Lateral Position', value: 'Lateral Position' }, 
-                      { idx: 2, title: 'Yaw Angle', value: 'Yaw Angle' }
-                    ]}
-                  />
-                  <div className="listBox2-controlBox">
-                    <div className="listBox2-controlBoxTitle">
-                      WEIGHT FACTOR – Control Mode
+                {/* MOTOR CONTROL END ==========================================================*/}
+              </div>  
+              <div tabTitle="CONTROL-2">
+                {/* MOTOR CONTROL START ==========================================================*/}
+                <div className="configBox modeConfig1">
+                  <div className="modeConfig1-listBox1">
+                    <span className="confBigTitle">
+                      <img
+                        src="/img/bullet1.png"
+                        alt="img/bullet1.png"
+                        style={{
+                          marginRight: '5px'
+                        }}
+                      />
+                      MODE SELECT
+                    </span>
+                    <ControlSwitchGroup 
+                      title="CONTROL ACTIVE" 
+                      type="yellowButton" 
+                      value="on" 
+                      buttons={[
+                        { idx: 1, title: 'on', value: 'on' }, 
+                        { idx: 2, title: 'off', value: 'off' }
+                      ]} 
+                    />
+                    <ControlSwitchButton 
+                      title="CONTROL MODE" 
+                      activeBgColor="rgba(255,255,255,0.3)" 
+                      textColor="#fff" 
+                      padding="3px 20px" 
+                      buttons={[
+                        { idx: 1, title: 'Torque', value: 'Torque' }, 
+                        { idx: 2, title: 'Speed', value: 'Speed' }
+                      ]}
+                    />
+                  </div>
+                  
+                  <div className="modeConfig1-listBox2">
+                    <div className="listBox2-childBox pull-left">
+                      <ControlSwitchCheckBox
+                        title="SENSOR TYPE"
+                        activeBgColor="rgba(201,195,53,0.7)" 
+                        textColor="#fff" 
+                        padding="3px 17px 3px 27px" 
+                        buttons={[
+                          { idx: 1, title: 'Laser-X', value: 'Laser-X' }, 
+                          { idx: 2, title: 'Laser-Y', value: 'Laser-Y' }, 
+                          { idx: 3, title: 'Gyro', value: 'Gyro' }
+                        ]}
+                      />
+                      <div className="listBox2-controlBox">
+                        <div className="listBox2-controlBoxTitle">
+                          WEIGHT FACTOR – Lateral Sensor
+                        </div>
+                        <div className="listBox2-controlBoxControl">
+                          <SliderWeightFactor value="-15.5" />
+                        </div>
+                        <div className="listBox2-controlBoxTitle">
+                          WEIGHT FACTOR – Yaw Sensor
+                        </div>
+                        <div className="listBox2-controlBoxControl">
+                          <SliderWeightFactor value="-10" />
+                        </div>
+                      </div>
                     </div>
-                    <div className="listBox2-controlBoxControl">
-                      <SliderWeightFactor value="-5" />
-                    </div>
-                    <div className="listBox2-controlBoxTitle">
-                      WEIGHT FACTOR – Control Type
-                    </div>
-                    <div className="listBox2-controlBoxControl">
-                      <SliderWeightFactor value="0" />
+                    <div className="listBox2-childBox pull-right">
+                      <ControlSwitchButton
+                        title="CONTROL TYPE"
+                        activeBgColor="rgba(255,255,255,0.3)" 
+                        textColor="#fff" 
+                        padding="3px 20px" 
+                        buttons={[
+                          { idx: 1, title: 'Lateral Position', value: 'Lateral Position' }, 
+                          { idx: 2, title: 'Yaw Angle', value: 'Yaw Angle' }
+                        ]}
+                      />
+                      <div className="listBox2-controlBox">
+                        <div className="listBox2-controlBoxTitle">
+                          WEIGHT FACTOR – Control Mode
+                        </div>
+                        <div className="listBox2-controlBoxControl">
+                          <SliderWeightFactor value="-5" />
+                        </div>
+                        <div className="listBox2-controlBoxTitle">
+                          WEIGHT FACTOR – Control Type
+                        </div>
+                        <div className="listBox2-controlBoxControl">
+                          <SliderWeightFactor value="0" />
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
-            </div>
+                {/* MOTOR CONTROL END ==========================================================*/}                
+              </div>  
+            </TabPanel>                  
+
             <div className="configBox modeConfig2">
               <div className="pull-left motorConTab">
                 <MotorControlTabContainer />

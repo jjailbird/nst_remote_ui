@@ -1,0 +1,18 @@
+
+.react-tab-panel--theme-default .react-tab-panel__body {
+  padding: 10px 0px;
+  margin-bottom: 10px;
+}
+
+.react-tab-panel__tab-strip--theme-default .react-tab-panel__tab-title-inner {
+  padding: 0px 10px;
+}
+
+.configBox{
+  color: #fff;
+  margin-top:0px;
+}
+
+.react-tab-panel__tab-strip--theme-default.react-tab-panel__tab-strip--tab-position-top .react-tab-panel__tab-title-inner--active {
+  color: #fff;
+}
