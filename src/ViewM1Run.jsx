@@ -16,9 +16,20 @@ import TabPanel from 'react-tab-panel';
 import 'react-tab-panel/index.css';
 import './ViewM1Run.css';
 
+import { H5SPlayVideo } from './utils/H5SPlayVideo';
 import { connect } from 'react-redux';
 
+
+
+
 class ViewM1Run extends Component {
+  componentDidMount(){
+    console.log('HSSPlyaer start!');
+    const rtspFrontPlayer = new H5SPlayVideo('videoLeft');
+    rtspFrontPlayer.Start();
+    const rtspRearPlayer = new H5SPlayVideo('videoRight');
+    rtspRearPlayer.Start();
+  }
   render() {
     const { 
       motorControlData,
@@ -101,7 +112,9 @@ class ViewM1Run extends Component {
                 </div>
                 <video
                   id="videoLeft"
-                  src="/video/M_Left_org.mp4"
+                  // src="/video/M_Left_org.mp4"
+                  data-token="token1"
+                  data-h5spath="/h5swsapi"
                   autoPlay="true"
                   style={{
                     transform: 'rotate(180deg)'
@@ -497,7 +510,9 @@ class ViewM1Run extends Component {
                 </div>
                 <video
                   id="videoRight"
-                  src="/video/M_Right_org.mp4"
+                  // src="/video/M_Right_org.mp4"
+                  data-token="token2"
+                  data-h5spath="/h5swsapi"
                   style={{
                     // transform: 'rotate(180deg)'
                   }}
