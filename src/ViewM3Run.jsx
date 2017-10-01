@@ -11,10 +11,17 @@ import DonutDivideLeftChart from './components/DonutDivideLeftChart';
 import DonutCircleChart from './components/DonutCircleChart';
 import PanelControlButtonsLeft from './components/PanelControlButtonsLeft';
 import PanelControlButtonsRight from './components/PanelControlButtonsRight';
-
+import { H5SPlayVideo } from './utils/H5SPlayVideo';
 import { connect } from 'react-redux';
 
 class ViewM3Run extends Component {
+  componentDidMount(){
+    console.log('HSSPlyaer start!');
+    const rtspFrontPlayer = new H5SPlayVideo('videoLeft');
+    rtspFrontPlayer.Start();
+    const rtspRearPlayer = new H5SPlayVideo('videoRight');
+    rtspRearPlayer.Start();
+  }
   render() {
     const { 
       motorControlHscData,
@@ -97,7 +104,9 @@ class ViewM3Run extends Component {
                 </div>
                 <video
                   id="videoLeft"
-                  src="/video/T_Left_org.mp4"
+                  // src="/video/T_Left_org.mp4"
+                  data-token="token1"
+                  data-h5spath="/h5swsapi"
                   style={{
                     transform: 'rotate(180deg)'
                   }}
@@ -411,7 +420,9 @@ class ViewM3Run extends Component {
                 </div>
                 <video
                   id="videoRight"
-                  src="/video/T_Right_org.mp4"
+                  // src="/video/T_Right_org.mp4"
+                  data-token="token2"
+                  data-h5spath="/h5swsapi"
                   style={{
                     // transform: 'rotate(180deg)'
                   }}
