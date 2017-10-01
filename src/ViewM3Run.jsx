@@ -173,30 +173,30 @@ class ViewM3Run extends Component {
                 </div>
               </div>
               <div style={{padding: '3px 0'}}>
-                  <ControlSwitchCheckBox
-                    title="SENSOR TYPE"
-                    activeBgColor="rgba(201,195,53,0.7)" 
-                    textColor="#fff" 
-                    padding="3px 17px 3px 27px" 
-                    buttons={[
-                      { idx: 1, title: 'LVDT', value: 'LVDT' }, 
-                      { idx: 2, title: 'Gyro', value: 'Gyro' }
-                    ]}
-                  />
-                  <span style={{padding: '10px'}} ></span>
-                  <ControlSwitchButton
-                    title="CONTROL TYPE"
-                    activeBgColor="rgba(255,255,255,0.3)" 
-                    textColor="#fff" 
-                    padding="3px 19px" 
-                    buttons={[
-                      { idx: 1, title: 'Passive', value: 'Passive' }, 
-                      { idx: 2, title: 'Active A', value: 'Active A' }, 
-                      { idx: 3, title: 'Active A2', value: 'Active A2' }, 
-                      { idx: 4, title: 'Active B', value: 'Active B' }, 
-                      { idx: 5, title: 'Active B2', value: 'Active B2' }
-                    ]}
-                  />
+                <ControlSwitchCheckBox
+                  title="SENSOR TYPE"
+                  activeBgColor="rgba(201,195,53,0.7)" 
+                  textColor="#fff" 
+                  padding="3px 17px 3px 27px" 
+                  buttons={[
+                    { idx: 1, title: 'LVDT', value: 'LVDT' }, 
+                    { idx: 2, title: 'Gyro', value: 'Gyro' }
+                  ]}
+                />
+                <span style={{padding: '10px'}} ></span>
+                <ControlSwitchButton
+                  title="CONTROL TYPE"
+                  activeBgColor="rgba(255,255,255,0.3)" 
+                  textColor="#fff" 
+                  padding="3px 19px" 
+                  buttons={[
+                    { idx: 1, title: 'Passive', value: 'Passive' }, 
+                    { idx: 2, title: 'Active A', value: 'Active A' }, 
+                    { idx: 3, title: 'Active A2', value: 'Active A2' }, 
+                    { idx: 4, title: 'Active B', value: 'Active B' }, 
+                    { idx: 5, title: 'Active B2', value: 'Active B2' }
+                  ]}
+                />
               </div>
               <div className="modeConfig1-listBox2">
                 <div className="listBox2-childBox pull-left">
@@ -270,17 +270,17 @@ class ViewM3Run extends Component {
                   </div>
                 </div>
                 <div className="motorConPieBox2">
-                    <DonutDivideLeftChart 
-                      data={motorControlHscData.data.speed} 
-                      unit="km/h" 
-                      name="Vehicle Speed" 
-                      strokeColor="#c93535" 
-                      strokeColorLine="#16315b" 
-                      donutWidth="91" 
-                      donutStrokeWidth="10"
-                      valueFontSize="35px"
-                      valueFontColor="#a19d35"
-                    />
+                  <DonutDivideLeftChart 
+                    data={motorControlHscData.data.speed} 
+                    unit="km/h" 
+                    name="Vehicle Speed" 
+                    strokeColor="#c93535" 
+                    strokeColorLine="#16315b" 
+                    donutWidth="91" 
+                    donutStrokeWidth="10"
+                    valueFontSize="35px"
+                    valueFontColor="#a19d35"
+                  />
                 </div>
               </div>
               <div className="modeConfig2-graphBox">
