@@ -11,6 +11,8 @@ import DonutDivideLeftChart from './components/DonutDivideLeftChart';
 import DonutCircleChart from './components/DonutCircleChart';
 import PanelControlButtonsLeft from './components/PanelControlButtonsLeft';
 import PanelControlButtonsRight from './components/PanelControlButtonsRight';
+import Clock from 'react-live-clock';
+
 import { H5SPlayVideo } from './utils/H5SPlayVideo';
 import { connect } from 'react-redux';
 
@@ -61,7 +63,9 @@ class ViewM3Run extends Component {
                   front wheel cam
                 </div>
                 <div className="videoOverInfo voiDate">
-                  2017.9.9 MON<br />20:20 30
+                  <Clock format={'YYYY.MM.DD ddd'} ticking={true} timezone={'Asia/Tokyo'} />
+                  <br />
+                  <Clock format={'HH:mm:ss'} ticking={true} timezone={'Asia/Tokyo'} />
                   <div className="voiData">
                     <DonutCircleChart 
                       data={motorControlHscData.data.speed} 
@@ -377,7 +381,9 @@ class ViewM3Run extends Component {
                   rear wheel cam
                 </div>
                 <div className="videoOverInfo voiDate">
-                  2017.9.9 MON<br />20:20 30
+                  <Clock format={'YYYY.MM.DD ddd'} ticking={true} timezone={'Asia/Tokyo'} />
+                  <br />
+                  <Clock format={'HH:mm:ss'} ticking={true} timezone={'Asia/Tokyo'} />
                   <div className="voiData">
                     <DonutCircleChart 
                       data={motorControlHscData.data.speed} 
