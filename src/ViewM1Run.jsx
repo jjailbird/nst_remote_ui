@@ -10,6 +10,8 @@ import DonutDivideLeftChart from './components/DonutDivideLeftChart';
 import DonutCircleChart from './components/DonutCircleChart';
 import PanelControlButtonsLeft from './components/PanelControlButtonsLeft';
 import PanelControlButtonsRight from './components/PanelControlButtonsRight';
+import Clock from 'react-live-clock';
+
 import TabPanel from 'react-tab-panel';
 import 'react-tab-panel/index.css';
 import './ViewM1Run.css';
@@ -182,7 +184,9 @@ class ViewM1Run extends Component {
                   front wheel cam
                 </div>
                 <div className="videoOverInfo voiDate">
-                  2017.9.9 MON<br />20:20 30
+                  <Clock format={'YYYY.MM.DD ddd'} ticking={true} timezone={'Asia/Tokyo'} />
+                  <br />
+                  <Clock format={'HH:mm:ss'} ticking={true} timezone={'Asia/Tokyo'} />
                   <div className="voiData">
                     <DonutCircleChart 
                       data={motorControlData.data.speed} 
@@ -624,7 +628,10 @@ class ViewM1Run extends Component {
                   rear wheel cam
                 </div>
                 <div className="videoOverInfo voiDate">
-                  2017.9.9 MON<br />20:20 30
+                  <Clock format={'YYYY.MM.DD ddd'} ticking={true} timezone={'Asia/Tokyo'} />
+                  <br />
+                  <Clock format={'HH:mm:ss'} ticking={true} timezone={'Asia/Tokyo'} />
+
                   <div className="voiData">
                     <DonutCircleChart 
                       data={motorControlData.data.speed} 
