@@ -15,7 +15,32 @@ import MotorBogieDescTab from './components/MotorBogieDescTab';
 
 import { connect } from 'react-redux';
 
+import { setTuningFrontPgain, setTuningFrontIgain, setTuningRearPgain, setTuningRearIgain } from './actions';
+
 class ViewM1Setup extends Component {
+  constructor(props){
+    super(props);
+    this.onTuningFrontPgainChange = this.onTuningFrontPgainChange.bind(this);
+    this.onTuningFrontIgainChange = this.onTuningFrontIgainChange.bind(this);
+    this.onTuningRearPgainChange = this.onTuningRearPgainChange.bind(this);
+    this.onTuningRearIgainChange = this.onTuningRearIgainChange.bind(this);
+  }
+  onTuningFrontPgainChange(value){
+    const { dispatch } = this.props;
+    dispatch(setTuningFrontPgain(value));
+  }
+  onTuningFrontIgainChange(value){
+    const { dispatch } = this.props;
+    dispatch(setTuningFrontIgain(value));
+  }
+  onTuningRearPgainChange(value){
+    const { dispatch } = this.props;
+    dispatch(setTuningRearPgain(value));
+  }
+  onTuningRearIgainChange(value){
+    const { dispatch } = this.props;
+    dispatch(setTuningRearIgain(value));
+  }
   render() {
     const { 
       frontLeftMotorData,
@@ -33,6 +58,7 @@ class ViewM1Setup extends Component {
       frontSensorData,
       rearSensorData,
       // motorControlData
+      tuningFrontPgain, tuningFrontIgain, tuningRearPgain, tuningRearIgain,
     } = this.props;
     return (
         <div className="contBox">
@@ -57,13 +83,21 @@ class ViewM1Setup extends Component {
                           p gain
                         </div>
                         <div className="setupGainTunning">
-                          <SliderWeightFactor value="-15" />
+                          <SliderWeightFactor
+                            // value="-15"
+                            value={tuningFrontPgain}
+                            onChange={this.onTuningFrontPgainChange}
+                          />
                         </div>
                         <div className="setupTitle">
                           i gain
                         </div>
                         <div className="setupGainTunning">
-                          <SliderWeightFactor value="-5" />
+                          <SliderWeightFactor
+                            // value="-5"
+                            value={tuningFrontIgain}
+                            onChange={this.onTuningFrontIgainChange}
+                          />
                         </div>
                     </div>
                   </div>
@@ -77,13 +111,21 @@ class ViewM1Setup extends Component {
                           p gain
                         </div>
                         <div className="setupGainTunning">
-                          <SliderWeightFactor value="-10" />
+                          <SliderWeightFactor
+                            // value="-10"
+                            value={tuningRearPgain}
+                            onChange={this.onTuningRearPgainChange}
+                          />
                         </div>
                         <div className="setupTitle">
                           i gain
                         </div>
                         <div className="setupGainTunning">
-                          <SliderWeightFactor value="-0" />
+                          <SliderWeightFactor
+                            // value="-0"
+                            value={tuningRearIgain}
+                            onChange={this.onTuningRearIgainChange}
+                          />
                         </div>
                   </div>
                 </div>
@@ -648,6 +690,12 @@ function mapStateToProps(state){
       frontSensorData: state.frontSensorData,
       rearSensorData: state.rearSensorData,
       // motorControlData: state.motorControlData
+
+      tuningFrontPgain: state.setM2SetupButtons.tuningFrontPgain, 
+      tuningFrontIgain: state.setM2SetupButtons.tuningFrontIgain,
+      tuningRearPgain: state.setM2SetupButtons.tuningRearPgain,
+      tuningRearIgain: state.setM2SetupButtons.tuningRearIgain,
+      
     }
 }
 

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import SliderWeightFactor from './components/SliderWeightFactor';
 import ControlSwitchGroup from './components/ControlSwitchGroup';
 import ControlSwitchButton from './components/ControlSwitchButton';
-import ControlSwitchCheckBox from './components/ControlSwitchCheckBox';
+import ControlSwitchCheckBox2 from './components/ControlSwitchCheckBox2';
 import GraphTabContainer from './components/GraphTabContainer';
 import MotorControlTabContainer from './components/MotorControlTabContainer';
 import RailroadTrail from './components/RailroadTrail';
@@ -10,8 +10,6 @@ import DonutDivideLeftChart from './components/DonutDivideLeftChart';
 import DonutCircleChart from './components/DonutCircleChart';
 import PanelControlButtonsLeft from './components/PanelControlButtonsLeft';
 import PanelControlButtonsRight from './components/PanelControlButtonsRight';
-// import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
-// import Tabs from 'react-tabs-component';
 import TabPanel from 'react-tab-panel';
 import 'react-tab-panel/index.css';
 import './ViewM1Run.css';
@@ -19,16 +17,128 @@ import './ViewM1Run.css';
 import { H5SPlayVideo } from './utils/H5SPlayVideo';
 import { connect } from 'react-redux';
 
-
-
+import {
+  setCrtl1Active, setCrtl1Mode, setCrtl1SensorType, setCrtl1ControlType, setCrtl1WFLateralSensor, setCrtl1WFControlMode, setCrtl1WFYawSensor, setCrtl1WFControlType,
+  setCrtl2Active, setCrtl2Mode, setCrtl2SensorType, setCrtl2ControlType, setCrtl2WFLateralSensor, setCrtl2WFControlMode, setCrtl2WFYawSensor, setCrtl2WFControlType,
+  setChartTypeFrontLeft, setChartTypeFrontRight, setChartTypeRearLeft, setChartTypeRearRight, 
+} from './actions'
 
 class ViewM1Run extends Component {
+  constructor(props) {
+    super(props);
+    this.onCrtl1ActiveChange = this.onCrtl1ActiveChange.bind(this);
+    this.onCrtl1ModeChange = this.onCrtl1ModeChange.bind(this);
+    this.onCrtl1SensorTypeChange = this.onCrtl1SensorTypeChange.bind(this);
+    this.onCrtl1ControlTypeChange = this.onCrtl1ControlTypeChange.bind(this);
+    this.onCrtl1WfLateralSensorChange = this.onCrtl1WfLateralSensorChange.bind(this);
+    this.onCrtl1WfControlModeChange = this.onCrtl1WfControlModeChange.bind(this); 
+    this.onCrtl1WfYawSensorChange = this.onCrtl1WfYawSensorChange.bind(this);
+    this.onCrtl1WfControlTypeChange = this.onCrtl1WfControlTypeChange.bind(this);
+    this.onCrtl2ActiveChange = this.onCrtl2ActiveChange.bind(this); 
+    this.onCrtl2ModeChange = this.onCrtl2ModeChange.bind(this); 
+    this.onCrtl2SensorTypeChange = this.onCrtl2SensorTypeChange.bind(this); 
+    this.onCrtl2ControlTypeChange = this.onCrtl2ControlTypeChange.bind(this); 
+    this.onCrtl2WfLateralSensorChange = this.onCrtl2WfLateralSensorChange.bind(this); 
+    this.onCrtl2WfControlModeChange = this.onCrtl2WfControlModeChange.bind(this); 
+    this.onCrtl2WfYawSensorChange = this.onCrtl2WfYawSensorChange.bind(this); 
+    this.onCrtl2WfControlTypeChange = this.onCrtl2WfControlTypeChange.bind(this);
+
+    this.onChartTypeFrontLeftChange = this.onChartTypeFrontLeftChange.bind(this);
+    this.onChartTypeFrontRightChange = this.onChartTypeFrontRightChange.bind(this);
+    this.onChartTypeRearLeftChange = this.onChartTypeRearLeftChange.bind(this);
+    this.onChartTypeRearRightChange = this.onChartTypeRearRightChange.bind(this);
+
+  }
+  onCrtl1ActiveChange(value){
+    const { dispatch } = this.props;
+    dispatch(setCrtl1Active(value));
+  } 
+  onCrtl1ModeChange(value){
+    const { dispatch } = this.props;
+    dispatch(setCrtl1Mode(value));
+  }
+  onCrtl1SensorTypeChange(values){
+    const { dispatch } = this.props;
+    dispatch(setCrtl1SensorType(values));
+  }
+  onCrtl1ControlTypeChange(value){
+    const { dispatch } = this.props;
+    dispatch(setCrtl1ControlType(value));
+  }
+  onCrtl1WfLateralSensorChange(value){
+    const { dispatch } = this.props;
+    dispatch(setCrtl1WFLateralSensor(value));
+  }
+  onCrtl1WfControlModeChange(value){
+    const { dispatch } = this.props;
+    dispatch(setCrtl1WFControlMode(value));
+  } 
+  onCrtl1WfYawSensorChange(value){
+    const { dispatch } = this.props;
+    dispatch(setCrtl1WFYawSensor(value));
+  } 
+  onCrtl1WfControlTypeChange(value){
+    const { dispatch } = this.props;
+    dispatch(setCrtl1WFControlType(value));
+  }
+  onCrtl2ActiveChange(value){
+    const { dispatch } = this.props;
+    dispatch(setCrtl2Active(value));
+  } 
+  onCrtl2ModeChange(value){
+    const { dispatch } = this.props;
+    dispatch(setCrtl2Mode(value));
+  } 
+  onCrtl2SensorTypeChange(values){
+    const { dispatch } = this.props;
+    dispatch(setCrtl2SensorType(values));
+  } 
+  onCrtl2ControlTypeChange(value){
+    const { dispatch } = this.props;
+    dispatch(setCrtl2ControlType(value));
+  } 
+  onCrtl2WfLateralSensorChange(value){
+    const { dispatch } = this.props;
+    dispatch(setCrtl2WFLateralSensor(value));
+  } 
+  onCrtl2WfControlModeChange(value){
+    const { dispatch } = this.props;
+    dispatch(setCrtl2WFControlMode(value));
+  } 
+  onCrtl2WfYawSensorChange(value){
+    const { dispatch } = this.props;
+    dispatch(setCrtl2WFYawSensor(value));
+  } 
+  onCrtl2WfControlTypeChange(value){
+    const { dispatch } = this.props;
+    dispatch(setCrtl2WFControlType(value));
+  }
+
+  onChartTypeFrontLeftChange(value){
+    const { dispatch } = this.props;
+    dispatch(setChartTypeFrontLeft(value));
+  }
+  onChartTypeFrontRightChange(value){
+    const { dispatch } = this.props;
+    dispatch(setChartTypeFrontRight(value));
+  }
+  onChartTypeRearLeftChange(value){
+    const { dispatch } = this.props;
+    dispatch(setChartTypeRearLeft(value));
+  }
+  onChartTypeRearRightChange(value){
+    const { dispatch } = this.props;
+    dispatch(setChartTypeRearRight(value));
+  }
   componentDidMount(){
-    console.log('HSSPlyaer start!');
+    
+    // console.log('HSSPlyaer start!');
+    /*
     const rtspFrontPlayer = new H5SPlayVideo('videoLeft');
     rtspFrontPlayer.Start();
     const rtspRearPlayer = new H5SPlayVideo('videoRight');
     rtspRearPlayer.Start();
+    */
   }
   render() {
     const { 
@@ -38,7 +148,10 @@ class ViewM1Run extends Component {
       rearLeftData,
       rearRightData,
       frontWheelsetData,
-      rearWheelsetData
+      rearWheelsetData,
+      crtl1Active, crtl1Mode, crtl1SensorType, crtl1ControlType, crtl1WfLateralSensor, crtl1WfControlMode, crtl1WfYawSensor, crtl1WfControlType,
+      crtl2Active, crtl2Mode, crtl2SensorType, crtl2ControlType, crtl2WfLateralSensor, crtl2WfControlMode, crtl2WfYawSensor, crtl2WfControlType,
+      chartTypeFrontLeft, chartTypeFrontRight, chartTypeRearLeft, chartTypeRearRight,
     } = this.props;
     return (
       <div className="contBox">
@@ -77,7 +190,7 @@ class ViewM1Run extends Component {
                       name="Speed" 
                       strokeColor="#fff" 
                       strokeColorLine="rgba(255,255,255,0.3)" 
-                      donutWidth="40" 
+                      donutWidth="40px" 
                       donutStrokeWidth="5"
                       valueFontSize="20px"
                       valueFontColor="#fff"
@@ -90,7 +203,7 @@ class ViewM1Run extends Component {
                       name="Position" 
                       strokeColor="#fff" 
                       strokeColorLine="rgba(255,255,255,0.3)" 
-                      donutWidth="40" 
+                      donutWidth="40px" 
                       donutStrokeWidth="5"
                       valueFontSize="20px"
                       valueFontColor="#fff"
@@ -103,7 +216,7 @@ class ViewM1Run extends Component {
                       name="Radius" 
                       strokeColor="#fff" 
                       strokeColorLine="rgba(255,255,255,0.3)" 
-                      donutWidth="40" 
+                      donutWidth="40px" 
                       donutStrokeWidth="5"
                       valueFontSize="20px"
                       valueFontColor="#fff"
@@ -116,17 +229,19 @@ class ViewM1Run extends Component {
                   data-token="token1"
                   data-h5spath="/h5swsapi"
                   autoPlay="true"
+                  /*
                   style={{
                     transform: 'rotate(180deg)'
                   }}
+                  */
                 />
               </div>
               <div className="panelTitle">
                 Live Cam Mode
               </div>
             </div>
-            <GraphTabContainer data={frontLeftData.data} title="Front Left"/>
-            <GraphTabContainer data={rearLeftData.data} title="Rear Left"/>
+            <GraphTabContainer data={frontLeftData.data} type={chartTypeFrontLeft} onChange={this.onChartTypeFrontLeftChange} title="Front Left"/>
+            <GraphTabContainer data={rearLeftData.data} type={chartTypeRearLeft} onChange={this.onChartTypeRearLeftChange} title="Rear Left"/>
             <PanelControlButtonsLeft />
           </div>
           <div className="motor-control-modeBox pull-left">
@@ -136,7 +251,7 @@ class ViewM1Run extends Component {
        
             <TabPanel className="tab-motor-control-set">
               <div tabTitle="CONTROL-1">
-                {/* MOTOR CONTROL START ==========================================================*/}
+                {/* MOTOR CONTROL1 START ==========================================================*/}
                 <div className="configBox modeConfig1">
                   <div className="modeConfig1-listBox1">
                     <span className="confBigTitle">
@@ -152,27 +267,30 @@ class ViewM1Run extends Component {
                     <ControlSwitchGroup 
                       title="CONTROL ACTIVE" 
                       type="yellowButton" 
-                      value="on" 
+                      value={crtl1Active}
                       buttons={[
                         { idx: 1, title: 'on', value: 'on' }, 
                         { idx: 2, title: 'off', value: 'off' }
-                      ]} 
+                      ]}
+                      onChange={this.onCrtl1ActiveChange}
                     />
                     <ControlSwitchButton 
                       title="CONTROL MODE" 
                       activeBgColor="rgba(255,255,255,0.3)" 
                       textColor="#fff" 
                       padding="3px 20px" 
+                      value={crtl1Mode}
                       buttons={[
                         { idx: 1, title: 'Torque', value: 'Torque' }, 
                         { idx: 2, title: 'Speed', value: 'Speed' }
                       ]}
+                      onChange={this.onCrtl1ModeChange}
                     />
                   </div>
                   
                   <div className="modeConfig1-listBox2">
                     <div className="listBox2-childBox pull-left">
-                      <ControlSwitchCheckBox
+                      <ControlSwitchCheckBox2
                         title="SENSOR TYPE"
                         activeBgColor="rgba(201,195,53,0.7)" 
                         textColor="#fff" 
@@ -182,19 +300,27 @@ class ViewM1Run extends Component {
                           { idx: 2, title: 'Laser-Y', value: 'Laser-Y' }, 
                           { idx: 3, title: 'Gyro', value: 'Gyro' }
                         ]}
+                        values={crtl1SensorType}
+                        onChange={this.onCrtl1SensorTypeChange}
                       />
                       <div className="listBox2-controlBox">
                         <div className="listBox2-controlBoxTitle">
                           WEIGHT FACTOR – Lateral Sensor
                         </div>
                         <div className="listBox2-controlBoxControl">
-                          <SliderWeightFactor value="-15.5" />
+                          <SliderWeightFactor
+                            value={crtl1WfLateralSensor} // value="-15.5"
+                            onChange={this.onCrtl1WfLateralSensorChange}
+                          />
                         </div>
                         <div className="listBox2-controlBoxTitle">
                           WEIGHT FACTOR – Yaw Sensor
                         </div>
                         <div className="listBox2-controlBoxControl">
-                          <SliderWeightFactor value="-10" />
+                          <SliderWeightFactor
+                            value={crtl1WfYawSensor} // value="-10"
+                            onChange={this.onCrtl1WfYawSensorChange}
+                          />
                         </div>
                       </div>
                     </div>
@@ -208,28 +334,36 @@ class ViewM1Run extends Component {
                           { idx: 1, title: 'Lateral Position', value: 'Lateral Position' }, 
                           { idx: 2, title: 'Yaw Angle', value: 'Yaw Angle' }
                         ]}
+                        value={crtl1ControlType}
+                        onChange={this.onCrtl1ControlTypeChange}
                       />
                       <div className="listBox2-controlBox">
                         <div className="listBox2-controlBoxTitle">
                           WEIGHT FACTOR – Control Mode
                         </div>
                         <div className="listBox2-controlBoxControl">
-                          <SliderWeightFactor value="-5" />
+                          <SliderWeightFactor
+                            value={crtl1WfControlMode} // value="-5"
+                            onChange={this.onCrtl1WfControlModeChange}
+                          />
                         </div>
                         <div className="listBox2-controlBoxTitle">
                           WEIGHT FACTOR – Control Type
                         </div>
                         <div className="listBox2-controlBoxControl">
-                          <SliderWeightFactor value="0" />
+                          <SliderWeightFactor
+                            value={crtl1WfControlType} // value="0"
+                            onChange={this.onCrtl1WfControlTypeChange}
+                          />
                         </div>
                       </div>
                     </div>
                   </div>
                 </div>
-                {/* MOTOR CONTROL END ==========================================================*/}
+                {/* MOTOR CONTROL1 END ==========================================================*/}
               </div>  
               <div tabTitle="CONTROL-2">
-                {/* MOTOR CONTROL START ==========================================================*/}
+                {/* MOTOR CONTROL2 START ==========================================================*/}
                 <div className="configBox modeConfig1">
                   <div className="modeConfig1-listBox1">
                     <span className="confBigTitle">
@@ -245,11 +379,12 @@ class ViewM1Run extends Component {
                     <ControlSwitchGroup 
                       title="CONTROL ACTIVE" 
                       type="yellowButton" 
-                      value="on" 
                       buttons={[
                         { idx: 1, title: 'on', value: 'on' }, 
                         { idx: 2, title: 'off', value: 'off' }
-                      ]} 
+                      ]}
+                      value={crtl2Active}
+                      onChange={this.onCrtl2ActiveChange} 
                     />
                     <ControlSwitchButton 
                       title="CONTROL MODE" 
@@ -260,12 +395,14 @@ class ViewM1Run extends Component {
                         { idx: 1, title: 'Torque', value: 'Torque' }, 
                         { idx: 2, title: 'Speed', value: 'Speed' }
                       ]}
+                      value={crtl2Mode}
+                      onChange={this.onCrtl2ModeChange}
                     />
                   </div>
                   
                   <div className="modeConfig1-listBox2">
                     <div className="listBox2-childBox pull-left">
-                      <ControlSwitchCheckBox
+                      <ControlSwitchCheckBox2
                         title="SENSOR TYPE"
                         activeBgColor="rgba(201,195,53,0.7)" 
                         textColor="#fff" 
@@ -275,19 +412,29 @@ class ViewM1Run extends Component {
                           { idx: 2, title: 'Laser-Y', value: 'Laser-Y' }, 
                           { idx: 3, title: 'Gyro', value: 'Gyro' }
                         ]}
+                        values={crtl2SensorType}
+                        onChange={this.onCrtl2SensorTypeChange}
                       />
                       <div className="listBox2-controlBox">
                         <div className="listBox2-controlBoxTitle">
                           WEIGHT FACTOR – Lateral Sensor
                         </div>
                         <div className="listBox2-controlBoxControl">
-                          <SliderWeightFactor value="-15.5" />
+                          <SliderWeightFactor
+                            // value="-15.5"
+                            value={crtl2WfLateralSensor}
+                            onChange={this.onCrtl2WfLateralSensorChange}
+                          />
                         </div>
                         <div className="listBox2-controlBoxTitle">
                           WEIGHT FACTOR – Yaw Sensor
                         </div>
                         <div className="listBox2-controlBoxControl">
-                          <SliderWeightFactor value="-10" />
+                          <SliderWeightFactor
+                            // value="-10"
+                            value={crtl2WfYawSensor}
+                            onChange={this.onCrtl2WfYawSensorChange}
+                          />
                         </div>
                       </div>
                     </div>
@@ -301,25 +448,35 @@ class ViewM1Run extends Component {
                           { idx: 1, title: 'Lateral Position', value: 'Lateral Position' }, 
                           { idx: 2, title: 'Yaw Angle', value: 'Yaw Angle' }
                         ]}
+                        value={crtl2ControlType}
+                        onChange={this.onCrtl2ControlTypeChange}
                       />
                       <div className="listBox2-controlBox">
                         <div className="listBox2-controlBoxTitle">
                           WEIGHT FACTOR – Control Mode
                         </div>
                         <div className="listBox2-controlBoxControl">
-                          <SliderWeightFactor value="-5" />
+                          <SliderWeightFactor
+                            // value="-5"
+                            value={crtl2WfControlMode}
+                            onChange={this.onCrtl2WfControlModeChange}
+                          />
                         </div>
                         <div className="listBox2-controlBoxTitle">
                           WEIGHT FACTOR – Control Type
                         </div>
                         <div className="listBox2-controlBoxControl">
-                          <SliderWeightFactor value="0" />
+                          <SliderWeightFactor
+                            // value="0"
+                            value={crtl2WfControlType}
+                            onChange={this.onCrtl2WfControlTypeChange}
+                          />
                         </div>
                       </div>
                     </div>
                   </div>
                 </div>
-                {/* MOTOR CONTROL END ==========================================================*/}                
+                {/* MOTOR CONTROL2 END ==========================================================*/}                
               </div>  
             </TabPanel>                  
 
@@ -475,7 +632,7 @@ class ViewM1Run extends Component {
                       name="Speed" 
                       strokeColor="#fff" 
                       strokeColorLine="rgba(255,255,255,0.3)" 
-                      donutWidth="40" 
+                      donutWidth="40px" 
                       donutStrokeWidth="5"
                       valueFontSize="20px"
                       valueFontColor="#fff"
@@ -488,7 +645,7 @@ class ViewM1Run extends Component {
                       name="Position" 
                       strokeColor="#fff" 
                       strokeColorLine="rgba(255,255,255,0.3)" 
-                      donutWidth="40" 
+                      donutWidth="40px" 
                       donutStrokeWidth="5"
                       valueFontSize="20px"
                       valueFontColor="#fff"
@@ -501,7 +658,7 @@ class ViewM1Run extends Component {
                       name="Radius" 
                       strokeColor="#fff" 
                       strokeColorLine="rgba(255,255,255,0.3)" 
-                      donutWidth="40" 
+                      donutWidth="40px" 
                       donutStrokeWidth="5"
                       valueFontSize="20px"
                       valueFontColor="#fff"
@@ -523,8 +680,8 @@ class ViewM1Run extends Component {
                 LIVE CAM MODE
               </div>
             </div>
-            <GraphTabContainer data={frontRightData.data} title="Front Right"/>
-            <GraphTabContainer data={rearRightData.data} title="Rear Right"/>
+            <GraphTabContainer data={frontRightData.data} type={chartTypeFrontRight} onChange={this.onChartTypeFrontRightChange} title="Front Right"/>
+            <GraphTabContainer data={rearRightData.data} type={chartTypeRearRight} onChange={this.onChartTypeRearRightChange} title="Rear Right"/>
             <PanelControlButtonsRight />
           </div>
         </div>
@@ -534,14 +691,36 @@ class ViewM1Run extends Component {
 }
 
 function mapStateToProps(state){
-    return {
+  // console.log('redux data', state);  
+  return {
       frontLeftData: state.frontLeftData,
       frontRightData: state.frontRightData,
       rearLeftData: state.rearLeftData,
       rearRightData: state.rearRightData,
       motorControlData: state.motorControlData,
       frontWheelsetData: state.frontWheelsetData,
-      rearWheelsetData: state.rearWheelsetData
+      rearWheelsetData: state.rearWheelsetData,
+      crtl1Active: state.setM2SetupButtons.crtl1Active,
+      crtl1Mode: state.setM2SetupButtons.crtl1Mode, 
+      crtl1SensorType: state.setM2SetupButtons.crtl1SensorType, 
+      crtl1ControlType: state.setM2SetupButtons.crtl1ControlType, 
+      crtl1WfLateralSensor: state.setM2SetupButtons.crtl1WfLateralSensor, 
+      crtl1WfControlMode: state.setM2SetupButtons.crtl1WfControlMode, 
+      crtl1WfYawSensor: state.setM2SetupButtons.crtl1WfYawSensor, 
+      crtl1WfControlType: state.setM2SetupButtons.crtl1WfControlType,
+      crtl2Active: state.setM2SetupButtons.crtl2Active, 
+      crtl2Mode: state.setM2SetupButtons.crtl2Mode, 
+      crtl2SensorType: state.setM2SetupButtons.crtl2SensorType, 
+      crtl2ControlType: state.setM2SetupButtons.crtl2ControlType, 
+      crtl2WfLateralSensor: state.setM2SetupButtons.crtl2WfLateralSensor, 
+      crtl2WfControlMode: state.setM2SetupButtons.crtl2WfControlMode, 
+      crtl2WfYawSensor: state.setM2SetupButtons.crtl2WfYawSensor, 
+      crtl2WfControlType: state.setM2SetupButtons.crtl2WfControlType,
+
+      chartTypeFrontLeft: state.setM2SetupButtons.chartTypeFrontLeft,
+      chartTypeFrontRight: state.setM2SetupButtons.chartTypeFrontRight,
+      chartTypeRearLeft: state.setM2SetupButtons.chartTypeRearLeft,
+      chartTypeRearRight: state.setM2SetupButtons.chartTypeRearRight,
     }
 }
 

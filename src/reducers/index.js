@@ -24,6 +24,8 @@ import setItcSetupRearLeftData from './setItcSetupRearLeftData';
 import setItcSetupRearRightData from './setItcSetupRearRightData';
 // ===================================================================
 
+import setM2SetupButtons from './setM2SetupButtons';
+
 const reducers = combineReducers({ 
   frontLeftData,
   frontRightData,
@@ -43,7 +45,8 @@ const reducers = combineReducers({
   setItcSetupFrontLeftData,
   setItcSetupFrontRightData,
   setItcSetupRearLeftData,
-  setItcSetupRearRightData
+  setItcSetupRearRightData,
+  setM2SetupButtons
 });
 
 export default reducers;

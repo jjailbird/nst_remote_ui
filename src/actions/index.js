@@ -43,8 +43,8 @@ export const SET_REAR_RIGHT_HSC_DATA = 'SET_REAR_RIGHT_HSC_DATA';
 export const SET_MOTOR_CONTROL_HSC_DATA = 'SET_MOTOR_CONTROL_HSC_DATA';
 export const SET_FRONT_WHEELSET_HSC_DATA = 'SET_FRONT_WHEELSET_HSC_DATA';
 export const SET_REAR_WHEELSET_HSC_DATA = 'SET_REAR_WHEELSET_HSC_DATA';
-
 // HSC_SETUP =======================================================
+
 
 
 // ITC_SETUP ================================================================
@@ -255,3 +255,189 @@ export const setRearWheelsetHscData = (data) => {
     data
   }
 }
+
+// ITC RUN - control buttons ------------------------------------------------------------------------------------------------------
+export const SET_CRTL_1_ACTIVE = 'SET_CRTL_1_ACTIVE';
+export const SET_CRTL_1_MODE = 'SET_CRTL_1_MODE';
+export const SET_CRTL_1_SENSOR_TYPE = 'SET_CRTL_1_SENSOR_TYPE';
+export const SET_CRTL_1_CONTROL_TYPE = 'SET_CRTL_1_CONTROL_TYPE';
+export const SET_CRTL_1_WF_LATERAL_SENSOR = 'SET_CRTL_1_WF_LATERAL_SENSOR';
+export const SET_CRTL_1_WF_CONTROL_MODE = 'SET_CRTL_1_WF_CONTROL_MODE';
+export const SET_CRTL_1_WF_YAW_SENSOR = 'SET_CRTL_1_WF_YAW_SENSOR';
+export const SET_CRTL_1_WF_CONTROL_TYPE = 'SET_CRTL_1_WF_CONTROL_TYPE';
+
+export const SET_CRTL_2_ACTIVE = 'SET_CRTL_2_ACTIVE';
+export const SET_CRTL_2_MODE = 'SET_CRTL_2_MODE';
+export const SET_CRTL_2_SENSOR_TYPE = 'SET_CRTL_2_SENSOR_TYPE';
+export const SET_CRTL_2_CONTROL_TYPE = 'SET_CRTL_2_CONTROL_TYPE';
+export const SET_CRTL_2_WF_LATERAL_SENSOR = 'SET_CRTL_2_WF_LATERAL_SENSOR';
+export const SET_CRTL_2_WF_CONTROL_MODE = 'SET_CRTL_2_WF_CONTROL_MODE';
+export const SET_CRTL_2_WF_YAW_SENSOR = 'SET_CRTL_2_WF_YAW_SENSOR';
+export const SET_CRTL_2_WF_CONTROL_TYPE = 'SET_CRTL_2_WF_CONTROL_TYPE';
+
+export const setCrtl1Active = (data) => {
+  return {
+    type: SET_CRTL_1_ACTIVE,
+    data
+  }
+}
+export const setCrtl1Mode = (data) => {
+  return {
+    type: SET_CRTL_1_MODE,
+    data
+  }
+}
+export const setCrtl1SensorType = (data) => {
+  return {
+    type: SET_CRTL_1_SENSOR_TYPE,
+    data
+  }
+}
+export const setCrtl1ControlType = (data) => {
+  return {
+    type: SET_CRTL_1_CONTROL_TYPE,
+    data
+  }
+}
+export const setCrtl1WFLateralSensor = (data) => {
+  return {
+    type: SET_CRTL_1_WF_LATERAL_SENSOR,
+    data
+  }
+}
+export const setCrtl1WFControlMode = (data) => {
+  return {
+    type: SET_CRTL_1_WF_CONTROL_MODE,
+    data
+  }
+}
+export const setCrtl1WFYawSensor = (data) => {
+  return {
+    type: SET_CRTL_1_WF_YAW_SENSOR,
+    data
+  }
+}
+
+export const setCrtl1WFControlType = (data) => {
+  return {
+    type: SET_CRTL_1_WF_CONTROL_TYPE,
+    data
+  }
+}
+
+export const setCrtl2Active = (data) => {
+  return {
+    type: SET_CRTL_2_ACTIVE,
+    data
+  }
+}
+
+export const setCrtl2Mode = (data) => {
+  return {
+    type: SET_CRTL_2_MODE,
+    data
+  }
+}
+
+export const setCrtl2SensorType = (data) => {
+  return {
+    type: SET_CRTL_2_SENSOR_TYPE,
+    data
+  }
+}
+
+export const setCrtl2ControlType = (data) => {
+  return {
+    type: SET_CRTL_2_CONTROL_TYPE,
+    data
+  }
+}
+export const setCrtl2WFLateralSensor = (data) => {
+  return {
+    type: SET_CRTL_2_WF_LATERAL_SENSOR,
+    data
+  }
+}
+export const setCrtl2WFControlMode = (data) => {
+  return {
+    type: SET_CRTL_2_WF_CONTROL_MODE,
+    data
+  }
+}
+export const setCrtl2WFYawSensor = (data) => {
+  return {
+    type: SET_CRTL_2_WF_YAW_SENSOR,
+    data
+  }
+}
+export const setCrtl2WFControlType = (data) => {
+  return {
+    type: SET_CRTL_2_WF_CONTROL_TYPE,
+    data
+  }
+}
+// --------------------------------------------------------------------------------------------------------------------------------
+
+// ITC SETUP - control buttons ----------------------------------------------------------------------------------------------------
+export const SET_TUNING_FRONT_PGAIN = 'SET_TUNING_FRONT_PGAIN';
+export const SET_TUNING_FRONT_IGAIN = 'SET_TUNING_FRONT_IGAIN';
+export const SET_TUNING_REAR_PGAIN = 'SET_TUNING_REAR_PGAIN';
+export const SET_TUNING_REAR_IGAIN = 'SET_TUNING_REAR_IGAIN';
+
+export const setTuningFrontPgain = (data) => {
+  return {
+    type: SET_TUNING_FRONT_PGAIN,
+    data
+  }
+}
+export const setTuningFrontIgain = (data) => {
+  return {
+    type: SET_TUNING_FRONT_IGAIN,
+    data
+  }
+}
+export const setTuningRearPgain = (data) => {
+  return {
+    type: SET_TUNING_REAR_PGAIN,
+    data
+  }
+}
+export const setTuningRearIgain = (data) => {
+  return {
+    type: SET_TUNING_REAR_IGAIN,
+    data
+  }
+}
+// --------------------------------------------------------------------------------------------------------------------------------
+
+// ITC RUN - chart tab type -------------------------------------------------------------------------------------------------------
+export const SET_CHART_TYPE_FRONT_LEFT = 'SET_CHART_TYPE_FRONT_LEFT';
+export const SET_CHART_TYPE_FRONT_RIGHT = 'SET_CHART_TYPE_FRONT_RIGHT';
+export const SET_CHART_TYPE_REAR_LEFT = 'SET_CHART_TYPE_REAR_LEFT';
+export const SET_CHART_TYPE_REAR_RIGHT = 'SET_CHART_TYPE_REAR_RIGHT';
+
+export const setChartTypeFrontLeft = (data) => {
+  return {
+    type: SET_CHART_TYPE_FRONT_LEFT,
+    data
+  }
+}
+export const setChartTypeFrontRight = (data) => {
+  return {
+    type: SET_CHART_TYPE_FRONT_RIGHT,
+    data
+  }
+}
+export const setChartTypeRearLeft = (data) => {
+  return {
+    type: SET_CHART_TYPE_REAR_LEFT,
+    data
+  }
+}
+export const setChartTypeRearRight = (data) => {
+  return {
+    type: SET_CHART_TYPE_REAR_RIGHT,
+    data
+  }
+}
+// --------------------------------------------------------------------------------------------------------------------------------
