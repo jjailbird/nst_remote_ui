@@ -13,7 +13,8 @@ export default class LaserDonutCircleChart extends Component {
     const { data, unit, name, dataName, strokeColor, strokeColorLine, donutWidth, donutStrokeWidth, valueFontSize, valueFontColor } = this.props;
     //console.log("data = ",data);
     //console.log(valueFontSize, valueFontColor);
-    const width = donutWidth;
+    const width = donutWidth ? parseInt(donutWidth) : 47;
+
     const height = width;
     const strokeWidth = donutStrokeWidth;
 

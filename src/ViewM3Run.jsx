@@ -16,13 +16,92 @@ import Clock from 'react-live-clock';
 import { H5SPlayVideo } from './utils/H5SPlayVideo';
 import { connect } from 'react-redux';
 
+import {
+  setCrtl1Active, setCrtl1Power, setCrtl1Zero, setCrtl1SensorType, setCrtl1ControlType, setCrtl1SRActiveA, setCrtl1SRActiveB, setCrtl1SRActiveA2, setCrtl1SRActiveB2,
+  setChartTypeFrontLeft, setChartTypeFrontRight, setChartTypeRearLeft, setChartTypeRearRight, 
+} from './actions'
+
 class ViewM3Run extends Component {
+  constructor(props) {
+    super(props);
+    this.onCrtl1ActiveChange = this.onCrtl1ActiveChange.bind(this);
+    this.onCrtl1PowerChange = this.onCrtl1PowerChange.bind(this);
+    this.onCrtl1ZeroChange = this.onCrtl1ZeroChange.bind(this);
+    this.onCrtl1SensorTypeChange = this.onCrtl1SensorTypeChange.bind(this);
+    this.onCrtl1ControlTypeChange = this.onCrtl1ControlTypeChange.bind(this);
+    this.onCrtl1SRActiveAChange = this.onCrtl1SRActiveAChange.bind(this);
+    this.onCrtl1SRActiveBChange = this.onCrtl1SRActiveBChange.bind(this); 
+    this.onCrtl1SRActiveA2Change = this.onCrtl1SRActiveA2Change.bind(this);
+    this.onCrtl1SRActiveB2Change = this.onCrtl1SRActiveB2Change.bind(this);
+   
+    this.onChartTypeFrontLeftChange = this.onChartTypeFrontLeftChange.bind(this);
+    this.onChartTypeFrontRightChange = this.onChartTypeFrontRightChange.bind(this);
+    this.onChartTypeRearLeftChange = this.onChartTypeRearLeftChange.bind(this);
+    this.onChartTypeRearRightChange = this.onChartTypeRearRightChange.bind(this);
+  }
+
+  onCrtl1ActiveChange(value){
+    const { dispatch } = this.props;
+    dispatch(setCrtl1Active(value));
+  } 
+  onCrtl1PowerChange(value){
+    const { dispatch } = this.props;
+    dispatch(setCrtl1Power(value));
+  }
+  onCrtl1ZeroChange(value){
+    const { dispatch } = this.props;
+    dispatch(setCrtl1Zero(value));
+  }
+  onCrtl1SensorTypeChange(values){
+    const { dispatch } = this.props;
+    dispatch(setCrtl1SensorType(values));
+  }
+  onCrtl1ControlTypeChange(value){
+    const { dispatch } = this.props;
+    dispatch(setCrtl1ControlType(value));
+  }
+  onCrtl1SRActiveAChange(value){
+    const { dispatch } = this.props;
+    dispatch(setCrtl1SRActiveA(value));
+  }
+  onCrtl1SRActiveBChange(value){
+    const { dispatch } = this.props;
+    dispatch(setCrtl1SRActiveB(value));
+  } 
+  onCrtl1SRActiveA2Change(value){
+    const { dispatch } = this.props;
+    dispatch(setCrtl1SRActiveA2(value));
+  } 
+  onCrtl1SRActiveB2Change(value){
+    const { dispatch } = this.props;
+    dispatch(setCrtl1SRActiveB2(value));
+  }
+
+  onChartTypeFrontLeftChange(value){
+    const { dispatch } = this.props;
+    dispatch(setChartTypeFrontLeft(value));
+  }
+  onChartTypeFrontRightChange(value){
+    const { dispatch } = this.props;
+    dispatch(setChartTypeFrontRight(value));
+  }
+  onChartTypeRearLeftChange(value){
+    const { dispatch } = this.props;
+    dispatch(setChartTypeRearLeft(value));
+  }
+  onChartTypeRearRightChange(value){
+    const { dispatch } = this.props;
+    dispatch(setChartTypeRearRight(value));
+  }
+
   componentDidMount(){
-    console.log('HSSPlyaer start!');
+    // console.log('HSSPlyaer start!');
+    /*
     const rtspFrontPlayer = new H5SPlayVideo('videoLeft');
     rtspFrontPlayer.Start();
     const rtspRearPlayer = new H5SPlayVideo('videoRight');
     rtspRearPlayer.Start();
+    */
   }
   render() {
     const { 
@@ -32,7 +111,9 @@ class ViewM3Run extends Component {
       rearLeftHscData,
       rearRightHscData,
       frontWheelsetHscData,
-      rearWheelsetHscData
+      rearWheelsetHscData,
+      crtl1Active, crtl1Power, crtl1Zero, crtl1SensorType, crtl1ControlType, crtl1SRActiveA, crtl1SRActiveB, crtl1SRActiveA2, crtl1SRActiveB2,
+      chartTypeFrontLeft, chartTypeFrontRight, chartTypeRearLeft, chartTypeRearRight,
     } = this.props;
     return (
       <div className="contBox">
@@ -121,8 +202,8 @@ class ViewM3Run extends Component {
                 Live Cam Mode
               </div>
             </div>
-            <GraphTabHscContainer data={frontLeftHscData.data} title="Front Left"/>
-            <GraphTabHscContainer data={rearLeftHscData.data} title="Rear Left"/>
+            <GraphTabHscContainer data={frontLeftHscData.data} type={chartTypeFrontLeft} onChange={this.onChartTypeFrontLeftChange} title="Front Left"/>
+            <GraphTabHscContainer data={rearLeftHscData.data} type={chartTypeRearLeft} onChange={this.onChartTypeRearLeftChange} title="Rear Left"/>
             <PanelControlButtonsLeft />
           </div>
           <div className="motor-control-modeBox pull-left">
@@ -144,11 +225,12 @@ class ViewM3Run extends Component {
                 <ControlSwitchGroup 
                   title="CONTROL ACTIVE" 
                   type="yellowButton" 
-                  value="On" 
                   buttons={[
                     { idx: 1, title: 'On', value: 'On' }, 
                     { idx: 2, title: 'Off', value: 'Off' }
-                  ]} 
+                  ]}
+                  value={crtl1Active}
+                  onChange={this.onCrtl1ActiveChange} 
                 />
                 <div style={{ display: 'inline-block' }}>
                   <ControlSwitchButtonBlock 
@@ -162,6 +244,8 @@ class ViewM3Run extends Component {
                       { idx: 2, title: 'Off', value: 'Off' }
                     ]}
                     buttonWidth="72px"
+                    value={crtl1Power}
+                    onChange={this.onCrtl1PowerChange}
                   />
                   <ControlSwitchButtonBlock 
                     title="ZERO POSITIONING" 
@@ -173,6 +257,8 @@ class ViewM3Run extends Component {
                       { idx: 2, title: 'Zero', value: 'Zero' }
                     ]}
                     buttonWidth="72px"
+                    value={crtl1Zero}
+                    onChange={this.onCrtl1ZeroChange}
                   />
                 </div>
               </div>
@@ -186,6 +272,8 @@ class ViewM3Run extends Component {
                     { idx: 1, title: 'LVDT', value: 'LVDT' }, 
                     { idx: 2, title: 'Gyro', value: 'Gyro' }
                   ]}
+                  values={crtl1SensorType}
+                  onChange={this.onCrtl1SensorTypeChange}
                 />
                 <span style={{padding: '10px'}} ></span>
                 <ControlSwitchButton
@@ -200,6 +288,8 @@ class ViewM3Run extends Component {
                     { idx: 4, title: 'Active B', value: 'Active B' }, 
                     { idx: 5, title: 'Active B2', value: 'Active B2' }
                   ]}
+                  value={crtl1ControlType}
+                  onChange={this.onCrtl1ControlTypeChange}
                 />
               </div>
               <div className="modeConfig1-listBox2">
@@ -209,13 +299,21 @@ class ViewM3Run extends Component {
                       STEERING RATIO - ACTIVE A MODE
                     </div>
                     <div className="listBox2-controlBoxControl">
-                      <SliderWeightFactor value="-15.5" />
+                      <SliderWeightFactor
+                        // value="-15.5"
+                        value={crtl1SRActiveA}
+                        onChange={this.onCrtl1SRActiveAChange}
+                      />
                     </div>
                     <div className="listBox2-controlBoxTitle">
                       STEERING RATIO - ACTIVE A2 MODE
                     </div>
                     <div className="listBox2-controlBoxControl">
-                      <SliderWeightFactor value="-10" />
+                      <SliderWeightFactor
+                        // value="-10"
+                        value={crtl1SRActiveA2}
+                        onChange={this.onCrtl1SRActiveA2Change}
+                      />
                     </div>
                   </div>
                 </div>
@@ -225,13 +323,21 @@ class ViewM3Run extends Component {
                       STEERING RATIO - ACTIVE B MODE
                     </div>
                     <div className="listBox2-controlBoxControl">
-                      <SliderWeightFactor value="-5" />
+                      <SliderWeightFactor
+                        // value="-5"
+                        value={crtl1SRActiveB}
+                        onChange={this.onCrtl1SRActiveBChange}
+                      />
                     </div>
                     <div className="listBox2-controlBoxTitle">
                       STEERING RATIO - ACTIVE B2 MODE
                     </div>
                     <div className="listBox2-controlBoxControl">
-                      <SliderWeightFactor value="0" />
+                      <SliderWeightFactor
+                        // value="0"
+                        value={crtl1SRActiveB2}
+                        onChange={this.onCrtl1SRActiveB2Change}
+                      />
                     </div>
                   </div>
                 </div>
@@ -439,8 +545,8 @@ class ViewM3Run extends Component {
                 Live Cam Mode
               </div>
             </div>
-            <GraphTabHscContainer data={frontRightHscData.data} title="Front Right"/>
-            <GraphTabHscContainer data={rearRightHscData.data} title="Rear Right"/>
+            <GraphTabHscContainer data={frontRightHscData.data} type={chartTypeFrontRight} onChange={this.onChartTypeFrontRightChange} title="Front Right"/>
+            <GraphTabHscContainer data={rearRightHscData.data} type={chartTypeRearRight} onChange={this.onChartTypeRearRightChange} title="Rear Right"/>
             <PanelControlButtonsRight />
           </div>
         </div>
@@ -459,7 +565,22 @@ function mapStateToProps(state){
       motorControlHscData: state.motorControlHscData,
       
       frontWheelsetHscData: state.frontWheelsetHscData,
-      rearWheelsetHscData: state.rearWheelsetHscData
+      rearWheelsetHscData: state.rearWheelsetHscData,
+
+      crtl1Active: state.setSetupButtons.crtl1Active,
+      crtl1Power: state.setSetupButtons.crtl1Power,
+      crtl1Zero: state.setSetupButtons.crtl1Zero, 
+      crtl1SensorType: state.setSetupButtons.crtl1SensorType, 
+      crtl1ControlType: state.setSetupButtons.crtl1ControlType, 
+      crtl1SRActiveA: state.setSetupButtons.crtl1SRActiveA, 
+      crtl1SRActiveB: state.setSetupButtons.crtl1SRActiveB, 
+      crtl1SRActiveA2: state.setSetupButtons.crtl1SRActiveA2, 
+      crtl1SRActiveB2: state.setSetupButtons.crtl1SRActiveB2,
+     
+      chartTypeFrontLeft: state.setSetupButtons.chartTypeFrontLeft,
+      chartTypeFrontRight: state.setSetupButtons.chartTypeFrontRight,
+      chartTypeRearLeft: state.setSetupButtons.chartTypeRearLeft,
+      chartTypeRearRight: state.setSetupButtons.chartTypeRearRight,
     }
 }
 

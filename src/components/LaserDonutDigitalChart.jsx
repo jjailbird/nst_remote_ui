@@ -12,7 +12,7 @@ export default class LaserDonutDigitalChart extends Component {
   render() {
     const { data, unit, name, dataName, strokeColor, strokeColorLine, donutWidth, donutStrokeWidth, valueFontSize, valueFontColor } = this.props;
     //console.log(valueFontSize, valueFontColor);
-    const width = donutWidth;
+    const width = parseInt(donutWidth);
     const height = width;
     const strokeWidth = donutStrokeWidth;
 

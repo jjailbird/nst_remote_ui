@@ -9,11 +9,14 @@ export default class GraphTabHscContainer extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      type: 'PIE'
+      type: this.props.type ? this.props.type : 'PIE' // 'PIE'
     };
     this.onButtonChange = this.onButtonChange.bind(this);
   }
   onButtonChange(value) {
+    if(this.props.onChange) {
+      this.props.onChange(value);
+    };
     this.setState({
       type: value
     })

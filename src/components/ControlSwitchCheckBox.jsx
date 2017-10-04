@@ -16,13 +16,16 @@ export default class ControlSwitchCheckBox extends Component {
     if (value === undefined) {
       value = e.target.parentNode.dataset.value;
     }
-
+    
+    const values = getToggledValues(this.state.values, value);
     if(this.props.onChange) {
-      this.props.onChange(value);
+      // this.props.onChange(value);
+      this.props.onChange(values);
     }
     
     this.setState({
-      values: getToggledValues(this.state.values, value),
+      // values: getToggledValues(this.state.values, value),
+      values
     });
     // console.log('this.state.values:', this.state.values);
   }

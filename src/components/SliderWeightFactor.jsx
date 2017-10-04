@@ -8,11 +8,19 @@ class SliderWeightFactor extends Component {
       value: parseFloat(this.props.value).toFixed(2)
     };
     this.handleChange = this.handleChange.bind(this);
+    this.handleChangeComplete = this.handleChangeComplete.bind(this);
   }
   handleChange(value) {
     this.setState({
-      value: value
+      // value: value
+      value
     });
+  }
+  handleChangeComplete() {
+    if(this.props.onChange) {
+      // this.props.onChange(value);
+      this.props.onChange(this.state.value);
+    }
   }
   render () {
     const { value } = this.state;
@@ -26,6 +34,7 @@ class SliderWeightFactor extends Component {
           tooltip={false}
           value={fValue}
           onChange={this.handleChange}
+          onChangeComplete={this.handleChangeComplete}
         />
         <div className='value'>{fValue.toFixed(2)}</div>
       </div>

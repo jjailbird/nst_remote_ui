@@ -218,3 +218,165 @@ export const setRearWheelsetHscData = (data) => {
     data
   }
 }
+
+// HSC RUN - control buttons ------------------------------------------------------------------------------------------------------
+export const SET_CRTL_1_ACTIVE = 'SET_CRTL_1_ACTIVE';
+export const SET_CRTL_1_POWER = 'SET_CRTL_1_POWER';
+export const SET_CRTL_1_ZERO = 'SET_CRTL_1_ZERO';
+export const SET_CRTL_1_SENSOR_TYPE = 'SET_CRTL_1_SENSOR_TYPE';
+export const SET_CRTL_1_CONTROL_TYPE = 'SET_CRTL_1_CONTROL_TYPE';
+
+export const SET_CRTL_1_SR_ACTIVE_A = 'SET_CRTL_1_SR_ACTIVE_A';
+export const SET_CRTL_1_SR_ACTIVE_B = 'SET_CRTL_1_SR_ACTIVE_B';
+export const SET_CRTL_1_SR_ACTIVE_A2 = 'SET_CRTL_1_SR_ACTIVE_A2';
+export const SET_CRTL_1_SR_ACTIVE_B2 = 'SET_CRTL_1_SR_ACTIVE_B2';
+
+export const setCrtl1Active = (data) => {
+  return {
+    type: SET_CRTL_1_ACTIVE,
+    data
+  }
+}
+export const setCrtl1Power = (data) => {
+  return {
+    type: SET_CRTL_1_POWER,
+    data
+  }
+}
+export const setCrtl1Zero = (data) => {
+  return {
+    type: SET_CRTL_1_ZERO,
+    data
+  }
+}
+export const setCrtl1SensorType = (data) => {
+  return {
+    type: SET_CRTL_1_SENSOR_TYPE,
+    data
+  }
+}
+export const setCrtl1ControlType = (data) => {
+  return {
+    type: SET_CRTL_1_CONTROL_TYPE,
+    data
+  }
+}
+export const setCrtl1SRActiveA = (data) => {
+  return {
+    type: SET_CRTL_1_SR_ACTIVE_A,
+    data
+  }
+}
+export const setCrtl1SRActiveB = (data) => {
+  return {
+    type: SET_CRTL_1_SR_ACTIVE_B,
+    data
+  }
+}
+export const setCrtl1SRActiveA2 = (data) => {
+  return {
+    type: SET_CRTL_1_SR_ACTIVE_A2,
+    data
+  }
+}
+
+export const setCrtl1SRActiveB2 = (data) => {
+  return {
+    type: SET_CRTL_1_SR_ACTIVE_B2,
+    data
+  }
+}
+// --------------------------------------------------------------------------------------------------------------------------------
+
+// HSC RUN - chart tab type -------------------------------------------------------------------------------------------------------
+export const SET_CHART_TYPE_FRONT_LEFT = 'SET_CHART_TYPE_FRONT_LEFT';
+export const SET_CHART_TYPE_FRONT_RIGHT = 'SET_CHART_TYPE_FRONT_RIGHT';
+export const SET_CHART_TYPE_REAR_LEFT = 'SET_CHART_TYPE_REAR_LEFT';
+export const SET_CHART_TYPE_REAR_RIGHT = 'SET_CHART_TYPE_REAR_RIGHT';
+
+export const setChartTypeFrontLeft = (data) => {
+  return {
+    type: SET_CHART_TYPE_FRONT_LEFT,
+    data
+  }
+}
+export const setChartTypeFrontRight = (data) => {
+  return {
+    type: SET_CHART_TYPE_FRONT_RIGHT,
+    data
+  }
+}
+export const setChartTypeRearLeft = (data) => {
+  return {
+    type: SET_CHART_TYPE_REAR_LEFT,
+    data
+  }
+}
+export const setChartTypeRearRight = (data) => {
+  return {
+    type: SET_CHART_TYPE_REAR_RIGHT,
+    data
+  }
+}
+// --------------------------------------------------------------------------------------------------------------------------------
+
+// HSC SETUP - control buttons ----------------------------------------------------------------------------------------------------
+export const SET_TUNING_FRONT_1_PGAIN = 'SET_TUNING_FRONT_1_PGAIN';
+export const SET_TUNING_FRONT_1_IGAIN = 'SET_TUNING_FRONT_1_IGAIN';
+export const SET_TUNING_REAR_1_PGAIN = 'SET_TUNING_REAR_1_PGAIN';
+export const SET_TUNING_REAR_1_IGAIN = 'SET_TUNING_REAR_1_IGAIN';
+
+export const setTuningFront1Pgain = (data) => {
+  return {
+    type: SET_TUNING_FRONT_1_PGAIN,
+    data
+  }
+}
+export const setTuningFront1Igain = (data) => {
+  return {
+    type: SET_TUNING_FRONT_1_IGAIN,
+    data
+  }
+}
+export const setTuningRear1Pgain = (data) => {
+  return {
+    type: SET_TUNING_REAR_1_PGAIN,
+    data
+  }
+}
+export const setTuningRear1Igain = (data) => {
+  return {
+    type: SET_TUNING_REAR_1_IGAIN,
+    data
+  }
+}
+export const SET_TUNING_FRONT_2_PGAIN = 'SET_TUNING_FRONT_2_PGAIN';
+export const SET_TUNING_FRONT_2_IGAIN = 'SET_TUNING_FRONT_2_IGAIN';
+export const SET_TUNING_REAR_2_PGAIN = 'SET_TUNING_REAR_2_PGAIN';
+export const SET_TUNING_REAR_2_IGAIN = 'SET_TUNING_REAR_2_IGAIN';
+
+export const setTuningFront2Pgain = (data) => {
+  return {
+    type: SET_TUNING_FRONT_2_PGAIN,
+    data
+  }
+}
+export const setTuningFront2Igain = (data) => {
+  return {
+    type: SET_TUNING_FRONT_2_IGAIN,
+    data
+  }
+}
+export const setTuningRear2Pgain = (data) => {
+  return {
+    type: SET_TUNING_REAR_2_PGAIN,
+    data
+  }
+}
+export const setTuningRear2Igain = (data) => {
+  return {
+    type: SET_TUNING_REAR_2_IGAIN,
+    data
+  }
+}
+// --------------------------------------------------------------------------------------------------------------------------------

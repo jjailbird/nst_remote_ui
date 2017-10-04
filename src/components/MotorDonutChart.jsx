@@ -12,7 +12,7 @@ export default class MotorDonutChart extends Component {
   render() {
     const { data, unit, name, strokeColor, strokeColorLine, donutWidth, donutStrokeWidth, valueFontSize, valueFontColor } = this.props;
     //console.log(valueFontSize, valueFontColor);
-    const width = donutWidth;
+    const width = donutWidth ? parseInt(donutWidth) : 47;
     const height = width;
     const strokeWidth = donutStrokeWidth;
 

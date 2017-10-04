@@ -7,7 +7,7 @@ import PanelControlButtonsLeft from './components/PanelControlButtonsLeft';
 import PanelControlButtonsRight from './components/PanelControlButtonsRight';
 import MotorDonutChart from './components/MotorDonutChart';
 import LaserDonutCircleChart from './components/LaserDonutCircleChart';
-import DonutCircleChart from './components/DonutCircleChart';
+// import DonutCircleChart from './components/DonutCircleChart';
 import LaserDonutDigitalChart from './components/LaserDonutDigitalChart';
 import LaserBarChart from './components/LaserBarChart';
 import LaserTabContainer from './components/LaserTabContainer';
@@ -15,7 +15,55 @@ import TrailerBogieDescTab from './components/TrailerBogieDescTab'
 
 import { connect } from 'react-redux';
 
+import {
+  setTuningFront1Pgain, setTuningFront1Igain, setTuningRear1Pgain, setTuningRear1Igain,
+  setTuningFront2Pgain, setTuningFront2Igain, setTuningRear2Pgain, setTuningRear2Igain,
+} from './actions'
+
 class ViewM3Setup extends Component {
+  constructor(props) {
+    super(props);
+    this.onTuningFront1PgainChange = this.onTuningFront1PgainChange.bind(this);
+    this.onTuningFront1IgainChange = this.onTuningFront1IgainChange.bind(this); 
+    this.onTuningRear1PgainChange = this.onTuningRear1PgainChange.bind(this);
+    this.onTuningRear1IgainChange = this.onTuningRear1IgainChange.bind(this);
+    this.onTuningFront2PgainChange = this.onTuningFront2PgainChange.bind(this);
+    this.onTuningFront2IgainChange = this.onTuningFront2IgainChange.bind(this);
+    this.onTuningRear2PgainChange = this.onTuningRear2PgainChange.bind(this); 
+    this.onTuningRear2IgainChange = this.onTuningRear2IgainChange.bind(this);
+  }
+  onTuningFront1PgainChange(value){
+    const { dispatch } = this.props;
+    dispatch(setTuningFront1Pgain(value));
+  }
+  onTuningFront1IgainChange(value){
+    const { dispatch } = this.props;
+    dispatch(setTuningFront1Igain(value));
+  } 
+  onTuningRear1PgainChange(value){
+    const { dispatch } = this.props;
+    dispatch(setTuningRear1Pgain(value));
+  }
+  onTuningRear1IgainChange(value){
+    const { dispatch } = this.props;
+    dispatch(setTuningRear1Igain(value));
+  }
+  onTuningFront2PgainChange(value){
+    const { dispatch } = this.props;
+    dispatch(setTuningFront2Pgain(value));
+  }
+  onTuningFront2IgainChange(value){
+    const { dispatch } = this.props;
+    dispatch(setTuningFront2Igain(value));
+  }
+  onTuningRear2PgainChange(value){
+    const { dispatch } = this.props;
+    dispatch(setTuningRear2Pgain(value));
+  }
+  onTuningRear2IgainChange(value){
+    const { dispatch } = this.props;
+    dispatch(setTuningRear2Igain(value));
+  }
   render() {
     const { 
       frontLeftMotorData,
@@ -26,7 +74,10 @@ class ViewM3Setup extends Component {
       rearLaserData,
       frontSensorData,
       rearSensorData,
-      motorControlData
+      motorControlData,
+
+      tuningFront1Pgain, tuningFront1Igain, tuningRear1Pgain, tuningRear1Igain,
+      tuningFront2Pgain, tuningFront2Igain, tuningRear2Pgain, tuningRear2Igain,
     } = this.props;
     return (
         <div className="contBox">
@@ -51,13 +102,21 @@ class ViewM3Setup extends Component {
                           p gain
                         </div>
                         <div className="setupGainTunning">
-                          <SliderWeightFactor value="-15" />
+                          <SliderWeightFactor
+                            // value="-15"
+                            value={tuningFront1Pgain}
+                            onChange={this.onTuningFront1PgainChange}
+                          />
                         </div>
                         <div className="setupTitle">
                           i gain
                         </div>
                         <div className="setupGainTunning">
-                          <SliderWeightFactor value="-5" />
+                          <SliderWeightFactor
+                            // value="-5"
+                            value={tuningFront1Igain}
+                            onChange={this.onTuningFront1IgainChange}
+                          />
                         </div>
                     </div>
                   </div>
@@ -71,13 +130,21 @@ class ViewM3Setup extends Component {
                           p gain
                         </div>
                         <div className="setupGainTunning">
-                          <SliderWeightFactor value="-10" />
+                          <SliderWeightFactor
+                            // value="-10"
+                            value={tuningRear1Pgain}
+                            onChange={this.onTuningRear1PgainChange}
+                          />
                         </div>
                         <div className="setupTitle">
                           i gain
                         </div>
                         <div className="setupGainTunning">
-                          <SliderWeightFactor value="-0" />
+                          <SliderWeightFactor
+                            // value="-0"
+                            value={tuningRear1Igain}
+                            onChange={this.onTuningRear1IgainChange}
+                          />
                         </div>
                   </div>
                 </div>
@@ -93,13 +160,21 @@ class ViewM3Setup extends Component {
                           p gain
                         </div>
                         <div className="setupGainTunning">
-                          <SliderWeightFactor value="-15" />
+                          <SliderWeightFactor
+                            // value="-15"
+                            value={tuningFront2Pgain}
+                            onChange={this.onTuningFront2PgainChange}
+                          />
                         </div>
                         <div className="setupTitle">
                           i gain
                         </div>
                         <div className="setupGainTunning">
-                          <SliderWeightFactor value="-5" />
+                          <SliderWeightFactor
+                            // value="-5"
+                            value={tuningFront2Igain}
+                            onChange={this.onTuningFront2IgainChange}
+                          />
                         </div>
                     </div>
                   </div>
@@ -113,13 +188,21 @@ class ViewM3Setup extends Component {
                           p gain
                         </div>
                         <div className="setupGainTunning">
-                          <SliderWeightFactor value="-10" />
+                          <SliderWeightFactor
+                            // value="-10"
+                            value={tuningRear2Pgain}
+                            onChange={this.onTuningRear2PgainChange}
+                          />
                         </div>
                         <div className="setupTitle">
                           i gain
                         </div>
                         <div className="setupGainTunning">
-                          <SliderWeightFactor value="-0" />
+                          <SliderWeightFactor
+                            value="-0"
+                            value={tuningRear2Igain}
+                            onChange={this.onTuningRear2IgainChange}
+                          />
                         </div>
                   </div>
                 </div>
@@ -138,7 +221,7 @@ class ViewM3Setup extends Component {
                           dataName = 'force'
                           strokeColor="rgba(201,53,53,0.7)" 
                           strokeColorLine="rgba(255,255,255,0.2)" 
-                          donutWidth="47" 
+                          donutWidth="47px" 
                           donutStrokeWidth="6"
                           valueFontSize="22px"
                           valueFontColor="#fff"
@@ -152,7 +235,7 @@ class ViewM3Setup extends Component {
                           dataName = 'lvdt'
                           strokeColor="rgba(44,106,170,0.7)" 
                           strokeColorLine="rgba(255,255,255,0.2)" 
-                          donutWidth="47" 
+                          donutWidth="47px" 
                           donutStrokeWidth="6"
                           valueFontSize="22px"
                           valueFontColor="#fff"
@@ -166,7 +249,7 @@ class ViewM3Setup extends Component {
                           dataName = 'force'
                           strokeColor="rgba(201,53,53,0.7)" 
                           strokeColorLine="rgba(255,255,255,0.2)" 
-                          donutWidth="47" 
+                          donutWidth="47px" 
                           donutStrokeWidth="6"
                           valueFontSize="22px"
                           valueFontColor="#fff"
@@ -180,7 +263,7 @@ class ViewM3Setup extends Component {
                           dataName = 'lvdt'
                           strokeColor="rgba(44,106,170,0.7)" 
                           strokeColorLine="rgba(255,255,255,0.2)" 
-                          donutWidth="47" 
+                          donutWidth="47px" 
                           donutStrokeWidth="6"
                           valueFontSize="22px"
                           valueFontColor="#fff"
@@ -194,7 +277,7 @@ class ViewM3Setup extends Component {
                           dataName="frontG"
                           strokeColor="rgba(137,182,89,1)" 
                           strokeColorLine="rgba(137,182,89,0.3)" 
-                          donutWidth="112" 
+                          donutWidth="112px" 
                           donutStrokeWidth="10"
                           valueFontSize="35px"
                           valueFontColor="#fff"
@@ -210,7 +293,7 @@ class ViewM3Setup extends Component {
                           dataName = 'force'
                           strokeColor="rgba(201,53,53,0.7)" 
                           strokeColorLine="rgba(255,255,255,0.2)" 
-                          donutWidth="47" 
+                          donutWidth="47px" 
                           donutStrokeWidth="6"
                           valueFontSize="22px"
                           valueFontColor="#fff"
@@ -224,7 +307,7 @@ class ViewM3Setup extends Component {
                           dataName = 'lvdt'
                           strokeColor="rgba(44,106,170,0.7)" 
                           strokeColorLine="rgba(255,255,255,0.2)" 
-                          donutWidth="47" 
+                          donutWidth="47px" 
                           donutStrokeWidth="6"
                           valueFontSize="22px"
                           valueFontColor="#fff"
@@ -238,7 +321,7 @@ class ViewM3Setup extends Component {
                           dataName = 'force'
                           strokeColor="rgba(201,53,53,0.7)" 
                           strokeColorLine="rgba(255,255,255,0.2)" 
-                          donutWidth="47" 
+                          donutWidth="47px" 
                           donutStrokeWidth="6"
                           valueFontSize="22px"
                           valueFontColor="#fff"
@@ -252,7 +335,7 @@ class ViewM3Setup extends Component {
                           dataName = 'lvdt'
                           strokeColor="rgba(44,106,170,0.7)" 
                           strokeColorLine="rgba(255,255,255,0.2)" 
-                          donutWidth="47" 
+                          donutWidth="47px" 
                           donutStrokeWidth="6"
                           valueFontSize="22px"
                           valueFontColor="#fff"
@@ -266,7 +349,7 @@ class ViewM3Setup extends Component {
                           dataName="rearG"
                           strokeColor="rgba(137,182,89,1)" 
                           strokeColorLine="rgba(137,182,89,0.3)" 
-                          donutWidth="112" 
+                          donutWidth="112px" 
                           donutStrokeWidth="10"
                           valueFontSize="35px"
                           valueFontColor="#fff"
@@ -299,7 +382,7 @@ class ViewM3Setup extends Component {
                             name="A-cur" 
                             strokeColor="#fff" 
                             strokeColorLine="rgba(255,255,255,0.3)" 
-                            donutWidth="48" 
+                            donutWidth="48px" 
                             donutStrokeWidth="6"
                             valueFontSize="35px"
                             valueFontColor="#fff"
@@ -312,7 +395,7 @@ class ViewM3Setup extends Component {
                             name="B-cur" 
                             strokeColor="#fff" 
                             strokeColorLine="rgba(255,255,255,0.3)" 
-                            donutWidth="48" 
+                            donutWidth="48px" 
                             donutStrokeWidth="6"
                             valueFontSize="35px"
                             valueFontColor="#fff"
@@ -350,7 +433,7 @@ class ViewM3Setup extends Component {
                             name="A-cur" 
                             strokeColor="#fff" 
                             strokeColorLine="rgba(255,255,255,0.3)" 
-                            donutWidth="48" 
+                            donutWidth="48px" 
                             donutStrokeWidth="6"
                             valueFontSize="35px"
                             valueFontColor="#fff"
@@ -363,7 +446,7 @@ class ViewM3Setup extends Component {
                             name="B-cur" 
                             strokeColor="#fff" 
                             strokeColorLine="rgba(255,255,255,0.3)" 
-                            donutWidth="48" 
+                            donutWidth="48px" 
                             donutStrokeWidth="6"
                             valueFontSize="35px"
                             valueFontColor="#fff"
@@ -403,7 +486,7 @@ class ViewM3Setup extends Component {
                             name="A-cur" 
                             strokeColor="#fff" 
                             strokeColorLine="rgba(255,255,255,0.3)" 
-                            donutWidth="48" 
+                            donutWidth="48px" 
                             donutStrokeWidth="6"
                             valueFontSize="35px"
                             valueFontColor="#fff"
@@ -416,7 +499,7 @@ class ViewM3Setup extends Component {
                             name="B-cur" 
                             strokeColor="#fff" 
                             strokeColorLine="rgba(255,255,255,0.3)" 
-                            donutWidth="48" 
+                            donutWidth="48px" 
                             donutStrokeWidth="6"
                             valueFontSize="35px"
                             valueFontColor="#fff"
@@ -454,7 +537,7 @@ class ViewM3Setup extends Component {
                             name="A-cur" 
                             strokeColor="#fff" 
                             strokeColorLine="rgba(255,255,255,0.3)" 
-                            donutWidth="48" 
+                            donutWidth="48px" 
                             donutStrokeWidth="6"
                             valueFontSize="35px"
                             valueFontColor="#fff"
@@ -467,7 +550,7 @@ class ViewM3Setup extends Component {
                             name="B-cur" 
                             strokeColor="#fff" 
                             strokeColorLine="rgba(255,255,255,0.3)" 
-                            donutWidth="48" 
+                            donutWidth="48px" 
                             donutStrokeWidth="6"
                             valueFontSize="35px"
                             valueFontColor="#fff"
@@ -753,7 +836,16 @@ function mapStateToProps(state){
       rearLaserData: state.rearLaserData,
       frontSensorData: state.frontSensorData,
       rearSensorData: state.rearSensorData,
-      motorControlData: state.motorControlData
+      motorControlData: state.motorControlData,
+      
+      tuningFront1Pgain: state.setSetupButtons.tuningFront1Pgain,
+      tuningFront1Igain: state.setSetupButtons.tuningFront1Igain, 
+      tuningRear1Pgain: state.setSetupButtons.tuningRear1Pgain, 
+      tuningRear1Igain: state.setSetupButtons.tuningRear1Igain,
+      tuningFront2Pgain: state.setSetupButtons.tuningFront2Pgain,
+      tuningFront2Igain: state.setSetupButtons.tuningFront2Igain,
+      tuningRear2Pgain: state.setSetupButtons.tuningRear2Pgain,
+      tuningRear2Igain: state.setSetupButtons.tuningRear2Igain,
     }
 }
 

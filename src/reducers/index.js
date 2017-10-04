@@ -38,6 +38,8 @@ import frontWheelsetHscData from './frontWheelsetHscData';
 import rearWheelsetHscData from './rearWheelsetHscData';
 // HSC_SETUP =======================================================
 
+import setSetupButtons from './setSetupButtons';
+
 const reducers = combineReducers({ 
   frontLeftData,
   frontRightData,
@@ -68,7 +70,8 @@ const reducers = combineReducers({
   rearRightHscData,
   motorControlHscData,
   frontWheelsetHscData,
-  rearWheelsetHscData
+  rearWheelsetHscData,
+  setSetupButtons,
 });
 
 export default reducers;
