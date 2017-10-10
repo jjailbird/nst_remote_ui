@@ -25,6 +25,11 @@ export const SET_REGEN_BK = 'SET_REGEN_BK';
 
 export const SET_POSITION_START = 'SET_POSITION_START';
 export const SET_POSITION_STOP = 'SET_POSITION_STOP';
+export const SET_LIMIT_SPEED_A = 'SET_LIMIT_SPEED_A';
+export const SET_RUN_COUNT = 'SET_RUN_COUNT';
+
+export const SET_LIMIT_SPEED_M = 'SET_LIMIT_SPEED_M';
+export const SET_SHUNT_SPEED = 'SET_SHUNT_SPEED';
 
 
 // TEST SETUP Vehicle Status Buttons ----------------
@@ -166,4 +171,27 @@ export const setPositionStop = (data) => {
     data
   }
 }
-
+export const setLimitSpeedA = (data) => {
+  return {
+    type: SET_LIMIT_SPEED_A,
+    data
+  }
+}
+export const setRunCount = (data) => {
+  return {
+    type: SET_RUN_COUNT,
+    data
+  }
+}
+export const setLimitSpeedM = (data) => {
+  return {
+    type: SET_LIMIT_SPEED_M,
+    data
+  }
+}
+export const setShuntSpeed = (data) => {
+  return {
+    type: SET_SHUNT_SPEED,
+    data
+  }
+}

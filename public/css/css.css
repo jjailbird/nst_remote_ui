@@ -1151,7 +1151,7 @@ ul.setupDescList li{
   bottom: 415px !important;
 }
 
-input.input-vehicel-position {
+input.input-vehicle-position {
   float: left;
   width: 70px;
   background: none;
@@ -1163,9 +1163,13 @@ input.input-vehicel-position {
   margin-right: 5px;
 
 }
-.input-vehicel-position:after {
+.input-vehicle-position:after {
   position: absolute;
   right: -4px;
   top: 10px;
   content: "m";
+}
+
+input.input-wide {
+  width: 115px !important;
 }

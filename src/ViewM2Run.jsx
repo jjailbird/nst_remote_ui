@@ -14,7 +14,6 @@ import { H5SPlayVideo } from './utils/H5SPlayVideo';
 // import Script from 'react-load-script'
 import Websocket from 'react-websocket';
 
-
 class ViewM2Run extends Component {
   constructor(props) {
     super(props);
@@ -25,6 +24,31 @@ class ViewM2Run extends Component {
     this.hostname = window.location.hostname;
     this.host = window.location.host;
     this.onTestLabelChange = this.onTestLabelChange.bind(this);
+  }
+  sendCommandToDevice(command) {
+    var ws = new WebSocket(`ws://${this.hostname}:8181/`);
+    this.send = function (message, callback) {
+      this.waitForConnection(function () {
+          ws.send(message);
+          ws.close();
+          if (typeof callback !== 'undefined') {
+              callback();
+          }
+      }, 100);
+    };
+
+    this.waitForConnection = function (callback, interval) {
+      if (ws.readyState === 1) {
+        callback();
+      } else {
+        var that = this;
+        // optional: implement backoff for interval here
+        setTimeout(function () {
+            that.waitForConnection(callback, interval);
+        }, interval);
+      }
+    };
+    this.send(command);
   }
   onTestLabelChange(value) {
     if (typeof(Storage) !== "undefined") {

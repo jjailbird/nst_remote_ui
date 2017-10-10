@@ -13,13 +13,12 @@ import RailroadTrailStartStop from './components/RailroadTrailStartStop';
 import KeyboardedInput from 'react-touch-screen-keyboard';
 import 'react-touch-screen-keyboard/src/Keyboard.css';
 // import Keyboard from 'react-virtual-keyboard';
-
 import { 
   // setTestSetupData, 
   setEmergencyStop,
   setInvCon1, setInvCon2, setTbms, setDcDc, setApc, setInvOut1, setInvOut2, setSbms, setSinv, setCamera,
   setPower ,setLight, setDriveMode, setRunDirection, setRunSwitch, setHydroBk, setRegenBk,
-  setPositionStart, setPositionStop,
+  setPositionStart, setPositionStop, setLimitSpeedA, setRunCount, setLimitSpeedM, setShuntSpeed,
 } from './actions/m2SetupActions';
 
 import { connect } from 'react-redux';
@@ -29,7 +28,12 @@ class ViewM2Setup extends Component {
     super(props);
     this.state = {
       vehiclePositionStart: this.props.positionStart,
-      vehiclePositionStop: this.props.positionStop
+      vehiclePositionStop: this.props.positionStop,
+      vehicleLimitSpeedA: this.props.limitSpeedA,
+      vehicleRunCount: this.props.runCount,
+      vehicleLimitSpeedM: this.props.limitSpeedM,
+      vehicleShuntSpeed: this.props.shuntSpeed,
+    
     };
     this.NST_test_label = localStorage.getItem("NST_test_label") ? localStorage.getItem("NST_test_label") : 'NST 01';
     this.hostname = window.location.hostname;
@@ -37,6 +41,10 @@ class ViewM2Setup extends Component {
     
     this.onVehiclePositionStartChange = this.onVehiclePositionStartChange.bind(this);
     this.onVehiclePositionStopChange = this.onVehiclePositionStopChange.bind(this);
+    this.onVehicleLimitSpeedAChange = this.onVehicleLimitSpeedAChange.bind(this);
+    this.onVehicleRunCountChange = this.onVehicleRunCountChange.bind(this);
+    this.onVehicleLimitSpeedMChange = this.onVehicleLimitSpeedMChange.bind(this);
+    this.onVehicleShuntSpeedChange = this.onVehicleShuntSpeedChange.bind(this);
     // #1
     this.onPowerChange = this.onPowerChange.bind(this);
     // s02
@@ -78,6 +86,7 @@ class ViewM2Setup extends Component {
 
     this.setCurrentPositionStart = this.setCurrentPositionStart.bind(this);
     this.setCurrentPositionStop = this.setCurrentPositionStop.bind(this);
+    this.setCurrentManualSpeed = this.setCurrentManualSpeed.bind(this);
   }
   onVehiclePositionStartChange(value) {
     let start = value.replace('m', '');
@@ -104,15 +113,70 @@ class ViewM2Setup extends Component {
       });
     }
   }
+  onVehicleLimitSpeedAChange(value) {
+    let speed = value.replace('km/h', '');
+    speed = speed.replace(' ', '');
+    speed = speed.trim();
+
+    // const { positionStart } = this.props;
+    if(speed >= 0 && speed <= 15) {
+      this.setState({
+        vehicleLimitSpeedA: speed
+      });
+    }
+  }
+  onVehicleRunCountChange(value) {
+    this.setState({
+      vehicleRunCount: value
+    });
+  }
+  onVehicleLimitSpeedMChange(value) {
+    let speed = value.replace('km/h', '');
+    speed = speed.replace(' ', '');
+    speed = speed.trim();
+
+    // const { positionStart } = this.props;
+    if(speed >= 0 && speed <= 15) {
+      this.setState({
+        vehicleLimitSpeedM: speed
+      });
+    }
+  }
+  onVehicleShuntSpeedChange(value) {
+    let speed = value.replace('km/h', '');
+    speed = speed.replace(' ', '');
+    speed = speed.trim();
+
+    // const { positionStart } = this.props;
+    if(speed >= 0 && speed <= 15) {
+      this.setState({
+        vehicleShuntSpeed: speed
+      });
+    }
+  }
   setCurrentPositionStart() {
+    const command = '#TSO_010,{0};TSO_012,{1};$'.format(this.state.vehiclePositionStart, this.state.vehicleLimitSpeedA);
+    this.sendCommandToDevice(command);
+
     const { dispatch } = this.props;
-    alert(this.state.vehiclePositionStart);
     dispatch(setPositionStart(this.state.vehiclePositionStart));
+    dispatch(setLimitSpeedA(this.state.vehicleLimitSpeedA));
   }
   setCurrentPositionStop() {
+    const command = '#TSO_011,{0};TSO_013,{1};$'.format(this.state.vehiclePositionStop, this.state.vehicleRunCount);
+    this.sendCommandToDevice(command);
+
     const { dispatch } = this.props;
-    alert(this.state.vehiclePositionStop);
     dispatch(setPositionStop(this.state.vehiclePositionStop));
+    dispatch(setRunCount(this.state.vehicleRunCount));
+  }
+  setCurrentManualSpeed() {
+    const command = '#TSO_014,{0};TSO_015,{1};$'.format(this.state.vehicleLimitSpeedM, this.state.vehicleShuntSpeed);
+    this.sendCommandToDevice(command);
+
+    const { dispatch } = this.props;
+    dispatch(setLimitSpeedM(this.state.vehicleLimitSpeedM));
+    dispatch(setShuntSpeed(this.state.vehicleShuntSpeed));
   }
   sendCommandToDevice(command) {
     var ws = new WebSocket(`ws://${this.hostname}:8181/`);
@@ -142,25 +206,31 @@ class ViewM2Setup extends Component {
   // sequence start =======================================================
   // s01
   onPowerChange(value) {
-    //alert('s01:' + value);
+    const command = '#TSO_001,{0};$'.format(value == 'on' ? 1:0);
+    this.sendCommandToDevice(command);
+
     const { dispatch } = this.props;
     dispatch( setPower(value) );
   }
   // s02
   onLightChange(value) {
+    const command = '#TSO_002,{0};$'.format(value == 'on' ? 1:0);
+    this.sendCommandToDevice(command);
+
     const { dispatch } = this.props;
-    //alert('power:' + power);
-    //alert('s02:' + value);
     dispatch( setLight(value) );
   }
   // s03 -1
   onInvCon1Change(value) {
-    //alert('s03-1:' + value);
     const { power, dispatch } = this.props;
     if(power === 'off' && value === 'on') {
       alert('You must turn on the POWER');
       return false;
     } else {
+
+      const command = '#TSO_021,{0};$'.format(value == 'on' ? 1:0);
+      this.sendCommandToDevice(command);
+
       dispatch( setInvCon1(value) );
     }
   }
@@ -172,6 +242,9 @@ class ViewM2Setup extends Component {
       alert('You must turn on the INV CON1');
       return false;
     } else {
+      const command = '#TSO_022,{0};$'.format(value == 'on' ? 1:0);
+      this.sendCommandToDevice(command);
+
       dispatch( setInvCon2(value) );
     }
   }
@@ -183,6 +256,9 @@ class ViewM2Setup extends Component {
       alert('You must turn on the INV CON2');
       return false;
     } else {
+      const command = '#TSO_023,{0};$'.format(value == 'on' ? 1:0);
+      this.sendCommandToDevice(command);
+
       dispatch( setTbms(value) );
     }
   }
@@ -194,6 +270,9 @@ class ViewM2Setup extends Component {
       alert('You must turn on the T-BMS');
       return false;
     } else {
+      const command = '#TSO_024,{0};$'.format(value == 'on' ? 1:0);
+      this.sendCommandToDevice(command);
+
       dispatch( setDcDc(value) );
     }
   }
@@ -205,6 +284,9 @@ class ViewM2Setup extends Component {
       alert('You must turn on the DC/DC');
       return false;
     } else {
+      const command = '#TSO_025,{0};$'.format(value == 'on' ? 1:0);
+      this.sendCommandToDevice(command);
+
       dispatch( setApc(value) );
     }
   }
@@ -216,6 +298,9 @@ class ViewM2Setup extends Component {
       alert('You must turn on the APC');
       return false;
     } else {
+      const command = '#TSO_026,{0};$'.format(value == 'on' ? 1:0);
+      this.sendCommandToDevice(command);
+
       dispatch( setInvOut1(value) );
     }
   }
@@ -227,6 +312,9 @@ class ViewM2Setup extends Component {
       alert('You must turn on the INV OUT1');
       return false;
     } else {
+      const command = '#TSO_027,{0};$'.format(value == 'on' ? 1:0);
+      this.sendCommandToDevice(command);
+
       dispatch( setInvOut2(value) );
     }
   }
@@ -238,6 +326,9 @@ class ViewM2Setup extends Component {
       alert('You must turn on the INV OUT2');
       return false;
     } else {
+      const command = '#TSO_028,{0};$'.format(value == 'on' ? 1:0);
+      this.sendCommandToDevice(command);
+
       dispatch( setSbms(value) );
     }
   }
@@ -249,6 +340,9 @@ class ViewM2Setup extends Component {
       alert('You must turn on the S-BMS');
       return false;
     } else {
+      const command = '#TSO_029,{0};$'.format(value == 'on' ? 1:0);
+      this.sendCommandToDevice(command);
+
       dispatch( setSinv(value) );
     }
   }
@@ -260,43 +354,69 @@ class ViewM2Setup extends Component {
       alert('You must turn on the S-INV');
       return false;
     } else {
+      const command = '#TSO_030,{0};$'.format(value == 'on' ? 1:0);
+      this.sendCommandToDevice(command);
+
       dispatch( setCamera(value) );
     }
   }
   // s11
   onDriveModeChange(value) {
-    // alert('s11:' + value);
+    let cValue = 0;
+    switch(value){
+      case 'ST':
+        cValue = 0;
+        break;
+      case 'Manual':
+        cValue = 1;
+        break;
+      case 'Auto':
+        cValue = 2;
+        break;
+    }
+    const command = '#TSO_003,{0};$'.format(cValue);
+    this.sendCommandToDevice(command);
+
     const { dispatch } = this.props;
     dispatch(setDriveMode(value));
   }
   // s12
   onRunDirectionChange(value) {
-    
-    const { dispatch } = this.props;
-    const command = value === "on" ? "d1" : "d0";
-    dispatch( setRunDirection(parseInt(command.charAt(1))));
+   
+    const command = '#TSO_004,{0};$'.format(value == 'on' ? 1:0);
     this.sendCommandToDevice(command);
+
+    const { dispatch } = this.props;
+    const command2 = value === "on" ? "d1" : "d0";
+    dispatch( setRunDirection(parseInt(command2.charAt(1))));
+    //this.sendCommandToDevice(command);
   }
   // s13 제동 선택?
 
   // s14
   onRunSwitchChange(value) {
-    //alert('s14:' + value);
-    const { dispatch } = this.props;
-    const command = value === "on" ? "s1" : "s0";
-    dispatch(setRunSwitch(parseInt(command.charAt(1))));
+    const command = '#TSO_005,{0};$'.format(value == 'on' ? 1:0);
     this.sendCommandToDevice(command);
+
+    const { dispatch } = this.props;
+    const command2 = value === "on" ? "s1" : "s0";
+    dispatch(setRunSwitch(parseInt(command2.charAt(1))));
+    // this.sendCommandToDevice(command);
   }
 
   // s15-1
   onHydroBkChange(value) {
-    // alert('s15-1:' + value);
+    const command = '#TSO_006,{0};$'.format(value == 'on' ? 1:0);
+    this.sendCommandToDevice(command);
+
     const { dispatch } = this.props;
     dispatch( setHydroBk(value) );
   }
   // s15-2
   onRegenBkChange(value) {
-    // alert('s15-2:' + value);
+    const command = '#TSO_007,{0};$'.format(value == 'on' ? 1:0);
+    this.sendCommandToDevice(command);
+
     const { dispatch } = this.props;
     dispatch( setRegenBk(value) );
   }
@@ -321,7 +441,7 @@ class ViewM2Setup extends Component {
       invCon1, invCon2, tBms, dcDc, apc,
       invOut1, invOut2, sBms, sInv, camera,
       power, light, driveMode, runDirection, runSwitch, hydroBk, regenBk,
-      positionStart, positionStop,
+      positionStart, positionStop, limitSpeedA, runCount, limitSpeedM, shuntSpeed,
       // -----------------------------------------------------------
       dispatch
     } = this.props;
@@ -1115,7 +1235,7 @@ class ViewM2Setup extends Component {
                         >Start Position</div>
                         <KeyboardedInput
                           enabled
-                          className="input-vehicel-position"
+                          className="input-vehicle-position"
                           type="text"
                           defaultKeyboard="us"
                           value={`${this.state.vehiclePositionStart} m`}
@@ -1159,7 +1279,7 @@ class ViewM2Setup extends Component {
                         >Stop Position</div>
                         <KeyboardedInput
                           enabled
-                          className="input-vehicel-position"
+                          className="input-vehicle-position"
                           type="text"
                           defaultKeyboard="us"
                           value={`${this.state.vehiclePositionStop} m`}
@@ -1210,21 +1330,14 @@ class ViewM2Setup extends Component {
                             textAlign: 'left'
                           }}
                         >Limit Speed</div>
-                        <input
-                          value="15 km/h"
-                          readOnly
-                          style={{
-                            float: 'left',
-                            width: '115px',
-                            background: 'none',
-                            border: '1px solid rgba(255,255,255,0.3)',
-                            color: '#fff',
-                            padding: '7px 5px',
-                            textAlign: 'center',
-                            fontSize: '15px',
-                            marginRight: '5px'
-                          }}
-                        />
+                        <KeyboardedInput
+                          enabled
+                          className="input-vehicle-position input-wide"
+                          type="text"
+                          defaultKeyboard="us"
+                          value={`${this.state.vehicleLimitSpeedA} km/h`}
+                          onChange={this.onVehicleLimitSpeedAChange}
+                        /> 
                       </div>{/*inputGroup END*/}
                       <div
                         className="inputGroup"
@@ -1244,20 +1357,13 @@ class ViewM2Setup extends Component {
                             textAlign: 'left'
                           }}
                         >Run Count</div>
-                        <input
-                          value="0"
-                          readOnly
-                          style={{
-                            float: 'left',
-                            width: '115px',
-                            background: 'none',
-                            border: '1px solid rgba(255,255,255,0.3)',
-                            color: '#fff',
-                            padding: '7px 5px',
-                            textAlign: 'center',
-                            fontSize: '15px',
-                            marginRight: '5px'
-                          }}
+                        <KeyboardedInput
+                          enabled
+                          className="input-vehicle-position input-wide"
+                          type="text"
+                          defaultKeyboard="us"
+                          value={`${this.state.vehicleRunCount}`}
+                          onChange={this.onVehicleRunCountChange}
                         />
                       </div>{/*inputGroup END*/}
                     </div>{/*inputLeftGroup END*/}
@@ -1326,20 +1432,13 @@ class ViewM2Setup extends Component {
                             textAlign: 'left'
                           }}
                         >Limit speed</div>
-                        <input
-                          value="0"
-                          readOnly
-                          style={{
-                            float: 'left',
-                            width: '115px',
-                            background: 'none',
-                            border: '1px solid rgba(255,255,255,0.3)',
-                            color: '#fff',
-                            padding: '7px 5px',
-                            textAlign: 'center',
-                            fontSize: '15px',
-                            marginRight: '5px'
-                          }}
+                        <KeyboardedInput
+                          enabled
+                          className="input-vehicle-position input-wide"
+                          type="text"
+                          defaultKeyboard="us"
+                          value={`${this.state.vehicleLimitSpeedM} km/h`}
+                          onChange={this.onVehicleLimitSpeedMChange}
                         />
                       </div>{/*inputGroup END*/}
                     </div>
@@ -1372,20 +1471,13 @@ class ViewM2Setup extends Component {
                             textAlign: 'left'
                           }}
                         >Shunt Speed</div>
-                        <input
-                          value="0"
-                          readOnly
-                          style={{
-                            float: 'left',
-                            width: '115px',
-                            background: 'none',
-                            border: '1px solid rgba(255,255,255,0.3)',
-                            color: '#fff',
-                            padding: '7px 5px',
-                            textAlign: 'center',
-                            fontSize: '15px',
-                            marginRight: '5px'
-                          }}
+                        <KeyboardedInput
+                          enabled
+                          className="input-vehicle-position input-wide"
+                          type="text"
+                          defaultKeyboard="us"
+                          value={`${this.state.vehicleShuntSpeed} km/h`}
+                          onChange={this.onVehicleShuntSpeedChange}
                         />
                       </div>{/*inputGroup END*/}
                       <div
@@ -1426,6 +1518,7 @@ class ViewM2Setup extends Component {
                         <input
                           type="button"
                           value="SET"
+                          onClick={this.setCurrentManualSpeed}
                           style={{
                             padding: '5px 10px',
                             border: '1px solid rgba(255,255,255,0.3)',
@@ -1529,6 +1622,10 @@ function mapStateToProps(state){
 
       positionStart: state.setM2SetupButtons.positionStart,
       positionStop: state.setM2SetupButtons.positionStop,
+      limitSpeedA: state.setM2SetupButtons.limitSpeedA,
+      runCount: state.setM2SetupButtons.runCount,
+      limitSpeedM: state.setM2SetupButtons.limitSpeedM,
+      shuntSpeed: state.setM2SetupButtons.shuntSpeed,
       // =============================================
     }
 }
