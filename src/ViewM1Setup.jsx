@@ -24,22 +24,63 @@ class ViewM1Setup extends Component {
     this.onTuningFrontIgainChange = this.onTuningFrontIgainChange.bind(this);
     this.onTuningRearPgainChange = this.onTuningRearPgainChange.bind(this);
     this.onTuningRearIgainChange = this.onTuningRearIgainChange.bind(this);
+
+    // this.hostname = '192.168.1.2'; // window.location.hostname;
+    this.hostname = window.location.hostname;
+
   }
   onTuningFrontPgainChange(value){
+    const command = '#ISO_002,{0};$'.format(value);
+    this.sendCommandToDevice(command);
+
     const { dispatch } = this.props;
     dispatch(setTuningFrontPgain(value));
   }
   onTuningFrontIgainChange(value){
+    const command = '#ISO_003,{0};$'.format(value);
+    this.sendCommandToDevice(command);
+
     const { dispatch } = this.props;
     dispatch(setTuningFrontIgain(value));
   }
   onTuningRearPgainChange(value){
+    const command = '#ISO_004,{0};$'.format(value);
+    this.sendCommandToDevice(command);
+
     const { dispatch } = this.props;
     dispatch(setTuningRearPgain(value));
   }
   onTuningRearIgainChange(value){
+    const command = '#ISO_005,{0};$'.format(value);
+    this.sendCommandToDevice(command);
+
     const { dispatch } = this.props;
     dispatch(setTuningRearIgain(value));
+  }
+  sendCommandToDevice(command) {
+    var ws = new WebSocket(`ws://${this.hostname}:8181/`);
+    this.send = function (message, callback) {
+      this.waitForConnection(function () {
+          ws.send(message);
+          ws.close();
+          if (typeof callback !== 'undefined') {
+              callback();
+          }
+      }, 100);
+    };
+
+    this.waitForConnection = function (callback, interval) {
+      if (ws.readyState === 1) {
+        callback();
+      } else {
+        var that = this;
+        // optional: implement backoff for interval here
+        setTimeout(function () {
+            that.waitForConnection(callback, interval);
+        }, interval);
+      }
+    };
+    this.send(command);
   }
   render() {
     const { 
@@ -672,7 +713,7 @@ class ViewM1Setup extends Component {
 }
 
 function mapStateToProps(state){
-    console.log('itcsetup',state.setItcSetupFrontRightData);
+    // console.log('itcsetup',state.setItcSetupFrontRightData);
     return {
 
       frontLeftMotorData: state.frontLeftMotorData,

@@ -28,6 +28,10 @@ import {
 class ViewM1Run extends Component {
   constructor(props) {
     super(props);
+    
+    // this.hostname = '192.168.1.2'; // window.location.hostname;
+    this.hostname = window.location.hostname;
+
     this.onCrtl1ActiveChange = this.onCrtl1ActiveChange.bind(this);
     this.onCrtl1ModeChange = this.onCrtl1ModeChange.bind(this);
     this.onCrtl1SensorTypeChange = this.onCrtl1SensorTypeChange.bind(this);
@@ -52,66 +56,116 @@ class ViewM1Run extends Component {
 
   }
   onCrtl1ActiveChange(value){
+    const command = '#IRO_001,{0};$'.format(value == 'on' ? 1:0);
+    this.sendCommandToDevice(command);
+
     const { dispatch } = this.props;
     dispatch(setCrtl1Active(value));
   } 
   onCrtl1ModeChange(value){
+    const command = '#IRO_002,{0};$'.format(value == 'Speed' ? 1:0);
+    this.sendCommandToDevice(command);
+
     const { dispatch } = this.props;
     dispatch(setCrtl1Mode(value));
   }
   onCrtl1SensorTypeChange(values){
+    const cValue = '{0}{1}{2}'.format(values.includes('Laser-X')?1:0,values.includes('Laser-Y')?1:0,values.includes('Gyro')?1:0);
+    const command = '#IRO_003,{0};$'.format(cValue);
+    this.sendCommandToDevice(command);
+
     const { dispatch } = this.props;
     dispatch(setCrtl1SensorType(values));
   }
   onCrtl1ControlTypeChange(value){
+    const command = '#IRO_004,{0};$'.format(value == 'Yaw Angle' ? 1:0);
+    this.sendCommandToDevice(command);
+
     const { dispatch } = this.props;
     dispatch(setCrtl1ControlType(value));
   }
   onCrtl1WfLateralSensorChange(value){
+    const command = '#IRO_005,{0};$'.format(value);
+    this.sendCommandToDevice(command);
+
     const { dispatch } = this.props;
     dispatch(setCrtl1WFLateralSensor(value));
   }
   onCrtl1WfControlModeChange(value){
+    const command = '#IRO_007,{0};$'.format(value);
+    this.sendCommandToDevice(command);
+
     const { dispatch } = this.props;
     dispatch(setCrtl1WFControlMode(value));
   } 
   onCrtl1WfYawSensorChange(value){
+    const command = '#IRO_006,{0};$'.format(value);
+    this.sendCommandToDevice(command);
+
     const { dispatch } = this.props;
     dispatch(setCrtl1WFYawSensor(value));
   } 
   onCrtl1WfControlTypeChange(value){
+    const command = '#IRO_008,{0};$'.format(value);
+    this.sendCommandToDevice(command);
+
     const { dispatch } = this.props;
     dispatch(setCrtl1WFControlType(value));
   }
   onCrtl2ActiveChange(value){
+    const command = '#IRO_051,{0};$'.format(value == 'on' ? 1:0);
+    this.sendCommandToDevice(command);
+
     const { dispatch } = this.props;
     dispatch(setCrtl2Active(value));
   } 
   onCrtl2ModeChange(value){
+    const command = '#IRO_052,{0};$'.format(value == 'Speed' ? 1:0);
+    this.sendCommandToDevice(command);
+
     const { dispatch } = this.props;
     dispatch(setCrtl2Mode(value));
   } 
   onCrtl2SensorTypeChange(values){
+    const cValue = '{0}{1}{2}'.format(values.includes('Laser-X')?1:0,values.includes('Laser-Y')?1:0,values.includes('Gyro')?1:0);
+    const command = '#IRO_053,{0};$'.format(cValue);
+    this.sendCommandToDevice(command);
+
     const { dispatch } = this.props;
     dispatch(setCrtl2SensorType(values));
   } 
   onCrtl2ControlTypeChange(value){
+    const command = '#IRO_054,{0};$'.format(value == 'Yaw Angle' ? 1:0);
+    this.sendCommandToDevice(command);
+
     const { dispatch } = this.props;
     dispatch(setCrtl2ControlType(value));
   } 
   onCrtl2WfLateralSensorChange(value){
+    const command = '#IRO_055,{0};$'.format(value);
+    this.sendCommandToDevice(command);
+
     const { dispatch } = this.props;
     dispatch(setCrtl2WFLateralSensor(value));
   } 
   onCrtl2WfControlModeChange(value){
+    const command = '#IRO_057,{0};$'.format(value);
+    this.sendCommandToDevice(command);
+
     const { dispatch } = this.props;
     dispatch(setCrtl2WFControlMode(value));
   } 
   onCrtl2WfYawSensorChange(value){
+    const command = '#IRO_056,{0};$'.format(value);
+    this.sendCommandToDevice(command);
+
     const { dispatch } = this.props;
     dispatch(setCrtl2WFYawSensor(value));
   } 
   onCrtl2WfControlTypeChange(value){
+    const command = '#IRO_058,{0};$'.format(value);
+    this.sendCommandToDevice(command);
+
     const { dispatch } = this.props;
     dispatch(setCrtl2WFControlType(value));
   }
@@ -131,6 +185,31 @@ class ViewM1Run extends Component {
   onChartTypeRearRightChange(value){
     const { dispatch } = this.props;
     dispatch(setChartTypeRearRight(value));
+  }
+  sendCommandToDevice(command) {
+    var ws = new WebSocket(`ws://${this.hostname}:8181/`);
+    this.send = function (message, callback) {
+      this.waitForConnection(function () {
+          ws.send(message);
+          ws.close();
+          if (typeof callback !== 'undefined') {
+              callback();
+          }
+      }, 100);
+    };
+
+    this.waitForConnection = function (callback, interval) {
+      if (ws.readyState === 1) {
+        callback();
+      } else {
+        var that = this;
+        // optional: implement backoff for interval here
+        setTimeout(function () {
+            that.waitForConnection(callback, interval);
+        }, interval);
+      }
+    };
+    this.send(command);
   }
   componentDidMount(){
     
