@@ -23,6 +23,9 @@ import {
 class ViewM3Setup extends Component {
   constructor(props) {
     super(props);
+    //this.hostname = '192.168.1.2'; //window.location.hostname;
+    this.hostname = window.location.hostname;
+
     this.onTuningFront1PgainChange = this.onTuningFront1PgainChange.bind(this);
     this.onTuningFront1IgainChange = this.onTuningFront1IgainChange.bind(this); 
     this.onTuningRear1PgainChange = this.onTuningRear1PgainChange.bind(this);
@@ -33,36 +36,85 @@ class ViewM3Setup extends Component {
     this.onTuningRear2IgainChange = this.onTuningRear2IgainChange.bind(this);
   }
   onTuningFront1PgainChange(value){
+    const command = '#HSO_002,{0};$'.format(value);
+    this.sendCommandToDevice(command);
+
     const { dispatch } = this.props;
     dispatch(setTuningFront1Pgain(value));
   }
   onTuningFront1IgainChange(value){
+    const command = '#HSO_003,{0};$'.format(value);
+    this.sendCommandToDevice(command);
+
     const { dispatch } = this.props;
     dispatch(setTuningFront1Igain(value));
   } 
   onTuningRear1PgainChange(value){
+    const command = '#HSO_006,{0};$'.format(value);
+    this.sendCommandToDevice(command);
+
     const { dispatch } = this.props;
     dispatch(setTuningRear1Pgain(value));
   }
   onTuningRear1IgainChange(value){
+    const command = '#HSO_007,{0};$'.format(value);
+    this.sendCommandToDevice(command);
+
     const { dispatch } = this.props;
     dispatch(setTuningRear1Igain(value));
   }
   onTuningFront2PgainChange(value){
+    const command = '#HSO_004,{0};$'.format(value);
+    this.sendCommandToDevice(command);
+
     const { dispatch } = this.props;
     dispatch(setTuningFront2Pgain(value));
   }
   onTuningFront2IgainChange(value){
+    const command = '#HSO_005,{0};$'.format(value);
+    this.sendCommandToDevice(command);
+
     const { dispatch } = this.props;
     dispatch(setTuningFront2Igain(value));
   }
   onTuningRear2PgainChange(value){
+    const command = '#HSO_008,{0};$'.format(value);
+    this.sendCommandToDevice(command);
+
     const { dispatch } = this.props;
     dispatch(setTuningRear2Pgain(value));
   }
   onTuningRear2IgainChange(value){
+    const command = '#HSO_009,{0};$'.format(value);
+    this.sendCommandToDevice(command);
+
     const { dispatch } = this.props;
     dispatch(setTuningRear2Igain(value));
+  }
+  sendCommandToDevice(command) {
+    var ws = new WebSocket(`ws://${this.hostname}:8181/`);
+    this.send = function (message, callback) {
+      this.waitForConnection(function () {
+          ws.send(message);
+          ws.close();
+          if (typeof callback !== 'undefined') {
+              callback();
+          }
+      }, 100);
+    };
+
+    this.waitForConnection = function (callback, interval) {
+      if (ws.readyState === 1) {
+        callback();
+      } else {
+        var that = this;
+        // optional: implement backoff for interval here
+        setTimeout(function () {
+            that.waitForConnection(callback, interval);
+        }, interval);
+      }
+    };
+    this.send(command);
   }
   render() {
     const { 

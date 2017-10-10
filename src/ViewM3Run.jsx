@@ -24,6 +24,9 @@ import {
 class ViewM3Run extends Component {
   constructor(props) {
     super(props);
+    //this.hostname = '192.168.1.2'; //window.location.hostname;
+    this.hostname = window.location.hostname;
+
     this.onCrtl1ActiveChange = this.onCrtl1ActiveChange.bind(this);
     this.onCrtl1PowerChange = this.onCrtl1PowerChange.bind(this);
     this.onCrtl1ZeroChange = this.onCrtl1ZeroChange.bind(this);
@@ -41,38 +44,84 @@ class ViewM3Run extends Component {
   }
 
   onCrtl1ActiveChange(value){
+    const command = '#HRO_001,{0};$'.format(value == 'On' ? 1:0);
+    this.sendCommandToDevice(command);
+
     const { dispatch } = this.props;
     dispatch(setCrtl1Active(value));
   } 
   onCrtl1PowerChange(value){
+    const command = '#HRO_002,{0};$'.format(value == 'On' ? 1:0);
+    this.sendCommandToDevice(command);
+
     const { dispatch } = this.props;
     dispatch(setCrtl1Power(value));
   }
   onCrtl1ZeroChange(value){
+    const command = '#HRO_003,{0};$'.format(value == 'Zero' ? 1:0);
+    this.sendCommandToDevice(command);
+
     const { dispatch } = this.props;
     dispatch(setCrtl1Zero(value));
   }
   onCrtl1SensorTypeChange(values){
+    const cValue = '{0}{1}'.format(values.includes('LVDT')?1:0,values.includes('Gyro')?1:0);
+    const command = '#HRO_004,{0};$'.format(cValue);
+    this.sendCommandToDevice(command);
+
     const { dispatch } = this.props;
     dispatch(setCrtl1SensorType(values));
   }
   onCrtl1ControlTypeChange(value){
+    let cValue = 0;
+    switch(value) {
+      case 'Passive':
+        cValue = 0;
+        break;
+      case 'Active A':
+        cValue = 1;
+        break;
+      case 'Active A2':
+        cValue = 2;
+        break;
+      case 'Active B':
+        cValue = 3;
+        break;
+      case 'Active B2':
+        cValue = 4;
+        break;                               
+    }
+    const command = '#HRO_005,{0};$'.format(cValue);
+    this.sendCommandToDevice(command);
+    
     const { dispatch } = this.props;
     dispatch(setCrtl1ControlType(value));
   }
   onCrtl1SRActiveAChange(value){
+    const command = '#HRO_006,{0};$'.format(value);
+    this.sendCommandToDevice(command);
+
     const { dispatch } = this.props;
     dispatch(setCrtl1SRActiveA(value));
   }
   onCrtl1SRActiveBChange(value){
+    const command = '#HRO_008,{0};$'.format(value);
+    this.sendCommandToDevice(command);
+
     const { dispatch } = this.props;
     dispatch(setCrtl1SRActiveB(value));
   } 
   onCrtl1SRActiveA2Change(value){
+    const command = '#HRO_007,{0};$'.format(value);
+    this.sendCommandToDevice(command);
+
     const { dispatch } = this.props;
     dispatch(setCrtl1SRActiveA2(value));
   } 
   onCrtl1SRActiveB2Change(value){
+    const command = '#HRO_009,{0};$'.format(value);
+    this.sendCommandToDevice(command);
+
     const { dispatch } = this.props;
     dispatch(setCrtl1SRActiveB2(value));
   }
@@ -93,7 +142,31 @@ class ViewM3Run extends Component {
     const { dispatch } = this.props;
     dispatch(setChartTypeRearRight(value));
   }
+  sendCommandToDevice(command) {
+    var ws = new WebSocket(`ws://${this.hostname}:8181/`);
+    this.send = function (message, callback) {
+      this.waitForConnection(function () {
+          ws.send(message);
+          ws.close();
+          if (typeof callback !== 'undefined') {
+              callback();
+          }
+      }, 100);
+    };
 
+    this.waitForConnection = function (callback, interval) {
+      if (ws.readyState === 1) {
+        callback();
+      } else {
+        var that = this;
+        // optional: implement backoff for interval here
+        setTimeout(function () {
+            that.waitForConnection(callback, interval);
+        }, interval);
+      }
+    };
+    this.send(command);
+  }
   componentDidMount(){
     // console.log('HSSPlyaer start!');
     
