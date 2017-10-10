@@ -96,12 +96,12 @@ class ViewM3Run extends Component {
 
   componentDidMount(){
     // console.log('HSSPlyaer start!');
-    /*
+    
     const rtspFrontPlayer = new H5SPlayVideo('videoLeft');
     rtspFrontPlayer.Start();
     const rtspRearPlayer = new H5SPlayVideo('videoRight');
     rtspRearPlayer.Start();
-    */
+    
   }
   render() {
     const { 
