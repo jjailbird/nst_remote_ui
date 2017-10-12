@@ -22,3 +22,8 @@ export function getToggledValues(values, value) {
     values.splice(i,1);
   return values;
 }
+
+export function getSocketCommand(tagId, value) {
+  let commandFormat = "#{0},{1};$";
+  return commandFormat.format(tagId, value);
+}

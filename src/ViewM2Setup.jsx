@@ -10,7 +10,7 @@ import TestSetupGaugeBar from './components/TestSetupGaugeBar';
 import DynamicLineChart2 from './components/DynamicLineChart2';
 import RailroadTrailStartStop from './components/RailroadTrailStartStop';
 
-import KeyboardedInput from 'react-touch-screen-keyboard';
+import KeyboardedInput from './components/react-touch-screen-keyboard/src/KeyboardedInput';
 import 'react-touch-screen-keyboard/src/Keyboard.css';
 // import Keyboard from 'react-virtual-keyboard';
 import { 
@@ -22,6 +22,7 @@ import {
 } from './actions/m2SetupActions';
 
 import { connect } from 'react-redux';
+import { getSocketCommand } from './utils/functions.js';
 
 class ViewM2Setup extends Component {
   constructor(props) {
@@ -41,9 +42,16 @@ class ViewM2Setup extends Component {
     
     this.onVehiclePositionStartChange = this.onVehiclePositionStartChange.bind(this);
     this.onVehiclePositionStopChange = this.onVehiclePositionStopChange.bind(this);
+    
     this.onVehicleLimitSpeedAChange = this.onVehicleLimitSpeedAChange.bind(this);
+    this.onVehicleLimitSpeedAKeyboardHide = this.onVehicleLimitSpeedAKeyboardHide.bind(this);
+
     this.onVehicleRunCountChange = this.onVehicleRunCountChange.bind(this);
+    this.onVehicleRunCountkeyboardHide = this.onVehicleRunCountkeyboardHide.bind(this);
+
     this.onVehicleLimitSpeedMChange = this.onVehicleLimitSpeedMChange.bind(this);
+    this.onVehicleLimitSpeedMKeyboardHide = this.onVehicleLimitSpeedMKeyboardHide.bind(this);
+    
     this.onVehicleShuntSpeedChange = this.onVehicleShuntSpeedChange.bind(this);
     // #1
     this.onPowerChange = this.onPowerChange.bind(this);
@@ -119,16 +127,32 @@ class ViewM2Setup extends Component {
     speed = speed.trim();
 
     // const { positionStart } = this.props;
-    if(speed >= 0 && speed <= 15) {
+    if(speed >= 0 && speed <= 100) {
       this.setState({
         vehicleLimitSpeedA: speed
       });
     }
   }
+  onVehicleLimitSpeedAKeyboardHide(){
+    const command = getSocketCommand('TSO_012', this.state.vehicleLimitSpeedA);
+    this.sendCommandToDevice(command);
+
+    const { dispatch } = this.props;
+    dispatch(setLimitSpeedA(this.state.vehicleLimitSpeedA));
+
+  }
+
   onVehicleRunCountChange(value) {
     this.setState({
       vehicleRunCount: value
     });
+  }
+  onVehicleRunCountkeyboardHide() {
+    const command = getSocketCommand('TSO_013', this.state.vehicleRunCount);
+    this.sendCommandToDevice(command);
+
+    const { dispatch } = this.props;
+    dispatch(setRunCount(this.state.vehicleRunCount));
   }
   onVehicleLimitSpeedMChange(value) {
     let speed = value.replace('km/h', '');
@@ -136,46 +160,52 @@ class ViewM2Setup extends Component {
     speed = speed.trim();
 
     // const { positionStart } = this.props;
-    if(speed >= 0 && speed <= 15) {
+    if(speed >= 0 && speed <= 100) {
       this.setState({
         vehicleLimitSpeedM: speed
       });
     }
   }
+  onVehicleLimitSpeedMKeyboardHide(){
+    const command = getSocketCommand('TSO_014', this.state.vehicleLimitSpeedM);
+    this.sendCommandToDevice(command);
+
+    const { dispatch } = this.props;
+    dispatch(setLimitSpeedM(this.state.vehicleLimitSpeedM));
+  }
+
   onVehicleShuntSpeedChange(value) {
     let speed = value.replace('km/h', '');
     speed = speed.replace(' ', '');
     speed = speed.trim();
 
     // const { positionStart } = this.props;
-    if(speed >= 0 && speed <= 15) {
+    if(speed >= 0 && speed <= 100) {
       this.setState({
         vehicleShuntSpeed: speed
       });
     }
   }
   setCurrentPositionStart() {
-    const command = '#TSO_010,{0};TSO_012,{1};$'.format(this.state.vehiclePositionStart, this.state.vehicleLimitSpeedA);
+    const command = getSocketCommand('TSO_010', this.state.vehiclePositionStart);
     this.sendCommandToDevice(command);
 
     const { dispatch } = this.props;
     dispatch(setPositionStart(this.state.vehiclePositionStart));
-    dispatch(setLimitSpeedA(this.state.vehicleLimitSpeedA));
+    
   }
   setCurrentPositionStop() {
-    const command = '#TSO_011,{0};TSO_013,{1};$'.format(this.state.vehiclePositionStop, this.state.vehicleRunCount);
+    const command = getSocketCommand('TSO_011', this.state.vehiclePositionStop);
     this.sendCommandToDevice(command);
 
     const { dispatch } = this.props;
     dispatch(setPositionStop(this.state.vehiclePositionStop));
-    dispatch(setRunCount(this.state.vehicleRunCount));
   }
   setCurrentManualSpeed() {
-    const command = '#TSO_014,{0};TSO_015,{1};$'.format(this.state.vehicleLimitSpeedM, this.state.vehicleShuntSpeed);
+    const command = getSocketCommand('TSO_015', this.state.vehicleShuntSpeed);
     this.sendCommandToDevice(command);
 
     const { dispatch } = this.props;
-    dispatch(setLimitSpeedM(this.state.vehicleLimitSpeedM));
     dispatch(setShuntSpeed(this.state.vehicleShuntSpeed));
   }
   sendCommandToDevice(command) {
@@ -206,7 +236,8 @@ class ViewM2Setup extends Component {
   // sequence start =======================================================
   // s01
   onPowerChange(value) {
-    const command = '#TSO_001,{0};$'.format(value == 'on' ? 1:0);
+    
+    const command = getSocketCommand('TSO_001', value == 'on' ? 1:0);
     this.sendCommandToDevice(command);
 
     const { dispatch } = this.props;
@@ -214,7 +245,8 @@ class ViewM2Setup extends Component {
   }
   // s02
   onLightChange(value) {
-    const command = '#TSO_002,{0};$'.format(value == 'on' ? 1:0);
+    
+    const command = getSocketCommand('TSO_002', value == 'on' ? 1:0);
     this.sendCommandToDevice(command);
 
     const { dispatch } = this.props;
@@ -227,8 +259,8 @@ class ViewM2Setup extends Component {
       alert('You must turn on the POWER');
       return false;
     } else {
-
-      const command = '#TSO_021,{0};$'.format(value == 'on' ? 1:0);
+      
+      const command = getSocketCommand('TSO_021', value == 'on' ? 1:0);
       this.sendCommandToDevice(command);
 
       dispatch( setInvCon1(value) );
@@ -242,7 +274,7 @@ class ViewM2Setup extends Component {
       alert('You must turn on the INV CON1');
       return false;
     } else {
-      const command = '#TSO_022,{0};$'.format(value == 'on' ? 1:0);
+      const command = getSocketCommand('TSO_022', value == 'on' ? 1:0);
       this.sendCommandToDevice(command);
 
       dispatch( setInvCon2(value) );
@@ -256,7 +288,8 @@ class ViewM2Setup extends Component {
       alert('You must turn on the INV CON2');
       return false;
     } else {
-      const command = '#TSO_023,{0};$'.format(value == 'on' ? 1:0);
+      
+      const command = getSocketCommand('TSO_023', value == 'on' ? 1:0);
       this.sendCommandToDevice(command);
 
       dispatch( setTbms(value) );
@@ -270,7 +303,8 @@ class ViewM2Setup extends Component {
       alert('You must turn on the T-BMS');
       return false;
     } else {
-      const command = '#TSO_024,{0};$'.format(value == 'on' ? 1:0);
+      
+      const command = getSocketCommand('TSO_024', value == 'on' ? 1:0);
       this.sendCommandToDevice(command);
 
       dispatch( setDcDc(value) );
@@ -284,7 +318,8 @@ class ViewM2Setup extends Component {
       alert('You must turn on the DC/DC');
       return false;
     } else {
-      const command = '#TSO_025,{0};$'.format(value == 'on' ? 1:0);
+      
+      const command = getSocketCommand('TSO_025', value == 'on' ? 1:0);
       this.sendCommandToDevice(command);
 
       dispatch( setApc(value) );
@@ -298,7 +333,7 @@ class ViewM2Setup extends Component {
       alert('You must turn on the APC');
       return false;
     } else {
-      const command = '#TSO_026,{0};$'.format(value == 'on' ? 1:0);
+      const command = getSocketCommand('TSO_026', value == 'on' ? 1:0);
       this.sendCommandToDevice(command);
 
       dispatch( setInvOut1(value) );
@@ -312,7 +347,7 @@ class ViewM2Setup extends Component {
       alert('You must turn on the INV OUT1');
       return false;
     } else {
-      const command = '#TSO_027,{0};$'.format(value == 'on' ? 1:0);
+      const command = getSocketCommand('TSO_027', value == 'on' ? 1:0);
       this.sendCommandToDevice(command);
 
       dispatch( setInvOut2(value) );
@@ -326,7 +361,7 @@ class ViewM2Setup extends Component {
       alert('You must turn on the INV OUT2');
       return false;
     } else {
-      const command = '#TSO_028,{0};$'.format(value == 'on' ? 1:0);
+      const command = getSocketCommand('TSO_028', value == 'on' ? 1:0);
       this.sendCommandToDevice(command);
 
       dispatch( setSbms(value) );
@@ -340,7 +375,7 @@ class ViewM2Setup extends Component {
       alert('You must turn on the S-BMS');
       return false;
     } else {
-      const command = '#TSO_029,{0};$'.format(value == 'on' ? 1:0);
+      const command = getSocketCommand('TSO_029', value == 'on' ? 1:0);
       this.sendCommandToDevice(command);
 
       dispatch( setSinv(value) );
@@ -354,7 +389,7 @@ class ViewM2Setup extends Component {
       alert('You must turn on the S-INV');
       return false;
     } else {
-      const command = '#TSO_030,{0};$'.format(value == 'on' ? 1:0);
+      const command = getSocketCommand('TSO_030', value == 'on' ? 1:0);
       this.sendCommandToDevice(command);
 
       dispatch( setCamera(value) );
@@ -374,7 +409,7 @@ class ViewM2Setup extends Component {
         cValue = 2;
         break;
     }
-    const command = '#TSO_003,{0};$'.format(cValue);
+    const command = getSocketCommand('TSO_003', cValue);
     this.sendCommandToDevice(command);
 
     const { dispatch } = this.props;
@@ -382,8 +417,7 @@ class ViewM2Setup extends Component {
   }
   // s12
   onRunDirectionChange(value) {
-   
-    const command = '#TSO_004,{0};$'.format(value == 'on' ? 1:0);
+    const command = getSocketCommand('TSO_004', value == 'on' ? 1:0);
     this.sendCommandToDevice(command);
 
     const { dispatch } = this.props;
@@ -395,18 +429,17 @@ class ViewM2Setup extends Component {
 
   // s14
   onRunSwitchChange(value) {
-    const command = '#TSO_005,{0};$'.format(value == 'on' ? 1:0);
+    const command = getSocketCommand('TSO_005', value == 'on' ? 1:0);
     this.sendCommandToDevice(command);
 
     const { dispatch } = this.props;
     const command2 = value === "on" ? "s1" : "s0";
     dispatch(setRunSwitch(parseInt(command2.charAt(1))));
-    // this.sendCommandToDevice(command);
   }
 
   // s15-1
   onHydroBkChange(value) {
-    const command = '#TSO_006,{0};$'.format(value == 'on' ? 1:0);
+    const command = getSocketCommand('TSO_006', value == 'on' ? 1:0);
     this.sendCommandToDevice(command);
 
     const { dispatch } = this.props;
@@ -414,7 +447,7 @@ class ViewM2Setup extends Component {
   }
   // s15-2
   onRegenBkChange(value) {
-    const command = '#TSO_007,{0};$'.format(value == 'on' ? 1:0);
+    const command = getSocketCommand('TSO_007', value == 'on' ? 1:0);
     this.sendCommandToDevice(command);
 
     const { dispatch } = this.props;
@@ -1242,6 +1275,7 @@ class ViewM2Setup extends Component {
                           onChange={this.onVehiclePositionStartChange}
                         /> 
                         <input
+                          type="button"
                           value="SET"
                           onClick={this.setCurrentPositionStart}
                           style={{
@@ -1337,6 +1371,7 @@ class ViewM2Setup extends Component {
                           defaultKeyboard="us"
                           value={`${this.state.vehicleLimitSpeedA} km/h`}
                           onChange={this.onVehicleLimitSpeedAChange}
+                          onHide={this.onVehicleLimitSpeedAKeyboardHide}
                         /> 
                       </div>{/*inputGroup END*/}
                       <div
@@ -1364,6 +1399,7 @@ class ViewM2Setup extends Component {
                           defaultKeyboard="us"
                           value={`${this.state.vehicleRunCount}`}
                           onChange={this.onVehicleRunCountChange}
+                          onHide={this.onVehicleRunCountkeyboardHide}
                         />
                       </div>{/*inputGroup END*/}
                     </div>{/*inputLeftGroup END*/}
@@ -1439,6 +1475,7 @@ class ViewM2Setup extends Component {
                           defaultKeyboard="us"
                           value={`${this.state.vehicleLimitSpeedM} km/h`}
                           onChange={this.onVehicleLimitSpeedMChange}
+                          onHide={this.onVehicleLimitSpeedMKeyboardHide}
                         />
                       </div>{/*inputGroup END*/}
                     </div>
@@ -1503,7 +1540,7 @@ class ViewM2Setup extends Component {
                         />
                         <input
                           type="button"
-                          value="INIT"
+                          value="RES"
                           style={{
                             padding: '5px 10px',
                             border: '1px solid rgba(255,255,255,0.3)',
