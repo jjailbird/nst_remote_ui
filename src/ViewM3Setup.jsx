@@ -25,8 +25,8 @@ import {
 class ViewM3Setup extends Component {
   constructor(props) {
     super(props);
-    //this.hostname = '192.168.1.2'; //window.location.hostname;
-    this.hostname = window.location.hostname;
+    this.hostname = '192.168.1.2'; 
+    //this.hostname = window.location.hostname;
 
     this.onTuningFront1PgainChange = this.onTuningFront1PgainChange.bind(this);
     this.onTuningFront1IgainChange = this.onTuningFront1IgainChange.bind(this); 
