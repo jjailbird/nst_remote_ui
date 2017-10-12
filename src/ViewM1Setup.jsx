@@ -20,15 +20,16 @@ import { setTuningFrontPgain, setTuningFrontIgain, setTuningRearPgain, setTuning
 class ViewM1Setup extends Component {
   constructor(props){
     super(props);
+
+    this.hostname = '192.168.1.2'; 
+    //this.hostname = window.location.hostname;
+
     this.onTuningFrontPgainChange = this.onTuningFrontPgainChange.bind(this);
     this.onTuningFrontIgainChange = this.onTuningFrontIgainChange.bind(this);
     this.onTuningRearPgainChange = this.onTuningRearPgainChange.bind(this);
     this.onTuningRearIgainChange = this.onTuningRearIgainChange.bind(this);
 
     this.onCarMassChange = this.onCarMassChange.bind(this);
-    // this.hostname = '192.168.1.2'; // window.location.hostname;
-    this.hostname = window.location.hostname;
-
   }
   onTuningFrontPgainChange(value){
     // const command = '#ISO_002,{0};$'.format(value);

@@ -30,8 +30,8 @@ class ViewM1Run extends Component {
   constructor(props) {
     super(props);
     
-    // this.hostname = '192.168.1.2'; // window.location.hostname;
-    this.hostname = window.location.hostname;
+    this.hostname = '192.168.1.2';
+    // this.hostname = window.location.hostname;
 
     this.onCrtl1ActiveChange = this.onCrtl1ActiveChange.bind(this);
     this.onCrtl1ModeChange = this.onCrtl1ModeChange.bind(this);
@@ -787,7 +787,7 @@ class ViewM1Run extends Component {
 }
 
 function mapStateToProps(state){
-  // console.log('redux data', state);  
+  console.log('redux data', state);  
   return {
       frontLeftData: state.frontLeftData,
       frontRightData: state.frontRightData,

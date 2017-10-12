@@ -130,6 +130,7 @@ export const setMotorControlData = (data) => {
   }
 }
 export const setFrontWheelsetData = (data) => {
+  console.log('setFrontWheelsetData',data);
   return {
     type: SET_FRONT_WHEELSET_DATA,
     data

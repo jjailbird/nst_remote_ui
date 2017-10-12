@@ -1,4 +1,4 @@
-import { SET_FRONT_WHEELSET_HSC_DATA } from '../actions';
+import { SET_FRONT_WHEELSET_DATA } from '../actions';
 
 const defaultState = {
   position: 0,
@@ -9,7 +9,7 @@ const defaultState = {
 
 export default function frontWheelsetHscData(state = { data: defaultState }, action) {
   switch(action.type) {
-    case SET_FRONT_WHEELSET_HSC_DATA:
+    case SET_FRONT_WHEELSET_DATA:
       return Object.assign({}, state, action);
     default:
       return state;
