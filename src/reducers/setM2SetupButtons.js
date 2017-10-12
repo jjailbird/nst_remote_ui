@@ -25,13 +25,16 @@ import {
   SET_CHART_TYPE_FRONT_RIGHT,
   SET_CHART_TYPE_REAR_LEFT,
   SET_CHART_TYPE_REAR_RIGHT,
+
+  SET_CAR_MASS,
 } from '../actions';
 
 const initialState = {
   crtl1Active: '', crtl1Mode: '', crtl1SensorType: '', crtl1ControlType: '', crtl1WfLateralSensor: -15.5, crtl1WfControlMode: -5, crtl1WfYawSensor: -10, crtl1WfControlType: 0,
   crtl2Active: '', crtl2Mode: '', crtl2SensorType: '', crtl2ControlType: '', crtl2WfLateralSensor: -15.5, crtl2WfControlMode: -5, crtl2WfYawSensor: -10, crtl2WfControlType: 0,
   chartTypeFrontLeft: 'PIE', chartTypeFrontRight: 'PIE', chartTypeRearLeft: 'PIE', chartTypeRearRight: 'PIE',
-  tuningFrontPgain: -15, tuningFrontIgain: -5, tuningRearPgain: -10, tuningRearIgain: 0,
+  tuningFrontPgain: -15, tuningFrontIgain: -5, tuningRearPgain: -10, tuningRearIgain: 0, 
+  carMass: 'TARE',
 }
 
 export default function setM2SetupButtons(state = initialState, action) {
@@ -86,6 +89,10 @@ export default function setM2SetupButtons(state = initialState, action) {
       return { ...state, chartTypeRearLeft: action.data };
     case SET_CHART_TYPE_REAR_RIGHT:
       return { ...state, chartTypeRearRight: action.data };
+    
+    case SET_CAR_MASS:
+      return { ...state, carMass: action.data };
+    
     default:
       return state   
   }

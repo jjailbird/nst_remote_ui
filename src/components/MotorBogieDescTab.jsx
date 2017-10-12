@@ -1,26 +1,41 @@
 import React, { Component } from 'react';
 import ControlSwitchButton from './ControlSwitchButton';
+import { connect } from 'react-redux';
+//import { getSocketCommand } from '../utils/functions';
+//import { setCarMass } from '../actions';
 
-export default class MotorBogieDescTab extends Component {
+class MotorBogieDescTab extends Component {
   constructor(props) {
     super(props);
     this.state = {
       type: 'TARE'
     };
     this.onButtonChange = this.onButtonChange.bind(this);
+    this.onCarMassChange = this.onCarMassChange.bind(this);
   }
   onButtonChange(value) {
+    alert(value);
     this.setState({
       type: value
     })
     
   }
+  onCarMassChange(value) {
+    if(this.props.onChange) {
+      this.props.onChange(value);
+    }
+    /*
+    const command = getSocketCommand('ISO_001', value == 'TARE' ? 0:1);
+    const { dispatch } = this.props;
+    dispatch(setCarMass(value));
+    */
+  }
   render() {
-    const { type } = this.state;
-
+    // const { type } = this.state;
+    const { carMass } = this.props;
     return (
       <div className="setupBoxCon setupBoxConDesc">
-        <div className={type !== 'TARE' ? 'hide' : ''}>
+        <div className={carMass !== 'TARE' ? 'hide' : ''}>
           <div className="setupDescBox pull-left">
             <ul className="modeConfig3-list setupDescList">
               <li>
@@ -90,7 +105,7 @@ export default class MotorBogieDescTab extends Component {
             </ul>
           </div>
         </div>
-        <div className={type !== 'FULL' ? 'hide' : ''}>
+        <div className={carMass !== 'FULL' ? 'hide' : ''}>
           <div className="setupDescBox pull-left">
             <ul className="modeConfig3-list setupDescList">
               <li>
@@ -166,15 +181,24 @@ export default class MotorBogieDescTab extends Component {
             activeBgColor="rgba(255,255,255,0.3)" 
             textColor="#fff" 
             padding="3px 20px" 
-            value={this.state.type}
+            value={carMass}
             buttons={[
               { idx: 1, title: 'TARE', value: 'TARE' }, 
               { idx: 2, title: 'FULL', value: 'FULL' }
             ]}
-            onChange={this.onButtonChange}
+            onChange={this.onCarMassChange}
           />
         </div>
       </div>
     );
   }
 } 
+
+function mapStateToProps(state){
+    // console.log('itcsetup',state.setItcSetupFrontRightData);
+    return {
+      carMass: state.setM2SetupButtons.carMass,
+    }
+}
+
+export default connect(mapStateToProps)(MotorBogieDescTab);
