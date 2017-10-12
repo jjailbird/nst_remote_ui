@@ -14,10 +14,12 @@ import LaserTabContainer from './components/LaserTabContainer';
 import TrailerBogieDescTab from './components/TrailerBogieDescTab'
 
 import { connect } from 'react-redux';
+import { getSocketCommand } from './utils/functions';
 
 import {
   setTuningFront1Pgain, setTuningFront1Igain, setTuningRear1Pgain, setTuningRear1Igain,
   setTuningFront2Pgain, setTuningFront2Igain, setTuningRear2Pgain, setTuningRear2Igain,
+  setCarMass,
 } from './actions'
 
 class ViewM3Setup extends Component {
@@ -34,63 +36,73 @@ class ViewM3Setup extends Component {
     this.onTuningFront2IgainChange = this.onTuningFront2IgainChange.bind(this);
     this.onTuningRear2PgainChange = this.onTuningRear2PgainChange.bind(this); 
     this.onTuningRear2IgainChange = this.onTuningRear2IgainChange.bind(this);
+
+    this.onCarMassChange = this.onCarMassChange.bind(this);
   }
   onTuningFront1PgainChange(value){
-    const command = '#HSO_002,{0};$'.format(value);
+    const command = getSocketCommand('HSO_002', value);
     this.sendCommandToDevice(command);
 
     const { dispatch } = this.props;
     dispatch(setTuningFront1Pgain(value));
   }
   onTuningFront1IgainChange(value){
-    const command = '#HSO_003,{0};$'.format(value);
+    const command = getSocketCommand('HSO_003', value);
     this.sendCommandToDevice(command);
 
     const { dispatch } = this.props;
     dispatch(setTuningFront1Igain(value));
   } 
   onTuningRear1PgainChange(value){
-    const command = '#HSO_006,{0};$'.format(value);
+    const command = getSocketCommand('HSO_006', value);
     this.sendCommandToDevice(command);
 
     const { dispatch } = this.props;
     dispatch(setTuningRear1Pgain(value));
   }
   onTuningRear1IgainChange(value){
-    const command = '#HSO_007,{0};$'.format(value);
+    const command = getSocketCommand('HSO_007', value);
     this.sendCommandToDevice(command);
 
     const { dispatch } = this.props;
     dispatch(setTuningRear1Igain(value));
   }
   onTuningFront2PgainChange(value){
-    const command = '#HSO_004,{0};$'.format(value);
+    const command = getSocketCommand('HSO_004', value);
     this.sendCommandToDevice(command);
 
     const { dispatch } = this.props;
     dispatch(setTuningFront2Pgain(value));
   }
   onTuningFront2IgainChange(value){
-    const command = '#HSO_005,{0};$'.format(value);
+    const command = getSocketCommand('HSO_005', value);
     this.sendCommandToDevice(command);
 
     const { dispatch } = this.props;
     dispatch(setTuningFront2Igain(value));
   }
   onTuningRear2PgainChange(value){
-    const command = '#HSO_008,{0};$'.format(value);
+    const command = getSocketCommand('HSO_008', value);
     this.sendCommandToDevice(command);
 
     const { dispatch } = this.props;
     dispatch(setTuningRear2Pgain(value));
   }
   onTuningRear2IgainChange(value){
-    const command = '#HSO_009,{0};$'.format(value);
+    const command = getSocketCommand('HSO_009', value);
     this.sendCommandToDevice(command);
 
     const { dispatch } = this.props;
     dispatch(setTuningRear2Igain(value));
   }
+  onCarMassChange(value) {
+    const command = getSocketCommand('HSO_001', value == 'TARE' ? 0:1);
+    this.sendCommandToDevice(command);
+    
+    const { dispatch } = this.props;
+    dispatch(setCarMass(value));
+  }
+
   sendCommandToDevice(command) {
     var ws = new WebSocket(`ws://${this.hostname}:8181/`);
     this.send = function (message, callback) {
@@ -414,7 +426,7 @@ class ViewM3Setup extends Component {
                 <div className="setupBoxTitle">
                  trailer bogie description
                 </div>
-                  <TrailerBogieDescTab />
+                  <TrailerBogieDescTab onChange={this.onCarMassChange} />
               </div>
               <PanelControlButtonsLeft />
             </div>

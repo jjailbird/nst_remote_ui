@@ -17,6 +17,7 @@ import {
   SET_TUNING_FRONT_2_IGAIN,
   SET_TUNING_REAR_2_PGAIN,
   SET_TUNING_REAR_2_IGAIN,
+  SET_CAR_MASS,
 
   SET_CHART_TYPE_FRONT_LEFT,
   SET_CHART_TYPE_FRONT_RIGHT,
@@ -30,6 +31,7 @@ const initialState = {
   chartTypeFrontLeft: 'PIE', chartTypeFrontRight: 'PIE', chartTypeRearLeft: 'PIE', chartTypeRearRight: 'PIE',
   tuningFront1Pgain: -15, tuningFront1Igain: -5, tuningRear1Pgain: -10, tuningRear1Igain: 0,
   tuningFront2Pgain: -15, tuningFront2Igain: -5, tuningRear2Pgain: -10, tuningRear2Igain: 0,
+  carMass: 'TARE',
 }
 
 export default function setSetupButtons(state = initialState, action) {
@@ -69,7 +71,8 @@ export default function setSetupButtons(state = initialState, action) {
       return { ...state, tuningRear2Pgain: action.data };
     case SET_TUNING_REAR_2_IGAIN:
       return { ...state, tuningRear2Igain: action.data };
-
+    case SET_CAR_MASS:
+      return { ...state, carMass: action.data };
     case SET_CHART_TYPE_FRONT_LEFT:
       return { ...state, chartTypeFrontLeft: action.data };
     case SET_CHART_TYPE_FRONT_RIGHT:
