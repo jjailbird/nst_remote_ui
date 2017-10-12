@@ -12,7 +12,7 @@ import PanelControlButtonsLeft from './components/PanelControlButtonsLeft';
 import PanelControlButtonsRight from './components/PanelControlButtonsRight';
 import Clock from 'react-live-clock';
 
-import TabPanel from 'react-tab-panel';
+import TabPanel, { TabStrip } from 'react-tab-panel';
 import 'react-tab-panel/index.css';
 import './ViewM1Run.css';
 
@@ -53,6 +53,8 @@ class ViewM1Run extends Component {
     this.onChartTypeFrontRightChange = this.onChartTypeFrontRightChange.bind(this);
     this.onChartTypeRearLeftChange = this.onChartTypeRearLeftChange.bind(this);
     this.onChartTypeRearRightChange = this.onChartTypeRearRightChange.bind(this);
+
+    this.onTabActivate = this.onTabActivate.bind(this);
 
   }
   onCrtl1ActiveChange(value){
@@ -211,6 +213,13 @@ class ViewM1Run extends Component {
     };
     this.send(command);
   }
+  onTabActivate(index){
+    // alert(index);
+    let tabBody = document.getElementsByClassName('react-tab-panel__body');
+    // console.log('tabBody', tabBody);
+    let bgColor = (index == 0) ? '#606679' : '#5a7581';
+    tabBody[0].style.backgroundColor = bgColor;
+  }
   componentDidMount(){
     
     // console.log('HSSPlyaer start!');
@@ -332,8 +341,8 @@ class ViewM1Run extends Component {
               MOTOR CONTROL MODE
             </div>
        
-            <TabPanel className="tab-motor-control-set">
-              <div tabTitle="CONTROL-1">
+            <TabPanel className="tab-motor-control-set" onActivate={this.onTabActivate}>
+              <div tabTitle="FRONT" tabProps={{ className:'tab-front' }}>
                 {/* MOTOR CONTROL1 START ==========================================================*/}
                 <div className="configBox modeConfig1">
                   <div className="modeConfig1-listBox1">
@@ -445,7 +454,7 @@ class ViewM1Run extends Component {
                 </div>
                 {/* MOTOR CONTROL1 END ==========================================================*/}
               </div>  
-              <div tabTitle="CONTROL-2">
+              <div tabTitle="REAR" tabProps={{ className:'tab-rear' }}>
                 {/* MOTOR CONTROL2 START ==========================================================*/}
                 <div className="configBox modeConfig1">
                   <div className="modeConfig1-listBox1">

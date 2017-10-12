@@ -2,12 +2,19 @@
 .react-tab-panel--theme-default .react-tab-panel__body {
   padding: 10px 0px;
   margin-bottom: 10px;
+  background-color: #606679
 }
-
+.tab-front {
+  background-color: #606679;
+  border-top: 1px solid #fff !important;
+}
+.tab-rear {
+  background-color: #5a7581;
+  border-top: 1px solid #fff !important;
+}
 .react-tab-panel__tab-strip--theme-default .react-tab-panel__tab-title-inner {
   padding: 0px 10px;
 }
-
 .configBox{
   color: #fff;
   margin-top:0px;
@@ -15,4 +22,7 @@
 
 .react-tab-panel__tab-strip--theme-default.react-tab-panel__tab-strip--tab-position-top .react-tab-panel__tab-title-inner--active {
   color: #fff;
+}
+.react-tab-panel__tab-title-inner {
+  color: #aaa;
 }
