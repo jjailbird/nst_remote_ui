@@ -1,5 +1,8 @@
 import Websocket from 'react-websocket';
 import { connect } from 'react-redux';
+import {
+  setDriveData
+} from './actions';
 import { 
   setTestSetupData, 
   setEmergencyStop, setDriveLever,
@@ -42,9 +45,25 @@ class App extends Component {
     super(props);
     this.hostname = window.location.hostname;
     // this.hostname = window.location.host;
+    
+    this.setDriveData = {};
+    this.setDriveData.tracBatt = 0; // getRandomFloat(300,900);
+    this.setDriveData.contBatt = 0; // getRandomFloat(10,40);
+    this.setDriveData.maxInvTemp = 0; // getRandomFloat(0,100);
+    this.setDriveData.maxMotorTemp = 0; // getRandomFloat(0,100);
+    this.setDriveData.battTemp = 0; //getRandomFloat(0,100);
+    this.setDriveData.soc = 0; // getRandomFloat(0,100);
+    this.setDriveData.fwd = 0; // getRandomInt(-3,3);
+    this.setDriveData.speed = 0; // getRandomFloat(0,60);
+    this.setDriveData.position = 0; // getRandomFloat(0,250);
+    this.setDriveData.trat = 0;
+    this.setDriveData.brake = 0;
+    
     this.handleData = this.handleData.bind(this);
     this.changeNaviBackground = this.changeNaviBackground.bind(this);
     
+
+
     // M2SetupData ============================================
     this.testSetup = {
       data: {
@@ -75,7 +94,51 @@ class App extends Component {
     const TESTSETUP = json.TESTSETUP ? json.TESTSETUP : null;
     const { dispatch } = this.props;
     const command = json.command ? json.command : null;
-    
+
+    // TEST_RUN Drive Data ==================================================================
+    if (TESTDRIVE) {
+      // console.log('TESTDRIVE', TESTDRIVE);
+      this.setDriveData.tracBatt = TESTDRIVE.SignalLeft.TrcBatt; // getRandomFloat(300,900);
+      this.setDriveData.contBatt = TESTDRIVE.SignalLeft.ContBatt; // getRandomFloat(10,40);
+      this.setDriveData.maxInvTemp = TESTDRIVE.SignalLeft.MaxInvT; // getRandomFloat(0,100);
+      this.setDriveData.maxMotorTemp = TESTDRIVE.SignalLeft.MaxMotT; // getRandomFloat(0,100);
+      this.setDriveData.battTemp = TESTDRIVE.CircleLeft.BattTemp; //getRandomFloat(0,100);
+      this.setDriveData.soc = TESTDRIVE.CircleLeft.Soc; // getRandomFloat(0,100);
+      this.setDriveData.fwd = TESTDRIVE.CircleRight.FWD; // getRandomInt(-3,3);
+      this.setDriveData.speed = TESTDRIVE.CircleRight.Speed; // getRandomFloat(0,60);
+      this.setDriveData.position = TESTDRIVE.CircleRight.Position; // getRandomFloat(0,250);
+      this.setDriveData.trat = TESTDRIVE.CircleRight.Trat;
+      this.setDriveData.brake = TESTDRIVE.CircleRight.Brake;
+      dispatch( setDriveData(this.setDriveData) )
+    }
+    if(json.TRI_001) {
+      this.setDriveData.position = json.TRI_001;
+    }
+    if(json.TRI_003) {
+      this.setDriveData.speed = json.TRI_003;
+    }
+    if(json.TRI_006) {
+      this.setDriveData.battTemp = json.TRI_006;
+    }
+    if(json.TRI_007) {
+      this.setDriveData.soc = json.TRI_007;
+    }
+    if(json.TRI_008) {
+      this.setDriveData.tracBatt = json.TRI_008;
+    }
+    if(json.TRI_009) {
+      this.setDriveData.contBatt = json.TRI_009;
+    }
+    if(json.TRI_010) {
+      this.setDriveData.maxInvTemp = json.TRI_010;
+    }
+    if(json.TRI_011) {
+      this.setDriveData.maxMotorTemp = json.TRI_011;
+    }
+    if(json.TRI_001 || json.TRI_003 || json.TRI_006 || json.TRI_007 || json.TRI_008 || json.TRI_009 || json.TRI_010 || json.TRI_011) {
+      dispatch( setDriveData(this.setDriveData) );
+    }
+    // ======================================================================================
     //console.log('TESTSETUP', json.TESTSETUP);
 
     if (command) {
