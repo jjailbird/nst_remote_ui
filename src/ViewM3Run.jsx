@@ -15,6 +15,7 @@ import Clock from 'react-live-clock';
 
 import { H5SPlayVideo } from './utils/H5SPlayVideo';
 import { connect } from 'react-redux';
+import { getSocketCommand } from './utils/functions';
 
 import {
   setCrtl1Active, setCrtl1Power, setCrtl1Zero, setCrtl1SensorType, setCrtl1ControlType, setCrtl1SRActiveA, setCrtl1SRActiveB, setCrtl1SRActiveA2, setCrtl1SRActiveB2,
@@ -44,21 +45,21 @@ class ViewM3Run extends Component {
   }
 
   onCrtl1ActiveChange(value){
-    const command = '#HRO_001,{0};$'.format(value == 'On' ? 1:0);
+    const command = getSocketCommand('HRO_001', value == 'On' ? 1:0);
     this.sendCommandToDevice(command);
 
     const { dispatch } = this.props;
     dispatch(setCrtl1Active(value));
   } 
   onCrtl1PowerChange(value){
-    const command = '#HRO_002,{0};$'.format(value == 'On' ? 1:0);
+    const command = getSocketCommand('HRO_002', value == 'On' ? 1:0);
     this.sendCommandToDevice(command);
 
     const { dispatch } = this.props;
     dispatch(setCrtl1Power(value));
   }
   onCrtl1ZeroChange(value){
-    const command = '#HRO_003,{0};$'.format(value == 'Zero' ? 1:0);
+    const command = getSocketCommand('HRO_003', value == 'Zero' ? 1:0);
     this.sendCommandToDevice(command);
 
     const { dispatch } = this.props;
@@ -66,7 +67,7 @@ class ViewM3Run extends Component {
   }
   onCrtl1SensorTypeChange(values){
     const cValue = '{0}{1}'.format(values.includes('LVDT')?1:0,values.includes('Gyro')?1:0);
-    const command = '#HRO_004,{0};$'.format(cValue);
+    const command = getSocketCommand('HRO_004', cValue);
     this.sendCommandToDevice(command);
 
     const { dispatch } = this.props;
@@ -91,35 +92,35 @@ class ViewM3Run extends Component {
         cValue = 4;
         break;                               
     }
-    const command = '#HRO_005,{0};$'.format(cValue);
+    const command = getSocketCommand('HRO_005',cValue);
     this.sendCommandToDevice(command);
     
     const { dispatch } = this.props;
     dispatch(setCrtl1ControlType(value));
   }
   onCrtl1SRActiveAChange(value){
-    const command = '#HRO_006,{0};$'.format(value);
+    const command = getSocketCommand('HRO_006',value);
     this.sendCommandToDevice(command);
 
     const { dispatch } = this.props;
     dispatch(setCrtl1SRActiveA(value));
   }
   onCrtl1SRActiveBChange(value){
-    const command = '#HRO_008,{0};$'.format(value);
+    const command = getSocketCommand('HRO_008',value);
     this.sendCommandToDevice(command);
 
     const { dispatch } = this.props;
     dispatch(setCrtl1SRActiveB(value));
   } 
   onCrtl1SRActiveA2Change(value){
-    const command = '#HRO_007,{0};$'.format(value);
+    const command = getSocketCommand('HRO_007',value);
     this.sendCommandToDevice(command);
 
     const { dispatch } = this.props;
     dispatch(setCrtl1SRActiveA2(value));
   } 
   onCrtl1SRActiveB2Change(value){
-    const command = '#HRO_009,{0};$'.format(value);
+    const command = getSocketCommand('HRO_009',value);
     this.sendCommandToDevice(command);
 
     const { dispatch } = this.props;
