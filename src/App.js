@@ -68,7 +68,7 @@ class App extends Component {
     super(props);
     this.hostname = '192.168.1.2';
     //this.hostname = window.location.hostname;
-    this.hostname = window.location.hostname;
+    
     this.handleData = this.handleData.bind(this);
     //this.thick = this.thick.bind(this);
     
