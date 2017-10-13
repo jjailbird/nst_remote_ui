@@ -254,9 +254,9 @@ class ViewM2Run extends Component {
             <video
               // id="rearVideo"
               // data-token="token2"
-              data-h5spath="/h5swsapi"
               id={runDirection == 0 ? 'frontVideo':'rearVideo'}
               data-token={runDirection == 0 ? 'token1':'token2'}
+              data-h5spath="/h5swsapi"
               // autoPlay={moviePlay}
               // loop
               style={{
@@ -271,11 +271,9 @@ class ViewM2Run extends Component {
             <video
               // id="frontVideo"
               // data-token="token1"
-              data-h5spath="/h5swsapi"
-              
               id={runDirection == 1 ? 'frontVideo':'rearVideo'}
               data-token={runDirection == 1 ? 'token1':'token2'}
-              
+              data-h5spath="/h5swsapi"
               // autoPlay={moviePlay}
               // loop
             >
