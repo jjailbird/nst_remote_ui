@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { isFloat } from '../utils/functions';
 import DashBoardPieChart from './DashBoardPieChart';
 
-export default class RailDonutPanelLeft extends Component {
+export default class RailDonutPanelRight extends Component {
   constructor(props) {
     super(props);
   }
@@ -115,7 +115,7 @@ export default class RailDonutPanelLeft extends Component {
                 marginBottom: '1px',
                 textTransform: 'uppercase'
               }}
-            >{driveType}</div>
+            >{dType} Mode</div>
             <div
               style={{
                 

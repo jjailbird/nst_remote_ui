@@ -3,12 +3,14 @@ import { connect } from 'react-redux';
 import {
   setDriveData
 } from './actions';
+
 import { 
-  setTestSetupData, 
-  setEmergencyStop, setDriveLever,
+  setTestSetupData, setEmergencyStop, setRunSwitch, setDriveLever,
+  /*
   setInvCon1, setInvCon2, setTbms, setDcDc, setApc, setInvOut1, setInvOut2, setSbms, setSinv, setCamera,
-  setPower ,setLight, setDriveMode, setRunDirection, setRunSwitch, setHydroBk, setRegenBk,
+  setPower ,setLight, setDriveMode, setRunDirection, setHydroBk, setRegenBk,
   setPositionStart, setPositionStop,
+  */
 } from './actions/m2SetupActions';
 
 import React, { Component } from 'react';
@@ -61,9 +63,7 @@ class App extends Component {
     
     this.handleData = this.handleData.bind(this);
     this.changeNaviBackground = this.changeNaviBackground.bind(this);
-    
-
-
+ 
     // M2SetupData ============================================
     this.testSetup = {
       data: {
@@ -90,104 +90,61 @@ class App extends Component {
   handleData(data) {
     // console.log("socket handleData", data);
     const json = JSON.parse(data); 
+    // console.log("socket handleData", json);
     const TESTDRIVE = json.TESTDRIVE ? json.TESTDRIVE : null;
     const TESTSETUP = json.TESTSETUP ? json.TESTSETUP : null;
     const { dispatch } = this.props;
     const command = json.command ? json.command : null;
 
     // TEST_RUN Drive Data ==================================================================
-    if (TESTDRIVE) {
-      // console.log('TESTDRIVE', TESTDRIVE);
-      this.setDriveData.tracBatt = TESTDRIVE.SignalLeft.TrcBatt; // getRandomFloat(300,900);
-      this.setDriveData.contBatt = TESTDRIVE.SignalLeft.ContBatt; // getRandomFloat(10,40);
-      this.setDriveData.maxInvTemp = TESTDRIVE.SignalLeft.MaxInvT; // getRandomFloat(0,100);
-      this.setDriveData.maxMotorTemp = TESTDRIVE.SignalLeft.MaxMotT; // getRandomFloat(0,100);
-      this.setDriveData.battTemp = TESTDRIVE.CircleLeft.BattTemp; //getRandomFloat(0,100);
-      this.setDriveData.soc = TESTDRIVE.CircleLeft.Soc; // getRandomFloat(0,100);
-      this.setDriveData.fwd = TESTDRIVE.CircleRight.FWD; // getRandomInt(-3,3);
-      this.setDriveData.speed = TESTDRIVE.CircleRight.Speed; // getRandomFloat(0,60);
-      this.setDriveData.position = TESTDRIVE.CircleRight.Position; // getRandomFloat(0,250);
-      this.setDriveData.trat = TESTDRIVE.CircleRight.Trat;
-      this.setDriveData.brake = TESTDRIVE.CircleRight.Brake;
-      dispatch( setDriveData(this.setDriveData) )
-    }
-    if(json.TRI_001) {
+    //this.setDriveData.fwd = TESTDRIVE.CircleRight.FWD; // getRandomInt(-3,3);
+    if(json.TRI_001 != undefined) {
       this.setDriveData.position = json.TRI_001;
     }
-    if(json.TRI_003) {
+    if(json.TRI_003 != undefined) {
       this.setDriveData.speed = json.TRI_003;
     }
-    if(json.TRI_006) {
+    if(json.TRI_004 != undefined) {
+      this.setDriveData.trat = json.TRI_004;
+    }
+    if(json.TRI_005 != undefined) {
+      this.setDriveData.brake = json.TRI_005;
+    }
+    if(json.TRI_006 != undefined) {
       this.setDriveData.battTemp = json.TRI_006;
     }
-    if(json.TRI_007) {
+    if(json.TRI_007 != undefined) {
       this.setDriveData.soc = json.TRI_007;
     }
-    if(json.TRI_008) {
+    if(json.TRI_008 != undefined) {
       this.setDriveData.tracBatt = json.TRI_008;
     }
-    if(json.TRI_009) {
+    if(json.TRI_009 != undefined) {
       this.setDriveData.contBatt = json.TRI_009;
     }
-    if(json.TRI_010) {
+    if(json.TRI_010 != undefined) {
       this.setDriveData.maxInvTemp = json.TRI_010;
     }
-    if(json.TRI_011) {
+    if(json.TRI_011 != undefined) {
       this.setDriveData.maxMotorTemp = json.TRI_011;
     }
-    if(json.TRI_001 || json.TRI_003 || json.TRI_006 || json.TRI_007 || json.TRI_008 || json.TRI_009 || json.TRI_010 || json.TRI_011) {
+    if(json.TRI_001 != undefined || json.TRI_003 != undefined || json.TRI_004 != undefined || json.TRI_005 != undefined || json.TRI_006 != undefined ||
+       json.TRI_007 != undefined || json.TRI_008 != undefined || json.TRI_009 != undefined || json.TRI_010 != undefined || json.TRI_011 != undefined) {
       dispatch( setDriveData(this.setDriveData) );
     }
     // ======================================================================================
-    //console.log('TESTSETUP', json.TESTSETUP);
-
-    if (command) {
-      console.log('command:', command);
-      switch(command.charAt(0)) {
-        case 'S':
-          dispatch( setRunSwitch(command.charAt(1)) );
-          break;
-        case 'D':
-          dispatch( setRunSwitch(command.charAt(1)) );
-          break;          
-        case 'N':
-          dispatch( setDriveLever(command.charAt(1)) );
-          break;          
-        case 'E':
-          dispatch( setEmergencyStop(command.charAt(1)) );
-          dispatch( setRunSwitch(command.charAt(1)) );
-          break;          
-      }
-    }
-
-    if (TESTSETUP) {
+    
+    // Notch --------------------------------------
+    if(json.TRI_002 != undefined) {
+      dispatch( setDriveLever(json.TRI_002) );
       
-      // M2SetupData ============================================
-      this.testSetup.data = TESTSETUP;
-      if (this.testSetup.VehicleSpeedArray.length >= 234) {
-        this.testSetup.VehicleSpeedArray.shift();
-      }
-      this.testSetup.VehicleSpeedArray.push(TESTSETUP.VehicleSpeed);
-      dispatch(setTestSetupData(this.testSetup));
-      // ========================================================
     }
-    /*
-    if (TESTDRIVE) {
-      // console.log('TESTDRIVE', TESTDRIVE);
-      this.setDriveData.tracBatt = TESTDRIVE.SignalLeft.TrcBatt; // getRandomFloat(300,900);
-      this.setDriveData.contBatt = TESTDRIVE.SignalLeft.ContBatt; // getRandomFloat(10,40);
-      this.setDriveData.maxInvTemp = TESTDRIVE.SignalLeft.MaxInvT; // getRandomFloat(0,100);
-      this.setDriveData.maxMotorTemp = TESTDRIVE.SignalLeft.MaxMotT; // getRandomFloat(0,100);
-      this.setDriveData.battTemp = TESTDRIVE.CircleLeft.BattTemp; //getRandomFloat(0,100);
-      this.setDriveData.soc = TESTDRIVE.CircleLeft.Soc; // getRandomFloat(0,100);
-      this.setDriveData.fwd = TESTDRIVE.CircleRight.FWD; // getRandomInt(-3,3);
-      this.setDriveData.speed = TESTDRIVE.CircleRight.Speed; // getRandomFloat(0,60);
-      this.setDriveData.position = TESTDRIVE.CircleRight.Position; // getRandomFloat(0,250);
-      this.setDriveData.trat = TESTDRIVE.CircleRight.Trat;
-      this.setDriveData.brake = TESTDRIVE.CircleRight.Brake;
-      dispatch( setDriveData(this.setDriveData) )
+    // --------------------------------------------
+    // Emergency Stop -----------------------------
+    if(json.TSI_000 != undefined) {
+      dispatch( setEmergencyStop(json.TSI_000) );
+      dispatch( setRunSwitch(json.TSI_000) );
     }
-    */
   }
   changeNaviBackground(src) {
     const navi = document.getElementById('naviMenu');

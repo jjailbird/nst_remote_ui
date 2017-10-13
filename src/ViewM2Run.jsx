@@ -74,33 +74,32 @@ class ViewM2Run extends Component {
   }
   render() {
     const { 
-      driveData, driveLever, runDirection, runSwitch
+      driveData, driveLever, runDirection, runSwitch, driveMode
     } = this.props;
 
     // console.log('driveData', driveData);
     let driveLeverValue = 0;
     
     switch(driveLever) {
-      case "1":
+      case 0:
         driveLeverValue = -3;
         break;
-      case "2":
+      case 1:
         driveLeverValue = -2;
         break;
-      case "3":
+      case 2:
         driveLeverValue = -1;
         break;
-      case "4":
+      case 3:
         driveLeverValue = 0;
         break;
-      case "5":
-      case "6":
+      case 4:
         driveLeverValue = 1;
         break;
-      case "7":
+      case 5:
         driveLeverValue = 2;
         break;
-      case "8":
+      case 6:
         driveLeverValue = 3;        
         break;
     }
@@ -237,7 +236,7 @@ class ViewM2Run extends Component {
           <RailDonutPanelLeft data={driveData.data} />
         </div>
         <div className="trainPie tpRight">
-          <RailDonutPanelRight data={driveData.data} dType="auto" lever={driveLeverValue} />
+          <RailDonutPanelRight data={driveData.data} dType={driveMode} lever={driveLeverValue} />
         </div>
         <div className="contBox">
           <div
@@ -290,7 +289,7 @@ function mapStateToProps(state){
     return {
       driveData: state.driveData,
       // DIO Command =================================
-      
+      driveMode: state.setM2SetupButtons.driveMode,
       runDirection: state.setM2SetupButtons.runDirection,      
       runSwitch: state.setM2SetupButtons.runSwitch,
       emergencyStop: state.setM2SetupButtons.emergencyStop,
