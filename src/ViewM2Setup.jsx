@@ -1596,7 +1596,7 @@ function mapStateToProps(state){
       
       // testSetup: state.setM2SetupData.testSetup,
       // Bug? 전체 배열값으로 할당하면 re-rendering이 발행하지 않음(변수 데이터 변경을 rendering에서 감지 못하는 버그?)
-      VehicleSpeedArray: state.setM2SetupData.testSetup.VehicleSpeedArray,
+      VehicleSpeedArray: state.setM2SetupData.VehicleSpeedArray,
       
       // T-BMS -----------------------------
       TBmsSoc0: state.setM2SetupData.testSetup.TBmsSoc0,
