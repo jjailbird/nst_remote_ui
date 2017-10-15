@@ -60,16 +60,15 @@ class ViewM2Run extends Component {
     } 
     this.setState({ testLabel: value });
   }
-
-  
   componentDidMount(){
     // this.H5SPlayVideo("frontVideo");
+    /*
     console.log('HSSPlyaer start!');
     const rtspFrontPlayer = new H5SPlayVideo('frontVideo');
     rtspFrontPlayer.Start();
     const rtspRearPlayer = new H5SPlayVideo('rearVideo');
     rtspRearPlayer.Start();
-
+    */
     // this.H5SPlayVideo("rearVideo");
   }
   render() {
@@ -187,23 +186,19 @@ class ViewM2Run extends Component {
           <div className="tControlBtnBox" style={{marginTop: '30px'}}>
             <div className="tcBtn">
               <div className="tcbTitle y">power</div>
-              <img src="/img/tc_toggle_on.png"/>
-              {/*<img src="/img/tc_toggle_off.png"/>*/}
+              <img src={driveData.data.power == 0 ? '/img/tc_toggle_off.png' : '/img/tc_toggle_on.png'}/>
             </div>
             <div className="tcBtn">
               <div className="tcbTitle y">light</div>
-              {/*<img src="/img/tc_toggle_on.png"/>*/}
-              <img src="/img/tc_toggle_off.png"/>
+              <img src={driveData.data.light == 0 ? '/img/tc_toggle_off.png' : '/img/tc_toggle_on.png'}/>
             </div>
             <div className="tcBtn">
               <div className="tcbTitle r">itc</div>
-              <img src="/img/tc_toggle_on.png"/>
-              {/*<img src="/img/tc_toggle_off.png"/>*/}
+              <img src={driveData.data.itc == 0 ? '/img/tc_toggle_off.png' : '/img/tc_toggle_on.png'}/>
             </div>
             <div className="tcBtn">
               <div className="tcbTitle b">hsc</div>
-              <img src="/img/tc_toggle_on.png"/>
-              {/*<img src="/img/tc_toggle_off.png"/>*/}
+              <img src={driveData.data.hsc == 0 ? '/img/tc_toggle_off.png' : '/img/tc_toggle_on.png'}/>
             </div>
           </div>
         </div>
@@ -286,7 +281,9 @@ class ViewM2Run extends Component {
 }
 
 function mapStateToProps(state){
-    return {
+  console.log('driveData', state.driveData);  
+  
+  return {
       driveData: state.driveData,
       // DIO Command =================================
       driveMode: state.setM2SetupButtons.driveMode,

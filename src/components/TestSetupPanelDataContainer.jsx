@@ -5,7 +5,15 @@ import TestPanelDataDonutCircleChart from './TestPanelDataDonutCircleChart'
 
 export default class TestSetupPanelDataContainer extends Component {
   render() {
-    const { dataLeft, dataRight, compTitle, nameLeft, nameRight, unitLeft, unitRight, cNameLeft, cNameRight, barTitle, CompColor } = this.props;
+    const { 
+      dataLeft, dataRight, compTitle, nameLeft, nameRight, 
+      unitLeft, unitRight, cNameLeft, cNameRight, CompColor, 
+      barTitle, 
+      barTitleLeft1, barTitleLeft2, barTitleLeft3, barTitleLeft4,
+      barTitleRight1, barTitleRight2, barTitleRight3, barTitleRight4,
+      unitLeft1, unitLeft2, unitLeft3, unitLeft4,
+      unitRight1, unitRight2, unitRight3, unitRight4,
+    } = this.props;
     let dataLeft1 = '';
     let dataLeft2 = '';
     let dataLeft3 = '';

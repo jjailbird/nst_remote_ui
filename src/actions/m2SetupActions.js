@@ -2,7 +2,7 @@
 export const SET_TEST_SETUP_DATA = 'SET_TEST_SETUP_DATA';
 export const SET_DRIVE_LEVER = 'SET_DRIVE_LEVER';
 export const SET_EMERGENCY_STOP = 'SET_EMERGENCY_STOP';
-
+export const SET_DRIVE_DATA = 'SET_DRIVE_DATA';
 // COMMAND -------------------------------------------------
 export const SET_INV_CON1 = 'SET_INV_CON1';
 export const SET_INV_CON2 = 'SET_INV_CON2';
@@ -34,9 +34,15 @@ export const SET_SHUNT_SPEED = 'SET_SHUNT_SPEED';
 
 // TEST SETUP Vehicle Status Buttons ----------------
 export const setTestSetupData = (data) => {
-  //console.log('setTestSetupData', data);
+  console.log('setTestSetupData', data);
   return {
     type: SET_TEST_SETUP_DATA,
+    data
+  }
+}
+export const setDriveData = (data) => {
+  return {
+    type: SET_DRIVE_DATA,
     data
   }
 }

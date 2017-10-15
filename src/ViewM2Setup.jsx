@@ -5,6 +5,7 @@ import ControlSwitchButtonOnOff from './components/ControlSwitchButtonOnOff';
 import ControlSwitchButtonOnOffPatch from './components/ControlSwitchButtonOnOffPatch';
 import TestSetupPanelDataContainer from './components/TestSetupPanelDataContainer';
 import TestSetupPanelDataContainer1 from './components/TestSetupPanelDataContainer1';
+import TestSetupPanelDataContainer2 from './components/TestSetupPanelDataContainer2';
 import TestSetupPanelDataContainerDonutChart from './components/TestSetupPanelDataContainerDonutChart';
 import TestSetupGaugeBar from './components/TestSetupGaugeBar';
 import DynamicLineChart2 from './components/DynamicLineChart2';
@@ -461,14 +462,15 @@ class ViewM2Setup extends Component {
     const { 
       emergencyStop,
       // TEST_SETUP_DATA -------------------------------------------
-      VehicleSpeedArray,
-      TBmsSoc1, TBmsSoc2, TBmsSoc3, TBmsSoc4,
-      TBmsTemp1, TBmsTemp2, TBmsTemp3, TBmsTemp4,
-      InvVolt1, InvVolt2, InvVolt3, InvVolt4,
-      InvTemp1, InvTemp2, InvTemp3, InvTemp4,
-      CBmsSoc1, CBmsVolt1, SBmsSoc1, SBmsSoc2, SBmsVolt1, SBmsVolt2,
+      TBmsSoc0, TBmsSoc1, TBmsSoc2, TBmsSoc3, TBmsSoc4,
+      TBmsTemp0, TBmsTemp1, TBmsTemp2, TBmsTemp3, TBmsTemp4,
+      InvVolt0, InvVolt1, InvVolt2, InvVolt3, InvVolt4,
+      InvTemp0, InvTemp1, InvTemp2, InvTemp3, InvTemp4,
+      CBmsSoc1, CBmsVolt1, SBmsSoc0, SBmsSoc1, SBmsSoc2, SBmsVolt0, SBmsVolt1, SBmsVolt2,
+      
       Notch, BatterySoc, Tract, Brake, 
       VehicleSpeed, VehiclePosition,
+      VehicleSpeedArray,
       // -----------------------------------------------------------
       // Buttons sequence ------------------------------------------
       invCon1, invCon2, tBms, dcDc, apc,
@@ -532,19 +534,21 @@ class ViewM2Setup extends Component {
               {/*
               <TestSetupPanelDataContainer dataLeft={bmsSocData.data} dataRight={bmsTempData.data} compTitle="BMS" nameLeft="BMS SOC" nameRight="BMS Temp" unitLeft="%" unitRight="℃" cNameLeft="SOC" cNameRight="TEMP" barTitle="PACK #" CompColor="#3581c9"/>
               */}
-              <TestSetupPanelDataContainer
+              <TestSetupPanelDataContainer2
                 compTitle="T-BMS" nameLeft="CELL SOC" nameRight="CELL TEMP" unitLeft="%" unitRight="℃" cNameLeft="SOC" cNameRight="TEMP" barTitle="PACK #" CompColor="#3581c9"
                 dataLeft={{ 
                   // data1: testSetup.data.TBmsSoc1, data2: testSetup.data.TBmsSoc2, data3: testSetup.data.TBmsSoc3, data4: testSetup.data.TBmsSoc4
                   // ,circle: (testSetup.data.TBmsSoc1 + testSetup.data.TBmsSoc2 + testSetup.data.TBmsSoc3 + testSetup.data.TBmsSoc4) / 4
                   data1: TBmsSoc1, data2: TBmsSoc2, data3: TBmsSoc3, data4: TBmsSoc4
-                  ,circle: (TBmsSoc1 + TBmsSoc2 + TBmsSoc3 + TBmsSoc4) / 4
+                  //,circle: (TBmsSoc1 + TBmsSoc2 + TBmsSoc3 + TBmsSoc4) / 4
+                  ,circle: TBmsSoc0
                   ,valueMax: 100
 
                 }}
                 dataRight={{ 
                   data1: TBmsTemp1, data2: TBmsTemp2, data3: TBmsTemp3, data4: TBmsTemp4,
-                  circle: (TBmsTemp1 + TBmsTemp2 + TBmsTemp3 + TBmsTemp4) / 4,
+                  // circle: (TBmsTemp1 + TBmsTemp2 + TBmsTemp3 + TBmsTemp4) / 4,
+                  circle: TBmsTemp0,
                   valueMax: 100
                 }}
               /> 
@@ -552,12 +556,14 @@ class ViewM2Setup extends Component {
                 compTitle="INV" nameLeft="" nameRight="" unitLeft="V" unitRight="℃" cNameLeft="OUT VOLT" cNameRight="TEMP" barTitle="INV #" CompColor="#3581c9"
                 dataLeft={{
                   data1: InvVolt1, data2: InvVolt2, data3: InvVolt3, data4: InvVolt4,
-                  circle: (InvVolt1 + InvVolt2 + InvVolt3 + InvVolt4) / 4,
+                  // circle: (InvVolt1 + InvVolt2 + InvVolt3 + InvVolt4) / 4,
+                  circle: InvVolt0,
                   valueMax: 900
                 }} 
                 dataRight={{
                   data1: InvTemp1, data2: InvTemp2, data3: InvTemp3, data4: InvTemp4,
-                  circle: (InvTemp1 + InvTemp2 + InvTemp3 + InvTemp4) / 4,
+                  // circle: (InvTemp1 + InvTemp2 + InvTemp3 + InvTemp4) / 4,
+                  circle: InvTemp0,
                   valueMax: 100
                 }}
               />
@@ -579,10 +585,14 @@ class ViewM2Setup extends Component {
                 dataRight={{
                   data1: SBmsSoc1,
                   data2: SBmsSoc2,
-                  circle1: (SBmsSoc1 + SBmsSoc2) / 2, valueMax1: 100,
+                  // circle1: (SBmsSoc1 + SBmsSoc2) / 2, 
+                  circle1: SBmsSoc0,
+                  valueMax1: 100,
                   data3: SBmsVolt1,
                   data4: SBmsVolt2,
-                  circle2: (SBmsVolt1 + SBmsVolt2) /2, valueMax2: 900,
+                  // circle2: (SBmsVolt1 + SBmsVolt2) /2,
+                  circle2: SBmsVolt0,
+                  valueMax2: 900,
                 }}
 
                 nameLeft="" nameRight="" 
@@ -1581,9 +1591,7 @@ class ViewM2Setup extends Component {
 }
 
 function mapStateToProps(state){
-    // console.log('state.setM2SetupButtons.position', state.setM2SetupButtons.positionStart, state.setM2SetupButtons.positionStop);
-    // console.log('runSwitch', state.setM2SetupButtons.runSwitch);
-    // console.log('runDirection', state.setM2SetupButtons.runDirection);
+    // console.log('state', state);
     return {
       
       // testSetup: state.setM2SetupData.testSetup,
@@ -1591,47 +1599,56 @@ function mapStateToProps(state){
       VehicleSpeedArray: state.setM2SetupData.testSetup.VehicleSpeedArray,
       
       // T-BMS -----------------------------
-      TBmsSoc1: state.setM2SetupData.testSetup.data.TBmsSoc1,
-      TBmsSoc2: state.setM2SetupData.testSetup.data.TBmsSoc2,
-      TBmsSoc3: state.setM2SetupData.testSetup.data.TBmsSoc3,
-      TBmsSoc4: state.setM2SetupData.testSetup.data.TBmsTemp1,
-      TBmsTemp1: state.setM2SetupData.testSetup.data.TBmsTemp1,
-      TBmsTemp2: state.setM2SetupData.testSetup.data.TBmsTemp2,
-      TBmsTemp3: state.setM2SetupData.testSetup.data.TBmsTemp3,
-      TBmsTemp4: state.setM2SetupData.testSetup.data.TBmsTemp4,
+      TBmsSoc0: state.setM2SetupData.testSetup.TBmsSoc0,
+      TBmsSoc1: state.setM2SetupData.testSetup.TBmsSoc1,
+      TBmsSoc2: state.setM2SetupData.testSetup.TBmsSoc2,
+      TBmsSoc3: state.setM2SetupData.testSetup.TBmsSoc3,
+      TBmsSoc4: state.setM2SetupData.testSetup.TBmsSoc4,
+
+      TBmsTemp0: state.setM2SetupData.testSetup.TBmsTemp0,
+      TBmsTemp1: state.setM2SetupData.testSetup.TBmsTemp1,
+      TBmsTemp2: state.setM2SetupData.testSetup.TBmsTemp2,
+      TBmsTemp3: state.setM2SetupData.testSetup.TBmsTemp3,
+      TBmsTemp4: state.setM2SetupData.testSetup.TBmsTemp4,
       // -----------------------------------
 
       // INV -------------------------------
-      InvVolt1: state.setM2SetupData.testSetup.data.InvVolt1,
-      InvVolt2: state.setM2SetupData.testSetup.data.InvVolt2,
-      InvVolt3: state.setM2SetupData.testSetup.data.InvVolt3,
-      InvVolt4: state.setM2SetupData.testSetup.data.InvVolt4,
-      InvTemp1: state.setM2SetupData.testSetup.data.InvTemp1,
-      InvTemp2: state.setM2SetupData.testSetup.data.InvTemp2,
-      InvTemp3: state.setM2SetupData.testSetup.data.InvTemp3,
-      InvTemp4: state.setM2SetupData.testSetup.data.InvTemp4,
+      InvVolt0: state.setM2SetupData.testSetup.InvVolt0,
+      InvVolt1: state.setM2SetupData.testSetup.InvVolt1,
+      InvVolt2: state.setM2SetupData.testSetup.InvVolt2,
+      InvVolt3: state.setM2SetupData.testSetup.InvVolt3,
+      InvVolt4: state.setM2SetupData.testSetup.InvVolt4,
+      InvTemp0: state.setM2SetupData.testSetup.InvTemp0,
+      InvTemp1: state.setM2SetupData.testSetup.InvTemp1,
+      InvTemp2: state.setM2SetupData.testSetup.InvTemp2,
+      InvTemp3: state.setM2SetupData.testSetup.InvTemp3,
+      InvTemp4: state.setM2SetupData.testSetup.InvTemp4,
       // -----------------------------------
 
       // C-BMS -----------------------------
-      CBmsSoc1: state.setM2SetupData.testSetup.data.CBmsSoc1,
-      CBmsVolt1: state.setM2SetupData.testSetup.data.CBmsVolt1,
+      CBmsSoc1: state.setM2SetupData.testSetup.CBmsSoc1,
+      CBmsVolt1: state.setM2SetupData.testSetup.CBmsVolt1,
       // -----------------------------------
 
       // S-BMS -----------------------------
-      SBmsSoc1: state.setM2SetupData.testSetup.data.SBmsSoc1,
-      SBmsSoc2: state.setM2SetupData.testSetup.data.SBmsSoc2,
-      SBmsVolt1: state.setM2SetupData.testSetup.data.SBmsVolt1,
-      SBmsVolt2: state.setM2SetupData.testSetup.data.SBmsVolt2,
+      SBmsSoc0: state.setM2SetupData.testSetup.SBmsSoc0,
+      SBmsSoc1: state.setM2SetupData.testSetup.SBmsSoc1,
+      SBmsSoc2: state.setM2SetupData.testSetup.SBmsSoc2,
+      SBmsVolt0: state.setM2SetupData.testSetup.SBmsVolt0,
+      SBmsVolt1: state.setM2SetupData.testSetup.SBmsVolt1,
+      SBmsVolt2: state.setM2SetupData.testSetup.SBmsVolt2,
       // -----------------------------------
 
       // Vehicle Info ------------------------
-      VehicleSpeed: state.setM2SetupData.testSetup.data.VehicleSpeed,
-      VehiclePosition: state.setM2SetupData.testSetup.data.VehiclePosition,
-      BatterySoc: state.setM2SetupData.testSetup.data.BatterySoc,
+      
+      VehicleSpeed: state.setM2SetupData.testSetup.VehicleSpeed,
+      VehiclePosition: state.setM2SetupData.testSetup.VehiclePosition,
+      BatterySoc: state.setM2SetupData.testSetup.BatterySoc,
 
-      Notch: state.setM2SetupData.testSetup.data.Notch,
-      Tract: state.setM2SetupData.testSetup.data.Tract,
-      Brake: state.setM2SetupData.testSetup.data.Brake,
+      Notch: state.setM2SetupData.testSetup.Notch,
+      Tract: state.setM2SetupData.testSetup.Tract,
+      Brake: state.setM2SetupData.testSetup.Brake,
+      
       // -----------------------------------
 
       // DIO Command =================================
