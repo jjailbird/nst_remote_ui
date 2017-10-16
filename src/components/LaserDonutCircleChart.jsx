@@ -10,7 +10,7 @@ export default class LaserDonutCircleChart extends Component {
     // const length = donutRing.getTotalLength();
   }
   render() {
-    const { data, unit, name, dataName, strokeColor, strokeColorLine, donutWidth, donutStrokeWidth, valueFontSize, valueFontColor } = this.props;
+    const { data, max, shift, unit, name, dataName, strokeColor, strokeColorLine, donutWidth, donutStrokeWidth, valueFontSize, valueFontColor } = this.props;
     //console.log("data = ",data);
     //console.log(valueFontSize, valueFontColor);
     const width = donutWidth ? parseInt(donutWidth) : 47;
@@ -32,13 +32,13 @@ export default class LaserDonutCircleChart extends Component {
     
     const lineFull = dashLen;   
     let lineValue = 0;
-    let lineValueShift =0;
-    let valueMax = 0; 
+    let lineValueShift = shift ? parseInt(shift) : 0;
+    let valueMax = max ? parseInt(max) : 0; 
     let valuePercent = 0; 
     let linePx = 0; 
     let value = 0;
     value = data;
-    
+    /*
     switch(dataName) {
       case 'force':
         lineValueShift = 0;
@@ -62,7 +62,7 @@ export default class LaserDonutCircleChart extends Component {
         valueMax = 20;
         break;
     }
-    
+    */
 
     if(data) {
       lineValue = value + lineValueShift;

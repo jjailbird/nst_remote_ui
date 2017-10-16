@@ -10,7 +10,7 @@ export default class DonutDigitalChart extends Component {
     // const length = donutRing.getTotalLength();
   }
   render() {
-    const { data, unit, name, strokeColor, strokeColorLine } = this.props;
+    const { data, max, shift, unit, name, strokeColor, strokeColorLine } = this.props;
     
     const width = 82;
     const height = width;
@@ -26,11 +26,14 @@ export default class DonutDigitalChart extends Component {
     
     const lineFull = circleLen;   
     let lineValue = 0;
-    let lineValueShift =0;
-    let lineMax = 0; 
+   
+    let lineValueShift = shift ? parseInt(shift) : 0;
+    let lineMax = max ? parseInt(max) : 0; 
+
     let linePercent = 0; 
     let linePx = 0; 
     
+    /*
     switch(name) {
       case 'sylinder stroke':
         lineValueShift = 10;
@@ -65,7 +68,7 @@ export default class DonutDigitalChart extends Component {
         lineMax = 10;
         break;
     }
-    
+    */
     let value = 0;
 
     if(data && data.length > 0) {

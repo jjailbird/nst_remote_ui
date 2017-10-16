@@ -2,8 +2,7 @@ import { SET_FRONT_RIGHT_MOTOR } from '../actions';
 
 const defaultState = {
   rpm: 0,
-  torque: 0,
-  a: 0,
+  torque: -20,
   b: 0,
   c: 0,
   temp: 0

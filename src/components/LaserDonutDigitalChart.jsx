@@ -10,7 +10,7 @@ export default class LaserDonutDigitalChart extends Component {
     // const length = donutRing.getTotalLength();
   }
   render() {
-    const { data, unit, name, dataName, strokeColor, strokeColorLine, donutWidth, donutStrokeWidth, valueFontSize, valueFontColor } = this.props;
+    const { data, max, shift, unit, name, dataName, strokeColor, strokeColorLine, donutWidth, donutStrokeWidth, valueFontSize, valueFontColor } = this.props;
     //console.log(valueFontSize, valueFontColor);
     const width = parseInt(donutWidth);
     const height = width;
@@ -30,12 +30,12 @@ export default class LaserDonutDigitalChart extends Component {
     
     const lineFull = dashLen;   
     let lineValue = 0;
-    let lineValueShift =0;
-    let valueMax = 0; 
+    let lineValueShift = shift ? parseInt(shift) : 0;
+    let valueMax = max ? parseInt(max) : 0; 
     let valuePercent = 0; 
     let linePx = 0; 
     
-    
+    /*    
     switch(dataName) {
       case 'frontG':
         lineValueShift = 5;
@@ -46,7 +46,8 @@ export default class LaserDonutDigitalChart extends Component {
         valueMax = 10;
         break;
     }
-    
+    */
+
     let value = 0;
 
     if(data) {

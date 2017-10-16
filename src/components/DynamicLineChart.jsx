@@ -6,14 +6,15 @@ export default class DynamicLineChart extends Component {
     super(props);
   }
   render() {
-    const { data, unit, name } = this.props;
+    const { data, max, shift, unit, name } = this.props;
     const lineFull = 30;   //실제높이 -2  
     let lineValue = 0;
-    let lineValueShift =0;
-    let lineMax = 0; 
+    let lineValueShift = shift ? parseInt(shift) : 0;
+    let lineMax = max ? parseInt(max) : 0; 
     let linePercent = 0; 
     let linePx = 0; 
     
+    /*
     switch(name) {
       case 'lat. distance':
         lineValueShift = 10;
@@ -48,6 +49,7 @@ export default class DynamicLineChart extends Component {
         lineMax = 150;
         break;
     }
+    */
     // console.log('recieved data:', data);
     let points = '';
     let value = 0;

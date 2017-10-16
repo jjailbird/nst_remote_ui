@@ -31,7 +31,7 @@ export default class ViewM3Main extends Component {
           <div className="title">hyundai rotem company</div>
         </div>
         <video
-          id="videoLeft"
+          // id="videoLeft"
           src="/video/WIRE_CC_View.mp4"
           autoPlay="true"
           loop="true"

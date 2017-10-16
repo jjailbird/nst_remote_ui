@@ -10,7 +10,7 @@ export default class DonutCircleChart extends Component {
     // const length = donutRing.getTotalLength();
   }
   render() {
-    const { data, unit, name, strokeColor, strokeColorLine, donutWidth, donutStrokeWidth, valueFontSize, valueFontColor } = this.props;
+    const { data, max, shift, unit, name, strokeColor, strokeColorLine, donutWidth, donutStrokeWidth, valueFontSize, valueFontColor } = this.props;
     //console.log(valueFontSize, valueFontColor);
     const width = donutWidth;
     const height = width;
@@ -30,11 +30,12 @@ export default class DonutCircleChart extends Component {
     
     const lineFull = dashLen;   
     let lineValue = 0;
-    let lineValueShift =0;
-    let valueMax = 0; 
+    let lineValueShift = shift ? parseInt(shift) : 0;
+    let valueMax = max ? parseInt(max) : 0; 
     let valuePercent = 0; 
     let linePx = 0; 
     
+    /*
     switch(name) {
       case 'Speed':
         lineValueShift = 0;
@@ -49,17 +50,21 @@ export default class DonutCircleChart extends Component {
         valueMax = 10000;
         break;
     }
-    
+    */
     let value = 0;
 
-    if(data) {
+    if(data !== undefined) {
       value = data;
       lineValue = value + lineValueShift;
       valuePercent = (lineValue / valueMax) * 100; 
       linePx = (lineFull * valuePercent) / 100;
     }
-    
-    const valueDisplay = isFloat(value) ? value.toFixed(1) : value;
+    let valueDisplayFontSize = valueFontSize;
+    let valueDisplay = isFloat(value) ? value.toFixed(1) : value;
+    if(valueDisplay > 1000) {
+      valueDisplay = valueDisplay.toExponential(1);
+      valueDisplayFontSize = "12px"; 
+    }
     const strokeDasharrayValue = `${linePx} ${circleLen - linePx}`;
     
 
@@ -106,10 +111,10 @@ export default class DonutCircleChart extends Component {
           <div
             className="ddivcValue"
             style={{
-              fontSize: valueFontSize,
+              fontSize: valueDisplayFontSize,// valueFontSize,
               fontWeight: 'bold',
               color: valueFontColor,
-              lineHeight: valueFontSize
+              lineHeight: valueDisplayFontSize // valueFontSize
             }}
           >
             {valueDisplay}

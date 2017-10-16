@@ -1,20 +1,22 @@
 import { SET_REAR_SENSOR_DATA } from '../actions';
 
 const defaultState = {
-  lxA: 0,
-  lxS: 0,
-  ly1A: 0,
-  ly1S: 0,
-  ly2A: 0,
-  ly2S: 0,
-  rxA: 0,
-  rxS: 0,
-  ry1A: 0,
-  ry1S: 0,
-  ry2A: 0,
-  ry2S: 0,
-  gA: 0,
-  gS: 0
+  leftApA: 0,
+  leftApS: 0,
+  leftBpA: 0,
+  leftBpS: 0,
+  leftLvdtA: -20,
+  leftLvdtS: -20,
+  
+  rightApA: 0,
+  rightApS: 0,
+  rightBpA: 0,
+  rightBpS: 0,
+  rightLvdtA: -20,
+  rightLvdtS: -20,
+  
+  gyroA: -15,
+  gyroS: -15
 }
 
 export default function rearSensorData(state = { data: defaultState }, action) {

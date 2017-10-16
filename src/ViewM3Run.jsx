@@ -223,7 +223,8 @@ class ViewM3Run extends Component {
                   <Clock format={'HH:mm:ss'} ticking={true} timezone={'Asia/Tokyo'} />
                   <div className="voiData">
                     <DonutCircleChart 
-                      data={motorControlHscData.data.speed} 
+                      data={motorControlHscData.data.speed}
+                      max="60" 
                       unit="Km/m" 
                       name="Speed" 
                       strokeColor="#fff" 
@@ -236,7 +237,10 @@ class ViewM3Run extends Component {
                   </div>
                   <div className="voiData">
                     <DonutCircleChart 
-                      data={motorControlHscData.data.position} 
+                      // data={motorControlHscData.data.position} 
+                      // HRI_004
+                      data={frontWheelsetHscData.data.position}
+                      max="250"
                       unit="m" 
                       name="Position" 
                       strokeColor="#fff" 
@@ -249,7 +253,10 @@ class ViewM3Run extends Component {
                   </div>
                   <div className="voiData">
                     <DonutCircleChart 
-                      data={motorControlHscData.data.curv} 
+                      // data={motorControlHscData.data.curv} 
+                      // HRI_005
+                      data={frontWheelsetHscData.data.trackCurve}
+                      max={10000000000}
                       unit="m" 
                       name="Radius" 
                       strokeColor="#fff" 
@@ -429,6 +436,7 @@ class ViewM3Run extends Component {
                   <div className="motorConPieBox1Child">
                     <DonutDivideLeftChart 
                       data={motorControlHscData.data.position} 
+                      max="250"
                       unit="m" 
                       name="Vehicle Position" 
                       strokeColor="#3581c9" 
@@ -442,6 +450,7 @@ class ViewM3Run extends Component {
                   <div className="motorConPieBox1Child">
                     <DonutDivideLeftChart 
                       data={motorControlHscData.data.curv} 
+                      max="10000000000"
                       unit="m" 
                       name="Track Curvature" 
                       strokeColor="#3581c9" 
@@ -456,6 +465,7 @@ class ViewM3Run extends Component {
                 <div className="motorConPieBox2">
                   <DonutDivideLeftChart 
                     data={motorControlHscData.data.speed} 
+                    max="60"
                     unit="km/h" 
                     name="Vehicle Speed" 
                     strokeColor="#c93535" 
@@ -566,7 +576,9 @@ class ViewM3Run extends Component {
                   <Clock format={'HH:mm:ss'} ticking={true} timezone={'Asia/Tokyo'} />
                   <div className="voiData">
                     <DonutCircleChart 
+                      // HRI_001
                       data={motorControlHscData.data.speed} 
+                      max="60"
                       unit="Km/m" 
                       name="Speed" 
                       strokeColor="#fff" 
@@ -579,7 +591,10 @@ class ViewM3Run extends Component {
                   </div>
                   <div className="voiData">
                     <DonutCircleChart 
-                      data={motorControlHscData.data.position} 
+                      // data={motorControlHscData.data.position} 
+                      // HRI_008
+                      data={rearWheelsetHscData.data.position}
+                      max="250"
                       unit="m" 
                       name="Position" 
                       strokeColor="#fff" 
@@ -593,6 +608,9 @@ class ViewM3Run extends Component {
                   <div className="voiData">
                     <DonutCircleChart 
                       data={motorControlHscData.data.curv} 
+                      // HRI_009
+                      data={rearWheelsetHscData.data.trackCurve}
+                      max={10000000000}
                       unit="m" 
                       name="Radius" 
                       strokeColor="#fff" 
