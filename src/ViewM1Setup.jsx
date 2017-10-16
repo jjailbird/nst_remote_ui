@@ -10,12 +10,13 @@ import LaserDonutCircleChart from './components/LaserDonutCircleChart';
 import DonutCircleChart from './components/DonutCircleChart';
 import LaserDonutDigitalChart from './components/LaserDonutDigitalChart';
 import LaserBarChart from './components/LaserBarChart';
+import LaserBarChartMiddle from './components/LaserBarChartMiddle';
 import LaserTabContainer from './components/LaserTabContainer';
 import MotorBogieDescTab from './components/MotorBogieDescTab';
 
 import { connect } from 'react-redux';
 import { getSocketCommand } from './utils/functions';
-import { setTuningFrontPgain, setTuningFrontIgain, setTuningRearPgain, setTuningRearIgain, setCarMass } from './actions';
+import { setTuningFrontPgain, setTuningFrontIgain, setTuningRearPgain, setTuningRearIgain, setCarMass, setCurrentAValue } from './actions';
 
 class ViewM1Setup extends Component {
   constructor(props){
@@ -30,6 +31,55 @@ class ViewM1Setup extends Component {
     this.onTuningRearIgainChange = this.onTuningRearIgainChange.bind(this);
 
     this.onCarMassChange = this.onCarMassChange.bind(this);
+    this.onSensorSetClick = this.onSensorSetClick.bind(this);
+    this.onSensorResetClick = this.onSensorResetClick.bind(this);   
+  }
+  onSensorSetClick() {
+    const { frontSensorData, rearSensorData, dispatch } = this.props;
+    let { currentAValue } = this.props;
+    
+    currentAValue.set = 1; 
+    currentAValue.frontLeftA1 = frontSensorData.data.leftApA ? frontSensorData.data.leftApA : 0;
+    currentAValue.frontLeftA2 = frontSensorData.data.leftBpA ? frontSensorData.data.leftBpA : 0;
+    currentAValue.frontLeftA3 = frontSensorData.data.leftLvdtA ? frontSensorData.data.leftLvdtA : 0; 
+    currentAValue.frontRightA1 = frontSensorData.data.rightApA ? frontSensorData.data.rightApA : 0; 
+    currentAValue.frontRightA2 = frontSensorData.data.rightBpA ? frontSensorData.data.rightBpA : 0; 
+    currentAValue.frontRightA3 = frontSensorData.data.rightLvdtA ? frontSensorData.data.rightLvdtA : 0; 
+    currentAValue.frontGyroA = frontSensorData.data.gyroA ? frontSensorData.data.gyroA : 0;
+    
+    currentAValue.rearLeftA1 = rearSensorData.data.leftApA ? rearSensorData.data.leftApA : 0; 
+    currentAValue.rearLeftA2 = rearSensorData.data.leftBpA ? rearSensorData.data.leftBpA : 0;
+    currentAValue.rearLeftA3 = rearSensorData.data.leftLvdtA ? rearSensorData.data.leftLvdtA : 0; 
+    currentAValue.rearRightA1 = rearSensorData.data.rightApA ? rearSensorData.data.rightApA : 0; 
+    currentAValue.rearRightA2 = rearSensorData.data.rightBpA ? rearSensorData.data.rightBpA : 0; 
+    currentAValue.rearRightA3 = rearSensorData.data.rightLvdtA ? rearSensorData.data.rightLvdtA : 0; 
+    currentAValue.rearGyroA = rearSensorData.data.gyroA ? rearSensorData.data.gyroA :  0;
+    
+    dispatch(setCurrentAValue(currentAValue));
+  }
+  onSensorResetClick() {
+    
+    let { currentAValue } = this.props;
+    const { dispatch } = this.props;
+    
+    currentAValue.set = 0;
+    currentAValue.frontLeftA1 = 0;
+    currentAValue.frontLeftA2 = 0;
+    currentAValue.frontLeftA3 = 0; 
+    currentAValue.frontRightA1 = 0; 
+    currentAValue.frontRightA2 = 0; 
+    currentAValue.frontRightA3 = 0; 
+    currentAValue.frontGyroA = 0;
+    
+    currentAValue.rearLeftA1 = 0; 
+    currentAValue.rearLeftA2 = 0;
+    currentAValue.rearLeftA3 = 0; 
+    currentAValue.rearRightA1 = 0; 
+    currentAValue.rearRightA2 = 0; 
+    currentAValue.rearRightA3 = 0; 
+    currentAValue.rearGyroA = 0;
+    
+    dispatch(setCurrentAValue(currentAValue));
   }
   onTuningFrontPgainChange(value){
     // const command = '#ISO_002,{0};$'.format(value);
@@ -113,7 +163,7 @@ class ViewM1Setup extends Component {
       rearSensorData,
       // motorControlData
       tuningFrontPgain, tuningFrontIgain, tuningRearPgain, tuningRearIgain,
-      carMass,
+      carMass, currentAValue,
     } = this.props;
     return (
         <div className="contBox">
@@ -193,7 +243,9 @@ class ViewM1Setup extends Component {
                     <div className="setPiedata-pieGroups pull-left">
                       <div className="setPiedata-pieGrape pie1">
                         <LaserDonutCircleChart 
-                          data={frontLeftData.data.laserX} 
+                          // data={frontLeftData.data.laserX} 
+                          data={frontLeftMotorData.data.rpm} 
+                          max="300"
                           unit="mm" 
                           name="Laser - X" 
                           dataName = 'lx'
@@ -207,7 +259,12 @@ class ViewM1Setup extends Component {
                       </div>
                       <div className="setPiedata-pieGrape pie2">
                         <LaserDonutCircleChart 
-                          data={frontLeftData.data.laserY} 
+                          // data={frontLeftData.data.laserY} 
+                          data={frontSensorData.data.leftLvdtS} 
+                          max="300"
+                          // shift="20"
+                          // max="40"
+                          
                           unit="mm" 
                           name="Laser - Y" 
                           dataName = 'ly'
@@ -221,7 +278,11 @@ class ViewM1Setup extends Component {
                       </div>
                       <div className="setPiedata-pieGrape pie3">
                         <LaserDonutCircleChart 
-                          data={rearLeftData.data.laserX} 
+                          //data={rearLeftData.data.laserX} 
+                          data={frontRightMotorData.data.rpm} 
+                          max="40"
+                          shift="20"
+                          // max="300"
                           unit="mm" 
                           name="Laser - X" 
                           dataName = 'lx'
@@ -235,7 +296,11 @@ class ViewM1Setup extends Component {
                       </div>
                       <div className="setPiedata-pieGrape pie4">
                         <LaserDonutCircleChart 
-                          data={rearLeftData.data.laserY} 
+                          // data={rearLeftData.data.laserY} 
+                          data={frontSensorData.data.rightLvdtS} 
+                          max="300"
+                          // shift="20"
+                          // max="40"
                           unit="mm" 
                           name="Laser - Y" 
                           dataName = 'ly'
@@ -249,7 +314,10 @@ class ViewM1Setup extends Component {
                       </div>
                       <div className="setPiedata-pieGrape pieCenter">         
                         <LaserDonutDigitalChart 
-                          data={frontRightData.data.gyroZ} 
+                          // data={frontRightData.data.gyroZ} 
+                          data={frontSensorData.data.gyroS}
+                          shift="15"
+                          max="30"
                           unit="°" 
                           name="GYRO - Z" 
                           dataName="frontG"
@@ -265,7 +333,9 @@ class ViewM1Setup extends Component {
                     <div className="setPiedata-pieGroups pull-right">
                       <div className="setPiedata-pieGrape pie1">
                         <LaserDonutCircleChart 
-                          data={frontRightData.data.laserX} 
+                          // data={frontRightData.data.laserX} 
+                          data={rearLeftMotorData.data.rpm} 
+                          max="300"
                           unit="mm" 
                           name="Laser - X" 
                           dataName = 'rx'
@@ -279,7 +349,11 @@ class ViewM1Setup extends Component {
                       </div>
                       <div className="setPiedata-pieGrape pie2">
                         <LaserDonutCircleChart 
-                          data={frontRightData.data.laserY} 
+                          // data={frontRightData.data.laserY} 
+                          data={rearSensorData.data.leftLvdtS} 
+                          max="300"
+                          // shift="20"
+                          // max="40"
                           unit="mm" 
                           name="Laser - Y" 
                           dataName = 'ry'
@@ -293,7 +367,11 @@ class ViewM1Setup extends Component {
                       </div>
                       <div className="setPiedata-pieGrape pie3">
                         <LaserDonutCircleChart 
-                          data={rearRightData.data.laserX} 
+                          // data={rearRightData.data.laserX} 
+                          data={rearRightMotorData.data.rpm} 
+                          shift="20"
+                          max="40"
+                          // max="300"
                           unit="mm" 
                           name="Laser - X" 
                           dataName = 'rx'
@@ -307,7 +385,11 @@ class ViewM1Setup extends Component {
                       </div>
                       <div className="setPiedata-pieGrape pie4">
                         <LaserDonutCircleChart 
-                          data={rearRightData.data.laserY} 
+                          // data={rearRightData.data.laserY} 
+                          data={rearSensorData.data.rightLvdtS} 
+                          max="300"
+                          // shift="20"
+                          // max="40"
                           unit="mm" 
                           name="Laser - Y" 
                           dataName = 'ry'
@@ -321,7 +403,10 @@ class ViewM1Setup extends Component {
                       </div>
                       <div className="setPiedata-pieGrape pieCenter">
                         <LaserDonutDigitalChart 
-                          data={rearRightData.data.gyroZ} 
+                          // data={rearRightData.data.gyroZ} 
+                          data={rearSensorData.data.gyroS} 
+                          shift="15"
+                          max="30"
                           unit="°" 
                           name="GYRO - Z" 
                           dataName="rearG"
@@ -398,10 +483,10 @@ class ViewM1Setup extends Component {
                       </div>
                       <div className="setupMotorGraphList">
                         <div className="bar-graph">
-                          <MotorGaugeBar data={frontLeftMotorData.data.rpm} name="rpm" unit=""/>
+                          <MotorGaugeBar data={frontLeftMotorData.data.rpm} name="rpm" max="3000" unit=""/>
                         </div>
                         <div className="bar-graph">
-                          <MotorGaugeBar data={frontLeftMotorData.data.torque} name="torque" unit="Nm"/>
+                          <MotorGaugeBar data={frontLeftMotorData.data.torque} name="torque" max="3000" unit="Nm"/>
                         </div>
                       </div>
                     </div>
@@ -462,10 +547,10 @@ class ViewM1Setup extends Component {
                       </div>
                       <div className="setupMotorGraphList">
                         <div className="bar-graph">
-                          <MotorGaugeBar data={frontRightMotorData.data.rpm} name="rpm" unit=""/>
+                          <MotorGaugeBar data={frontRightMotorData.data.rpm} name="rpm" max="3000" unit=""/>
                         </div>
                         <div className="bar-graph">
-                          <MotorGaugeBar data={frontRightMotorData.data.torque} name="torque" unit="Nm"/>
+                          <MotorGaugeBar data={frontRightMotorData.data.torque} name="torque" max="3000" unit="Nm"/>
                         </div>
                       </div>
                     </div>
@@ -528,10 +613,10 @@ class ViewM1Setup extends Component {
                       </div>
                       <div className="setupMotorGraphList">
                         <div className="bar-graph">
-                          <MotorGaugeBar data={rearLeftMotorData.data.rpm} name="rpm" unit=""/>
+                          <MotorGaugeBar data={rearLeftMotorData.data.rpm} name="rpm" max="3000" unit=""/>
                         </div>
                         <div className="bar-graph">
-                          <MotorGaugeBar data={rearLeftMotorData.data.torque} name="torque" unit="Nm"/>
+                          <MotorGaugeBar data={rearLeftMotorData.data.torque} name="torque" max="3000" unit="Nm"/>
                         </div>
                       </div>
                     </div>
@@ -592,10 +677,10 @@ class ViewM1Setup extends Component {
                       </div>
                       <div className="setupMotorGraphList">
                         <div className="bar-graph">
-                          <MotorGaugeBar data={rearRightMotorData.data.rpm} name="rpm" unit=""/>
+                          <MotorGaugeBar data={rearRightMotorData.data.rpm} name="rpm" max="3000" unit=""/>
                         </div>
                         <div className="bar-graph">
-                          <MotorGaugeBar data={rearRightMotorData.data.torque} name="torque" unit="Nm"/>
+                          <MotorGaugeBar data={rearRightMotorData.data.torque} name="torque" max="3000" unit="Nm"/>
                         </div>
                       </div>
                     </div>
@@ -615,16 +700,16 @@ class ViewM1Setup extends Component {
                       <div className="axleTitle">left laser sensor</div>
                       <div className="axleGraphBox">
                         <div className="axleGraphBoxGroup">
-                          <LaserBarChart data={frontSensorData.data.ly1A} name="A" dataName="ly1A" barColor="red" />
-                          <LaserBarChart data={frontSensorData.data.ly1S} name="S" dataName="ly1S" barColor="red" />
+                          <LaserBarChart data={frontSensorData.data.leftApA} max="300" name="A" dataName="leftBpA" barColor="red" />
+                          <LaserBarChart data={frontSensorData.data.leftApS} min="0" max="300" name="S" dataName="leftBpS" barColor="red" />
                         </div>
                         <div className="axleGraphBoxGroup">
-                          <LaserBarChart data={frontSensorData.data.ly2A} name="A" dataName="ly2A" barColor="red" />
-                          <LaserBarChart data={frontSensorData.data.ly2S} name="S" dataName="ly2S" barColor="red" />
+                          <LaserBarChart data={frontSensorData.data.leftBpA} max="300" name="A" dataName="leftLvdtA" barColor="red" />
+                          <LaserBarChart data={frontSensorData.data.leftBpS} min="0" max="300" name="S" dataName="leftLvdtS" barColor="red" />
                         </div>
                         <div className="axleGraphBoxGroup">
-                          <LaserBarChart data={frontSensorData.data.lxA} name="A" dataName="rxA" barColor="blue" />
-                          <LaserBarChart data={frontSensorData.data.lxS} name="S" dataName="rxS" barColor="blue" />
+                          <LaserBarChart data={frontSensorData.data.leftLvdtA} max="300" name="A" dataName="leftApA" barColor="blue" />
+                          <LaserBarChart data={frontSensorData.data.leftLvdtS} min="0" max="300" name="S" dataName="leftApS" barColor="blue" />
                         </div>
                       </div>
                     </div>
@@ -632,16 +717,16 @@ class ViewM1Setup extends Component {
                       <div className="axleTitle">right laser sensor</div>
                       <div className="axleGraphBox">
                         <div className="axleGraphBoxGroup">
-                          <LaserBarChart data={frontSensorData.data.ry1A} name="A" dataName="ry1A" barColor="red" />
-                          <LaserBarChart data={frontSensorData.data.ry1S} name="S" dataName="ry1S" barColor="red" />
+                          <LaserBarChart data={frontSensorData.data.rightApA} max="300" name="A" dataName="rightBpA" barColor="red" />
+                          <LaserBarChart data={frontSensorData.data.rightApS} min="0" max="300" name="S" dataName="rightBpS" barColor="red" />
                         </div>
                         <div className="axleGraphBoxGroup">
-                          <LaserBarChart data={frontSensorData.data.ry2A} name="A" dataName="ry2A" barColor="red" />
-                          <LaserBarChart data={frontSensorData.data.ry2S} name="S" dataName="ry2S" barColor="red" />
+                          <LaserBarChart data={frontSensorData.data.rightBpA} max="300" name="A" dataName="rightLvdtA" barColor="red" />
+                          <LaserBarChart data={frontSensorData.data.rightBpS} min="0" max="300" name="S" dataName="rightLvdtS" barColor="red" />
                         </div>
                         <div className="axleGraphBoxGroup">
-                          <LaserBarChart data={frontSensorData.data.rxA} name="A" dataName="rxA" barColor="blue" />
-                          <LaserBarChart data={frontSensorData.data.rxS} name="S" dataName="rxS" barColor="blue" />
+                          <LaserBarChart data={frontSensorData.data.rightLvdtA} max="300" name="A" dataName="rightApA" barColor="blue" />
+                          <LaserBarChart data={frontSensorData.data.rightLvdtS} min="0" max="300" name="S" dataName="rightApS" barColor="blue" />
                         </div>
                       </div>
                     </div>
@@ -649,8 +734,8 @@ class ViewM1Setup extends Component {
                       <div className="axleTitle">gyro</div>
                       <div className="axleGraphBox">
                         <div className="axleGraphBoxGroup">
-                          <LaserBarChart data={frontSensorData.data.gA} name="A" dataName="gA" barColor="green" />
-                          <LaserBarChart data={frontSensorData.data.gS} name="S" dataName="gS" barColor="green" />
+                          <LaserBarChartMiddle data={frontSensorData.data.gyroA} name="A" min="-15" max="15" dataName="gA" barColor="green" />
+                          <LaserBarChartMiddle data={frontSensorData.data.gyroS} name="S" min="-15" max="15" dataName="gS" barColor="green" />
                         </div>
                       </div>
                     </div>
@@ -669,16 +754,16 @@ class ViewM1Setup extends Component {
                       <div className="axleTitle">left laser sensor</div>
                       <div className="axleGraphBox">
                         <div className="axleGraphBoxGroup">
-                          <LaserBarChart data={rearSensorData.data.ly1A} name="A" dataName="ly1A" barColor="red" />
-                          <LaserBarChart data={rearSensorData.data.ly1S} name="S" dataName="ly1S" barColor="red" />
+                          <LaserBarChart data={rearSensorData.data.leftApA} max="300" name="A" dataName="leftBpA" barColor="red" />
+                          <LaserBarChart data={rearSensorData.data.leftApS} max="300" name="S" dataName="leftBpS" barColor="red" />
                         </div>
                         <div className="axleGraphBoxGroup">
-                          <LaserBarChart data={rearSensorData.data.ly2A} name="A" dataName="ly2A" barColor="red" />
-                          <LaserBarChart data={rearSensorData.data.ly2S} name="S" dataName="ly2S" barColor="red" />
+                          <LaserBarChart data={rearSensorData.data.leftBpA} max="300" name="A" dataName="leftLvdtA" barColor="red" />
+                          <LaserBarChart data={rearSensorData.data.leftBpS} max="300" name="S" dataName="leftLvdtS" barColor="red" />
                         </div>
                         <div className="axleGraphBoxGroup">
-                          <LaserBarChart data={rearSensorData.data.lxA} name="A" dataName="rxA" barColor="blue" />
-                          <LaserBarChart data={rearSensorData.data.lxS} name="S" dataName="rxS" barColor="blue" />
+                          <LaserBarChart data={rearSensorData.data.leftLvdtA} max="300" name="A" dataName="rightApA" barColor="blue" />
+                          <LaserBarChart data={rearSensorData.data.leftLvdtS} max="300" name="S" dataName="rxS" barColor="blue" />
                         </div>
                       </div>
                     </div>
@@ -686,16 +771,16 @@ class ViewM1Setup extends Component {
                       <div className="axleTitle">right laser sensor</div>
                       <div className="axleGraphBox">
                         <div className="axleGraphBoxGroup">
-                          <LaserBarChart data={rearSensorData.data.ry1A} name="A" dataName="ry1A" barColor="red" />
-                          <LaserBarChart data={rearSensorData.data.ry1S} name="S" dataName="ry1S" barColor="red" />
+                          <LaserBarChart data={rearSensorData.data.rightApA} max="300" name="A" dataName="ry1A" barColor="red" />
+                          <LaserBarChart data={rearSensorData.data.rightApS} max="300" name="S" dataName="ry1S" barColor="red" />
                         </div>
                         <div className="axleGraphBoxGroup">
-                          <LaserBarChart data={rearSensorData.data.ry2A} name="A" dataName="ry2A" barColor="red" />
-                          <LaserBarChart data={rearSensorData.data.ry2S} name="S" dataName="ry2S" barColor="red" />
+                          <LaserBarChart data={rearSensorData.data.rightBpA} max="300" name="A" dataName="ry2A" barColor="red" />
+                          <LaserBarChart data={rearSensorData.data.rightBpS} max="300" name="S" dataName="ry2S" barColor="red" />
                         </div>
                         <div className="axleGraphBoxGroup">
-                          <LaserBarChart data={rearSensorData.data.rxA} name="A" dataName="rxA" barColor="blue" />
-                          <LaserBarChart data={rearSensorData.data.rxS} name="S" dataName="rxS" barColor="blue" />
+                          <LaserBarChart data={rearSensorData.data.rightLvdtA} max="300" name="A" dataName="rightApA" barColor="blue" />
+                          <LaserBarChart data={rearSensorData.data.rightLvdtS} max="300" name="S" dataName="rxS" barColor="blue" />
                         </div>
                       </div>
                     </div>
@@ -703,8 +788,8 @@ class ViewM1Setup extends Component {
                       <div className="axleTitle">gyro</div>
                       <div className="axleGraphBox">
                         <div className="axleGraphBoxGroup">
-                          <LaserBarChart data={rearSensorData.data.gA} name="A" dataName="gA" barColor="green" />
-                          <LaserBarChart data={rearSensorData.data.gS} name="S" dataName="gS" barColor="green" />
+                          <LaserBarChartMiddle data={rearSensorData.data.gyroA} min="-15" max="15" name="A" dataName="gA" barColor="green" />
+                          <LaserBarChartMiddle data={rearSensorData.data.gyroS} min="-15" max="15" name="S" dataName="gS" barColor="green" />
                         </div>
                       </div>
                     </div>
@@ -712,8 +797,8 @@ class ViewM1Setup extends Component {
                 </div>
                 <div className="setupBox setupBoxAxleBtn">
                   <div className="setupBoxAxleBtnBox">
-                    <a href="">SET</a>
-                    <a href="">ORG</a>
+                    <a href="#" onClick={this.onSensorSetClick} style={{ backgroundColor: currentAValue.set == 1 ? 'rgba(255, 255, 255, 0.3)' : '' }}>SET</a>
+                    <a href="#" onClick={this.onSensorResetClick} style={{ backgroundColor: currentAValue.set == 0 ? 'rgba(255, 255, 255, 0.3)' : '' }}>ORG</a>
                   </div>
                 </div>
                 <PanelControlButtonsRight />
@@ -750,6 +835,7 @@ function mapStateToProps(state){
       tuningFrontIgain: state.setM2SetupButtons.tuningFrontIgain,
       tuningRearPgain: state.setM2SetupButtons.tuningRearPgain,
       tuningRearIgain: state.setM2SetupButtons.tuningRearIgain,
+      currentAValue: state.setM2SetupButtons.currentAValue,
       
     }
 }

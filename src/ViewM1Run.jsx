@@ -279,6 +279,7 @@ class ViewM1Run extends Component {
                   <div className="voiData">
                     <DonutCircleChart 
                       data={motorControlData.data.speed} 
+                      max="60" 
                       unit="Km/m" 
                       name="Speed" 
                       strokeColor="#fff" 
@@ -291,7 +292,10 @@ class ViewM1Run extends Component {
                   </div>
                   <div className="voiData">
                     <DonutCircleChart 
-                      data={motorControlData.data.position} 
+                      // data={motorControlData.data.position} 
+                      // IRI_004
+                      data={frontWheelsetData.data.position}
+                      max="250"
                       unit="m" 
                       name="Position" 
                       strokeColor="#fff" 
@@ -304,7 +308,10 @@ class ViewM1Run extends Component {
                   </div>
                   <div className="voiData">
                     <DonutCircleChart 
-                      data={motorControlData.data.curv} 
+                      // data={motorControlData.data.curv} 
+                      // IRI_005
+                      data={frontWheelsetData.data.trackCurve}
+                      max={10000000000}
                       unit="m" 
                       name="Radius" 
                       strokeColor="#fff" 
@@ -585,6 +592,7 @@ class ViewM1Run extends Component {
                   <div className="motorConPieBox1Child">
                     <DonutDivideLeftChart 
                       data={motorControlData.data.position} 
+                      max="250"
                       unit="m" 
                       name="Vehicle Position" 
                       strokeColor="#3581c9" 
@@ -597,7 +605,9 @@ class ViewM1Run extends Component {
                   </div>
                   <div className="motorConPieBox1Child">
                     <DonutDivideLeftChart 
+                      // data={motorControlData.data.curv} 
                       data={motorControlData.data.curv} 
+                      max="10000000000"
                       unit="m" 
                       name="Track Curvature" 
                       strokeColor="#3581c9" 
@@ -612,6 +622,7 @@ class ViewM1Run extends Component {
                 <div className="motorConPieBox2">
                     <DonutDivideLeftChart 
                       data={motorControlData.data.speed} 
+                      max="60"
                       unit="km/h" 
                       name="Vehicle Speed" 
                       strokeColor="#c93535" 

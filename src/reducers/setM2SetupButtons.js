@@ -27,6 +27,7 @@ import {
   SET_CHART_TYPE_REAR_RIGHT,
 
   SET_CAR_MASS,
+  SET_CURRENT_A_VALUE,
 } from '../actions';
 
 const initialState = {
@@ -35,6 +36,11 @@ const initialState = {
   chartTypeFrontLeft: 'PIE', chartTypeFrontRight: 'PIE', chartTypeRearLeft: 'PIE', chartTypeRearRight: 'PIE',
   tuningFrontPgain: -15, tuningFrontIgain: -5, tuningRearPgain: -10, tuningRearIgain: 0, 
   carMass: 'TARE',
+  currentAValue: { 
+    set: 0,
+    frontLeftA1: 0, frontLeftA2: 0, frontLeftA3: 0, frontRightA1:0, frontRightA2:0, frontRightA3:0, frontGyroA: 0,
+    rearLeftA1: 0, rearLeftA2: 0, rearLeftA3: 0, rearRightA1:0, rearRightA2:0, rearRightA3:0, rearGyroA: 0,
+  },
 }
 
 export default function setM2SetupButtons(state = initialState, action) {
@@ -92,7 +98,8 @@ export default function setM2SetupButtons(state = initialState, action) {
     
     case SET_CAR_MASS:
       return { ...state, carMass: action.data };
-    
+    case SET_CURRENT_A_VALUE:
+      return { ...state, currentAValue: action.data };
     default:
       return state   
   }

@@ -5,26 +5,16 @@ export default class MotorGaugeBar extends Component {
     super(props);
   }
   render() {
-    const { data, name, unit } = this.props;
+    const { data, max, shift, name, unit } = this.props;
     let value = data;
     const barFull = 204;
     let barValue = 0;
-    let barMax = 0; 
+    let barMax = max ? parseInt(max) : 0; 
     let barPercent = 0; 
     let barPx = 0; 
-    let barValueShift =0;
+    let barValueShift = shift ? parseInt(shift) : 0;
     
-    switch(name) {
-      case 'rpm':
-        barMax = 3000;
-        break;
-      case 'torque':
-        barMax = 3000;
-        break;
-
-    }
-    
-    if(data) {
+    if(data !== undefined) {
       //value = data;
       barValue = value + barValueShift;
       barPercent = (barValue / barMax) * 100; 

@@ -6,15 +6,18 @@ export default class DynamicBarChart extends Component {
     super(props);
   }
   render() {
-    const { data, unit, name, barColor } = this.props;
+    const { data, max, shift, unit, name, barColor } = this.props;
     const barFull = 315;   
     let barValue = 0;
-    let barValueShift =0;
-    let barMax = 0; 
+    
+    let barValueShift = shift ? parseInt(shift) : 0;
+    let barMax = max ? parseInt(max) : 0; 
+    
     let barPercent = 0; 
     let barPx = 0; 
     let value = 0;
     
+    /*
     switch(name) {
       case 'lat. distance':
         barValueShift = 10;
@@ -49,7 +52,7 @@ export default class DynamicBarChart extends Component {
         barMax = 150;
         break;
     }
-
+    */
     if(data && data.length > 0) {
       value = data[data.length-1];
       barValue = value + barValueShift;

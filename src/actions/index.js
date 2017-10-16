@@ -385,6 +385,7 @@ export const SET_TUNING_FRONT_IGAIN = 'SET_TUNING_FRONT_IGAIN';
 export const SET_TUNING_REAR_PGAIN = 'SET_TUNING_REAR_PGAIN';
 export const SET_TUNING_REAR_IGAIN = 'SET_TUNING_REAR_IGAIN';
 export const SET_CAR_MASS = 'SET_CAR_MASS';
+export const SET_CURRENT_A_VALUE = 'SET_CURRENT_A_VALUE';
 
 export const setTuningFrontPgain = (data) => {
   return {
@@ -413,6 +414,12 @@ export const setTuningRearIgain = (data) => {
 export const setCarMass = (data) => {
   return {
     type: SET_CAR_MASS,
+    data
+  }
+}
+export const setCurrentAValue = (data) => {
+  return {
+    type: SET_CURRENT_A_VALUE,
     data
   }
 }
