@@ -46,7 +46,7 @@ export default class TestSetupPanelDataContainerDonutChart extends Component {
         break;
       case 'soc':
         lineValueShift = 0;
-        valueMax = 100;
+        valueMax = 110;
         break;
     }
     

@@ -133,75 +133,76 @@ class App extends Component {
    
     // TEST_RUN Drive Data ==================================================================
     //this.setDriveData.fwd = TESTDRIVE.CircleRight.FWD; // getRandomInt(-3,3);
-    if(json.TRI_001 != undefined) {
+    if(json.TRI_001 !== undefined) {
       this.setDriveData.position = json.TRI_001;
     }
-    if(json.TRI_003 != undefined) {
+
+    if(json.TRI_003 !== undefined) {
       this.setDriveData.speed = json.TRI_003;
     }
-    if(json.TRI_004 != undefined) {
+    if(json.TRI_004 !== undefined) {
       this.setDriveData.trat = json.TRI_004;
     }
-    if(json.TRI_005 != undefined) {
+    if(json.TRI_005 !== undefined) {
       this.setDriveData.brake = json.TRI_005;
     }
-    if(json.TRI_006 != undefined) {
+    if(json.TRI_006 !== undefined) {
       this.setDriveData.battTemp = json.TRI_006;
     }
-    if(json.TRI_007 != undefined) {
+    if(json.TRI_007 !== undefined) {
       this.setDriveData.soc = json.TRI_007;
     }
-    if(json.TRI_008 != undefined) {
+    if(json.TRI_008 !== undefined) {
       this.setDriveData.tracBatt = json.TRI_008;
     }
-    if(json.TRI_009 != undefined) {
+    if(json.TRI_009 !== undefined) {
       this.setDriveData.contBatt = json.TRI_009;
     }
-    if(json.TRI_010 != undefined) {
+    if(json.TRI_010 !== undefined) {
       this.setDriveData.maxInvTemp = json.TRI_010;
     }
-    if(json.TRI_011 != undefined) {
+    if(json.TRI_011 !== undefined) {
       this.setDriveData.maxMotorTemp = json.TRI_011;
     }
     
-    if(json.TRI_012 != undefined) {
+    if(json.TRI_012 !== undefined) {
       this.setDriveData.power = json.TRI_012;
     }
-    if(json.TRI_013 != undefined) {
+    if(json.TRI_013 !== undefined) {
       this.setDriveData.light = json.TRI_013;
     }
-    if(json.TRI_014 != undefined) {
+    if(json.TRI_014 !== undefined) {
       this.setDriveData.itc = json.TRI_014;
     }
-    if(json.TRI_015 != undefined) {
+    if(json.TRI_015 !== undefined) {
       this.setDriveData.hsc = json.TRI_015;
     }
 
-    if(json.TRI_001 != undefined || json.TRI_003 != undefined || json.TRI_004 != undefined || json.TRI_005 != undefined || json.TRI_006 != undefined ||
-       json.TRI_007 != undefined || json.TRI_008 != undefined || json.TRI_009 != undefined || json.TRI_010 != undefined || json.TRI_011 != undefined ||
-       json.TRI_012 != undefined || json.TRI_013 != undefined || json.TRI_014 != undefined || json.TRI_015 != undefined) {
+    if(json.TRI_001 !== undefined || json.TRI_003 !== undefined || json.TRI_004 !== undefined || json.TRI_005 !== undefined || json.TRI_006 !== undefined ||
+       json.TRI_007 !== undefined || json.TRI_008 !== undefined || json.TRI_009 !== undefined || json.TRI_010 !== undefined || json.TRI_011 !== undefined ||
+       json.TRI_012 !== undefined || json.TRI_013 !== undefined || json.TRI_014 !== undefined || json.TRI_015 !== undefined) {
       dispatch( setDriveData(this.setDriveData) );
     }
     // ======================================================================================
     
     // TEST SETUP =======================================================================================================================================
     // TEST SETUP Drive Data -------------
-    if(json.TSI_001 != undefined) {
+    if(json.TSI_001 !== undefined) {
       this.testSetup.Notch = json.TSI_001;
     }
-    if(json.TSI_002 != undefined) {
+    if(json.TSI_002 !== undefined) {
       this.testSetup.VehicleSpeed = json.TSI_002;
     }
-    if(json.TSI_003 != undefined) {
+    if(json.TSI_003 !== undefined) {
       this.testSetup.BatterySoc = json.TSI_003;
     }
-    if(json.TSI_004 != undefined) {
+    if(json.TSI_004 !== undefined) {
       this.testSetup.Tract = json.TSI_004;
     }
-    if(json.TSI_005 != undefined) {
+    if(json.TSI_005 !== undefined) {
       this.testSetup.Brake = json.TSI_005;
     }
-    if(json.TSI_006 != undefined) {
+    if(json.TSI_006 !== undefined) {
       this.testSetup.VehiclePosition = json.TSI_006;
     }
 
@@ -211,119 +212,119 @@ class App extends Component {
     // -----------------------------------
     
     // T-BMS -----------------------------
-    if(json.TSI_010 != undefined) {
+    if(json.TSI_010 !== undefined) {
       this.testSetup.TBmsSoc0 = json.TSI_010;
     }
-    if(json.TSI_011 != undefined) {
+    if(json.TSI_011 !== undefined) {
       this.testSetup.TBmsSoc1 = json.TSI_011;
     }
-    if(json.TSI_012 != undefined) {
+    if(json.TSI_012 !== undefined) {
       this.testSetup.TBmsSoc2 = json.TSI_012;
     }
-    if(json.TSI_013 != undefined) {
+    if(json.TSI_013 !== undefined) {
       this.testSetup.TBmsSoc3 = json.TSI_013;
     }
-    if(json.TSI_014 != undefined) {
+    if(json.TSI_014 !== undefined) {
       this.testSetup.TBmsSoc4 = json.TSI_014;
     }
 
-    if(json.TSI_015 != undefined) {
+    if(json.TSI_015 !== undefined) {
       this.testSetup.TBmsTemp0 = json.TSI_015;
     }
-    if(json.TSI_016 != undefined) {
+    if(json.TSI_016 !== undefined) {
       this.testSetup.TBmsTemp1 = json.TSI_016;
     }
-    if(json.TSI_017 != undefined) {
+    if(json.TSI_017 !== undefined) {
       this.testSetup.TBmsTemp2 = json.TSI_017;
     }
-    if(json.TSI_018 != undefined) {
+    if(json.TSI_018 !== undefined) {
       this.testSetup.TBmsTemp3 = json.TSI_018;
     }
-    if(json.TSI_019 != undefined) {
+    if(json.TSI_019 !== undefined) {
       this.testSetup.TBmsTemp4 = json.TSI_019;
     }
     // -----------------------------------
 
     // INV -------------------------------
-    if(json.TSI_020 != undefined) {
+    if(json.TSI_020 !== undefined) {
       this.testSetup.InvVolt0 = json.TSI_020;
     }
-    if(json.TSI_021 != undefined) {
+    if(json.TSI_021 !== undefined) {
       this.testSetup.InvVolt1 = json.TSI_021;
     }
-    if(json.TSI_022 != undefined) {
+    if(json.TSI_022 !== undefined) {
       this.testSetup.InvVolt2 = json.TSI_022;
     }
-    if(json.TSI_023 != undefined) {
+    if(json.TSI_023 !== undefined) {
       this.testSetup.InvVolt3 = json.TSI_023;
     }
-    if(json.TSI_024 != undefined) {
+    if(json.TSI_024 !== undefined) {
       this.testSetup.InvVolt4 = json.TSI_024;
     }
-    if(json.TSI_025 != undefined) {
+    if(json.TSI_025 !== undefined) {
       this.testSetup.InvTemp0 = json.TSI_025;
     }
-    if(json.TSI_026 != undefined) {
+    if(json.TSI_026 !== undefined) {
       this.testSetup.InvTemp1 = json.TSI_026;
     }
-    if(json.TSI_027 != undefined) {
+    if(json.TSI_027 !== undefined) {
       this.testSetup.InvTemp2 = json.TSI_027;
     }
-    if(json.TSI_028 != undefined) {
+    if(json.TSI_028 !== undefined) {
       this.testSetup.InvTemp3 = json.TSI_028;
     }
-    if(json.TSI_029 != undefined) {
+    if(json.TSI_029 !== undefined) {
       this.testSetup.InvTemp4 = json.TSI_029;
     }
     // -----------------------------------
 
     // C-BMS -----------------------------
-    if(json.TSI_030 != undefined) {
+    if(json.TSI_030 !== undefined) {
       this.testSetup.CBmsSoc1 = json.TSI_030;
     }
-    if(json.TSI_031 != undefined) {
+    if(json.TSI_031 !== undefined) {
       this.testSetup.CBmsVolt1 = json.TSI_031;
     }
     // -----------------------------------
 
     // S-BMS -----------------------------
-    if(json.TSI_032 != undefined) {
+    if(json.TSI_032 !== undefined) {
       this.testSetup.SBmsSoc0 = json.TSI_032;
     }
-    if(json.TSI_033 != undefined) {
+    if(json.TSI_033 !== undefined) {
       this.testSetup.SBmsSoc1 = json.TSI_033;
     }
-    if(json.TSI_034 != undefined) {
+    if(json.TSI_034 !== undefined) {
       this.testSetup.SBmsSoc2 = json.TSI_034;
     }
-    if(json.TSI_035 != undefined) {
+    if(json.TSI_035 !== undefined) {
       this.testSetup.SBmsVolt0 = json.TSI_035;
     }
-    if(json.TSI_036 != undefined) {
+    if(json.TSI_036 !== undefined) {
       this.testSetup.SBmsVolt1 = json.TSI_036;
     }
-    if(json.TSI_037 != undefined) {
+    if(json.TSI_037 !== undefined) {
       this.testSetup.SBmsVolt2 = json.TSI_037;
     }
     // -----------------------------------
-    if(json.TSI_001 != undefined || json.TSI_002 != undefined || json.TSI_003 != undefined || json.TSI_004 != undefined || json.TSI_005 != undefined || json.TSI_006 != undefined ||
-       json.TSI_010 != undefined || json.TSI_011 != undefined || json.TSI_012 != undefined || json.TSI_013 != undefined || json.TSI_014 != undefined ||
-       json.TSI_015 != undefined || json.TSI_016 != undefined || json.TSI_017 != undefined || json.TSI_018 != undefined || json.TSI_019 != undefined ||
-       json.TSI_020 != undefined || json.TSI_021 != undefined || json.TSI_022 != undefined || json.TSI_023 != undefined || json.TSI_024 != undefined ||
-       json.TSI_025 != undefined || json.TSI_026 != undefined || json.TSI_027 != undefined || json.TSI_028 != undefined || json.TSI_029 != undefined ||
-       json.TSI_030 != undefined || json.TSI_031 != undefined || json.TSI_032 != undefined || json.TSI_033 != undefined || json.TSI_034 != undefined ||  
-       json.TSI_035 != undefined || json.TSI_036 != undefined || json.TSI_037 != undefined) {
+    if(json.TSI_001 !== undefined || json.TSI_002 !== undefined || json.TSI_003 !== undefined || json.TSI_004 !== undefined || json.TSI_005 !== undefined || json.TSI_006 !== undefined ||
+       json.TSI_010 !== undefined || json.TSI_011 !== undefined || json.TSI_012 !== undefined || json.TSI_013 !== undefined || json.TSI_014 !== undefined ||
+       json.TSI_015 !== undefined || json.TSI_016 !== undefined || json.TSI_017 !== undefined || json.TSI_018 !== undefined || json.TSI_019 !== undefined ||
+       json.TSI_020 !== undefined || json.TSI_021 !== undefined || json.TSI_022 !== undefined || json.TSI_023 !== undefined || json.TSI_024 !== undefined ||
+       json.TSI_025 !== undefined || json.TSI_026 !== undefined || json.TSI_027 !== undefined || json.TSI_028 !== undefined || json.TSI_029 !== undefined ||
+       json.TSI_030 !== undefined || json.TSI_031 !== undefined || json.TSI_032 !== undefined || json.TSI_033 !== undefined || json.TSI_034 !== undefined ||  
+       json.TSI_035 !== undefined || json.TSI_036 !== undefined || json.TSI_037 !== undefined) {
       dispatch( setTestSetupData(this.testSetup) );
     }
     // ==================================================================================================================================================
 
     // Notch --------------------------------------
-    if(json.TRI_002 != undefined) {
+    if(json.TRI_002 !== undefined) {
       dispatch( setDriveLever(json.TRI_002) );
     }
     // --------------------------------------------
     // Emergency Stop -----------------------------
-    if(json.TSI_000 != undefined) {
+    if(json.TSI_000 !== undefined) {
       dispatch( setEmergencyStop(json.TSI_000) );
       dispatch( setRunSwitch(json.TSI_000) );
     }

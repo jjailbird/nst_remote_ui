@@ -12,6 +12,10 @@ export default class RailroadTrailStartStop extends Component {
     this.stopPos = { x: 0, y: 0};
     this.startPoint = null;
     this.startPos = { x: 0, y: 0};
+    this.moveCircle = this.moveCircle.bind(this);
+    this.moveStartPoint = this.moveStartPoint.bind(this);
+    this.moveStopPoint = this.moveStopPoint.bind(this);
+    this.getDistancePos = this.getDistancePos.bind(this);
   }
   getDistancePos(value){
     // const distance = parseFloat(value); // 정방향 
@@ -48,16 +52,26 @@ export default class RailroadTrailStartStop extends Component {
     this.moveCircle(this.props.value);
     this.moveStartPoint(this.props.start);
     this.moveStopPoint(this.props.stop);
+    
   }
   componentDidUpdate() {
+    
     this.moveCircle(this.props.value);
-    this.moveStartPoint(this.props.start);
-    this.moveStopPoint(this.props.stop);
+    //this.moveStartPoint(this.props.start);
+    //this.moveStopPoint(this.props.stop);
+    
   }
   render() {    
-    const {value, name, unit ,start, stop} = this.props;//stop 포인트위치부터 circle위치까지의 거리 값을 넣어야 할거같은데;;; 잘 모르겠네요
-    const changePosition = value - stop;//<----틀린듯.ㅜㅜ
+    const { 
+      value, name, unit ,start, stop,
+      VehiclePosition, positionStart, positionStop,
+    } = this.props;//stop 포인트위치부터 circle위치까지의 거리 값을 넣어야 할거같은데;;; 잘 모르겠네요
+    // const changePosition = value - stop;//<----틀린듯.ㅜㅜ
     const valueDisplay = isFloat(value) ? value.toFixed(2) : value;
+    //this.moveCircle(VehiclePosition);
+    //this.moveStartPoint(positionStart);
+    //this.moveStopPoint(positionStop);
+
     return (
       <div>
         <div
@@ -133,6 +147,4 @@ export default class RailroadTrailStartStop extends Component {
       </div>
     );
   }
-
 }
-

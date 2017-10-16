@@ -29,8 +29,8 @@ class ViewM2Setup extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      vehiclePositionStart: this.props.positionStart,
-      vehiclePositionStop: this.props.positionStop,
+      vehiclePositionStart: this.props.positionStart ? this.props.positionStart : 0,
+      vehiclePositionStop: this.props.positionStop ? this.props.positionStop : 0,
       vehicleLimitSpeedA: this.props.limitSpeedA,
       vehicleRunCount: this.props.runCount,
       vehicleLimitSpeedM: this.props.limitSpeedM,
@@ -188,8 +188,12 @@ class ViewM2Setup extends Component {
     }
   }
   setCurrentPositionStart() {
+    
     const command = getSocketCommand('TSO_010', this.state.vehiclePositionStart);
     this.sendCommandToDevice(command);
+
+    // console.log('this.railroad', this.railroad);
+    this.railroad.moveStartPoint(this.state.vehiclePositionStart);
 
     const { dispatch } = this.props;
     dispatch(setPositionStart(this.state.vehiclePositionStart));
@@ -198,6 +202,8 @@ class ViewM2Setup extends Component {
   setCurrentPositionStop() {
     const command = getSocketCommand('TSO_011', this.state.vehiclePositionStop);
     this.sendCommandToDevice(command);
+
+    this.railroad.moveStartPoint(this.state.vehiclePositionStop);
 
     const { dispatch } = this.props;
     dispatch(setPositionStop(this.state.vehiclePositionStop));
@@ -481,6 +487,7 @@ class ViewM2Setup extends Component {
       dispatch
     } = this.props;
     
+    console.log('VehicleSpeedArray', VehicleSpeedArray);
 
     const runSwitchValue = runSwitch === 0 ? "off" : "on";
     const runDirectionValue = runDirection === 0 ? "off" : "on";
@@ -542,14 +549,14 @@ class ViewM2Setup extends Component {
                   data1: TBmsSoc1, data2: TBmsSoc2, data3: TBmsSoc3, data4: TBmsSoc4
                   //,circle: (TBmsSoc1 + TBmsSoc2 + TBmsSoc3 + TBmsSoc4) / 4
                   ,circle: TBmsSoc0
-                  ,valueMax: 100
+                  ,valueMax: 110
 
                 }}
                 dataRight={{ 
                   data1: TBmsTemp1, data2: TBmsTemp2, data3: TBmsTemp3, data4: TBmsTemp4,
                   // circle: (TBmsTemp1 + TBmsTemp2 + TBmsTemp3 + TBmsTemp4) / 4,
                   circle: TBmsTemp0,
-                  valueMax: 100
+                  valueMax: 200
                 }}
               /> 
               <TestSetupPanelDataContainer
@@ -564,7 +571,7 @@ class ViewM2Setup extends Component {
                   data1: InvTemp1, data2: InvTemp2, data3: InvTemp3, data4: InvTemp4,
                   // circle: (InvTemp1 + InvTemp2 + InvTemp3 + InvTemp4) / 4,
                   circle: InvTemp0,
-                  valueMax: 100
+                  valueMax: 200
                 }}
               />
               {/*<TestSetupPanelDataContainer dataLeft={bcuMBogieData.data} dataRight={bcuMTogieData.data} compTitle="BCU" nameLeft="" nameRight="" unitLeft="Kpa" unitRight="Kpa" cNameLeft="M Bogie" cNameRight="T Bogie" barTitle="Caliper #" CompColor="#6f9450"/>*/}
@@ -575,8 +582,8 @@ class ViewM2Setup extends Component {
                 dataLeft={{
                   data1: CBmsSoc1,
                   data2: CBmsVolt1,
-                  circle1: CBmsSoc1, valueMax1: 100,
-                  circle2: CBmsVolt1, valueMax2: 900, 
+                  circle1: CBmsSoc1, valueMax1: 110,
+                  circle2: CBmsVolt1, valueMax2: 30, 
                 }}
                 
                 compTitle2="S-BMS"
@@ -587,12 +594,12 @@ class ViewM2Setup extends Component {
                   data2: SBmsSoc2,
                   // circle1: (SBmsSoc1 + SBmsSoc2) / 2, 
                   circle1: SBmsSoc0,
-                  valueMax1: 100,
+                  valueMax1: 110,
                   data3: SBmsVolt1,
                   data4: SBmsVolt2,
                   // circle2: (SBmsVolt1 + SBmsVolt2) /2,
                   circle2: SBmsVolt0,
-                  valueMax2: 900,
+                  valueMax2: 30,
                 }}
 
                 nameLeft="" nameRight="" 
@@ -1184,7 +1191,9 @@ class ViewM2Setup extends Component {
                     }}
                   >
                     {/*<span>{VehiclePosition} {positionStart} {positionStop}</span>*/}
-                    <RailroadTrailStartStop value={VehiclePosition} name="VEHICLE POSITION" unit="m" 
+                    <RailroadTrailStartStop
+                      ref={instance => { this.railroad = instance; }}
+                      value={VehiclePosition} name="VEHICLE POSITION" unit="m" 
                       start={positionStart} 
                       stop={positionStop} 
                     />
@@ -1596,7 +1605,7 @@ function mapStateToProps(state){
       
       // testSetup: state.setM2SetupData.testSetup,
       // Bug? 전체 배열값으로 할당하면 re-rendering이 발행하지 않음(변수 데이터 변경을 rendering에서 감지 못하는 버그?)
-      VehicleSpeedArray: state.setM2SetupData.VehicleSpeedArray,
+      VehicleSpeedArray: state.setM2SetupData.testSetup.VehicleSpeedArray,
       
       // T-BMS -----------------------------
       TBmsSoc0: state.setM2SetupData.testSetup.TBmsSoc0,
