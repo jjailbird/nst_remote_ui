@@ -364,43 +364,27 @@ class ViewM2Setup extends Component {
   onSbmsChange(value) {
     //alert('s08:' + value);
     const { invOut2, dispatch } = this.props;
-    if(invOut2 === 'off' && value === 'on') {
-      alert('You must turn on the INV OUT2');
-      return false;
-    } else {
-      const command = getSocketCommand('TSO_028', value == 'on' ? 1:0);
-      this.sendCommandToDevice(command);
-
-      dispatch( setSbms(value) );
-    }
+    const command = getSocketCommand('TSO_028', value == 'on' ? 1:0);
+    this.sendCommandToDevice(command);
+    dispatch( setSbms(value) );
   }
   // s09
   onSinvChange(value) {
     //alert('s09:' + value);
-    const { sBms, dispatch } = this.props;
-    if(sBms === 'off' && value === 'on') {
-      alert('You must turn on the S-BMS');
-      return false;
-    } else {
-      const command = getSocketCommand('TSO_029', value == 'on' ? 1:0);
-      this.sendCommandToDevice(command);
+    const { dispatch } = this.props;
+    const command = getSocketCommand('TSO_029', value == 'on' ? 1:0);
+    this.sendCommandToDevice(command);
+    dispatch( setSinv(value) );
 
-      dispatch( setSinv(value) );
-    }
   }
   // s10
   onCameraChange(value) {
     //alert('s10:' + value);
-    const { sInv, dispatch } = this.props;
-    if(sInv === 'off' && value === 'on') {
-      alert('You must turn on the S-INV');
-      return false;
-    } else {
-      const command = getSocketCommand('TSO_030', value == 'on' ? 1:0);
-      this.sendCommandToDevice(command);
+    const { dispatch } = this.props;
+    const command = getSocketCommand('TSO_030', value == 'on' ? 1:0);
 
-      dispatch( setCamera(value) );
-    }
+    this.sendCommandToDevice(command);
+    dispatch( setCamera(value) );
   }
   // s11
   onDriveModeChange(value) {
