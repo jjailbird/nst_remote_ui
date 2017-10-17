@@ -35,7 +35,7 @@ const initialState = {
   crtl2Active: '', crtl2Mode: '', crtl2SensorType: '', crtl2ControlType: '', crtl2WfLateralSensor: -15.5, crtl2WfControlMode: -5, crtl2WfYawSensor: -10, crtl2WfControlType: 0,
   chartTypeFrontLeft: 'PIE', chartTypeFrontRight: 'PIE', chartTypeRearLeft: 'PIE', chartTypeRearRight: 'PIE',
   tuningFrontPgain: -15, tuningFrontIgain: -5, tuningRearPgain: -10, tuningRearIgain: 0, 
-  carMass: 'TARE',
+  carMass: 'RUN',
   currentAValue: { 
     set: 0,
     frontLeftA1: 0, frontLeftA2: 0, frontLeftA3: 0, frontRightA1:0, frontRightA2:0, frontRightA3:0, frontGyroA: 0,

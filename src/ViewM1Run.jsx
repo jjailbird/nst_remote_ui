@@ -29,9 +29,8 @@ import {
 class ViewM1Run extends Component {
   constructor(props) {
     super(props);
-    
-    this.hostname = '192.168.1.2';
-    // this.hostname = window.location.hostname;
+    // this.hostname = '192.168.1.2';
+    this.hostname = window.location.hostname;
 
     this.onCrtl1ActiveChange = this.onCrtl1ActiveChange.bind(this);
     this.onCrtl1ModeChange = this.onCrtl1ModeChange.bind(this);
@@ -734,6 +733,7 @@ class ViewM1Run extends Component {
                   <div className="voiData">
                     <DonutCircleChart 
                       data={motorControlData.data.speed} 
+                      max="60"
                       unit="Km/m" 
                       name="Speed" 
                       strokeColor="#fff" 
@@ -746,7 +746,8 @@ class ViewM1Run extends Component {
                   </div>
                   <div className="voiData">
                     <DonutCircleChart 
-                      data={motorControlData.data.position} 
+                      data={rearWheelsetData.data.position} 
+                      max="250"
                       unit="m" 
                       name="Position" 
                       strokeColor="#fff" 
@@ -759,7 +760,8 @@ class ViewM1Run extends Component {
                   </div>
                   <div className="voiData">
                     <DonutCircleChart 
-                      data={motorControlData.data.curv} 
+                      data={rearWheelsetData.data.trackCurve} 
+                      max="10000000000"
                       unit="m" 
                       name="Radius" 
                       strokeColor="#fff" 
@@ -797,7 +799,7 @@ class ViewM1Run extends Component {
 }
 
 function mapStateToProps(state){
-  console.log('redux data', state);  
+  // console.log('redux data', state);  
   return {
       frontLeftData: state.frontLeftData,
       frontRightData: state.frontRightData,
