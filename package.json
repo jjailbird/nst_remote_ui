@@ -10,6 +10,7 @@
     "react": "^15.5.4",
     "react-d3-library": "^1.1.8",
     "react-dom": "^15.5.4",
+    "react-draggable": "^3.0.3",
     "react-gsap-enhancer": "^0.3.0",
     "react-live-clock": "^2.0.1",
     "react-load-script": "0.0.6",
