@@ -62,13 +62,13 @@ class ViewM2Run extends Component {
   }
   componentDidMount(){
     // this.H5SPlayVideo("frontVideo");
-    /*
+  
     console.log('HSSPlyaer start!');
     const rtspFrontPlayer = new H5SPlayVideo('frontVideo');
     rtspFrontPlayer.Start();
     const rtspRearPlayer = new H5SPlayVideo('rearVideo');
     rtspRearPlayer.Start();
-    */
+    
     // this.H5SPlayVideo("rearVideo");
   }
   render() {
