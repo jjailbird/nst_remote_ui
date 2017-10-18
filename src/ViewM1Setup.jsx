@@ -236,190 +236,190 @@ class ViewM1Setup extends Component {
                 </div>
               </div>
               <div className="setupBox x2 noneTitle marginTop10">
-                  <div className="setupBoxCon">
-                    <div className="setPiedata-image">
-                        <LaserTabContainer />
+                <div className="setupBoxCon">
+                  <div className="setPiedata-image">
+                      <LaserTabContainer />
+                  </div>
+                  <div className="setPiedata-pieGroups pull-left">
+                    <div className="setPiedata-pieGrape pie1">
+                      <LaserDonutCircleChart 
+                        // data={frontLeftData.data.laserX} 
+                        data={frontLeftMotorData.data.rpm} 
+                        max="300"
+                        unit="mm" 
+                        name="Laser - X" 
+                        dataName = 'lx'
+                        strokeColor="rgba(44,106,170,0.7)" 
+                        strokeColorLine="rgba(255,255,255,0.2)" 
+                        donutWidth="47" 
+                        donutStrokeWidth="6"
+                        valueFontSize="22px"
+                        valueFontColor="#fff"
+                      />
                     </div>
-                    <div className="setPiedata-pieGroups pull-left">
-                      <div className="setPiedata-pieGrape pie1">
-                        <LaserDonutCircleChart 
-                          // data={frontLeftData.data.laserX} 
-                          data={frontLeftMotorData.data.rpm} 
-                          max="300"
-                          unit="mm" 
-                          name="Laser - X" 
-                          dataName = 'lx'
-                          strokeColor="rgba(44,106,170,0.7)" 
-                          strokeColorLine="rgba(255,255,255,0.2)" 
-                          donutWidth="47" 
-                          donutStrokeWidth="6"
-                          valueFontSize="22px"
-                          valueFontColor="#fff"
-                        />
-                      </div>
-                      <div className="setPiedata-pieGrape pie2">
-                        <LaserDonutCircleChart 
-                          // data={frontLeftData.data.laserY} 
-                          data={frontSensorData.data.leftLvdtS} 
-                          max="300"
-                          // shift="20"
-                          // max="40"
-                          
-                          unit="mm" 
-                          name="Laser - Y" 
-                          dataName = 'ly'
-                          strokeColor="rgba(201,53,53,0.7)" 
-                          strokeColorLine="rgba(255,255,255,0.2)" 
-                          donutWidth="47" 
-                          donutStrokeWidth="6"
-                          valueFontSize="22px"
-                          valueFontColor="#fff"
-                        />
-                      </div>
-                      <div className="setPiedata-pieGrape pie3">
-                        <LaserDonutCircleChart 
-                          //data={rearLeftData.data.laserX} 
-                          data={frontRightMotorData.data.rpm} 
-                          max="40"
-                          shift="20"
-                          // max="300"
-                          unit="mm" 
-                          name="Laser - X" 
-                          dataName = 'lx'
-                          strokeColor="rgba(44,106,170,0.7)" 
-                          strokeColorLine="rgba(255,255,255,0.2)" 
-                          donutWidth="47" 
-                          donutStrokeWidth="6"
-                          valueFontSize="22px"
-                          valueFontColor="#fff"
-                        />
-                      </div>
-                      <div className="setPiedata-pieGrape pie4">
-                        <LaserDonutCircleChart 
-                          // data={rearLeftData.data.laserY} 
-                          data={frontSensorData.data.rightLvdtS} 
-                          max="300"
-                          // shift="20"
-                          // max="40"
-                          unit="mm" 
-                          name="Laser - Y" 
-                          dataName = 'ly'
-                          strokeColor="rgba(201,53,53,0.7)" 
-                          strokeColorLine="rgba(255,255,255,0.2)" 
-                          donutWidth="47" 
-                          donutStrokeWidth="6"
-                          valueFontSize="22px"
-                          valueFontColor="#fff"
-                        />
-                      </div>
-                      <div className="setPiedata-pieGrape pieCenter">         
-                        <LaserDonutDigitalChart 
-                          // data={frontRightData.data.gyroZ} 
-                          data={frontSensorData.data.gyroS}
-                          shift="15"
-                          max="30"
-                          unit="°" 
-                          name="GYRO - Z" 
-                          dataName="frontG"
-                          strokeColor="rgba(137,182,89,1)" 
-                          strokeColorLine="rgba(137,182,89,0.3)" 
-                          donutWidth="112" 
-                          donutStrokeWidth="10"
-                          valueFontSize="35px"
-                          valueFontColor="#fff"
-                        />
-                      </div>
+                    <div className="setPiedata-pieGrape pie2">
+                      <LaserDonutCircleChart 
+                        // data={frontLeftData.data.laserY} 
+                        data={frontSensorData.data.leftLvdtS} 
+                        max="300"
+                        // shift="20"
+                        // max="40"
+                        
+                        unit="mm" 
+                        name="Laser - Y" 
+                        dataName = 'ly'
+                        strokeColor="rgba(201,53,53,0.7)" 
+                        strokeColorLine="rgba(255,255,255,0.2)" 
+                        donutWidth="47" 
+                        donutStrokeWidth="6"
+                        valueFontSize="22px"
+                        valueFontColor="#fff"
+                      />
                     </div>
-                    <div className="setPiedata-pieGroups pull-right">
-                      <div className="setPiedata-pieGrape pie1">
-                        <LaserDonutCircleChart 
-                          // data={frontRightData.data.laserX} 
-                          data={rearLeftMotorData.data.rpm} 
-                          max="300"
-                          unit="mm" 
-                          name="Laser - X" 
-                          dataName = 'rx'
-                          strokeColor="rgba(44,106,170,0.7)" 
-                          strokeColorLine="rgba(255,255,255,0.2)" 
-                          donutWidth="47" 
-                          donutStrokeWidth="6"
-                          valueFontSize="22px"
-                          valueFontColor="#fff"
-                        />
-                      </div>
-                      <div className="setPiedata-pieGrape pie2">
-                        <LaserDonutCircleChart 
-                          // data={frontRightData.data.laserY} 
-                          data={rearSensorData.data.leftLvdtS} 
-                          max="300"
-                          // shift="20"
-                          // max="40"
-                          unit="mm" 
-                          name="Laser - Y" 
-                          dataName = 'ry'
-                          strokeColor="rgba(201,53,53,0.7)" 
-                          strokeColorLine="rgba(255,255,255,0.2)" 
-                          donutWidth="47" 
-                          donutStrokeWidth="6"
-                          valueFontSize="22px"
-                          valueFontColor="#fff"
-                        />
-                      </div>
-                      <div className="setPiedata-pieGrape pie3">
-                        <LaserDonutCircleChart 
-                          // data={rearRightData.data.laserX} 
-                          data={rearRightMotorData.data.rpm} 
-                          shift="20"
-                          max="40"
-                          // max="300"
-                          unit="mm" 
-                          name="Laser - X" 
-                          dataName = 'rx'
-                          strokeColor="rgba(44,106,170,0.7)" 
-                          strokeColorLine="rgba(255,255,255,0.2)" 
-                          donutWidth="47" 
-                          donutStrokeWidth="6"
-                          valueFontSize="22px"
-                          valueFontColor="#fff"
-                        />
-                      </div>
-                      <div className="setPiedata-pieGrape pie4">
-                        <LaserDonutCircleChart 
-                          // data={rearRightData.data.laserY} 
-                          data={rearSensorData.data.rightLvdtS} 
-                          max="300"
-                          // shift="20"
-                          // max="40"
-                          unit="mm" 
-                          name="Laser - Y" 
-                          dataName = 'ry'
-                          strokeColor="rgba(201,53,53,0.7)" 
-                          strokeColorLine="rgba(255,255,255,0.2)" 
-                          donutWidth="47" 
-                          donutStrokeWidth="6"
-                          valueFontSize="22px"
-                          valueFontColor="#fff"
-                        />
-                      </div>
-                      <div className="setPiedata-pieGrape pieCenter">
-                        <LaserDonutDigitalChart 
-                          // data={rearRightData.data.gyroZ} 
-                          data={rearSensorData.data.gyroS} 
-                          shift="15"
-                          max="30"
-                          unit="°" 
-                          name="GYRO - Z" 
-                          dataName="rearG"
-                          strokeColor="rgba(137,182,89,1)" 
-                          strokeColorLine="rgba(137,182,89,0.3)" 
-                          donutWidth="112" 
-                          donutStrokeWidth="10"
-                          valueFontSize="35px"
-                          valueFontColor="#fff"
-                        />
-                      </div>
+                    <div className="setPiedata-pieGrape pie3">
+                      <LaserDonutCircleChart 
+                        //data={rearLeftData.data.laserX} 
+                        data={frontRightMotorData.data.rpm} 
+                        max="40"
+                        shift="20"
+                        // max="300"
+                        unit="mm" 
+                        name="Laser - X" 
+                        dataName = 'lx'
+                        strokeColor="rgba(44,106,170,0.7)" 
+                        strokeColorLine="rgba(255,255,255,0.2)" 
+                        donutWidth="47" 
+                        donutStrokeWidth="6"
+                        valueFontSize="22px"
+                        valueFontColor="#fff"
+                      />
+                    </div>
+                    <div className="setPiedata-pieGrape pie4">
+                      <LaserDonutCircleChart 
+                        // data={rearLeftData.data.laserY} 
+                        data={frontSensorData.data.rightLvdtS} 
+                        max="300"
+                        // shift="20"
+                        // max="40"
+                        unit="mm" 
+                        name="Laser - Y" 
+                        dataName = 'ly'
+                        strokeColor="rgba(201,53,53,0.7)" 
+                        strokeColorLine="rgba(255,255,255,0.2)" 
+                        donutWidth="47" 
+                        donutStrokeWidth="6"
+                        valueFontSize="22px"
+                        valueFontColor="#fff"
+                      />
+                    </div>
+                    <div className="setPiedata-pieGrape pieCenter">         
+                      <LaserDonutDigitalChart 
+                        // data={frontRightData.data.gyroZ} 
+                        data={frontSensorData.data.gyroS}
+                        shift="15"
+                        max="30"
+                        unit="°" 
+                        name="GYRO - Z" 
+                        dataName="frontG"
+                        strokeColor="rgba(137,182,89,1)" 
+                        strokeColorLine="rgba(137,182,89,0.3)" 
+                        donutWidth="112" 
+                        donutStrokeWidth="10"
+                        valueFontSize="35px"
+                        valueFontColor="#fff"
+                      />
                     </div>
                   </div>
+                  <div className="setPiedata-pieGroups pull-right">
+                    <div className="setPiedata-pieGrape pie1">
+                      <LaserDonutCircleChart 
+                        // data={frontRightData.data.laserX} 
+                        data={rearLeftMotorData.data.rpm} 
+                        max="300"
+                        unit="mm" 
+                        name="Laser - X" 
+                        dataName = 'rx'
+                        strokeColor="rgba(44,106,170,0.7)" 
+                        strokeColorLine="rgba(255,255,255,0.2)" 
+                        donutWidth="47" 
+                        donutStrokeWidth="6"
+                        valueFontSize="22px"
+                        valueFontColor="#fff"
+                      />
+                    </div>
+                    <div className="setPiedata-pieGrape pie2">
+                      <LaserDonutCircleChart 
+                        // data={frontRightData.data.laserY} 
+                        data={rearSensorData.data.leftLvdtS} 
+                        max="300"
+                        // shift="20"
+                        // max="40"
+                        unit="mm" 
+                        name="Laser - Y" 
+                        dataName = 'ry'
+                        strokeColor="rgba(201,53,53,0.7)" 
+                        strokeColorLine="rgba(255,255,255,0.2)" 
+                        donutWidth="47" 
+                        donutStrokeWidth="6"
+                        valueFontSize="22px"
+                        valueFontColor="#fff"
+                      />
+                    </div>
+                    <div className="setPiedata-pieGrape pie3">
+                      <LaserDonutCircleChart 
+                        // data={rearRightData.data.laserX} 
+                        data={rearRightMotorData.data.rpm} 
+                        shift="20"
+                        max="40"
+                        // max="300"
+                        unit="mm" 
+                        name="Laser - X" 
+                        dataName = 'rx'
+                        strokeColor="rgba(44,106,170,0.7)" 
+                        strokeColorLine="rgba(255,255,255,0.2)" 
+                        donutWidth="47" 
+                        donutStrokeWidth="6"
+                        valueFontSize="22px"
+                        valueFontColor="#fff"
+                      />
+                    </div>
+                    <div className="setPiedata-pieGrape pie4">
+                      <LaserDonutCircleChart 
+                        // data={rearRightData.data.laserY} 
+                        data={rearSensorData.data.rightLvdtS} 
+                        max="300"
+                        // shift="20"
+                        // max="40"
+                        unit="mm" 
+                        name="Laser - Y" 
+                        dataName = 'ry'
+                        strokeColor="rgba(201,53,53,0.7)" 
+                        strokeColorLine="rgba(255,255,255,0.2)" 
+                        donutWidth="47" 
+                        donutStrokeWidth="6"
+                        valueFontSize="22px"
+                        valueFontColor="#fff"
+                      />
+                    </div>
+                    <div className="setPiedata-pieGrape pieCenter">
+                      <LaserDonutDigitalChart 
+                        // data={rearRightData.data.gyroZ} 
+                        data={rearSensorData.data.gyroS} 
+                        shift="15"
+                        max="30"
+                        unit="°" 
+                        name="GYRO - Z" 
+                        dataName="rearG"
+                        strokeColor="rgba(137,182,89,1)" 
+                        strokeColorLine="rgba(137,182,89,0.3)" 
+                        donutWidth="112" 
+                        donutStrokeWidth="10"
+                        valueFontSize="35px"
+                        valueFontColor="#fff"
+                      />
+                    </div>
+                  </div>
+                </div>
               </div>
               <div className="setupBox x2 marginTop10">
                 <div className="setupBoxTitle">
@@ -701,15 +701,15 @@ class ViewM1Setup extends Component {
                       <div className="axleGraphBox">
                         <div className="axleGraphBoxGroup">
                           <LaserBarChart data={frontSensorData.data.leftApA} max="300" name="A" dataName="leftBpA" barColor="red" />
-                          <LaserBarChartMiddle data={frontSensorData.data.leftApS} min="0" max="300" name="S" dataName="leftBpS" barColor="red" />
+                          <LaserBarChartMiddle data={frontSensorData.data.leftApS} min="-300" max="300" name="S" dataName="leftBpS" barColor="red" />
                         </div>
                         <div className="axleGraphBoxGroup">
                           <LaserBarChart data={frontSensorData.data.leftBpA} max="300" name="A" dataName="leftLvdtA" barColor="red" />
-                          <LaserBarChartMiddle data={frontSensorData.data.leftBpS} min="0" max="300" name="S" dataName="leftLvdtS" barColor="red" />
+                          <LaserBarChartMiddle data={frontSensorData.data.leftBpS} min="-300" max="300" name="S" dataName="leftLvdtS" barColor="red" />
                         </div>
                         <div className="axleGraphBoxGroup">
                           <LaserBarChart data={frontSensorData.data.leftLvdtA} max="300" name="A" dataName="leftApA" barColor="blue" />
-                          <LaserBarChartMiddle data={frontSensorData.data.leftLvdtS} min="0" max="300" name="S" dataName="leftApS" barColor="blue" />
+                          <LaserBarChartMiddle data={frontSensorData.data.leftLvdtS} min="-300" max="300" name="S" dataName="leftApS" barColor="blue" />
                         </div>
                       </div>
                     </div>
@@ -718,15 +718,15 @@ class ViewM1Setup extends Component {
                       <div className="axleGraphBox">
                         <div className="axleGraphBoxGroup">
                           <LaserBarChart data={frontSensorData.data.rightApA} max="300" name="A" dataName="rightBpA" barColor="red" />
-                          <LaserBarChartMiddle data={frontSensorData.data.rightApS} min="0" max="300" name="S" dataName="rightBpS" barColor="red" />
+                          <LaserBarChartMiddle data={frontSensorData.data.rightApS} min="-300" max="300" name="S" dataName="rightBpS" barColor="red" />
                         </div>
                         <div className="axleGraphBoxGroup">
                           <LaserBarChart data={frontSensorData.data.rightBpA} max="300" name="A" dataName="rightLvdtA" barColor="red" />
-                          <LaserBarChartMiddle data={frontSensorData.data.rightBpS} min="0" max="300" name="S" dataName="rightLvdtS" barColor="red" />
+                          <LaserBarChartMiddle data={frontSensorData.data.rightBpS} min="-300" max="300" name="S" dataName="rightLvdtS" barColor="red" />
                         </div>
                         <div className="axleGraphBoxGroup">
                           <LaserBarChart data={frontSensorData.data.rightLvdtA} max="300" name="A" dataName="rightApA" barColor="blue" />
-                          <LaserBarChartMiddle data={frontSensorData.data.rightLvdtS} min="0" max="300" name="S" dataName="rightApS" barColor="blue" />
+                          <LaserBarChartMiddle data={frontSensorData.data.rightLvdtS} min="-300" max="300" name="S" dataName="rightApS" barColor="blue" />
                         </div>
                       </div>
                     </div>
@@ -755,15 +755,15 @@ class ViewM1Setup extends Component {
                       <div className="axleGraphBox">
                         <div className="axleGraphBoxGroup">
                           <LaserBarChart data={rearSensorData.data.leftApA} max="300" name="A" dataName="leftBpA" barColor="red" />
-                          <LaserBarChartMiddle data={rearSensorData.data.leftApS} max="300" name="S" dataName="leftBpS" barColor="red" />
+                          <LaserBarChartMiddle data={rearSensorData.data.leftApS} min="-300" max="300" name="S" dataName="leftBpS" barColor="red" />
                         </div>
                         <div className="axleGraphBoxGroup">
                           <LaserBarChart data={rearSensorData.data.leftBpA} max="300" name="A" dataName="leftLvdtA" barColor="red" />
-                          <LaserBarChartMiddle data={rearSensorData.data.leftBpS} max="300" name="S" dataName="leftLvdtS" barColor="red" />
+                          <LaserBarChartMiddle data={rearSensorData.data.leftBpS} min="-300" max="300" name="S" dataName="leftLvdtS" barColor="red" />
                         </div>
                         <div className="axleGraphBoxGroup">
                           <LaserBarChart data={rearSensorData.data.leftLvdtA} max="300" name="A" dataName="rightApA" barColor="blue" />
-                          <LaserBarChartMiddle data={rearSensorData.data.leftLvdtS} max="300" name="S" dataName="rxS" barColor="blue" />
+                          <LaserBarChartMiddle data={rearSensorData.data.leftLvdtS} min="-300" max="300" name="S" dataName="rxS" barColor="blue" />
                         </div>
                       </div>
                     </div>
@@ -772,15 +772,15 @@ class ViewM1Setup extends Component {
                       <div className="axleGraphBox">
                         <div className="axleGraphBoxGroup">
                           <LaserBarChart data={rearSensorData.data.rightApA} max="300" name="A" dataName="ry1A" barColor="red" />
-                          <LaserBarChartMiddle data={rearSensorData.data.rightApS} max="300" name="S" dataName="ry1S" barColor="red" />
+                          <LaserBarChartMiddle data={rearSensorData.data.rightApS} min="-300" max="300" name="S" dataName="ry1S" barColor="red" />
                         </div>
                         <div className="axleGraphBoxGroup">
                           <LaserBarChart data={rearSensorData.data.rightBpA} max="300" name="A" dataName="ry2A" barColor="red" />
-                          <LaserBarChartMiddle data={rearSensorData.data.rightBpS} max="300" name="S" dataName="ry2S" barColor="red" />
+                          <LaserBarChartMiddle data={rearSensorData.data.rightBpS} min="-300" max="300" name="S" dataName="ry2S" barColor="red" />
                         </div>
                         <div className="axleGraphBoxGroup">
                           <LaserBarChart data={rearSensorData.data.rightLvdtA} max="300" name="A" dataName="rightApA" barColor="blue" />
-                          <LaserBarChartMiddle data={rearSensorData.data.rightLvdtS} max="300" name="S" dataName="rxS" barColor="blue" />
+                          <LaserBarChartMiddle data={rearSensorData.data.rightLvdtS} min="-300" max="300" name="S" dataName="rxS" barColor="blue" />
                         </div>
                       </div>
                     </div>

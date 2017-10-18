@@ -492,32 +492,31 @@ class App extends Component {
     // ITC_SETUP Front Sensor Front Axle  ======================================
     if(json.ISI_001 !== undefined) {
       this.setFrontSensorData.leftApA = json.ISI_001; 
-      this.setFrontSensorData.leftApS = json.ISI_001 - currentAValue.frontLeftA1;  // json.ISI_011;
+      this.setFrontSensorData.leftApS = (currentAValue.frontLeftA1) ? json.ISI_001 - currentAValue.frontLeftA1 : 0;  // json.ISI_011;
     }
     if(json.ISI_002 !== undefined) {
       this.setFrontSensorData.leftBpA = json.ISI_002;
-      this.setFrontSensorData.leftBpS = json.ISI_002 - currentAValue.frontLeftA2;  // json.ISI_012;
+      this.setFrontSensorData.leftBpS = currentAValue.frontLeftA2 ? json.ISI_002 - currentAValue.frontLeftA2 : 0;  // json.ISI_012;
     }
     if(json.ISI_003 !== undefined) {
       this.setFrontSensorData.leftLvdtA = json.ISI_003;
-      this.setFrontSensorData.leftLvdtS = json.ISI_003 - currentAValue.frontLeftA3; // json.ISI_013;   
-      console.log('ISI_003', json.ISI_003,currentAValue.frontLeftA3, this.setFrontSensorData.leftLvdtS);   
+      this.setFrontSensorData.leftLvdtS = currentAValue.frontLeftA3 ? json.ISI_003 - currentAValue.frontLeftA3 : 0; // json.ISI_013;   
     }
     if(json.ISI_004 !== undefined) {
       this.setFrontSensorData.rightApA = json.ISI_004;
-      this.setFrontSensorData.rightApS = json.ISI_004 - currentAValue.frontRightA1; // json.ISI_014; 
+      this.setFrontSensorData.rightApS = currentAValue.frontRightA1 ? json.ISI_004 - currentAValue.frontRightA1 : 0; // json.ISI_014; 
     }
     if(json.ISI_005 !== undefined) {
       this.setFrontSensorData.rightBpA = json.ISI_005;
-      this.setFrontSensorData.rightBpS = json.ISI_005 - currentAValue.frontRightA2; // json.ISI_015; 
+      this.setFrontSensorData.rightBpS = currentAValue.frontRightA2 ? json.ISI_005 - currentAValue.frontRightA2 : 0; // json.ISI_015; 
     }
     if(json.ISI_006 !== undefined) {
       this.setFrontSensorData.rightLvdtA = json.ISI_006;
-      this.setFrontSensorData.rightLvdtS = json.ISI_006 - currentAValue.frontRightA3; // json.ISI_016; 
+      this.setFrontSensorData.rightLvdtS = currentAValue.frontRightA3 ? json.ISI_006 - currentAValue.frontRightA3 : 0; // json.ISI_016; 
     }
     if(json.ISI_007 !== undefined) {
       this.setFrontSensorData.gyroA = json.ISI_007;
-      this.setFrontSensorData.gyroS = json.ISI_007 - currentAValue.frontGyroA; // json.ISI_017; 
+      this.setFrontSensorData.gyroS = currentAValue.frontGyroA ? json.ISI_007 - currentAValue.frontGyroA : 0; // json.ISI_017; 
       
 
     }
@@ -529,64 +528,36 @@ class App extends Component {
     // ITC_SETUP Rear Sensor Front Axle   ======================================
     if(json.ISI_021 !== undefined) {
       this.setRearSensorData.leftApA = json.ISI_021;
-      this.setRearSensorData.leftApS = json.ISI_021 - currentAValue.rearLeftA1; // json.ISI_031;  
+      this.setRearSensorData.leftApS = currentAValue.rearLeftA1 ? json.ISI_021 - currentAValue.rearLeftA1 : 0; // json.ISI_031;  
     }
     if(json.ISI_022 !== undefined) {
       this.setRearSensorData.leftBpA = json.ISI_022;
-      this.setRearSensorData.leftBpS = json.ISI_022 - currentAValue.rearLeftA2; // json.ISI_032; 
+      this.setRearSensorData.leftBpS = currentAValue.rearLeftA2 ? json.ISI_022 - currentAValue.rearLeftA2 : 0; // json.ISI_032; 
     }
     if(json.ISI_023 !== undefined) {
       this.setRearSensorData.leftLvdtA = json.ISI_023;
-      this.setRearSensorData.leftLvdtS = json.ISI_023 - currentAValue.rearLeftA3; // json.ISI_033; 
+      this.setRearSensorData.leftLvdtS = currentAValue.rearLeftA3 ? json.ISI_023 - currentAValue.rearLeftA3 : 0; // json.ISI_033; 
     }
     if(json.ISI_024 !== undefined) {
       this.setRearSensorData.rightApA = json.ISI_024;
-      this.setRearSensorData.rightApS = json.ISI_024 - currentAValue.rearRightA1; // json.ISI_034; 
+      this.setRearSensorData.rightApS = currentAValue.rearRightA1 ? json.ISI_024 - currentAValue.rearRightA1 : 0; // json.ISI_034; 
     }
     if(json.ISI_025 !== undefined) {
       this.setRearSensorData.rightBpA = json.ISI_025;
-      this.setRearSensorData.rightBpS = json.ISI_025 - currentAValue.rearRightA2; // json.ISI_035; 
+      this.setRearSensorData.rightBpS = currentAValue.rearRightA2 ? json.ISI_025 - currentAValue.rearRightA2 : 0; // json.ISI_035; 
     }
     if(json.ISI_026 !== undefined) {
       this.setRearSensorData.rightLvdtA = json.ISI_026;
-      this.setRearSensorData.rightLvdtS = json.ISI_026 - currentAValue.rearRightA3; // json.ISI_036; 
+      this.setRearSensorData.rightLvdtS = currentAValue.rearRightA3 ? json.ISI_026 - currentAValue.rearRightA3 : 0; // json.ISI_036; 
     }
     if(json.ISI_027 !== undefined) {
       this.setRearSensorData.gyroA = json.ISI_027;
-      this.setRearSensorData.gyroS = json.ISI_027 - currentAValue.rearGyroA; // json.ISI_037; 
+      this.setRearSensorData.gyroS = currentAValue.rearGyroA ? json.ISI_027 - currentAValue.rearGyroA : 0; // json.ISI_037; 
     }
     if(json.ISI_021 !== undefined || json.ISI_022 !== undefined || json.ISI_023 !== undefined || json.ISI_024 !== undefined || json.ISI_025 !== undefined || json.ISI_026 !== undefined || json.ISI_027 !== undefined) {
       dispatch( setRearSensorData(this.setRearSensorData) )
     }
     // =========================================================================
-
-    /*
-    if (ITCSETUP.FrontLeft) {
-      this.ITCSETUP_FrontLeftData.laserX = ITCSETUP.FrontLeft.LaserX;
-      this.ITCSETUP_FrontLeftData.laserY = ITCSETUP.FrontLeft.LaserY;
-      dispatch( setItcSetupFrontLeftData(this.ITCSETUP_FrontLeftData) );
-    }
-
-    if (ITCSETUP.FrontRight) {
-      this.ITCSETUP_FrontRightData.laserX = ITCSETUP.FrontRight.LaserX;
-      this.ITCSETUP_FrontRightData.laserY = ITCSETUP.FrontRight.LaserY;
-      this.ITCSETUP_FrontRightData.gyroZ = ITCSETUP.FrontRight.GyroZ;
-      dispatch( setItcSetupFrontRightData(this.ITCSETUP_FrontRightData) );
-    }
- 
-    if (ITCSETUP.RearLeft) {
-      this.ITCSETUP_RearLeftData.laserX = ITCSETUP.RearLeft.LaserX;
-      this.ITCSETUP_RearLeftData.laserY = ITCSETUP.RearLeft.LaserY;
-      dispatch( setItcSetupRearLeftData(this.ITCSETUP_RearLeftData) );
-    }
-
-    if (ITCSETUP.RearRight) {
-      this.ITCSETUP_RearRightData.laserX = ITCSETUP.RearRight.LaserX;
-      this.ITCSETUP_RearRightData.laserY = ITCSETUP.RearRight.LaserY;
-      this.ITCSETUP_RearRightData.gyroZ = ITCSETUP.RearRight.GyroZ;
-      dispatch( setItcSetupRearRightData(this.ITCSETUP_RearRightData) );
-    }
-    */
   }
   render() {
     return (
