@@ -1085,7 +1085,7 @@ class ViewM2Setup extends Component {
                           onTextColor="#fff"  
                           offTextColor="#fff" 
                           padding="7px 0px" 
-                          value="off"
+                          value={hydroBk}
                           width='50%'
                           buttons={[
                             { idx: 1, title: 'START', value: 'on' }, 
@@ -1129,7 +1129,7 @@ class ViewM2Setup extends Component {
                           onTextColor="#fff"  
                           offTextColor="#fff" 
                           padding="7px 0px" 
-                          value="off"
+                          value={regenBk}
                           width='50%'
                           buttons={[
                             { idx: 1, title: 'START', value: 'on' }, 
@@ -1584,7 +1584,7 @@ class ViewM2Setup extends Component {
 }
 
 function mapStateToProps(state){
-    // console.log('state', state);
+    console.log('state', state.setM2SetupButtons.power, state.setM2SetupButtons.light);
     return {
       
       // testSetup: state.setM2SetupData.testSetup,
@@ -1633,7 +1633,6 @@ function mapStateToProps(state){
       // -----------------------------------
 
       // Vehicle Info ------------------------
-      
       VehicleSpeed: state.setM2SetupData.testSetup.VehicleSpeed,
       VehiclePosition: state.setM2SetupData.testSetup.VehiclePosition,
       BatterySoc: state.setM2SetupData.testSetup.BatterySoc,

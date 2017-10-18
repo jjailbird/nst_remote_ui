@@ -15,14 +15,18 @@ export default class ControlSwitchButtonOnOff extends Component {
     if(this.props.onChange) {
       bSet = this.props.onChange(value);
     }
+    /*
     if(bSet != false) {
       this.setState({
         value: value
       });
     }
+    */
   }
   render() {
-    const { value } = this.state;
+    // const { value } = this.state;
+    const { value } = this.props;
+  
     const { id, title, buttons, onBgColor, offBgColor, onTextColor, offTextColor, padding, width } = this.props;
     const linkId = id ? id : "";
     let activeBgColor = 0;

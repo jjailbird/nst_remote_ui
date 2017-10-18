@@ -7,7 +7,7 @@ import {
 import { 
   setDriveData,
   setEmergencyStop, setRunSwitch, setDriveLever,
-  setTestSetupData,
+  setTestSetupData, setPower ,setLight,
   /*
   setInvCon1, setInvCon2, setTbms, setDcDc, setApc, setInvOut1, setInvOut2, setSbms, setSinv, setCamera,
   setPower ,setLight, setDriveMode, setRunDirection, setHydroBk, setRegenBk,
@@ -167,9 +167,11 @@ class App extends Component {
     
     if(json.TRI_012 !== undefined) {
       this.setDriveData.power = json.TRI_012;
+      dispatch( setPower(json.TRI_012 == 1 ? 'on' : 'off') );
     }
     if(json.TRI_013 !== undefined) {
       this.setDriveData.light = json.TRI_013;
+      dispatch( setLight(json.TRI_013 == 1 ? 'on' : 'off') );
     }
     if(json.TRI_014 !== undefined) {
       this.setDriveData.itc = json.TRI_014;
