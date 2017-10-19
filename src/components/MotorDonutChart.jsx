@@ -38,15 +38,15 @@ export default class MotorDonutChart extends Component {
     switch(name) {
       case 'A-press':
         lineValueShift = 0;
-        valueMax = 500;
+        valueMax = 150;
         break;
       case 'B-press':
         lineValueShift = 0;
-        valueMax = 500;
+        valueMax = 150;
         break;
       case 'C-press':
         lineValueShift = 0;
-        valueMax = 500;
+        valueMax = 150;
         break;
     }
     
