@@ -271,7 +271,13 @@ class ViewM2Setup extends Component {
   }
   // s03 -1
   onInvCon1Change(value) {
-    const { power, dispatch } = this.props;
+    const { dispatch } = this.props;
+    const command = getSocketCommand('TSO_021', value == 'on' ? 1:0);
+
+    this.sendCommandToDevice(command);
+    dispatch( setInvCon1(value) );
+
+    /*
     if(power === 'off' && value === 'on') {
       alert('You must turn on the POWER');
       return false;
@@ -282,25 +288,37 @@ class ViewM2Setup extends Component {
 
       dispatch( setInvCon1(value) );
     }
+    */
   }
   // s03 -2
   onInvCon2Change(value) {
     //alert('s03-2:' + value);
-    const { invCon1, dispatch } = this.props;
+    const { dispatch } = this.props;
+    const command = getSocketCommand('TSO_022', value == 'on' ? 1:0);
+    
+    this.sendCommandToDevice(command);
+    dispatch( setInvCon2(value) );
+    /*
     if(invCon1 === 'off' && value === 'on') {
       alert('You must turn on the INV CON1');
       return false;
     } else {
       const command = getSocketCommand('TSO_022', value == 'on' ? 1:0);
-      this.sendCommandToDevice(command);
 
+      this.sendCommandToDevice(command);
       dispatch( setInvCon2(value) );
     }
+    */
   }
   // s04
   onTbmsChange(value) {
     //alert('s04:' + value);
-    const { invCon2, dispatch } = this.props;
+    const { dispatch } = this.props;
+    const command = getSocketCommand('TSO_023', value == 'on' ? 1:0);
+
+    this.sendCommandToDevice(command);
+    dispatch( setTbms(value) );
+    /*
     if(invCon2 === 'off' && value === 'on') {
       alert('You must turn on the INV CON2');
       return false;
@@ -311,11 +329,17 @@ class ViewM2Setup extends Component {
 
       dispatch( setTbms(value) );
     }
+    */
   }
   // s05
   onDcDcChange(value) {
     //alert('s05:' + value);
     const { tBms, dispatch } = this.props;
+    const command = getSocketCommand('TSO_024', value == 'on' ? 1:0);
+
+    this.sendCommandToDevice(command);
+    dispatch( setDcDc(value) );
+    /*
     if(tBms === 'off' && value === 'on') {
       alert('You must turn on the T-BMS');
       return false;
@@ -326,11 +350,17 @@ class ViewM2Setup extends Component {
 
       dispatch( setDcDc(value) );
     }
+    */
   }
   // s06
   onApcChange(value) {
     //alert('s06:' + value);
-    const { dcDc, dispatch } = this.props;
+    const { dispatch } = this.props;
+    const command = getSocketCommand('TSO_025', value == 'on' ? 1:0);
+
+    this.sendCommandToDevice(command);
+    dispatch( setApc(value) );    
+    /*
     if(dcDc === 'off' && value === 'on') {
       alert('You must turn on the DC/DC');
       return false;
@@ -341,11 +371,17 @@ class ViewM2Setup extends Component {
 
       dispatch( setApc(value) );
     }
+    */
   }
   // s07-1
   onInvOut1Change(value) {
     //alert('s07-1:' + value);
-    const { apc, dispatch } = this.props;
+    const { dispatch } = this.props;
+    const command = getSocketCommand('TSO_026', value == 'on' ? 1:0);
+
+    this.sendCommandToDevice(command);
+    dispatch( setInvOut1(value) );
+    /*
     if(apc === 'off' && value === 'on') {
       alert('You must turn on the APC');
       return false;
@@ -355,11 +391,17 @@ class ViewM2Setup extends Component {
 
       dispatch( setInvOut1(value) );
     }
+    */
   }
   // s07-2
   onInvOut2Change(value) {
     //alert('s07-2:' + value);
     const { invOut1, dispatch } = this.props;
+    const command = getSocketCommand('TSO_027', value == 'on' ? 1:0);
+
+    this.sendCommandToDevice(command);
+    dispatch( setInvOut2(value) );    
+    /*
     if(invOut1 === 'off' && value === 'on') {
       alert('You must turn on the INV OUT1');
       return false;
@@ -369,6 +411,7 @@ class ViewM2Setup extends Component {
 
       dispatch( setInvOut2(value) );
     }
+    */
   }
   // s08
   onSbmsChange(value) {
@@ -622,8 +665,8 @@ class ViewM2Setup extends Component {
                     </div>
                     <div className="pull-right tepvBoxInnerBtns">
                       <ControlSwitchButtonOnOff
-                        // title="signal"
-                        title="INV CON1"
+                        // title="INV CON1"
+                        title="TBMS 1"
                         onBgColor="#919138" 
                         offBgColor="#848695" 
                         onTextColor="#000"  
@@ -638,7 +681,8 @@ class ViewM2Setup extends Component {
                         onChange={this.onInvCon1Change}
                       />
                       <ControlSwitchButtonOnOff
-                        title="INV CON2"
+                        //title="INV CON2"
+                        title="TBMS 2"
                         onBgColor="#919138" 
                         offBgColor="#848695" 
                         onTextColor="#000"  
@@ -653,7 +697,8 @@ class ViewM2Setup extends Component {
                         onChange={this.onInvCon2Change}
                       />
                       <ControlSwitchButtonOnOff
-                        title="T-BMS"
+                        // title="T-BMS"
+                        title="DC/DC 1"
                         onBgColor="#919138" 
                         offBgColor="#848695" 
                         onTextColor="#000"  
@@ -668,7 +713,8 @@ class ViewM2Setup extends Component {
                         onChange={this.onTbmsChange}
                       />
                       <ControlSwitchButtonOnOff
-                        title="DC/DC"
+                        // title="DC/DC"
+                        title="DC/DC 2"
                         onBgColor="#919138" 
                         offBgColor="#848695" 
                         onTextColor="#000"  
@@ -683,7 +729,8 @@ class ViewM2Setup extends Component {
                         onChange={this.onDcDcChange}
                       />
                       <ControlSwitchButtonOnOff
-                        title="APC"
+                        // title="APC"
+                        title="INV OUT 1"
                         onBgColor="#919138" 
                         offBgColor="#848695" 
                         onTextColor="#000"  
@@ -698,7 +745,8 @@ class ViewM2Setup extends Component {
                         onChange={this.onApcChange}
                       />
                       <ControlSwitchButtonOnOff
-                        title="INV OUT1"
+                        // title="INV OUT1"
+                        title="INV OUT 2"
                         onBgColor="#919138" 
                         offBgColor="#848695" 
                         onTextColor="#000"  
@@ -713,7 +761,8 @@ class ViewM2Setup extends Component {
                         onChange={this.onInvOut1Change}
                       />
                       <ControlSwitchButtonOnOff
-                        title="INV OUT2"
+                        // title="INV OUT2"
+                        title="INV PVVM 1"
                         onBgColor="#919138" 
                         offBgColor="#848695" 
                         onTextColor="#000"  
@@ -728,7 +777,8 @@ class ViewM2Setup extends Component {
                         onChange={this.onInvOut2Change}
                       />
                       <ControlSwitchButtonOnOff
-                        title="S-BMS"
+                        // title="S-BMS"
+                        title="INV PVVM 2"
                         onBgColor="#919138" 
                         offBgColor="#848695" 
                         onTextColor="#000"  
@@ -743,7 +793,8 @@ class ViewM2Setup extends Component {
                         onChange={this.onSbmsChange}
                       />
                       <ControlSwitchButtonOnOff
-                        title="S-INV"
+                        // title="S-INV"
+                        title="W MODE"
                         onBgColor="#919138" 
                         offBgColor="#848695" 
                         onTextColor="#000"  
@@ -752,8 +803,8 @@ class ViewM2Setup extends Component {
                         value={sInv}
                         width='50%'
                         buttons={[
-                          { idx: 1, title: 'on', value: 'on' }, 
-                          { idx: 2, title: 'off', value: 'off' }
+                          { idx: 1, title: 'TARE', value: 'on' }, 
+                          { idx: 2, title: 'FULL', value: 'off' }
                         ]}
                         onChange={this.onSinvChange}
                       />
