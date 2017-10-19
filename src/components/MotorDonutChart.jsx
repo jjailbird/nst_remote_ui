@@ -36,15 +36,15 @@ export default class MotorDonutChart extends Component {
     let linePx = 0; 
     
     switch(name) {
-      case 'A-cur':
+      case 'A-press':
         lineValueShift = 0;
         valueMax = 500;
         break;
-      case 'B-cur':
+      case 'B-press':
         lineValueShift = 0;
         valueMax = 500;
         break;
-      case 'C-cur':
+      case 'C-press':
         lineValueShift = 0;
         valueMax = 500;
         break;

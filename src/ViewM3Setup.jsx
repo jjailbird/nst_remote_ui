@@ -333,7 +333,7 @@ class ViewM3Setup extends Component {
                         <LaserDonutCircleChart 
                           data={frontLeftMotorData.data.rpm} 
                           max="5000"
-                          unit="N" 
+                          unit="kgf" 
                           name="STEER FORCE" 
                           dataName = 'force'
                           strokeColor="rgba(201,53,53,0.7)" 
@@ -364,7 +364,7 @@ class ViewM3Setup extends Component {
                         <LaserDonutCircleChart 
                           data={frontRightMotorData.data.rpm} 
                           max="5000"
-                          unit="N" 
+                          unit="kgf" 
                           name="STEER FORCE" 
                           dataName = 'force'
                           strokeColor="rgba(201,53,53,0.7)" 
@@ -413,7 +413,7 @@ class ViewM3Setup extends Component {
                         <LaserDonutCircleChart 
                           data={rearLeftMotorData.data.rpm} 
                           max="5000"
-                          unit="N" 
+                          unit="kgf" 
                           name="STEER FORCE" 
                           dataName = 'force'
                           strokeColor="rgba(201,53,53,0.7)" 
@@ -444,7 +444,7 @@ class ViewM3Setup extends Component {
                         <LaserDonutCircleChart 
                           data={rearRightMotorData.data.rpm} 
                           max="5000"
-                          unit="N" 
+                          unit="kgf" 
                           name="STEER FORCE" 
                           dataName = 'force'
                           strokeColor="rgba(201,53,53,0.7)" 
@@ -510,8 +510,8 @@ class ViewM3Setup extends Component {
                         <div className="pie-graph pull-left">
                           <MotorDonutChart 
                             data={frontLeftMotorData.data.a} 
-                            unit="Kpa" 
-                            name="A-cur" 
+                            unit="Bar" 
+                            name="A-press" 
                             strokeColor="#fff" 
                             strokeColorLine="rgba(255,255,255,0.3)" 
                             donutWidth="48px" 
@@ -523,8 +523,8 @@ class ViewM3Setup extends Component {
                         <div className="pie-graph pull-left">
                           <MotorDonutChart 
                             data={frontLeftMotorData.data.b} 
-                            unit="Kpa" 
-                            name="B-cur" 
+                            unit="Bar" 
+                            name="B-press" 
                             strokeColor="#fff" 
                             strokeColorLine="rgba(255,255,255,0.3)" 
                             donutWidth="48px" 
@@ -539,10 +539,10 @@ class ViewM3Setup extends Component {
                       </div>
                       <div className="setupMotorGraphList">
                         <div className="bar-graph">
-                          <MotorGaugeBar data={frontLeftMotorData.data.rpm} name="force" unit="N" max="5000" />
+                          <MotorGaugeBar data={frontLeftMotorData.data.rpm} name="force" unit="kgf" max="5000" />
                         </div>
                         <div className="bar-graph">
-                          <MotorGaugeBar data={frontLeftMotorData.data.torque} name="stroke" unit="Mm" max="40" shift="20" />
+                          <MotorGaugeBar data={frontLeftMotorData.data.torque} name="stroke" unit="mm" max="40" shift="20" />
                         </div>
                       </div>
                     </div>
@@ -561,8 +561,8 @@ class ViewM3Setup extends Component {
                         <div className="pie-graph pull-left">
                           <MotorDonutChart 
                             data={frontRightMotorData.data.a} 
-                            unit="Kpa" 
-                            name="A-cur" 
+                            unit="Bar" 
+                            name="A-press" 
                             strokeColor="#fff" 
                             strokeColorLine="rgba(255,255,255,0.3)" 
                             donutWidth="48px" 
@@ -574,8 +574,8 @@ class ViewM3Setup extends Component {
                         <div className="pie-graph pull-left">
                           <MotorDonutChart 
                             data={frontRightMotorData.data.b} 
-                            unit="Kpa" 
-                            name="B-cur" 
+                            unit="Bar" 
+                            name="B-press" 
                             strokeColor="#fff" 
                             strokeColorLine="rgba(255,255,255,0.3)" 
                             donutWidth="48px" 
@@ -590,10 +590,10 @@ class ViewM3Setup extends Component {
                       </div>
                       <div className="setupMotorGraphList">
                         <div className="bar-graph">
-                          <MotorGaugeBar data={frontRightMotorData.data.rpm} name="force" unit="N" max="5000" />
+                          <MotorGaugeBar data={frontRightMotorData.data.rpm} name="force" unit="kgf" max="5000" />
                         </div>
                         <div className="bar-graph">
-                          <MotorGaugeBar data={frontRightMotorData.data.torque} name="stroke" unit="Mm" max="40" shift="20" />
+                          <MotorGaugeBar data={frontRightMotorData.data.torque} name="stroke" unit="mm" max="40" shift="20" />
                         </div>
                       </div>
                     </div>
@@ -614,8 +614,8 @@ class ViewM3Setup extends Component {
                         <div className="pie-graph pull-left">
                           <MotorDonutChart 
                             data={rearLeftMotorData.data.a} 
-                            unit="Kpa" 
-                            name="A-cur" 
+                            unit="Bar" 
+                            name="A-press" 
                             strokeColor="#fff" 
                             strokeColorLine="rgba(255,255,255,0.3)" 
                             donutWidth="48px" 
@@ -627,8 +627,8 @@ class ViewM3Setup extends Component {
                         <div className="pie-graph pull-left">
                           <MotorDonutChart 
                             data={rearLeftMotorData.data.b} 
-                            unit="Kpa" 
-                            name="B-cur" 
+                            unit="Bar" 
+                            name="B-press" 
                             strokeColor="#fff" 
                             strokeColorLine="rgba(255,255,255,0.3)" 
                             donutWidth="48px" 
@@ -643,10 +643,10 @@ class ViewM3Setup extends Component {
                       </div>
                       <div className="setupMotorGraphList">
                         <div className="bar-graph">
-                          <MotorGaugeBar data={rearLeftMotorData.data.rpm} name="force" unit="N" max="5000"/>
+                          <MotorGaugeBar data={rearLeftMotorData.data.rpm} name="force" unit="kgf" max="5000"/>
                         </div>
                         <div className="bar-graph">
-                          <MotorGaugeBar data={rearLeftMotorData.data.torque} name="stroke" unit="Mm" max="40" shift="20"/>
+                          <MotorGaugeBar data={rearLeftMotorData.data.torque} name="stroke" unit="mm" max="40" shift="20"/>
                         </div>
                       </div>
                     </div>
@@ -665,8 +665,8 @@ class ViewM3Setup extends Component {
                         <div className="pie-graph pull-left">
                           <MotorDonutChart 
                             data={rearRightMotorData.data.a} 
-                            unit="Kpa" 
-                            name="A-cur" 
+                            unit="Bar" 
+                            name="A-press" 
                             strokeColor="#fff" 
                             strokeColorLine="rgba(255,255,255,0.3)" 
                             donutWidth="48px" 
@@ -678,8 +678,8 @@ class ViewM3Setup extends Component {
                         <div className="pie-graph pull-left">
                           <MotorDonutChart 
                             data={rearRightMotorData.data.b} 
-                            unit="Kpa" 
-                            name="B-cur" 
+                            unit="Bar" 
+                            name="B-press" 
                             strokeColor="#fff" 
                             strokeColorLine="rgba(255,255,255,0.3)" 
                             donutWidth="48px" 
@@ -694,10 +694,10 @@ class ViewM3Setup extends Component {
                       </div>
                       <div className="setupMotorGraphList">
                         <div className="bar-graph">
-                          <MotorGaugeBar data={rearRightMotorData.data.rpm} name="force" unit="N" max="5000" />
+                          <MotorGaugeBar data={rearRightMotorData.data.rpm} name="force" unit="kgf" max="5000" />
                         </div>
                         <div className="bar-graph">
-                          <MotorGaugeBar data={rearRightMotorData.data.torque} name="stroke" unit="Mm" max="40" shift="20" />
+                          <MotorGaugeBar data={rearRightMotorData.data.torque} name="stroke" unit="mm" max="40" shift="20" />
                         </div>
                       </div>
                     </div>

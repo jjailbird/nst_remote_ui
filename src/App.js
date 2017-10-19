@@ -566,7 +566,6 @@ class App extends Component {
     // =========================================================================
  
     // HSC_SETUP Front Sensor Front Axle  ======================================
-    
     if(json.HSI_001 != undefined) {
       this.setFrontSensorData.leftApA = json.HSI_001;
       this.setFrontSensorData.leftApS = currentAValue.frontLeftA1 ? json.HSI_001 - currentAValue.frontLeftA1 : 0; // json.HSI_011;
