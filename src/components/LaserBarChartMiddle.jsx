@@ -7,17 +7,6 @@ export default class LaserBarChartMiddle extends Component {
   render() {
     const { data, max, min, name, dataName, barColor } = this.props;
     const barHeightPxFull = 87;
-
-    let barColorReplace = '';
-    if(barColor == 'red'){
-      barColorReplace = 'rgba(201,53,53,0.7)';
-    }else if(barColor == 'blue'){
-      barColorReplace = 'rgba(44,106,170,0.7)';
-    }else if(barColor == 'green'){
-      barColorReplace = 'rgba(137,182,89,1)';
-    }else{
-      barColorReplace = barColor;
-    }
     
     let value = data !== undefined ? parseFloat(data) : 0;
     let valueMax = max ? parseFloat(max) : 0; 
@@ -28,6 +17,18 @@ export default class LaserBarChartMiddle extends Component {
 
     let barHeightPx = Math.round((barHeightPxFull * valuePercent) / 100);  0;
     let marginBottomPx = value < 0 ? (barHeightPxFull / 2) - barHeightPx : (barHeightPxFull / 2);
+
+    let barColorReplace = '';
+    if(barColor == 'red'){
+      barColorReplace = value > 0 ? 'rgba(201,53,53,0.7)' : 'rgba(201,53,53,0.3)';
+    }else if(barColor == 'blue'){
+      barColorReplace = value > 0 ? 'rgba(44,106,170,0.7)' : 'rgba(44,106,170,0.3)';
+    }else if(barColor == 'green'){
+      barColorReplace = value > 0 ? 'rgba(137,182,89,1)' : 'rgba(137,182,89,0.5)';
+    }else{
+      barColorReplace = barColor;
+    }
+
     return (
       <div className="axleGraphBoxBarGraph">
         <div className="BarGraphTitle">{name}</div>
