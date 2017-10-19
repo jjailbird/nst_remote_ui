@@ -59,7 +59,7 @@ class ViewM3Run extends Component {
     dispatch(setCrtl1Power(value));
   }
   onCrtl1ZeroChange(value){
-    const command = getSocketCommand('HRO_003', value == 'Zero' ? 1:0);
+    const command = getSocketCommand('HRO_003', value == 'On' ? 1:0);
     this.sendCommandToDevice(command);
 
     const { dispatch } = this.props;
@@ -334,8 +334,8 @@ class ViewM3Run extends Component {
                     textColor="#fff" 
                     padding="3px 20px" 
                     buttons={[
-                      { idx: 1, title: 'Auto', value: 'Auto' }, 
-                      { idx: 2, title: 'Zero', value: 'Zero' }
+                      { idx: 1, title: 'On', value: 'On' }, 
+                      { idx: 2, title: 'Off', value: 'Off' }
                     ]}
                     buttonWidth="72px"
                     value={crtl1Zero}
