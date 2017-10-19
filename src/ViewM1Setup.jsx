@@ -22,9 +22,8 @@ class ViewM1Setup extends Component {
   constructor(props){
     super(props);
 
-    // this.hostname = '192.168.1.2'; 
-    this.hostname = window.location.hostname;
-
+    this.hostname = '192.168.1.2'; 
+    // this.hostname = window.location.hostname;
     this.onTuningFrontPgainChange = this.onTuningFrontPgainChange.bind(this);
     this.onTuningFrontIgainChange = this.onTuningFrontIgainChange.bind(this);
     this.onTuningRearPgainChange = this.onTuningRearPgainChange.bind(this);
