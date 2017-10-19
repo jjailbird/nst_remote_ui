@@ -301,7 +301,7 @@ class App extends Component {
     // const HSCTEST = json.HSCTEST ? json.HSCTEST : null;
     // const HSCSETUP = json.HSCSETUP ? json.HSCSETUP : null; 
     const { dispatch, currentAValue } = this.props;
-
+    // console.log('currentAValue', currentAValue);
 
     // HSC_RUN Front LEFT =====================================================
     if(json.HRI_012 != undefined) {
@@ -566,35 +566,38 @@ class App extends Component {
     // =========================================================================
  
     // HSC_SETUP Front Sensor Front Axle  ======================================
+    
     if(json.HSI_001 != undefined) {
       this.setFrontSensorData.leftApA = json.HSI_001;
-      this.setFrontSensorData.leftApS = json.HSI_001 - currentAValue.frontLeftA1;; // json.HSI_011;
+      this.setFrontSensorData.leftApS = currentAValue.frontLeftA1 ? json.HSI_001 - currentAValue.frontLeftA1 : 0; // json.HSI_011;
     }
     if(json.HSI_002 != undefined) {
       this.setFrontSensorData.leftBpA = json.HSI_002;
-      this.setFrontSensorData.leftBpS = json.HSI_002 - currentAValue.frontLeftA2;; // json.HSI_012;
+      this.setFrontSensorData.leftBpS = currentAValue.frontLeftA2 ? json.HSI_002 - currentAValue.frontLeftA2 : 0; // json.HSI_012;
     }
     if(json.HSI_003 != undefined) {
       this.setFrontSensorData.leftLvdtA = json.HSI_003;
-      this.setFrontSensorData.leftLvdtS = json.HSI_003 - currentAValue.frontLeftA3;; // json.HSI_013;
+      this.setFrontSensorData.leftLvdtS = currentAValue.frontLeftA3 ? json.HSI_003 - currentAValue.frontLeftA3 : 0; // json.HSI_013;
     }
     if(json.HSI_004 != undefined) {
       this.setFrontSensorData.rightApA = json.HSI_004; 
-      this.setFrontSensorData.rightApS = json.HSI_004 - currentAValue.frontRightA1;; // json.HSI_014;
+      this.setFrontSensorData.rightApS = currentAValue.frontRightA1 ? json.HSI_004 - currentAValue.frontRightA1 : 0; // json.HSI_014;
     }
     if(json.HSI_005 != undefined) {
       this.setFrontSensorData.rightBpA = json.HSI_005;
-      this.setFrontSensorData.rightBpS = json.HSI_005 - currentAValue.frontRightA2;; // json.HSI_015;
+      this.setFrontSensorData.rightBpS = currentAValue.frontRightA2 ? json.HSI_005 - currentAValue.frontRightA2 : 0; // json.HSI_015;
     }
     if(json.HSI_006 != undefined) {
       this.setFrontSensorData.rightLvdtA = json.HSI_006;
-      this.setFrontSensorData.rightLvdtS = json.HSI_006 - currentAValue.frontRightA3;; // json.HSI_016;
+      this.setFrontSensorData.rightLvdtS = currentAValue.frontRightA3 ? json.HSI_006 - currentAValue.frontRightA3 : 0; // json.HSI_016;
     }
     if(json.HSI_007 != undefined) {
       this.setFrontSensorData.gyroA = json.HSI_007;
-      this.setFrontSensorData.gyroS = json.HSI_007 - currentAValue.frontGyroA; // // json.HSI_017;
+      this.setFrontSensorData.gyroS = currentAValue.frontGyroA ? json.HSI_007 - currentAValue.frontGyroA : 0; // // json.HSI_017;
     }
+    //console.log('this.setFrontSensorData', this.setFrontSensorData);
     if(json.HSI_001 != undefined || json.HSI_002 != undefined || json.HSI_003 != undefined || json.HSI_004 != undefined || json.HSI_005 != undefined || json.HSI_006 != undefined || json.HSI_007 != undefined) {
+      // console.log('this.setFrontSensorData', this.setFrontSensorData);
       dispatch( setFrontSensorData(this.setFrontSensorData) )
     }
     // =========================================================================
@@ -602,31 +605,31 @@ class App extends Component {
     // HSC_SETUP Rear Sensor Front Axle   ======================================
     if(json.HSI_021 != undefined) {
       this.setRearSensorData.leftApA = json.HSI_021;
-      this.setRearSensorData.leftApS = json.HSI_021 - currentAValue.rearLeftA1; // json.HSI_031;
+      this.setRearSensorData.leftApS = currentAValue.rearLeftA1 ? json.HSI_021 - currentAValue.rearLeftA1 : 0; // json.HSI_031;
     }
     if(json.HSI_022 != undefined) {
       this.setRearSensorData.leftBpA = json.HSI_022; 
-      this.setRearSensorData.leftBpS = json.HSI_022 - currentAValue.rearLeftA2; // json.HSI_032;
+      this.setRearSensorData.leftBpS = currentAValue.rearLeftA2 ? json.HSI_022 - currentAValue.rearLeftA2 : 0; // json.HSI_032;
     }
     if(json.HSI_023 != undefined) {
       this.setRearSensorData.leftLvdtA = json.HSI_023;
-      this.setRearSensorData.leftLvdtS = json.HSI_023 - currentAValue.rearLeftA3; // json.HSI_033; 
+      this.setRearSensorData.leftLvdtS = currentAValue.rearLeftA3 ? json.HSI_023 - currentAValue.rearLeftA3 : 0; // json.HSI_033; 
     }
     if(json.HSI_024 != undefined) {
       this.setRearSensorData.rightApA = json.HSI_024;
-      this.setRearSensorData.rightApS = json.HSI_024 - currentAValue.rearRightA1; // json.HSI_034; 
+      this.setRearSensorData.rightApS = currentAValue.rearRightA1 ? json.HSI_024 - currentAValue.rearRightA1 : 0; // json.HSI_034; 
     }
     if(json.HSI_025 != undefined) {
       this.setRearSensorData.rightBpA = json.HSI_025;
-      this.setRearSensorData.rightBpS = json.HSI_025 - currentAValue.rearRightA2; // json.HSI_035; 
+      this.setRearSensorData.rightBpS = currentAValue.rearRightA2 ? json.HSI_025 - currentAValue.rearRightA2 : 0; // json.HSI_035; 
     }
     if(json.HSI_026 != undefined) {
       this.setRearSensorData.rightLvdtA = json.HSI_026;
-      this.setRearSensorData.rightLvdtS = json.HSI_026 - currentAValue.rearRightA3; // json.HSI_036; 
+      this.setRearSensorData.rightLvdtS = currentAValue.rearRightA3 ? json.HSI_026 - currentAValue.rearRightA3 : 0; // json.HSI_036; 
     }
     if(json.HSI_027 != undefined) {
       this.setRearSensorData.gyroA = json.HSI_027;
-      this.setRearSensorData.gyroS = json.HSI_027 - currentAValue.rearGyroA; // json.HSI_037; 
+      this.setRearSensorData.gyroS = currentAValue.rearGyroA ? json.HSI_027 - currentAValue.rearGyroA : 0; // json.HSI_037; 
     }
     if(json.HSI_021 != undefined || json.HSI_022 != undefined || json.HSI_023 != undefined || json.HSI_024 != undefined || json.HSI_025 != undefined || json.HSI_026 != undefined || json.HSI_027 != undefined) {
       dispatch( setRearSensorData(this.setRearSensorData) )
@@ -764,9 +767,9 @@ class App extends Component {
   }
 }
 function mapStateToProps(state){
-    // console.log('itcsetup',state.setItcSetupFrontRightData);
+    console.log('state.setSetupButtons.currentAValue',state.setSetupButtons.currentAValue);
     return {
       currentAValue: state.setSetupButtons.currentAValue,
     }
 }
-export default connect()(App);
+export default connect(mapStateToProps)(App);

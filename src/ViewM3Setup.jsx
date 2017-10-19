@@ -959,7 +959,7 @@ class ViewM3Setup extends Component {
 }
 
 function mapStateToProps(state){
-  console.log('state.frontLeftMotorData', state.frontLeftMotorData);  
+  // console.log('state.frontLeftMotorData', state.frontLeftMotorData);  
   return {
       frontLeftMotorData: state.frontLeftMotorData,
       frontRightMotorData: state.frontRightMotorData,

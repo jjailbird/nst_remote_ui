@@ -96,7 +96,7 @@ class TrailerBogieDescTab extends Component {
             </ul>
           </div>
         </div>
-        <div className={carMass !== 'FULL' ? 'hide' : ''}>
+        <div className={carMass !== 'DEMO' ? 'hide' : ''}>
           <div className="setupDescBox pull-left">
             <ul className="modeConfig3-list setupDescList">
               <li>
@@ -175,7 +175,7 @@ class TrailerBogieDescTab extends Component {
             value={carMass}
             buttons={[
               { idx: 1, title: 'RUN', value: 'RUN' }, 
-              { idx: 2, title: 'FULL', value: 'FULL' }
+              { idx: 2, title: 'DEMO', value: 'DEMO' }
             ]}
             onChange={this.onCarMassChange}
           />

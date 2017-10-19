@@ -5,18 +5,18 @@ const defaultState = {
   leftApS: 0,
   leftBpA: 0,
   leftBpS: 0,
-  leftLvdtA: -20,
-  leftLvdtS: -20,
+  leftLvdtA: 0,
+  leftLvdtS: 0,
   
   rightApA: 0,
   rightApS: 0,
   rightBpA: 0,
   rightBpS: 0,
-  rightLvdtA: -20,
-  rightLvdtS: -20,
+  rightLvdtA: 0,
+  rightLvdtS: 0,
   
-  gyroA: -15,
-  gyroS: -15
+  gyroA: 0,
+  gyroS: 0
 }
 
 export default function rearSensorData(state = { data: defaultState }, action) {
