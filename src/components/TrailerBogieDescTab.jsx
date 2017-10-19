@@ -6,7 +6,7 @@ class TrailerBogieDescTab extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      type: 'TARE'
+      type: 'RUN'
     };
     this.onButtonChange = this.onButtonChange.bind(this);
     this.onCarMassChange = this.onCarMassChange.bind(this);
@@ -26,7 +26,7 @@ class TrailerBogieDescTab extends Component {
     const { carMass } = this.props;
     return (
       <div className="setupBoxCon setupBoxConDesc">
-        <div className={carMass !== 'TARE' ? 'hide' : ''}>
+        <div className={carMass !== 'RUN' ? 'hide' : ''}>
           <div className="setupDescBox pull-left">
             <ul className="modeConfig3-list setupDescList">
               <li>
@@ -168,13 +168,13 @@ class TrailerBogieDescTab extends Component {
         </div>
         <div className="setupDescBoxBtns pull-right">
           <ControlSwitchButton 
-            title="Car MASS" 
+            title="RUN MODE" 
             activeBgColor="rgba(255,255,255,0.3)" 
             textColor="#fff" 
             padding="3px 20px" 
             value={carMass}
             buttons={[
-              { idx: 1, title: 'TARE', value: 'TARE' }, 
+              { idx: 1, title: 'RUN', value: 'RUN' }, 
               { idx: 2, title: 'FULL', value: 'FULL' }
             ]}
             onChange={this.onCarMassChange}

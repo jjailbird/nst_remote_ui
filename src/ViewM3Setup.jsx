@@ -10,6 +10,7 @@ import LaserDonutCircleChart from './components/LaserDonutCircleChart';
 // import DonutCircleChart from './components/DonutCircleChart';
 import LaserDonutDigitalChart from './components/LaserDonutDigitalChart';
 import LaserBarChart from './components/LaserBarChart';
+import LaserBarChartMiddle from './components/LaserBarChartMiddle';
 import LaserTabContainer from './components/LaserTabContainer';
 import TrailerBogieDescTab from './components/TrailerBogieDescTab'
 
@@ -19,14 +20,14 @@ import { getSocketCommand } from './utils/functions';
 import {
   setTuningFront1Pgain, setTuningFront1Igain, setTuningRear1Pgain, setTuningRear1Igain,
   setTuningFront2Pgain, setTuningFront2Igain, setTuningRear2Pgain, setTuningRear2Igain,
-  setCarMass,
+  setCarMass, setCurrentAValue,
 } from './actions'
 
 class ViewM3Setup extends Component {
   constructor(props) {
     super(props);
-    this.hostname = '192.168.1.2'; 
-    //this.hostname = window.location.hostname;
+    // this.hostname = '192.168.1.2'; 
+    this.hostname = window.location.hostname;
 
     this.onTuningFront1PgainChange = this.onTuningFront1PgainChange.bind(this);
     this.onTuningFront1IgainChange = this.onTuningFront1IgainChange.bind(this); 
@@ -38,6 +39,55 @@ class ViewM3Setup extends Component {
     this.onTuningRear2IgainChange = this.onTuningRear2IgainChange.bind(this);
 
     this.onCarMassChange = this.onCarMassChange.bind(this);
+    this.onSensorSetClick = this.onSensorSetClick.bind(this);
+    this.onSensorResetClick = this.onSensorResetClick.bind(this); 
+  }
+  onSensorSetClick() {
+    const { frontSensorData, rearSensorData, dispatch } = this.props;
+    let { currentAValue } = this.props;
+    
+    currentAValue.set = 1; 
+    currentAValue.frontLeftA1 = frontSensorData.data.leftApA ? frontSensorData.data.leftApA : 0;
+    currentAValue.frontLeftA2 = frontSensorData.data.leftBpA ? frontSensorData.data.leftBpA : 0;
+    currentAValue.frontLeftA3 = frontSensorData.data.leftLvdtA ? frontSensorData.data.leftLvdtA : 0; 
+    currentAValue.frontRightA1 = frontSensorData.data.rightApA ? frontSensorData.data.rightApA : 0; 
+    currentAValue.frontRightA2 = frontSensorData.data.rightBpA ? frontSensorData.data.rightBpA : 0; 
+    currentAValue.frontRightA3 = frontSensorData.data.rightLvdtA ? frontSensorData.data.rightLvdtA : 0; 
+    currentAValue.frontGyroA = frontSensorData.data.gyroA ? frontSensorData.data.gyroA : 0;
+    
+    currentAValue.rearLeftA1 = rearSensorData.data.leftApA ? rearSensorData.data.leftApA : 0; 
+    currentAValue.rearLeftA2 = rearSensorData.data.leftBpA ? rearSensorData.data.leftBpA : 0;
+    currentAValue.rearLeftA3 = rearSensorData.data.leftLvdtA ? rearSensorData.data.leftLvdtA : 0; 
+    currentAValue.rearRightA1 = rearSensorData.data.rightApA ? rearSensorData.data.rightApA : 0; 
+    currentAValue.rearRightA2 = rearSensorData.data.rightBpA ? rearSensorData.data.rightBpA : 0; 
+    currentAValue.rearRightA3 = rearSensorData.data.rightLvdtA ? rearSensorData.data.rightLvdtA : 0; 
+    currentAValue.rearGyroA = rearSensorData.data.gyroA ? rearSensorData.data.gyroA :  0;
+    
+    dispatch(setCurrentAValue(currentAValue));
+  }
+  onSensorResetClick() {
+    
+    let { currentAValue } = this.props;
+    const { dispatch } = this.props;
+    
+    currentAValue.set = 0;
+    currentAValue.frontLeftA1 = 0;
+    currentAValue.frontLeftA2 = 0;
+    currentAValue.frontLeftA3 = 0; 
+    currentAValue.frontRightA1 = 0; 
+    currentAValue.frontRightA2 = 0; 
+    currentAValue.frontRightA3 = 0; 
+    currentAValue.frontGyroA = 0;
+    
+    currentAValue.rearLeftA1 = 0; 
+    currentAValue.rearLeftA2 = 0;
+    currentAValue.rearLeftA3 = 0; 
+    currentAValue.rearRightA1 = 0; 
+    currentAValue.rearRightA2 = 0; 
+    currentAValue.rearRightA3 = 0; 
+    currentAValue.rearGyroA = 0;
+    
+    dispatch(setCurrentAValue(currentAValue));
   }
   onTuningFront1PgainChange(value){
     const command = getSocketCommand('HSO_002', value);
@@ -96,7 +146,7 @@ class ViewM3Setup extends Component {
     dispatch(setTuningRear2Igain(value));
   }
   onCarMassChange(value) {
-    const command = getSocketCommand('HSO_001', value == 'TARE' ? 0:1);
+    const command = getSocketCommand('HSO_001', value == 'RUN' ? 0:1);
     this.sendCommandToDevice(command);
     
     const { dispatch } = this.props;
@@ -142,8 +192,9 @@ class ViewM3Setup extends Component {
 
       tuningFront1Pgain, tuningFront1Igain, tuningRear1Pgain, tuningRear1Igain,
       tuningFront2Pgain, tuningFront2Igain, tuningRear2Pgain, tuningRear2Igain,
+      carMass, currentAValue,
     } = this.props;
-    console.log('frontLeftMotorData.data', frontLeftMotorData.data);
+    // console.log('frontLeftMotorData.data', frontLeftMotorData.data);
     return (
         <div className="contBox">
           <div className="headArea">
@@ -697,15 +748,15 @@ class ViewM3Setup extends Component {
                       <div className="axleGraphBox">
                         <div className="axleGraphBoxGroup">
                           <LaserBarChart data={frontSensorData.data.leftApA} name="A" dataName="leftApA" barColor="red" max="500" />
-                          <LaserBarChart data={frontSensorData.data.leftApS} name="S" dataName="leftApS" barColor="red" max="500" />
+                          <LaserBarChartMiddle data={frontSensorData.data.leftApS} name="S" dataName="leftApS" barColor="red" min="-500" max="500" />
                         </div>
                         <div className="axleGraphBoxGroup">
                           <LaserBarChart data={frontSensorData.data.leftBpA} name="A" dataName="leftBpA" barColor="red" max="500" />
-                          <LaserBarChart data={frontSensorData.data.leftBpS} name="S" dataName="leftBpS" barColor="red" max="500" />
+                          <LaserBarChartMiddle data={frontSensorData.data.leftBpS} name="S" dataName="leftBpS" barColor="red" min="-500" max="500" />
                         </div>
                         <div className="axleGraphBoxGroup">
-                          <LaserBarChart data={frontSensorData.data.leftLvdtA} name="A" dataName="leftLvdtA" barColor="blue" shift="20" max="40" />
-                          <LaserBarChart data={frontSensorData.data.leftLvdtS} name="S" dataName="leftLvdtS" barColor="blue" shift="20" max="40" />
+                          <LaserBarChartMiddle data={frontSensorData.data.leftLvdtA} name="A" dataName="leftLvdtA" barColor="blue" min="-20" max="20" />
+                          <LaserBarChartMiddle data={frontSensorData.data.leftLvdtS} name="S" dataName="leftLvdtS" barColor="blue" min="-20" max="20" />
                         </div>
                       </div>
                     </div>
@@ -744,15 +795,15 @@ class ViewM3Setup extends Component {
                       <div className="axleGraphBox">
                         <div className="axleGraphBoxGroup">
                           <LaserBarChart data={frontSensorData.data.rightApA} name="A" dataName="rightApA" barColor="red" max="500" />
-                          <LaserBarChart data={frontSensorData.data.rightApS} name="S" dataName="rightApS" barColor="red" max="500" />
+                          <LaserBarChartMiddle data={frontSensorData.data.rightApS} name="S" dataName="rightApS" barColor="red" min="-500" max="500" />
                         </div>
                         <div className="axleGraphBoxGroup">
                           <LaserBarChart data={frontSensorData.data.rightBpA} name="A" dataName="rightBpA" barColor="red" max="500" />
-                          <LaserBarChart data={frontSensorData.data.rightBpS} name="S" dataName="rightBpS" barColor="red" max="500"/>
+                          <LaserBarChartMiddle data={frontSensorData.data.rightBpS} name="S" dataName="rightBpS" barColor="red" min="-500" max="500"/>
                         </div>
                         <div className="axleGraphBoxGroup">
-                          <LaserBarChart data={frontSensorData.data.rightLvdtA} name="A" dataName="rightLvdtA" barColor="blue" shift="20" max="40" />
-                          <LaserBarChart data={frontSensorData.data.rightLvdtS} name="S" dataName="rightLvdtS" barColor="blue" shift="20" max="40" />
+                          <LaserBarChartMiddle data={frontSensorData.data.rightLvdtA} name="A" dataName="rightLvdtA" barColor="blue" min="-20" max="20" />
+                          <LaserBarChartMiddle data={frontSensorData.data.rightLvdtS} name="S" dataName="rightLvdtS" barColor="blue" min="-20" max="20" />
                         </div>
                       </div>
                     </div>
@@ -765,8 +816,8 @@ class ViewM3Setup extends Component {
                       <div className="axleTitle">gyro</div>
                       <div className="axleGraphBox">
                         <div className="axleGraphBoxGroup">
-                          <LaserBarChart data={frontSensorData.data.gyroA} name="A" dataName="gA" barColor="green" shift="15" max="30" />
-                          <LaserBarChart data={frontSensorData.data.gyroS} name="S" dataName="gS" barColor="green" shift="15" max="30" />
+                          <LaserBarChartMiddle data={frontSensorData.data.gyroA} name="A" dataName="gA" barColor="green" min="-15" max="15" />
+                          <LaserBarChartMiddle data={frontSensorData.data.gyroS} name="S" dataName="gS" barColor="green" min="-15" max="15" />
                         </div>
                       </div>
                     </div>
@@ -816,15 +867,15 @@ class ViewM3Setup extends Component {
                       <div className="axleGraphBox">
                         <div className="axleGraphBoxGroup">
                           <LaserBarChart data={rearSensorData.data.leftApA} name="A" dataName="leftApA" barColor="red" max="500" />
-                          <LaserBarChart data={rearSensorData.data.leftApS} name="S" dataName="leftApS" barColor="red" max="500" />
+                          <LaserBarChartMiddle data={rearSensorData.data.leftApS} name="S" dataName="leftApS" barColor="red" min="-500" max="500" />
                         </div>
                         <div className="axleGraphBoxGroup">
                           <LaserBarChart data={rearSensorData.data.leftBpA} name="A" dataName="leftBpA" barColor="red" max="500" />
-                          <LaserBarChart data={rearSensorData.data.leftBpS} name="S" dataName="leftBpS" barColor="red" max="500" />
+                          <LaserBarChartMiddle data={rearSensorData.data.leftBpS} name="S" dataName="leftBpS" barColor="red" min="-500" max="500" />
                         </div>
                         <div className="axleGraphBoxGroup">
-                          <LaserBarChart data={rearSensorData.data.leftLvdtA} name="A" dataName="leftLvdtA" barColor="blue" shift="20" max="40" />
-                          <LaserBarChart data={rearSensorData.data.leftLvdtS} name="S" dataName="leftLvdtS" barColor="blue" shift="20" max="40" />
+                          <LaserBarChartMiddle data={rearSensorData.data.leftLvdtA} name="A" dataName="leftLvdtA" barColor="blue" min="-20" max="20" />
+                          <LaserBarChartMiddle data={rearSensorData.data.leftLvdtS} name="S" dataName="leftLvdtS" barColor="blue" min="-20" max="20" />
                         </div>
                       </div>
                     </div>
@@ -863,15 +914,15 @@ class ViewM3Setup extends Component {
                       <div className="axleGraphBox">
                         <div className="axleGraphBoxGroup">
                           <LaserBarChart data={rearSensorData.data.rightApA} name="A" dataName="rightApA" barColor="red" max="500" />
-                          <LaserBarChart data={rearSensorData.data.rightApS} name="S" dataName="rightApS" barColor="red" max="500" />
+                          <LaserBarChartMiddle data={rearSensorData.data.rightApS} name="S" dataName="rightApS" barColor="red" max="500" />
                         </div>
                         <div className="axleGraphBoxGroup">
                           <LaserBarChart data={rearSensorData.data.rightBpA} name="A" dataName="rightBpA" barColor="red" max="500" />
-                          <LaserBarChart data={rearSensorData.data.rightBpS} name="S" dataName="rightBpS" barColor="red" max="500" />
+                          <LaserBarChartMiddle data={rearSensorData.data.rightBpS} name="S" dataName="rightBpS" barColor="red" min="-500" max="500" />
                         </div>
                         <div className="axleGraphBoxGroup">
-                          <LaserBarChart data={rearSensorData.data.rightLvdtA} name="A" dataName="rightLvdtA" barColor="blue" shift="20" max="40" />
-                          <LaserBarChart data={rearSensorData.data.rightLvdtS} name="S" dataName="rightLvdtS" barColor="blue" shift="20" max="40" />
+                          <LaserBarChartMiddle data={rearSensorData.data.rightLvdtA} name="A" dataName="rightLvdtA" barColor="blue" min="-20" max="20" />
+                          <LaserBarChartMiddle data={rearSensorData.data.rightLvdtS} name="S" dataName="rightLvdtS" barColor="blue" min="-20" max="20" />
                         </div>
                       </div>
                     </div>
@@ -884,8 +935,8 @@ class ViewM3Setup extends Component {
                       <div className="axleTitle">gyro</div>
                       <div className="axleGraphBox">
                         <div className="axleGraphBoxGroup">
-                          <LaserBarChart data={rearSensorData.data.gyroA} name="A" dataName="gA" barColor="green" shift="15" max="30" />
-                          <LaserBarChart data={rearSensorData.data.gyroS} name="S" dataName="gS" barColor="green" shift="15" max="30" />
+                          <LaserBarChartMiddle data={rearSensorData.data.gyroA} name="A" dataName="gA" barColor="green" min="-15" max="15" />
+                          <LaserBarChartMiddle data={rearSensorData.data.gyroS} name="S" dataName="gS" barColor="green" min="-15" max="15" />
                         </div>
                       </div>
                     </div>
@@ -893,8 +944,8 @@ class ViewM3Setup extends Component {
                 </div>
                 <div className="setupBox setupBoxAxleBtn">
                   <div className="setupBoxAxleBtnBox">
-                    <a href="">SET</a>
-                    <a href="">ORG</a>
+                    <a href="#" onClick={this.onSensorSetClick} style={{ backgroundColor: currentAValue.set == 1 ? 'rgba(255, 255, 255, 0.3)' : '' }}>SET</a>
+                    <a href="#" onClick={this.onSensorResetClick} style={{ backgroundColor: currentAValue.set == 0 ? 'rgba(255, 255, 255, 0.3)' : '' }}>ORG</a>
                   </div>
                 </div>
                 <PanelControlButtonsRight />
@@ -928,6 +979,7 @@ function mapStateToProps(state){
       tuningFront2Igain: state.setSetupButtons.tuningFront2Igain,
       tuningRear2Pgain: state.setSetupButtons.tuningRear2Pgain,
       tuningRear2Igain: state.setSetupButtons.tuningRear2Igain,
+      currentAValue: state.setSetupButtons.currentAValue,
     }
 }
 

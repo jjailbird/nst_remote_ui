@@ -1,0 +1,47 @@
+import React, { Component } from 'react';
+
+export default class LaserBarChartMiddle extends Component {
+  constructor(props) {
+    super(props);
+  }
+  render() {
+    const { data, max, min, name, dataName, barColor } = this.props;
+    const barHeightPxFull = 87;
+
+    let barColorReplace = '';
+    if(barColor == 'red'){
+      barColorReplace = 'rgba(201,53,53,0.7)';
+    }else if(barColor == 'blue'){
+      barColorReplace = 'rgba(44,106,170,0.7)';
+    }else if(barColor == 'green'){
+      barColorReplace = 'rgba(137,182,89,1)';
+    }else{
+      barColorReplace = barColor;
+    }
+    
+    let value = data !== undefined ? parseFloat(data) : 0;
+    let valueMax = max ? parseFloat(max) : 0; 
+    let valueMin = min ? parseFloat(min) : 0;
+    
+    let valueHeightFull = Math.abs(valueMax) + Math.abs(valueMin);
+    let valuePercent = (Math.abs(value) / valueHeightFull) * 100;
+
+    let barHeightPx = Math.round((barHeightPxFull * valuePercent) / 100);  0;
+    let marginBottomPx = value < 0 ? (barHeightPxFull / 2) - barHeightPx : (barHeightPxFull / 2);
+    return (
+      <div className="axleGraphBoxBarGraph">
+        <div className="BarGraphTitle">{name}</div>
+        <div className="BarGraphOutLine">
+          <div 
+            className="BarGraphFill" 
+            style={{
+              height: `${barHeightPx}px`,
+              background: `${barColorReplace}`,
+              marginBottom: `${marginBottomPx}px`,
+            }}
+          ></div>
+        </div>
+      </div>
+    );
+  }
+} 

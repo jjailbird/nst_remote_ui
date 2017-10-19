@@ -66,8 +66,8 @@ import ViewM3Spec from './ViewM3Spec';
 class App extends Component {
   constructor(props) {
     super(props);
-    this.hostname = '192.168.1.2';
-    // this.hostname = window.location.hostname;
+    // this.hostname = '192.168.1.2';
+    this.hostname = window.location.hostname;
     
     this.handleData = this.handleData.bind(this);
     //this.thick = this.thick.bind(this);
@@ -133,32 +133,32 @@ class App extends Component {
     this.setFrontSensorData.leftApS = 0;
     this.setFrontSensorData.leftBpA = 0;
     this.setFrontSensorData.leftBpS = 0;
-    this.setFrontSensorData.leftLvdtA = -20;
-    this.setFrontSensorData.leftLvdtS = -20;
+    this.setFrontSensorData.leftLvdtA = 0;
+    this.setFrontSensorData.leftLvdtS = 0;
     this.setFrontSensorData.rightApA = 0;
     this.setFrontSensorData.rightApS = 0;
     this.setFrontSensorData.rightBpA = 0;
     this.setFrontSensorData.rightBpS = 0;
-    this.setFrontSensorData.rightLvdtA = -20;
-    this.setFrontSensorData.rightLvdtS = -20;
-    this.setFrontSensorData.gyroA = -15;
-    this.setFrontSensorData.gyroS = -15;
+    this.setFrontSensorData.rightLvdtA = 0;
+    this.setFrontSensorData.rightLvdtS = 0;
+    this.setFrontSensorData.gyroA = 0;
+    this.setFrontSensorData.gyroS = 0;
 
     this.setRearSensorData = {};
     this.setRearSensorData.leftApA = 0;
     this.setRearSensorData.leftApS = 0;
     this.setRearSensorData.leftBpA = 0;
     this.setRearSensorData.leftBpS = 0;
-    this.setRearSensorData.leftLvdtA = -20;
-    this.setRearSensorData.leftLvdtS = -20;
+    this.setRearSensorData.leftLvdtA = 0;
+    this.setRearSensorData.leftLvdtS = 0;
     this.setRearSensorData.rightApA = 0;
     this.setRearSensorData.rightApS = 0;
     this.setRearSensorData.rightBpA = 0;
     this.setRearSensorData.rightBpS = 0;
-    this.setRearSensorData.rightLvdtA = -20;
-    this.setRearSensorData.rightLvdtS = -20;
-    this.setRearSensorData.gyroA = -15;
-    this.setRearSensorData.gyroS = -15;
+    this.setRearSensorData.rightLvdtA = 0;
+    this.setRearSensorData.rightLvdtS = 0;
+    this.setRearSensorData.gyroA = 0;
+    this.setRearSensorData.gyroS = 0;
     // =============================================================
     this.frontLeftData = {};
     this.frontLeftData.latDistance = [];
@@ -186,7 +186,7 @@ class App extends Component {
 
     this.frontLeftMotorData = {};
     this.frontLeftMotorData.rpm = 0;
-    this.frontLeftMotorData.torque = -20;
+    this.frontLeftMotorData.torque = 0;
     this.frontLeftMotorData.a = 0;
     this.frontLeftMotorData.b = 0;
     this.frontLeftMotorData.c = 0;
@@ -194,7 +194,7 @@ class App extends Component {
 
     this.frontRightMotorData = {};
     this.frontRightMotorData.rpm = 0;
-    this.frontRightMotorData.torque = -20;
+    this.frontRightMotorData.torque = 0;
     this.frontRightMotorData.a = 0;
     this.frontRightMotorData.b = 0;
     this.frontRightMotorData.c = 0;
@@ -202,7 +202,7 @@ class App extends Component {
 
     this.rearLeftMotorData = {};
     this.rearLeftMotorData.rpm = 0;
-    this.rearLeftMotorData.torque = -20;
+    this.rearLeftMotorData.torque = 0;
     this.rearLeftMotorData.a = 0;
     this.rearLeftMotorData.b = 0;
     this.rearLeftMotorData.c = 0;
@@ -210,7 +210,7 @@ class App extends Component {
 
     this.rearRightMotorData = {};
     this.rearRightMotorData.rpm = 0;
-    this.rearRightMotorData.torque = -20;
+    this.rearRightMotorData.torque = 0;
     this.rearRightMotorData.a = 0;
     this.rearRightMotorData.b = 0;
     this.rearRightMotorData.c = 0;
@@ -298,9 +298,9 @@ class App extends Component {
   }
   handleData(data) {
     const json = JSON.parse(data); 
-    const HSCTEST = json.HSCTEST ? json.HSCTEST : null;
-    const HSCSETUP = json.HSCSETUP ? json.HSCSETUP : null; 
-    const { dispatch } = this.props;
+    // const HSCTEST = json.HSCTEST ? json.HSCTEST : null;
+    // const HSCSETUP = json.HSCSETUP ? json.HSCSETUP : null; 
+    const { dispatch, currentAValue } = this.props;
 
 
     // HSC_RUN Front LEFT =====================================================
@@ -568,31 +568,31 @@ class App extends Component {
     // HSC_SETUP Front Sensor Front Axle  ======================================
     if(json.HSI_001 != undefined) {
       this.setFrontSensorData.leftApA = json.HSI_001;
-      this.setFrontSensorData.leftApS = json.HSI_001; // json.HSI_011;
+      this.setFrontSensorData.leftApS = json.HSI_001 - currentAValue.frontLeftA1;; // json.HSI_011;
     }
     if(json.HSI_002 != undefined) {
       this.setFrontSensorData.leftBpA = json.HSI_002;
-      this.setFrontSensorData.leftBpS = json.HSI_002; // json.HSI_012;
+      this.setFrontSensorData.leftBpS = json.HSI_002 - currentAValue.frontLeftA2;; // json.HSI_012;
     }
     if(json.HSI_003 != undefined) {
       this.setFrontSensorData.leftLvdtA = json.HSI_003;
-      this.setFrontSensorData.leftLvdtS = json.HSI_003; // json.HSI_013;
+      this.setFrontSensorData.leftLvdtS = json.HSI_003 - currentAValue.frontLeftA3;; // json.HSI_013;
     }
     if(json.HSI_004 != undefined) {
       this.setFrontSensorData.rightApA = json.HSI_004; 
-      this.setFrontSensorData.rightApS = json.HSI_004; // json.HSI_014;
+      this.setFrontSensorData.rightApS = json.HSI_004 - currentAValue.frontRightA1;; // json.HSI_014;
     }
     if(json.HSI_005 != undefined) {
       this.setFrontSensorData.rightBpA = json.HSI_005;
-      this.setFrontSensorData.rightBpS = json.HSI_005; // json.HSI_015;
+      this.setFrontSensorData.rightBpS = json.HSI_005 - currentAValue.frontRightA2;; // json.HSI_015;
     }
     if(json.HSI_006 != undefined) {
       this.setFrontSensorData.rightLvdtA = json.HSI_006;
-      this.setFrontSensorData.rightLvdtS = json.HSI_006; // json.HSI_016;
+      this.setFrontSensorData.rightLvdtS = json.HSI_006 - currentAValue.frontRightA3;; // json.HSI_016;
     }
     if(json.HSI_007 != undefined) {
       this.setFrontSensorData.gyroA = json.HSI_007;
-      this.setFrontSensorData.gyroS = json.HSI_007; // // json.HSI_017;
+      this.setFrontSensorData.gyroS = json.HSI_007 - currentAValue.frontGyroA; // // json.HSI_017;
     }
     if(json.HSI_001 != undefined || json.HSI_002 != undefined || json.HSI_003 != undefined || json.HSI_004 != undefined || json.HSI_005 != undefined || json.HSI_006 != undefined || json.HSI_007 != undefined) {
       dispatch( setFrontSensorData(this.setFrontSensorData) )
@@ -602,39 +602,38 @@ class App extends Component {
     // HSC_SETUP Rear Sensor Front Axle   ======================================
     if(json.HSI_021 != undefined) {
       this.setRearSensorData.leftApA = json.HSI_021;
-      this.setRearSensorData.leftApS = json.HSI_021; // json.HSI_031;
+      this.setRearSensorData.leftApS = json.HSI_021 - currentAValue.rearLeftA1; // json.HSI_031;
     }
     if(json.HSI_022 != undefined) {
       this.setRearSensorData.leftBpA = json.HSI_022; 
-      this.setRearSensorData.leftBpS = json.HSI_022; // json.HSI_032;
+      this.setRearSensorData.leftBpS = json.HSI_022 - currentAValue.rearLeftA2; // json.HSI_032;
     }
     if(json.HSI_023 != undefined) {
       this.setRearSensorData.leftLvdtA = json.HSI_023;
-      this.setRearSensorData.leftLvdtS = json.HSI_023; // json.HSI_033; 
+      this.setRearSensorData.leftLvdtS = json.HSI_023 - currentAValue.rearLeftA3; // json.HSI_033; 
     }
     if(json.HSI_024 != undefined) {
       this.setRearSensorData.rightApA = json.HSI_024;
-      this.setRearSensorData.rightApS = json.HSI_024; // json.HSI_034; 
+      this.setRearSensorData.rightApS = json.HSI_024 - currentAValue.rearRightA1; // json.HSI_034; 
     }
     if(json.HSI_025 != undefined) {
       this.setRearSensorData.rightBpA = json.HSI_025;
-      this.setRearSensorData.rightBpS = json.HSI_025; // json.HSI_035; 
+      this.setRearSensorData.rightBpS = json.HSI_025 - currentAValue.rearRightA2; // json.HSI_035; 
     }
     if(json.HSI_026 != undefined) {
       this.setRearSensorData.rightLvdtA = json.HSI_026;
-      this.setRearSensorData.rightLvdtS = json.HSI_026; // json.HSI_036; 
+      this.setRearSensorData.rightLvdtS = json.HSI_026 - currentAValue.rearRightA3; // json.HSI_036; 
     }
     if(json.HSI_027 != undefined) {
       this.setRearSensorData.gyroA = json.HSI_027;
-      this.setRearSensorData.gyroS = json.HSI_027; // json.HSI_037; 
+      this.setRearSensorData.gyroS = json.HSI_027 - currentAValue.rearGyroA; // json.HSI_037; 
     }
     if(json.HSI_021 != undefined || json.HSI_022 != undefined || json.HSI_023 != undefined || json.HSI_024 != undefined || json.HSI_025 != undefined || json.HSI_026 != undefined || json.HSI_027 != undefined) {
       dispatch( setRearSensorData(this.setRearSensorData) )
     }
     // =========================================================================
+    /*
     if (HSCSETUP) {
-      // HSCSETUP. FrontRight FrontLeft RearRight RearLeft
-      // SteerForce LVDT GyroZ
       
       this.setFrontLaserData.lx = HSCSETUP.FrontLeft.SteerForce;  // getRandomFloat(-10,10);
       this.setFrontLaserData.ly = HSCSETUP.FrontLeft.LVDT;        // getRandomFloat(-10,10);
@@ -650,6 +649,7 @@ class App extends Component {
       this.setRearLaserData.g = HSCSETUP.FrontRight.GyroZ;        // getRandomFloat(-5,5);
       dispatch( setRearLaserData(this.setRearLaserData) )
     }
+    */
   }
   
   render() {
@@ -763,5 +763,10 @@ class App extends Component {
     );
   }
 }
-
+function mapStateToProps(state){
+    // console.log('itcsetup',state.setItcSetupFrontRightData);
+    return {
+      currentAValue: state.setSetupButtons.currentAValue,
+    }
+}
 export default connect()(App);

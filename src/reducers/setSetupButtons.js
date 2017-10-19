@@ -18,6 +18,7 @@ import {
   SET_TUNING_REAR_2_PGAIN,
   SET_TUNING_REAR_2_IGAIN,
   SET_CAR_MASS,
+  SET_CURRENT_A_VALUE,
 
   SET_CHART_TYPE_FRONT_LEFT,
   SET_CHART_TYPE_FRONT_RIGHT,
@@ -31,7 +32,12 @@ const initialState = {
   chartTypeFrontLeft: 'PIE', chartTypeFrontRight: 'PIE', chartTypeRearLeft: 'PIE', chartTypeRearRight: 'PIE',
   tuningFront1Pgain: -15, tuningFront1Igain: -5, tuningRear1Pgain: -10, tuningRear1Igain: 0,
   tuningFront2Pgain: -15, tuningFront2Igain: -5, tuningRear2Pgain: -10, tuningRear2Igain: 0,
-  carMass: 'TARE',
+  carMass: 'RUN',
+  currentAValue: { 
+    set: 0,
+    frontLeftA1: 0, frontLeftA2: 0, frontLeftA3: 0, frontRightA1:0, frontRightA2:0, frontRightA3:0, frontGyroA: 0,
+    rearLeftA1: 0, rearLeftA2: 0, rearLeftA3: 0, rearRightA1:0, rearRightA2:0, rearRightA3:0, rearGyroA: 0,
+  },
 }
 
 export default function setSetupButtons(state = initialState, action) {
@@ -71,8 +77,6 @@ export default function setSetupButtons(state = initialState, action) {
       return { ...state, tuningRear2Pgain: action.data };
     case SET_TUNING_REAR_2_IGAIN:
       return { ...state, tuningRear2Igain: action.data };
-    case SET_CAR_MASS:
-      return { ...state, carMass: action.data };
     case SET_CHART_TYPE_FRONT_LEFT:
       return { ...state, chartTypeFrontLeft: action.data };
     case SET_CHART_TYPE_FRONT_RIGHT:
@@ -81,6 +85,10 @@ export default function setSetupButtons(state = initialState, action) {
       return { ...state, chartTypeRearLeft: action.data };
     case SET_CHART_TYPE_REAR_RIGHT:
       return { ...state, chartTypeRearRight: action.data };
+    case SET_CAR_MASS:
+      return { ...state, carMass: action.data };
+    case SET_CURRENT_A_VALUE:
+      return { ...state, currentAValue: action.data };      
     default:
       return state   
   }
