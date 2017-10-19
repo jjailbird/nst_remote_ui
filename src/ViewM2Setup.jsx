@@ -41,6 +41,13 @@ class ViewM2Setup extends Component {
     this.hostname = window.location.hostname;
     this.railLength = 250;
     
+    /*
+    this.onDriveSetup2Default = this.onDriveSetup2Default.bind(this); 
+    this.onDriveSetup2Restore = this.onDriveSetup2Restore.bind(this);
+    this.onDriveSetup2Set = this.onDriveSetup2Set.bind(this);
+    */
+    this.onDriveSetup = this.onDriveSetup.bind(this);
+
     this.onVehiclePositionStartChange = this.onVehiclePositionStartChange.bind(this);
     this.onVehiclePositionStopChange = this.onVehiclePositionStopChange.bind(this);
     
@@ -96,6 +103,9 @@ class ViewM2Setup extends Component {
     this.setCurrentPositionStart = this.setCurrentPositionStart.bind(this);
     this.setCurrentPositionStop = this.setCurrentPositionStop.bind(this);
     this.setCurrentManualSpeed = this.setCurrentManualSpeed.bind(this);
+  }
+  onDriveSetup(value) {
+    alert(value);
   }
   onVehiclePositionStartChange(value) {
     let start = value.replace('m', '');
@@ -1530,6 +1540,7 @@ class ViewM2Setup extends Component {
                         <input
                           type="button"
                           value="Default"
+                          onClick={() => this.onDriveSetup('default')}
                           style={{
                             padding: '5px 10px',
                             border: '1px solid rgba(255,255,255,0.3)',
@@ -1544,6 +1555,7 @@ class ViewM2Setup extends Component {
                         <input
                           type="button"
                           value="RES"
+                          onClick={() => this.onDriveSetup('restore')}
                           style={{
                             padding: '5px 10px',
                             border: '1px solid rgba(255,255,255,0.3)',
@@ -1568,6 +1580,7 @@ class ViewM2Setup extends Component {
                             width: '60px',
                             fontWeight: 'bold'
                           }}
+                          
                         />
                       </div>
                     </div>
