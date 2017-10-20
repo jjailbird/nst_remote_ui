@@ -32,12 +32,12 @@ class TrailerBogieDescTab extends Component {
               <li>
                   <span>WEELBASE</span>
                   <span>:</span>
-                  <span>1. 8 m</span>
+                  <span>1.8 m</span>
               </li>
               <li>
                   <span>WEIGHT</span>
                   <span>:</span>
-                  <span>7.588 ton</span>
+                  <span>4.735 ton</span>
               </li>
               <li>
                   <span>WHEEL DIA</span>
@@ -102,12 +102,12 @@ class TrailerBogieDescTab extends Component {
               <li>
                   <span>WEELBASE</span>
                   <span>:</span>
-                  <span>1. 8 m</span>
+                  <span>1.8 m</span>
               </li>
               <li>
                   <span>WEIGHT</span>
                   <span>:</span>
-                  <span>12.821 ton</span>
+                  <span>7.773 ton</span>
               </li>
               <li>
                   <span>WHEEL DIA</span>
