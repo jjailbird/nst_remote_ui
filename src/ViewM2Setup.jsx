@@ -562,7 +562,8 @@ class ViewM2Setup extends Component {
               <div
                 style={{
                   width: '565px',
-                  height: '30px' 
+                  height: '30px',
+                  marginBottom: '10px' 
                 }}
               >
                 <span style={{ color: '#FEF65C', fontSize: '34px', fontWeight: 'bold' }}>
