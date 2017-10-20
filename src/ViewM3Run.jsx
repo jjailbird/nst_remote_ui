@@ -65,13 +65,18 @@ class ViewM3Run extends Component {
     const { dispatch } = this.props;
     dispatch(setCrtl1Zero(value));
   }
-  onCrtl1SensorTypeChange(values){
+  onCrtl1SensorTypeChange(value){
+    /*
     const cValue = '{0}{1}'.format(values.includes('LVDT')?1:0,values.includes('Gyro')?1:0);
     const command = getSocketCommand('HRO_004', cValue);
     this.sendCommandToDevice(command);
+    */
+    // alert(value);
+    const command = getSocketCommand('HRO_004', value == 'LVDT' ? 0:1);
+    this.sendCommandToDevice(command);
 
     const { dispatch } = this.props;
-    dispatch(setCrtl1SensorType(values));
+    dispatch(setCrtl1SensorType(value));
   }
   onCrtl1ControlTypeChange(value){
     let cValue = 0;
@@ -193,7 +198,18 @@ class ViewM3Run extends Component {
       <div className="contBox">
         <div className="headArea">
           <div className="headLeft pull-left">
-            <img src="/img/titlev3-itc_run.png"  alt="img/titlev3-itc_run.png"/>
+            <div
+              style={{
+                // width: '690px',
+                height: '30px',
+                marginBottom: '10px' 
+              }}
+            >
+              <span style={{ color: '#00CCDE', fontSize: '34px', fontWeight: 'bold' }}>
+                HSC <span style={{ color: '#FFF' }}>TEST MONITOR</span>
+              </span>
+              <span style={{ paddingLeft: '14px',  color: '#BECED8', fontSize: '17px', fontWeight: 'bold' }}>Hydraulic Steering Cylinder Control</span>
+            </div>            
           </div>
           <div className="headRight pull-right">        
             hyundai rotem company
@@ -344,6 +360,7 @@ class ViewM3Run extends Component {
                 </div>
               </div>
               <div style={{padding: '3px 0'}}>
+                {/*
                 <ControlSwitchCheckBox
                   title="SENSOR TYPE"
                   activeBgColor="rgba(201,195,53,0.7)" 
@@ -356,6 +373,19 @@ class ViewM3Run extends Component {
                   values={crtl1SensorType}
                   onChange={this.onCrtl1SensorTypeChange}
                 />
+                */}
+                <ControlSwitchGroup 
+                  title="SENSOR TYPE"
+                  // title="CONTROL ACTIVE" 
+                  type="yellowButton" 
+                  buttons={[
+                    { idx: 1, title: 'LVDT', value: 'LVDT' }, 
+                    { idx: 2, title: 'Gyro', value: 'Gyro' }
+                  ]}
+                  value={crtl1SensorType}
+                  onChange={this.onCrtl1SensorTypeChange} 
+                />    
+
                 <span style={{padding: '10px'}} ></span>
                 <ControlSwitchButton
                   title="CONTROL TYPE"

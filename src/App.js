@@ -66,8 +66,8 @@ import ViewM3Spec from './ViewM3Spec';
 class App extends Component {
   constructor(props) {
     super(props);
-    // this.hostname = '192.168.1.2';
-    this.hostname = window.location.hostname;
+    this.hostname = '192.168.1.2';
+    // this.hostname = window.location.hostname;
     
     this.handleData = this.handleData.bind(this);
     //this.thick = this.thick.bind(this);
@@ -143,6 +143,7 @@ class App extends Component {
     this.setFrontSensorData.rightLvdtS = 0;
     this.setFrontSensorData.gyroA = 0;
     this.setFrontSensorData.gyroS = 0;
+    this.setFrontSensorData.gyroZ = 0;
 
     this.setRearSensorData = {};
     this.setRearSensorData.leftApA = 0;
@@ -157,8 +158,10 @@ class App extends Component {
     this.setRearSensorData.rightBpS = 0;
     this.setRearSensorData.rightLvdtA = 0;
     this.setRearSensorData.rightLvdtS = 0;
+    
     this.setRearSensorData.gyroA = 0;
     this.setRearSensorData.gyroS = 0;
+    this.setRearSensorData.gyroZ = 0;
     // =============================================================
     this.frontLeftData = {};
     this.frontLeftData.latDistance = [];
@@ -594,8 +597,12 @@ class App extends Component {
       this.setFrontSensorData.gyroA = json.HSI_007;
       this.setFrontSensorData.gyroS = currentAValue.frontGyroA ? json.HSI_007 - currentAValue.frontGyroA : 0; // // json.HSI_017;
     }
+    if(json.HSI_017 != undefined) {
+      this.setFrontSensorData.gyroZ = json.HSI_017;
+    }
     //console.log('this.setFrontSensorData', this.setFrontSensorData);
-    if(json.HSI_001 != undefined || json.HSI_002 != undefined || json.HSI_003 != undefined || json.HSI_004 != undefined || json.HSI_005 != undefined || json.HSI_006 != undefined || json.HSI_007 != undefined) {
+    if(json.HSI_001 != undefined || json.HSI_002 != undefined || json.HSI_003 != undefined || json.HSI_004 != undefined || json.HSI_005 != undefined ||
+       json.HSI_006 != undefined || json.HSI_007 != undefined || json.HSI_017 != undefined) {
       // console.log('this.setFrontSensorData', this.setFrontSensorData);
       dispatch( setFrontSensorData(this.setFrontSensorData) )
     }
@@ -628,30 +635,16 @@ class App extends Component {
     }
     if(json.HSI_027 != undefined) {
       this.setRearSensorData.gyroA = json.HSI_027;
-      this.setRearSensorData.gyroS = currentAValue.rearGyroA ? json.HSI_027 - currentAValue.rearGyroA : 0; // json.HSI_037; 
+      this.setRearSensorData.gyroS = currentAValue.rearGyroA ? json.HSI_027 - currentAValue.rearGyroA : 0; // json.HSI_037;
     }
-    if(json.HSI_021 != undefined || json.HSI_022 != undefined || json.HSI_023 != undefined || json.HSI_024 != undefined || json.HSI_025 != undefined || json.HSI_026 != undefined || json.HSI_027 != undefined) {
+    if(json.HSI_037 != undefined) {
+      this.setRearSensorData.gyroZ = json.HSI_037;
+    }
+    if(json.HSI_021 != undefined || json.HSI_022 != undefined || json.HSI_023 != undefined || json.HSI_024 != undefined || json.HSI_025 != undefined || 
+      json.HSI_026 != undefined || json.HSI_027 != undefined || json.HSI_037 != undefined) {
       dispatch( setRearSensorData(this.setRearSensorData) )
     }
     // =========================================================================
-    /*
-    if (HSCSETUP) {
-      
-      this.setFrontLaserData.lx = HSCSETUP.FrontLeft.SteerForce;  // getRandomFloat(-10,10);
-      this.setFrontLaserData.ly = HSCSETUP.FrontLeft.LVDT;        // getRandomFloat(-10,10);
-      this.setFrontLaserData.rx = HSCSETUP.FrontRight.SteerForce; // getRandomFloat(-10,10);
-      this.setFrontLaserData.ry = HSCSETUP.FrontRight.LVDT;       // getRandomFloat(-10,10);
-      this.setFrontLaserData.g =  HSCSETUP.FrontRight.GyroZ;      // getRandomFloat(-5,5);
-      dispatch( setFrontLaserData(this.setFrontLaserData) )
-
-      this.setRearLaserData.lx = HSCSETUP.RearLeft.SteerForce;    // getRandomFloat(-10,10);
-      this.setRearLaserData.ly = HSCSETUP.RearLeft.LVDT;          // getRandomFloat(-10,10);
-      this.setRearLaserData.rx = HSCSETUP.FrontRight.SteerForce;  // getRandomFloat(-10,10);
-      this.setRearLaserData.ry = HSCSETUP.FrontRight.LVDT;        // getRandomFloat(-10,10);
-      this.setRearLaserData.g = HSCSETUP.FrontRight.GyroZ;        // getRandomFloat(-5,5);
-      dispatch( setRearLaserData(this.setRearLaserData) )
-    }
-    */
   }
   
   render() {

@@ -16,7 +16,8 @@ const defaultState = {
   rightLvdtS: 0,
   
   gyroA: 0,
-  gyroS: 0
+  gyroS: 0,
+  gyroZ: 0,
 }
 
 export default function rearSensorData(state = { data: defaultState }, action) {

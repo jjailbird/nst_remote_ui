@@ -26,8 +26,9 @@ import {
 class ViewM3Setup extends Component {
   constructor(props) {
     super(props);
-    // this.hostname = '192.168.1.2'; 
-    this.hostname = window.location.hostname;
+    
+    this.hostname = '192.168.1.2'; 
+    // this.hostname = window.location.hostname;
 
     this.onTuningFront1PgainChange = this.onTuningFront1PgainChange.bind(this);
     this.onTuningFront1IgainChange = this.onTuningFront1IgainChange.bind(this); 
@@ -199,7 +200,18 @@ class ViewM3Setup extends Component {
         <div className="contBox">
           <div className="headArea">
             <div className="headLeft pull-left">
-              <img src="/img/titlev3-setup.png" />
+              <div
+                style={{
+                  // width: '690px',
+                  height: '30px',
+                  marginBottom: '10px' 
+                }}
+              >
+                <span style={{ color: '#00CCDE', fontSize: '34px', fontWeight: 'bold' }}>
+                  HSC <span style={{ color: '#FFF' }}>TEST SETUP MONITOR</span>
+                </span>
+                <span style={{ paddingLeft: '14px',  color: '#BECED8', fontSize: '17px', fontWeight: 'bold' }}>Hydraulic Steering Cylinder Control</span>
+              </div>              
             </div>
             <div className="headRight pull-right">                
               hyundai rotem company
@@ -393,7 +405,7 @@ class ViewM3Setup extends Component {
                       </div>
                       <div className="setPiedata-pieGrape pieCenter">         
                         <LaserDonutDigitalChart 
-                          data={frontSensorData.data.gyroS}
+                          data={frontSensorData.data.gyroZ}
                           shift="3.5"
                           max="7"
                           unit="°" 
@@ -473,7 +485,7 @@ class ViewM3Setup extends Component {
                       </div>
                       <div className="setPiedata-pieGrape pieCenter">
                         <LaserDonutDigitalChart 
-                          data={rearSensorData.data.gyroS} 
+                          data={rearSensorData.data.gyroZ} 
                           shift="3.5"
                           max="7"
                           unit="°" 
@@ -539,10 +551,10 @@ class ViewM3Setup extends Component {
                       </div>
                       <div className="setupMotorGraphList">
                         <div className="bar-graph">
-                          <MotorGaugeBar data={frontLeftMotorData.data.rpm} name="force" unit="kgf" max="5000" />
+                          <MotorGaugeBar data={frontLeftMotorData.data.rpm} name="force" unit="kgf" max="10000" shift="5000" />
                         </div>
                         <div className="bar-graph">
-                          <MotorGaugeBar data={frontLeftMotorData.data.torque} name="stroke" unit="mm" max="40" shift="20" />
+                          <MotorGaugeBar data={frontLeftMotorData.data.torque} name="stroke" unit="mm" max="50" shift="25" />
                         </div>
                       </div>
                     </div>
@@ -590,10 +602,10 @@ class ViewM3Setup extends Component {
                       </div>
                       <div className="setupMotorGraphList">
                         <div className="bar-graph">
-                          <MotorGaugeBar data={frontRightMotorData.data.rpm} name="force" unit="kgf" max="5000" />
+                          <MotorGaugeBar data={frontRightMotorData.data.rpm} name="force" unit="kgf" max="10000" shift="5000" />
                         </div>
                         <div className="bar-graph">
-                          <MotorGaugeBar data={frontRightMotorData.data.torque} name="stroke" unit="mm" max="40" shift="20" />
+                          <MotorGaugeBar data={frontRightMotorData.data.torque} name="stroke" unit="mm" max="50" shift="25" />
                         </div>
                       </div>
                     </div>
@@ -643,10 +655,10 @@ class ViewM3Setup extends Component {
                       </div>
                       <div className="setupMotorGraphList">
                         <div className="bar-graph">
-                          <MotorGaugeBar data={rearLeftMotorData.data.rpm} name="force" unit="kgf" max="5000"/>
+                          <MotorGaugeBar data={rearLeftMotorData.data.rpm} name="force" unit="kgf" max="10000" shift="5000"/>
                         </div>
                         <div className="bar-graph">
-                          <MotorGaugeBar data={rearLeftMotorData.data.torque} name="stroke" unit="mm" max="40" shift="20"/>
+                          <MotorGaugeBar data={rearLeftMotorData.data.torque} name="stroke" unit="mm" max="50" shift="25"/>
                         </div>
                       </div>
                     </div>
@@ -694,10 +706,10 @@ class ViewM3Setup extends Component {
                       </div>
                       <div className="setupMotorGraphList">
                         <div className="bar-graph">
-                          <MotorGaugeBar data={rearRightMotorData.data.rpm} name="force" unit="kgf" max="5000" />
+                          <MotorGaugeBar data={rearRightMotorData.data.rpm} name="force" unit="kgf" max="10000" shift="5000" />
                         </div>
                         <div className="bar-graph">
-                          <MotorGaugeBar data={rearRightMotorData.data.torque} name="stroke" unit="mm" max="40" shift="20" />
+                          <MotorGaugeBar data={rearRightMotorData.data.torque} name="stroke" unit="mm" max="50" shift="25" />
                         </div>
                       </div>
                     </div>
