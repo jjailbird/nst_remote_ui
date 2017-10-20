@@ -14,6 +14,7 @@ export default class LaserBarChartMiddle extends Component {
     
     let valueHeightFull = Math.abs(valueMax) + Math.abs(valueMin);
     let valuePercent = (Math.abs(value) / valueHeightFull) * 100;
+    
 
     let barHeightPx = Math.round((barHeightPxFull * valuePercent) / 100);  0;
     let marginBottomPx = value < 0 ? (barHeightPxFull / 2) - barHeightPx : (barHeightPxFull / 2);
@@ -28,7 +29,7 @@ export default class LaserBarChartMiddle extends Component {
     }else{
       barColorReplace = barColor;
     }
-
+    
     return (
       <div className="axleGraphBoxBarGraph">
         <div className="BarGraphTitle">{name}</div>

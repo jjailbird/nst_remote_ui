@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 
-export default class LaserBarChartA extends Component {
+export default class LaserBarChart extends Component {
   constructor(props) {
     super(props);
   }
   render() {
     const { data, name, dataName, barColor, max, shift} = this.props;
     let value = 0;
-    const barFull = 75;
+    const barFull = 82;
     let barValue = 0;
     let barMax = 0; 
     let barPercent = 0; 
