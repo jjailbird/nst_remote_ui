@@ -559,8 +559,19 @@ class ViewM2Setup extends Component {
         <div className="contBox">
           <div className="headArea">
             <div className="headLeft pull-left">
-              <img src="/img/titlev2-setup.png" alt="titlev2-setup"/>
-              <span id="pageHiddenTitle" style={{display: 'none'}}>TEST_SETUP_PANEL</span>
+              <div
+                style={{
+                  width: '565px',
+                  height: '30px' 
+                }}
+              >
+                <span style={{ color: '#FEF65C', fontSize: '34px', fontWeight: 'bold' }}>
+                  TEST <span style={{ color: '#FFF' }}>SETUP PANEL</span>
+                </span>
+                <span style={{ paddingLeft: '14px',  color: '#BECED8', fontSize: '17px', fontWeight: 'bold' }}>Test Vehicle Run Control</span>
+              </div>
+              {/*<img src="/img/titlev2-setup.png" alt="titlev2-setup"/>*/}
+              <span id="pageHiddenTitle" style={{ display: 'none' }}>TEST_SETUP_PANEL</span>
             </div>
             <div className="headRight pull-right">                
               hyundai rotem company
@@ -1045,7 +1056,7 @@ class ViewM2Setup extends Component {
                       width='50%'
                       onChange={this.onRunDirectionChange}
                       buttons={[
-                        { idx: 1, title: 'Foward', value: 'on' }, 
+                        { idx: 1, title: 'Forward', value: 'on' }, 
                         { idx: 2, title: 'Reverse', value: 'off' }
                       ]}
                     />

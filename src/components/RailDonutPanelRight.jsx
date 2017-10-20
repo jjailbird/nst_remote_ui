@@ -44,19 +44,20 @@ export default class RailDonutPanelRight extends Component {
       // valueDType = value.fwd;
       valueSpeed = value.speed;
     }
-    if (lever) {
+    if (lever !== undefined) {
       valueDType = lever;
+      //alert(valueDType);
     }
 
 
-    if(valueDType > 0){
+    if(valueDType < 0){
       driveDir = 'FWD';
       driveDirColor = 'rgba(55,129,201,1)';//파랑
       colorB = 'rgba(255,255,255,0.8)'
     }else if(valueDType == 0){
       driveDir = 'N';
       driveDirColor = 'rgba(255,255,255,0.7)';//흰색
-    }else if(valueDType < 0){
+    }else if(valueDType > 0){
       driveDir = 'BWD';
       driveDirColor = 'rgba(204,85,85,0.8)';//빨강
       colorP = 'rgba(255,255,255,0.8)'

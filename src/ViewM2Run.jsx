@@ -161,7 +161,7 @@ class ViewM2Run extends Component {
               <DriveDonutDivideLeftChart 
                 data={driveData.data.maxInvTemp} 
                 unit="℃" 
-                name="max inverer temp" 
+                name="max INVERTER temp" 
                 strokeColor="rgba(201,195,53,0.85)" 
                 strokeColorLine="rgba(255,255,255,0.7)" 
                 donutWidth="50" 
