@@ -6,7 +6,7 @@ export default class LaserBarChartMiddle extends Component {
   }
   render() {
     const { data, max, min, name, dataName, barColor } = this.props;
-    const barHeightPxFull = 87;
+    const barHeightPxFull = 82;
     
     let value = data !== undefined ? parseFloat(data) : 0;
     let valueMax = max ? parseFloat(max) : 0; 
@@ -36,7 +36,7 @@ export default class LaserBarChartMiddle extends Component {
           <div 
             className="BarGraphFill" 
             style={{
-              height: `${barHeightPx}px`,
+              height: `${valuePercent}%`,
               background: `${barColorReplace}`,
               marginBottom: `${marginBottomPx}px`,
             }}
