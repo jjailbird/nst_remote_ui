@@ -168,7 +168,18 @@ class ViewM1Setup extends Component {
         <div className="contBox">
           <div className="headArea">
             <div className="headLeft pull-left">
-              <img src="/img/titlev1-setup.png" />
+              <div
+                style={{
+                  // width: '690px',
+                  height: '30px',
+                  marginBottom: '10px' 
+                }}
+              >
+                <span style={{ color: '#EB4B4B', fontSize: '34px', fontWeight: 'bold' }}>
+                  ITC <span style={{ color: '#FFF' }}>TEST SETUP MONITOR</span>
+                </span>
+                <span style={{ paddingLeft: '14px',  color: '#BECED8', fontSize: '17px', fontWeight: 'bold' }}>Individual Torque Control</span>
+              </div>            
             </div>
             <div className="headRight pull-right">                
               hyundai rotem company

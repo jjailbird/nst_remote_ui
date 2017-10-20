@@ -231,8 +231,6 @@ class App extends Component {
   }
   handleData(data) {
     const json = JSON.parse(data); 
-    //const ITCTEST = json.ITCTEST ? json.ITCTEST : {};
-    //const ITCSETUP = json.ITCSETUP ? json.ITCSETUP : {}; 
     const { dispatch, currentAValue } = this.props;
 
     // ITC_RUN Front LEFT =====================================================
