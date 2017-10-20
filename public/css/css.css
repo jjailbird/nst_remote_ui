@@ -751,7 +751,7 @@ ul.setupDescList li{
 .axleGraphBoxBarGraph .BarGraphOutLine{
   border:1px solid rgba(255,255,255,0.4);
   width:16px;
-  height:82px;
+  height:85px;
   position: relative;
 }
 .axleGraphBoxBarGraph .BarGraphOutLine .BarGraphFill{
