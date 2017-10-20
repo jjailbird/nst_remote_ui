@@ -30,14 +30,14 @@ class TrailerBogieDescTab extends Component {
           <div className="setupDescBox pull-left">
             <ul className="modeConfig3-list setupDescList">
               <li>
-                  <span>TEST</span>
+                  <span>WEELBASE</span>
                   <span>:</span>
-                  <span>4.735 ton</span>
+                  <span>1. 8 m</span>
               </li>
               <li>
-                  <span>DEMO</span>
+                  <span>WEIGHT</span>
                   <span>:</span>
-                  <span>7.0 ton</span>
+                  <span>7.588 ton</span>
               </li>
               <li>
                   <span>WHEEL DIA</span>
@@ -100,14 +100,14 @@ class TrailerBogieDescTab extends Component {
           <div className="setupDescBox pull-left">
             <ul className="modeConfig3-list setupDescList">
               <li>
-                  <span>TEST</span>
+                  <span>WEELBASE</span>
                   <span>:</span>
-                  <span>4.735 ton</span>
+                  <span>1. 8 m</span>
               </li>
               <li>
-                  <span>DEMO</span>
+                  <span>WEIGHT</span>
                   <span>:</span>
-                  <span>10 ton</span>
+                  <span>12.821 ton</span>
               </li>
               <li>
                   <span>WHEEL DIA</span>
