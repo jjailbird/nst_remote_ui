@@ -72,36 +72,36 @@ class MotorBogieDescTab extends Component {
           </div>
           <div className="setupDescBox pull-right">
             <ul className="modeConfig3-list setupDescList">
-                <li>
-                    <span>TEST</span>
-                    <span>:</span>
-                    <span>7.588 ton</span>
-                </li>
-                <li>
-                    <span>DEMO</span>
-                    <span>:</span>
-                    <span>12.821 ton</span>
-                </li>
-                <li>
-                    <span>WHEEL DIA</span>
-                    <span>:</span>
-                    <span>660 mm</span>
-                </li>
-                <li>
-                    <span>BOGIE DIST</span>
-                    <span>:</span>
-                    <span>1.8 m</span>
-                </li>
-                <li>
-                    <span>BRAKE SYSTEM</span>
-                    <span>:</span>
-                    <span>Hydraulic</span>
-                </li>
-                <li>
-                    <span>Traction Link</span>
-                    <span>:</span>
-                    <span>Mono Link</span>
-                </li>
+              <li>
+                  <span>Primary Spring</span>
+                  <span>:</span>
+                  <span>Rubber</span>
+              </li>
+              <li>
+                  <span>Max Disp. X</span>
+                  <span>:</span>
+                  <span>14 mm</span>
+              </li>
+              <li>
+                  <span>Max Disp. Y</span>
+                  <span>:</span>
+                  <span>6 mm</span>
+              </li>
+              <li>
+                  <span>Motor Type</span>
+                  <span>:</span>
+                  <span>PMSM</span>
+              </li>
+              <li>
+                  <span>MAX BRAKE PRESSURE</span>
+                  <span>:</span>
+                  <span>300Pa</span>
+              </li>
+              <li>
+                  <span>MAX MOTOR TORQUE</span>
+                  <span>:</span>
+                  <span>500Nm</span>
+              </li>
             </ul>
           </div>
         </div>
@@ -109,14 +109,14 @@ class MotorBogieDescTab extends Component {
           <div className="setupDescBox pull-left">
             <ul className="modeConfig3-list setupDescList">
               <li>
-                  <span>WEELBASE</span>
+                  <span>TEST</span>
                   <span>:</span>
-                  <span>1. 8 m</span>
+                  <span>7.588 ton</span>
               </li>
               <li>
-                  <span>WEIGHT</span>
+                  <span>DEMO</span>
                   <span>:</span>
-                  <span>10 ton</span>
+                  <span>12.821 ton</span>
               </li>
               <li>
                   <span>WHEEL DIA</span>
@@ -126,7 +126,7 @@ class MotorBogieDescTab extends Component {
               <li>
                   <span>BOGIE DIST</span>
                   <span>:</span>
-                  <span>18 m</span>
+                  <span>1.8 m</span>
               </li>
               <li>
                   <span>BRAKE SYSTEM</span>
