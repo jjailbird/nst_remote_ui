@@ -39,14 +39,14 @@ class MotorBogieDescTab extends Component {
           <div className="setupDescBox pull-left">
             <ul className="modeConfig3-list setupDescList">
               <li>
-                  <span>TEST</span>
+                  <span>WEELBASE</span>
                   <span>:</span>
-                  <span>7.588 ton</span>
+                  <span>1.8 m</span>
               </li>
               <li>
-                  <span>DEMO</span>
+                  <span>WEIGHT</span>
                   <span>:</span>
-                  <span>12.821 ton</span>
+                  <span>7.588 ton</span>
               </li>
               <li>
                   <span>WHEEL DIA</span>
@@ -109,12 +109,12 @@ class MotorBogieDescTab extends Component {
           <div className="setupDescBox pull-left">
             <ul className="modeConfig3-list setupDescList">
               <li>
-                  <span>TEST</span>
+                  <span>WEELBASE</span>
                   <span>:</span>
-                  <span>7.588 ton</span>
+                  <span>1.8 m</span>
               </li>
               <li>
-                  <span>DEMO</span>
+                  <span>WEIGHT</span>
                   <span>:</span>
                   <span>12.821 ton</span>
               </li>
