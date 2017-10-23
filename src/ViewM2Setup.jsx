@@ -580,7 +580,7 @@ class ViewM2Setup extends Component {
               <span id="pageHiddenTitle" style={{ display: 'none' }}>TEST_SETUP_PANEL</span>
             </div>
             <div className="headRight pull-right">                
-              hyundai rotem company <a href="#" onClick={() => this.onDataModeChange('1')}>demo</a> <a href="#" onClick={() => this.onDataModeChange('0')}>live</a>
+              hyundai rotem company [<a href="#" onClick={() => this.onDataModeChange('1')}>demo</a> / <a href="#" onClick={() => this.onDataModeChange('0')}>live</a>]
             </div>
           </div>
           <div className="conBoxArea textSetupPanelContainer">
