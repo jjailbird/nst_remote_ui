@@ -41,6 +41,7 @@ class ViewM2Setup extends Component {
     this.hostname = window.location.hostname;
     this.railLength = 250;
     
+    this.onDataModeChange = this.onDataModeChange.bind(this);
     /*
     this.onDriveSetup2Default = this.onDriveSetup2Default.bind(this); 
     this.onDriveSetup2Restore = this.onDriveSetup2Restore.bind(this);
@@ -103,6 +104,10 @@ class ViewM2Setup extends Component {
     this.setCurrentPositionStart = this.setCurrentPositionStart.bind(this);
     this.setCurrentPositionStop = this.setCurrentPositionStop.bind(this);
     this.setCurrentManualSpeed = this.setCurrentManualSpeed.bind(this);
+  }
+  onDataModeChange(value) {
+    const command = getSocketCommand('RUN_DEMO', value);
+    this.sendCommandToDevice(command);
   }
   onDriveSetup(value) {
     alert(value);
@@ -575,7 +580,7 @@ class ViewM2Setup extends Component {
               <span id="pageHiddenTitle" style={{ display: 'none' }}>TEST_SETUP_PANEL</span>
             </div>
             <div className="headRight pull-right">                
-              hyundai rotem company
+              hyundai rotem company <a href="#" onClick={() => this.onDataModeChange('1')}>demo</a> <a href="#" onClick={() => this.onDataModeChange('0')}>live</a>
             </div>
           </div>
           <div className="conBoxArea textSetupPanelContainer">

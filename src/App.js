@@ -50,6 +50,8 @@ class App extends Component {
     this.hostname = window.location.hostname;
     // this.hostname = window.location.host;
     
+    this.data = "{}";
+
     this.setDriveData = {};
     this.setDriveData.tracBatt = 0; // getRandomFloat(300,900);
     this.setDriveData.contBatt = 0; // getRandomFloat(10,40);
@@ -119,16 +121,20 @@ class App extends Component {
     // -----------------------------------
 
     this.handleData = this.handleData.bind(this);
+    this.patchData = this.patchData.bind(this);
     this.changeNaviBackground = this.changeNaviBackground.bind(this);
     // ========================================================
  }
   componentDidMount() {
-    // console.log('this.hostname',this.hostname);
-    // this.timer = setInterval(this.thick, 1000);
+    console.log('timer start!');
+    this.timer = setInterval(this.patchData, 1000 / 30);
   }
   handleData(data) {
+    this.data = data;
+  }
+  patchData() {
     // console.log("socket handleData", data);
-    const json = JSON.parse(data); 
+    const json = JSON.parse(this.data); 
     const { dispatch } = this.props;
    
     // TEST_RUN Drive Data ==================================================================
