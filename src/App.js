@@ -72,6 +72,8 @@ class App extends Component {
     // this.hostname = window.location.hostname; 
     
     this.handleData = this.handleData.bind(this);
+    this.patchData = this.patchData.bind(this);
+    this.data = "{}";
 
     this.frontLeftData = {};
     this.frontLeftData.latDistance = [];
@@ -227,10 +229,14 @@ class App extends Component {
 
   }
   componentDidMount() {
-    
+    console.log('timer start!');
+    this.timer = setInterval(this.patchData, 1000 / 30);
   }
   handleData(data) {
-    const json = JSON.parse(data); 
+    this.data = data;
+  }
+  patchData() {
+    const json = JSON.parse(this.data); 
     const { dispatch, currentAValue } = this.props;
 
     // ITC_RUN Front LEFT =====================================================
