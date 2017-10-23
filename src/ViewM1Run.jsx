@@ -30,7 +30,7 @@ class ViewM1Run extends Component {
   constructor(props) {
     super(props);
     this.hostname = '192.168.1.2';
-    this.hostname = window.location.hostname;
+    // this.hostname = window.location.hostname;
     
     this.onDataModeChange = this.onDataModeChange.bind(this);
 
