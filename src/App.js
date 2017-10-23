@@ -70,6 +70,8 @@ class App extends Component {
     // this.hostname = window.location.hostname;
     
     this.handleData = this.handleData.bind(this);
+    this.patchData = this.patchData.bind(this);
+    this.data = "{}";
     //this.thick = this.thick.bind(this);
     
     // used variables ==============================================
@@ -297,10 +299,15 @@ class App extends Component {
     //hsc    
   }
   componentDidMount() {
-    // this.timer = setInterval(this.thick, 1000 / 30);
+    console.log('timer start!');
+    this.timer = setInterval(this.patchData, 1000 / 30);
   }
   handleData(data) {
-    const json = JSON.parse(data); 
+    this.data = data;
+  }
+  patchData() {
+    //const json = JSON.parse(data);
+    const json = JSON.parse(this.data); 
     // const HSCTEST = json.HSCTEST ? json.HSCTEST : null;
     // const HSCSETUP = json.HSCSETUP ? json.HSCSETUP : null; 
     const { dispatch, currentAValue } = this.props;
@@ -759,7 +766,7 @@ class App extends Component {
   }
 }
 function mapStateToProps(state){
-    console.log('state.setSetupButtons.currentAValue',state.setSetupButtons.currentAValue);
+    // console.log('state.setSetupButtons.currentAValue',state.setSetupButtons.currentAValue);
     return {
       currentAValue: state.setSetupButtons.currentAValue,
     }
