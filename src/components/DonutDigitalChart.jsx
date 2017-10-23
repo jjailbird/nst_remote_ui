@@ -70,8 +70,8 @@ export default class DonutDigitalChart extends Component {
     */
     let value = 0;
 
-    if(data && data.length > 0) {
-      value = data[data.length-1];
+    if(data !== undefined) {
+      value = Array.isArray(data) ? data[data.length-1] : data;
       lineValue = value + lineValueShift;
       linePercent = (lineValue / lineMax) * 100; 
       linePx = (lineFull * linePercent) / 100; 

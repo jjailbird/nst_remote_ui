@@ -30,7 +30,9 @@ class ViewM1Run extends Component {
   constructor(props) {
     super(props);
     this.hostname = '192.168.1.2';
-    // this.hostname = window.location.hostname;
+    this.hostname = window.location.hostname;
+    
+    this.onDataModeChange = this.onDataModeChange.bind(this);
 
     this.onCrtl1ActiveChange = this.onCrtl1ActiveChange.bind(this);
     this.onCrtl1ModeChange = this.onCrtl1ModeChange.bind(this);
@@ -56,6 +58,10 @@ class ViewM1Run extends Component {
 
     this.onTabActivate = this.onTabActivate.bind(this);
 
+  }
+  onDataModeChange(value) {
+    const command = getSocketCommand('RUN_DEMO', value);
+    this.sendCommandToDevice(command);
   }
   onCrtl1ActiveChange(value){
     const command = getSocketCommand('IRO_001',value == 'on' ? 1:0);
@@ -261,6 +267,7 @@ class ViewM1Run extends Component {
           </div>
           <div className="headRight pull-right">        
             hyundai rotem company
+            [<a href="#" onClick={() => this.onDataModeChange('1')}>demo</a> / <a href="#" onClick={() => this.onDataModeChange('0')}>live</a>]
           </div>
         </div>
         <div className="conBoxArea">

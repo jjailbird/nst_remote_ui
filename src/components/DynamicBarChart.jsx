@@ -17,44 +17,9 @@ export default class DynamicBarChart extends Component {
     let barPx = 0; 
     let value = 0;
     
-    /*
-    switch(name) {
-      case 'lat. distance':
-        barValueShift = 10;
-        barMax = 20;
-        break;
-      case 'yaw angle':
-        barValueShift = 5;
-        barMax = 10;
-        break;
-      case 'motor torque':
-        barValueShift = 0;
-        barMax = 3000;
-        break;
-      case 'motor speed':
-        barValueShift = 0;
-        barMax = 3000;
-        break;
-      case 'sylinder stroke':
-        barValueShift = 10;
-        barMax = 20;
-        break;
-      case 'yaw angle':
-        barValueShift = 5;
-        barMax = 10;
-        break;
-      case 'a port pressure':
-        barValueShift = 0;
-        barMax = 50;
-        break;
-      case 'b port pressure':
-        barValueShift = 0;
-        barMax = 150;
-        break;
-    }
-    */
-    if(data && data.length > 0) {
-      value = data[data.length-1];
+    if(data !== undefined) {
+      // value = data[data.length-1];
+      value = Array.isArray(data) ? data[data.length-1] : data;
       barValue = value + barValueShift;
       barPercent = (barValue / barMax) * 100; 
       barPx = Math.round((barFull * barPercent) / 100); 

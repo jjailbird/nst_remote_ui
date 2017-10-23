@@ -53,7 +53,7 @@ export default class DonutDivideLeftChart extends Component {
     let value = 0;
 
     if(data !== undefined) {
-      value = data;
+      value = parseFloat(data);
       lineValue = value + lineValueShift;
       valuePercent = (lineValue / valueMax) * 100; 
       linePx = (lineFull * valuePercent) / 100;
@@ -61,10 +61,12 @@ export default class DonutDivideLeftChart extends Component {
     
     let valueDisplayFontSize = valueFontSize;
     let valueDisplay = isFloat(value) ? value.toFixed(1) : value;
-    if(valueDisplay > 1000) {
+    /*
+    if(Number.isNaN(valueDisplay) == false && valueDisplay > 1000) {
       valueDisplay = valueDisplay.toExponential(1);
       valueDisplayFontSize = "12px"; 
     }
+    */
     const strokeDasharrayValue = `${linePx} ${circleLen - linePx}`;
     
 

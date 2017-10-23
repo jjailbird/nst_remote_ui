@@ -69,7 +69,7 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.hostname = '192.168.1.2';
-    // this.hostname = window.location.hostname; 
+    this.hostname = window.location.hostname; 
     
     this.handleData = this.handleData.bind(this);
     this.patchData = this.patchData.bind(this);
@@ -241,24 +241,36 @@ class App extends Component {
 
     // ITC_RUN Front LEFT =====================================================
     if(json.IRI_012 !== undefined) {
+      /*
       if (this.frontLeftData.latDistance.length >= 292)
         this.frontLeftData.latDistance.shift();
       this.frontLeftData.latDistance.push(json.IRI_012);
+      */
+      this.frontLeftData.latDistance = json.IRI_012;
     }  
     if(json.IRI_013 !== undefined) {
+      /*
       if (this.frontLeftData.yawAngle.length >= 292)
         this.frontLeftData.yawAngle.shift();
       this.frontLeftData.yawAngle.push(json.IRI_013);
+      */
+      this.frontLeftData.yawAngle = json.IRI_013;
     }  
     if(json.IRI_014 !== undefined) {
+      /*
       if (this.frontLeftData.motorTorque.length >= 292)
         this.frontLeftData.motorTorque.shift();
       this.frontLeftData.motorTorque.push(json.IRI_014);
+      */
+      this.frontLeftData.motorTorque = json.IRI_014;
     }  
     if(json.IRI_015 !== undefined) {
+      /*
       if (this.frontLeftData.motorSpeed.length >= 292)
         this.frontLeftData.motorSpeed.shift();
       this.frontLeftData.motorSpeed.push(json.IRI_015);
+      */
+      this.frontLeftData.motorSpeed = json.IRI_015;
     }  
     if(json.IRI_012 !== undefined || json.IRI_013 !== undefined || json.IRI_014 !== undefined || json.IRI_015 !== undefined){
       dispatch( setFrontLeftData(this.frontLeftData) );
@@ -267,24 +279,36 @@ class App extends Component {
 
     // ITC_RUN Front Right =====================================================
     if(json.IRI_016 !== undefined) {
+      /*
       if (this.frontRightData.latDistance.length >= 292)
         this.frontRightData.latDistance.shift();
       this.frontRightData.latDistance.push(json.IRI_016);
+      */
+      this.frontRightData.latDistance = json.IRI_016;
     }  
     if(json.IRI_017 !== undefined) {
+      /*
       if (this.frontRightData.yawAngle.length >= 292)
         this.frontRightData.yawAngle.shift();
       this.frontRightData.yawAngle.push(json.IRI_017);
+      */
+      this.frontRightData.yawAngle = json.IRI_017;
     }  
     if(json.IRI_018 !== undefined) {
+      /*
       if (this.frontRightData.motorTorque.length >= 292)
         this.frontRightData.motorTorque.shift();
       this.frontRightData.motorTorque.push(json.IRI_018);
+      */
+      this.frontRightData.motorTorque = json.IRI_018;
     }  
     if(json.IRI_019 !== undefined) {
+      /*
       if (this.frontRightData.motorSpeed.length >= 292)
         this.frontRightData.motorSpeed.shift();
       this.frontRightData.motorSpeed.push(json.IRI_019);
+      */
+      this.frontRightData.motorSpeed = json.IRI_019;
     }  
     if(json.IRI_016 !== undefined || json.IRI_017 !== undefined || json.IRI_018 !== undefined || json.IRI_019 !== undefined){
       dispatch( setFrontRightData(this.frontRightData) );
@@ -293,24 +317,36 @@ class App extends Component {
     
     // ITC_RUN Rear LEFT =====================================================
     if(json.IRI_020 !== undefined) {
+      /*
       if (this.rearLeftData.latDistance.length >= 292)
         this.rearLeftData.latDistance.shift();
       this.rearLeftData.latDistance.push(json.IRI_020);
+      */
+      this.rearLeftData.latDistance = json.IRI_020;
     }  
     if(json.IRI_021 !== undefined) {
+      /*
       if (this.rearLeftData.yawAngle.length >= 292)
         this.rearLeftData.yawAngle.shift();
       this.rearLeftData.yawAngle.push(json.IRI_021);
+      */
+      this.rearLeftData.yawAngle = json.IRI_021;
     }  
     if(json.IRI_022 !== undefined) {
+      /*
       if (this.rearLeftData.motorTorque.length >= 292)
         this.rearLeftData.motorTorque.shift();
       this.rearLeftData.motorTorque.push(json.IRI_022);
+      */
+      this.rearLeftData.motorTorque = json.IRI_022;
     }  
     if(json.IRI_023 !== undefined) {
+      /*
       if (this.rearLeftData.motorSpeed.length >= 292)
         this.rearLeftData.motorSpeed.shift();
       this.rearLeftData.motorSpeed.push(json.IRI_023);
+      */
+      this.rearLeftData.motorSpeed = json.IRI_023;
     }  
     if(json.IRI_020 !== undefined || json.IRI_021 !== undefined || json.IRI_022 !== undefined || json.IRI_023 !== undefined){
       dispatch( setRearLeftData(this.rearLeftData) );
@@ -318,24 +354,36 @@ class App extends Component {
     // =========================================================================
     // ITC_RUN Rear Right =====================================================
     if(json.IRI_024 !== undefined) {
+      /*
       if (this.rearRightData.latDistance.length >= 292)
         this.rearRightData.latDistance.shift();
       this.rearRightData.latDistance.push(json.IRI_024);
+      */
+      this.rearRightData.latDistance = json.IRI_024;
     }  
     if(json.IRI_025 !== undefined) {
+      /*
       if (this.rearRightData.yawAngle.length >= 292)
         this.rearRightData.yawAngle.shift();
       this.rearRightData.yawAngle.push(json.IRI_025);
+      */
+      this.rearRightData.yawAngle = json.IRI_025;
     }  
     if(json.IRI_026 !== undefined) {
+      /*
       if (this.rearRightData.motorTorque.length >= 292)
         this.rearRightData.motorTorque.shift();
       this.rearRightData.motorTorque.push(json.IRI_026);
+      */
+      this.rearRightData.motorTorque = json.IRI_026;
     }  
     if(json.IRI_027 !== undefined) {
+      /*
       if (this.rearRightData.motorSpeed.length >= 292)
         this.rearRightData.motorSpeed.shift();
       this.rearRightData.motorSpeed.push(json.IRI_027);
+      */
+      this.rearRightData.motorSpeed = json.IRI_027;
     }  
     if(json.IRI_024 !== undefined || json.IRI_025 !== undefined || json.IRI_026 !== undefined || json.IRI_027 !== undefined){
       dispatch( setRearRightData(this.rearRightData) );

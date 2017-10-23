@@ -15,42 +15,7 @@ export default class DynamicLineChart extends Component {
 
     let linePercent = 0; 
     let linePx = 0; 
-    /*
-    switch(name) {
-      case 'lat. distance':
-        lineValueShift = 10;
-        lineMax = 20;
-        break;
-      case 'yaw angle':
-        lineValueShift = 5;
-        lineMax = 10;
-        break;
-      case 'motor torque':
-        lineValueShift = 0;
-        lineMax = 3000;
-        break;
-      case 'motor speed':
-        lineValueShift = 0;
-        lineMax = 3000;
-        break;
-      case 'sylinder stroke':
-        lineValueShift = 10;
-        lineMax = 20;
-        break;
-      case 'yaw angle':
-        lineValueShift = 5;
-        lineMax = 10;
-        break;
-      case 'a port pressure':
-        lineValueShift = 0;
-        lineMax = 50;
-        break;
-      case 'b port pressure':
-        lineValueShift = 0;
-        lineMax = 150;
-        break;
-    }
-    */
+
     // console.log('recieved data:', data);
     let points = '';
     let value = 0;
