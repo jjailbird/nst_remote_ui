@@ -26,7 +26,7 @@ class ViewM3Run extends Component {
   constructor(props) {
     super(props);
     this.hostname = '192.168.1.2';
-    // this.hostname = window.location.hostname;
+    this.hostname = window.location.hostname;
 
     this.onCrtl1ActiveChange = this.onCrtl1ActiveChange.bind(this);
     this.onCrtl1PowerChange = this.onCrtl1PowerChange.bind(this);
