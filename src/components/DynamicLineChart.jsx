@@ -4,6 +4,7 @@ import { isFloat } from '../utils/functions';
 export default class DynamicLineChart extends Component {
   constructor(props) {
     super(props);
+    this.pointArray = [];
   }
   render() {
     const { data, max, shift, unit, name } = this.props;
@@ -19,18 +20,27 @@ export default class DynamicLineChart extends Component {
     // console.log('recieved data:', data);
     let points = '';
     let value = 0;
-    if(data && data.length > 0) {
-      // console.log('recieved array!');
 
-      data.map((item,idx) => {
+    if(data !== undefined ) {
+      if(Array.isArray(data) && data.length > 0) {
+        this.pointArray = data;
+      }
+      else {
+        if (this.pointArray.length >= 292)
+          this.pointArray.shift();
+        this.pointArray.push(data);
+      }
+      
+      this.pointArray.map((item,idx) => {
         value = data[data.length-1];
         lineValue = item + lineValueShift ;
         linePercent = (lineValue / lineMax) * 100; 
         linePx = lineFull - Math.round((lineFull * linePercent) / 100); 
         points += `${idx},${linePx+1} `;
       });
-      // console.log(points);
+       
     }
+
     const valueDisplay = isFloat(value) ? value.toFixed(2) : value;
     return (
       <div className="dlcBox">

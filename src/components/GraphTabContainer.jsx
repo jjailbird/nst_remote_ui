@@ -59,7 +59,7 @@ export default class GraphTabContainer extends Component {
               <DynamicLineChart data={data.latDistance} shift="20" max="40" unit="mm" name="lat. distance"/>
               <DynamicLineChart data={data.yawAngle} shift="15" max="30" unit="deg" name="yaw angle" />
               <DynamicLineChart data={data.motorTorque} max="500" unit="Nm" name="motor torque" />
-              <DynamicLineChart data={data.motorSpeed} max="500" unit="RPM" name="motor speed" />              
+              <DynamicLineChart data={data.motorSpeed} max="650" unit="RPM" name="motor speed" />              
             </div>
 
           </div>        
