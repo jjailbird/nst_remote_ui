@@ -7,7 +7,7 @@ Date.prototype.yyyymmdd = function() {
           (dd>9 ? '' : '0') + dd
          ].join('');
 };
-Date.prototype.yyyymmddhhmmss = function() {
+Date.prototype.yyyymmddhhmmss = function(divider) {
 
   var mm = this.getMonth() + 1; // getMonth() is zero-based
   var dd = this.getDate();
@@ -19,7 +19,7 @@ Date.prototype.yyyymmddhhmmss = function() {
           (mm>9 ? '' : '0') + mm,
           (dd>9 ? '' : '0') + dd,
           day,hour,minute, second
-         ].join('');
+         ].join(divider ? divider : '');
 
 };
 

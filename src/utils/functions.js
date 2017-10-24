@@ -1,3 +1,8 @@
+export function getHostName() {
+  return '192.168.1.2';
+  // return window.location.hostname;
+}
+
 export function getRandomFloat(min, max) {
   return Math.random() * (max - min) + min;
 }
@@ -26,4 +31,34 @@ export function getToggledValues(values, value) {
 export function getSocketCommand(tagId, value) {
   let commandFormat = "#{0},{1};$";
   return commandFormat.format(tagId, value);
+}
+
+export function sendCommandToDevice(command, connnectionReplace) {
+  const hostname = getHostName();
+  const connectionString = connnectionReplace ? `ws://${connnectionReplace}/` : `ws://${hostname}:8181/`;
+  const ws = new WebSocket(connectionString);
+  
+  const waitForConnection = (callback, interval) => {
+    if (ws.readyState === 1) {
+      callback();
+    } else {
+      var that = this;
+      // optional: implement backoff for interval here
+      setTimeout(() => {
+          waitForConnection(callback, interval);
+      }, interval);
+    }
+  };
+
+  const send = (message, callback) => {
+    waitForConnection(() => {
+        ws.send(message);
+        ws.close();
+        if (typeof callback !== 'undefined') {
+            callback();
+        }
+    }, 100);
+  };
+
+  send(command);
 }

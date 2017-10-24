@@ -18,7 +18,7 @@ import './ViewM1Run.css';
 
 import { H5SPlayVideo } from './utils/H5SPlayVideo';
 import { connect } from 'react-redux';
-import { getSocketCommand } from './utils/functions';
+import { getSocketCommand, getHostName, sendCommandToDevice } from './utils/functions';
 
 import {
   setCrtl1Active, setCrtl1Mode, setCrtl1SensorType, setCrtl1ControlType, setCrtl1WFLateralSensor, setCrtl1WFControlMode, setCrtl1WFYawSensor, setCrtl1WFControlType,
@@ -29,8 +29,7 @@ import {
 class ViewM1Run extends Component {
   constructor(props) {
     super(props);
-    this.hostname = '192.168.1.2';
-    // this.hostname = window.location.hostname;
+    this.hostname = getHostName();
     
     this.onDataModeChange = this.onDataModeChange.bind(this);
 
@@ -61,18 +60,18 @@ class ViewM1Run extends Component {
   }
   onDataModeChange(value) {
     const command = getSocketCommand('RUN_DEMO', value);
-    this.sendCommandToDevice(command);
+    sendCommandToDevice(command);
   }
   onCrtl1ActiveChange(value){
     const command = getSocketCommand('IRO_001',value == 'on' ? 1:0);
-    this.sendCommandToDevice(command);
+    sendCommandToDevice(command);
 
     const { dispatch } = this.props;
     dispatch(setCrtl1Active(value));
   } 
   onCrtl1ModeChange(value){
     const command = getSocketCommand('IRO_002',value == 'Speed' ? 1:0);
-    this.sendCommandToDevice(command);
+    sendCommandToDevice(command);
 
     const { dispatch } = this.props;
     dispatch(setCrtl1Mode(value));
@@ -80,56 +79,56 @@ class ViewM1Run extends Component {
   onCrtl1SensorTypeChange(values){
     const cValue = '{0}{1}{2}'.format(values.includes('Laser-X')?1:0,values.includes('Laser-Y')?1:0,values.includes('Gyro')?1:0);
     const command = getSocketCommand('IRO_003',cValue);
-    this.sendCommandToDevice(command);
+    sendCommandToDevice(command);
 
     const { dispatch } = this.props;
     dispatch(setCrtl1SensorType(values));
   }
   onCrtl1ControlTypeChange(value){
     const command = getSocketCommand('IRO_004',value == 'Yaw Angle' ? 1:0);
-    this.sendCommandToDevice(command);
+    sendCommandToDevice(command);
 
     const { dispatch } = this.props;
     dispatch(setCrtl1ControlType(value));
   }
   onCrtl1WfLateralSensorChange(value){
     const command = getSocketCommand('IRO_005',value);
-    this.sendCommandToDevice(command);
+    sendCommandToDevice(command);
 
     const { dispatch } = this.props;
     dispatch(setCrtl1WFLateralSensor(value));
   }
   onCrtl1WfControlModeChange(value){
     const command = getSocketCommand('IRO_007',value);
-    this.sendCommandToDevice(command);
+    sendCommandToDevice(command);
 
     const { dispatch } = this.props;
     dispatch(setCrtl1WFControlMode(value));
   } 
   onCrtl1WfYawSensorChange(value){
     const command = getSocketCommand('IRO_006',value);
-    this.sendCommandToDevice(command);
+    sendCommandToDevice(command);
 
     const { dispatch } = this.props;
     dispatch(setCrtl1WFYawSensor(value));
   } 
   onCrtl1WfControlTypeChange(value){
     const command = getSocketCommand('IRO_008',value);
-    this.sendCommandToDevice(command);
+    sendCommandToDevice(command);
 
     const { dispatch } = this.props;
     dispatch(setCrtl1WFControlType(value));
   }
   onCrtl2ActiveChange(value){
     const command = getSocketCommand('IRO_051',value == 'on' ? 1:0);
-    this.sendCommandToDevice(command);
+    sendCommandToDevice(command);
 
     const { dispatch } = this.props;
     dispatch(setCrtl2Active(value));
   } 
   onCrtl2ModeChange(value){
     const command = getSocketCommand('IRO_052',value == 'Speed' ? 1:0);
-    this.sendCommandToDevice(command);
+    sendCommandToDevice(command);
 
     const { dispatch } = this.props;
     dispatch(setCrtl2Mode(value));
@@ -137,42 +136,42 @@ class ViewM1Run extends Component {
   onCrtl2SensorTypeChange(values){
     const cValue = '{0}{1}{2}'.format(values.includes('Laser-X')?1:0,values.includes('Laser-Y')?1:0,values.includes('Gyro')?1:0);
     const command = getSocketCommand('IRO_053',cValue);
-    this.sendCommandToDevice(command);
+    sendCommandToDevice(command);
 
     const { dispatch } = this.props;
     dispatch(setCrtl2SensorType(values));
   } 
   onCrtl2ControlTypeChange(value){
     const command = getSocketCommand('IRO_054',value == 'Yaw Angle' ? 1:0);
-    this.sendCommandToDevice(command);
+    sendCommandToDevice(command);
     
     const { dispatch } = this.props;
     dispatch(setCrtl2ControlType(value));
   } 
   onCrtl2WfLateralSensorChange(value){
     const command = getSocketCommand('IRO_055',value);
-    this.sendCommandToDevice(command);
+    sendCommandToDevice(command);
 
     const { dispatch } = this.props;
     dispatch(setCrtl2WFLateralSensor(value));
   } 
   onCrtl2WfControlModeChange(value){
     const command = getSocketCommand('IRO_057',value);
-    this.sendCommandToDevice(command);
+    sendCommandToDevice(command);
 
     const { dispatch } = this.props;
     dispatch(setCrtl2WFControlMode(value));
   } 
   onCrtl2WfYawSensorChange(value){
     const command = getSocketCommand('IRO_056',value);
-    this.sendCommandToDevice(command);
+    sendCommandToDevice(command);
 
     const { dispatch } = this.props;
     dispatch(setCrtl2WFYawSensor(value));
   } 
   onCrtl2WfControlTypeChange(value){
     const command = getSocketCommand('IRO_058',value);
-    this.sendCommandToDevice(command);
+    sendCommandToDevice(command);
 
     const { dispatch } = this.props;
     dispatch(setCrtl2WFControlType(value));
@@ -194,6 +193,7 @@ class ViewM1Run extends Component {
     const { dispatch } = this.props;
     dispatch(setChartTypeRearRight(value));
   }
+  /*
   sendCommandToDevice(command) {
     var ws = new WebSocket(`ws://${this.hostname}:8181/`);
     this.send = function (message, callback) {
@@ -219,6 +219,7 @@ class ViewM1Run extends Component {
     };
     this.send(command);
   }
+  */
   onTabActivate(index){
     // alert(index);
     let tabBody = document.getElementsByClassName('react-tab-panel__body');

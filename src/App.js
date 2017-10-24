@@ -57,7 +57,7 @@ import {
   NavLink
 } from 'react-router-dom';
 
-import { getRandomInt, getRandomFloat } from './utils/functions';
+import { getRandomInt, getRandomFloat, getHostName } from './utils/functions';
 
 //페이지 정리
 import ViewM1Main from './ViewM1Main';
@@ -68,8 +68,7 @@ import ViewM1Spec from './ViewM1Spec';
 class App extends Component {
   constructor(props) {
     super(props);
-    this.hostname = '192.168.1.2';
-    // this.hostname = window.location.hostname; 
+    this.hostname = getHostName();
     
     this.handleData = this.handleData.bind(this);
     this.patchData = this.patchData.bind(this);

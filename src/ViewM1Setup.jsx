@@ -15,15 +15,15 @@ import LaserTabContainer from './components/LaserTabContainer';
 import MotorBogieDescTab from './components/MotorBogieDescTab';
 
 import { connect } from 'react-redux';
-import { getSocketCommand } from './utils/functions';
+import { getSocketCommand, getHostName, sendCommandToDevice } from './utils/functions';
 import { setTuningFrontPgain, setTuningFrontIgain, setTuningRearPgain, setTuningRearIgain, setCarMass, setCurrentAValue } from './actions';
 
 class ViewM1Setup extends Component {
   constructor(props){
     super(props);
 
-    this.hostname = '192.168.1.2'; 
-    // this.hostname = window.location.hostname;
+    this.hostname = getHostName(); 
+
     this.onTuningFrontPgainChange = this.onTuningFrontPgainChange.bind(this);
     this.onTuningFrontIgainChange = this.onTuningFrontIgainChange.bind(this);
     this.onTuningRearPgainChange = this.onTuningRearPgainChange.bind(this);
@@ -83,7 +83,7 @@ class ViewM1Setup extends Component {
   onTuningFrontPgainChange(value){
     // const command = '#ISO_002,{0};$'.format(value);
     const command = getSocketCommand('ISO_002', value);
-    this.sendCommandToDevice(command);
+    sendCommandToDevice(command);
 
     const { dispatch } = this.props;
     dispatch(setTuningFrontPgain(value));
@@ -91,7 +91,7 @@ class ViewM1Setup extends Component {
   onTuningFrontIgainChange(value){
     // const command = '#ISO_003,{0};$'.format(value);
     const command = getSocketCommand('ISO_003', value);
-    this.sendCommandToDevice(command);
+    sendCommandToDevice(command);
 
     const { dispatch } = this.props;
     dispatch(setTuningFrontIgain(value));
@@ -99,7 +99,7 @@ class ViewM1Setup extends Component {
   onTuningRearPgainChange(value){
     // const command = '#ISO_004,{0};$'.format(value);
     const command = getSocketCommand('ISO_004', value);
-    this.sendCommandToDevice(command);
+    sendCommandToDevice(command);
 
     const { dispatch } = this.props;
     dispatch(setTuningRearPgain(value));
@@ -107,18 +107,19 @@ class ViewM1Setup extends Component {
   onTuningRearIgainChange(value){
     // const command = '#ISO_005,{0};$'.format(value);
     const command = getSocketCommand('ISO_005', value);
-    this.sendCommandToDevice(command);
+    sendCommandToDevice(command);
 
     const { dispatch } = this.props;
     dispatch(setTuningRearIgain(value));
   }
   onCarMassChange(value) {
     const command = getSocketCommand('ISO_001', value == 'RUN' ? 0:1);
-    this.sendCommandToDevice(command);
+    sendCommandToDevice(command);
     
     const { dispatch } = this.props;
     dispatch(setCarMass(value));
   }
+  /*
   sendCommandToDevice(command) {
     var ws = new WebSocket(`ws://${this.hostname}:8181/`);
     this.send = function (message, callback) {
@@ -144,6 +145,7 @@ class ViewM1Setup extends Component {
     };
     this.send(command);
   }
+  */
   render() {
     const { 
       frontLeftMotorData,
