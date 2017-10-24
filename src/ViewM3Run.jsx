@@ -15,7 +15,7 @@ import Clock from 'react-live-clock';
 
 import { H5SPlayVideo } from './utils/H5SPlayVideo';
 import { connect } from 'react-redux';
-import { getSocketCommand } from './utils/functions';
+import { getSocketCommand, getHostName, sendCommandToDevice } from './utils/functions';
 
 import {
   setCrtl1Active, setCrtl1Power, setCrtl1Zero, setCrtl1SensorType, setCrtl1ControlType, setCrtl1SRActiveA, setCrtl1SRActiveB, setCrtl1SRActiveA2, setCrtl1SRActiveB2,
@@ -25,8 +25,8 @@ import {
 class ViewM3Run extends Component {
   constructor(props) {
     super(props);
-    this.hostname = '192.168.1.2';
-    // this.hostname = window.location.hostname;
+
+    this.hostname = getHostName();
 
     this.onDataModeChange = this.onDataModeChange.bind(this);
 
@@ -47,25 +47,25 @@ class ViewM3Run extends Component {
   }
   onDataModeChange(value) {
     const command = getSocketCommand('RUN_DEMO', value);
-    this.sendCommandToDevice(command);
+    sendCommandToDevice(command);
   }
   onCrtl1ActiveChange(value){
     const command = getSocketCommand('HRO_001', value == 'On' ? 1:0);
-    this.sendCommandToDevice(command);
+    sendCommandToDevice(command);
 
     const { dispatch } = this.props;
     dispatch(setCrtl1Active(value));
   } 
   onCrtl1PowerChange(value){
     const command = getSocketCommand('HRO_002', value == 'On' ? 1:0);
-    this.sendCommandToDevice(command);
+    sendCommandToDevice(command);
 
     const { dispatch } = this.props;
     dispatch(setCrtl1Power(value));
   }
   onCrtl1ZeroChange(value){
     const command = getSocketCommand('HRO_003', value == 'On' ? 1:0);
-    this.sendCommandToDevice(command);
+    sendCommandToDevice(command);
 
     const { dispatch } = this.props;
     dispatch(setCrtl1Zero(value));
@@ -74,11 +74,11 @@ class ViewM3Run extends Component {
     /*
     const cValue = '{0}{1}'.format(values.includes('LVDT')?1:0,values.includes('Gyro')?1:0);
     const command = getSocketCommand('HRO_004', cValue);
-    this.sendCommandToDevice(command);
+    sendCommandToDevice(command);
     */
     // alert(value);
     const command = getSocketCommand('HRO_004', value == 'LVDT' ? 0:1);
-    this.sendCommandToDevice(command);
+    sendCommandToDevice(command);
 
     const { dispatch } = this.props;
     dispatch(setCrtl1SensorType(value));
@@ -103,35 +103,35 @@ class ViewM3Run extends Component {
         break;                               
     }
     const command = getSocketCommand('HRO_005',cValue);
-    this.sendCommandToDevice(command);
+    sendCommandToDevice(command);
     
     const { dispatch } = this.props;
     dispatch(setCrtl1ControlType(value));
   }
   onCrtl1SRActiveAChange(value){
     const command = getSocketCommand('HRO_006',value);
-    this.sendCommandToDevice(command);
+    sendCommandToDevice(command);
 
     const { dispatch } = this.props;
     dispatch(setCrtl1SRActiveA(value));
   }
   onCrtl1SRActiveBChange(value){
     const command = getSocketCommand('HRO_008',value);
-    this.sendCommandToDevice(command);
+    sendCommandToDevice(command);
 
     const { dispatch } = this.props;
     dispatch(setCrtl1SRActiveB(value));
   } 
   onCrtl1SRActiveA2Change(value){
     const command = getSocketCommand('HRO_007',value);
-    this.sendCommandToDevice(command);
+    sendCommandToDevice(command);
 
     const { dispatch } = this.props;
     dispatch(setCrtl1SRActiveA2(value));
   } 
   onCrtl1SRActiveB2Change(value){
     const command = getSocketCommand('HRO_009',value);
-    this.sendCommandToDevice(command);
+    sendCommandToDevice(command);
 
     const { dispatch } = this.props;
     dispatch(setCrtl1SRActiveB2(value));
@@ -153,39 +153,14 @@ class ViewM3Run extends Component {
     const { dispatch } = this.props;
     dispatch(setChartTypeRearRight(value));
   }
-  sendCommandToDevice(command) {
-    var ws = new WebSocket(`ws://${this.hostname}:8181/`);
-    this.send = function (message, callback) {
-      this.waitForConnection(function () {
-          ws.send(message);
-          ws.close();
-          if (typeof callback !== 'undefined') {
-              callback();
-          }
-      }, 100);
-    };
-
-    this.waitForConnection = function (callback, interval) {
-      if (ws.readyState === 1) {
-        callback();
-      } else {
-        var that = this;
-        // optional: implement backoff for interval here
-        setTimeout(function () {
-            that.waitForConnection(callback, interval);
-        }, interval);
-      }
-    };
-    this.send(command);
-  }
   componentDidMount(){
     // console.log('HSSPlyaer start!');
-    
+    /*
     const rtspFrontPlayer = new H5SPlayVideo('videoLeft');
     rtspFrontPlayer.Start();
     const rtspRearPlayer = new H5SPlayVideo('videoRight');
     rtspRearPlayer.Start();
-    
+    */
   }
   render() {
     const { 

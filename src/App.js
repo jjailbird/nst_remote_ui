@@ -56,7 +56,7 @@ import {
   NavLink
 } from 'react-router-dom';
 
-import { getRandomInt, getRandomFloat } from './utils/functions';
+import { getRandomInt, getRandomFloat, getHostName } from './utils/functions';
 
 import ViewM3Main from './ViewM3Main';
 import ViewM3Run from './ViewM3Run';
@@ -66,13 +66,11 @@ import ViewM3Spec from './ViewM3Spec';
 class App extends Component {
   constructor(props) {
     super(props);
-    this.hostname = '192.168.1.2';
-    // this.hostname = window.location.hostname;
+    this.hostname = getHostName();
     
     this.handleData = this.handleData.bind(this);
     this.patchData = this.patchData.bind(this);
     this.data = "{}";
-    //this.thick = this.thick.bind(this);
     
     // used variables ==============================================
     this.frontLeftHscData = {};

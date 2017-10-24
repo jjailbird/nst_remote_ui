@@ -15,7 +15,7 @@ import LaserTabContainer from './components/LaserTabContainer';
 import TrailerBogieDescTab from './components/TrailerBogieDescTab'
 
 import { connect } from 'react-redux';
-import { getSocketCommand } from './utils/functions';
+import { getSocketCommand, getHostName, sendCommandToDevice } from './utils/functions';
 
 import {
   setTuningFront1Pgain, setTuningFront1Igain, setTuningRear1Pgain, setTuningRear1Igain,
@@ -27,8 +27,7 @@ class ViewM3Setup extends Component {
   constructor(props) {
     super(props);
     
-    this.hostname = '192.168.1.2'; 
-    // this.hostname = window.location.hostname;
+    this.hostname = getHostName(); 
 
     this.onTuningFront1PgainChange = this.onTuningFront1PgainChange.bind(this);
     this.onTuningFront1IgainChange = this.onTuningFront1IgainChange.bind(this); 
@@ -92,92 +91,66 @@ class ViewM3Setup extends Component {
   }
   onTuningFront1PgainChange(value){
     const command = getSocketCommand('HSO_002', value);
-    this.sendCommandToDevice(command);
+    sendCommandToDevice(command);
 
     const { dispatch } = this.props;
     dispatch(setTuningFront1Pgain(value));
   }
   onTuningFront1IgainChange(value){
     const command = getSocketCommand('HSO_003', value);
-    this.sendCommandToDevice(command);
+    sendCommandToDevice(command);
 
     const { dispatch } = this.props;
     dispatch(setTuningFront1Igain(value));
   } 
   onTuningRear1PgainChange(value){
     const command = getSocketCommand('HSO_006', value);
-    this.sendCommandToDevice(command);
+    sendCommandToDevice(command);
 
     const { dispatch } = this.props;
     dispatch(setTuningRear1Pgain(value));
   }
   onTuningRear1IgainChange(value){
     const command = getSocketCommand('HSO_007', value);
-    this.sendCommandToDevice(command);
+    sendCommandToDevice(command);
 
     const { dispatch } = this.props;
     dispatch(setTuningRear1Igain(value));
   }
   onTuningFront2PgainChange(value){
     const command = getSocketCommand('HSO_004', value);
-    this.sendCommandToDevice(command);
+    sendCommandToDevice(command);
 
     const { dispatch } = this.props;
     dispatch(setTuningFront2Pgain(value));
   }
   onTuningFront2IgainChange(value){
     const command = getSocketCommand('HSO_005', value);
-    this.sendCommandToDevice(command);
+    sendCommandToDevice(command);
 
     const { dispatch } = this.props;
     dispatch(setTuningFront2Igain(value));
   }
   onTuningRear2PgainChange(value){
     const command = getSocketCommand('HSO_008', value);
-    this.sendCommandToDevice(command);
+    sendCommandToDevice(command);
 
     const { dispatch } = this.props;
     dispatch(setTuningRear2Pgain(value));
   }
   onTuningRear2IgainChange(value){
     const command = getSocketCommand('HSO_009', value);
-    this.sendCommandToDevice(command);
+    sendCommandToDevice(command);
 
     const { dispatch } = this.props;
     dispatch(setTuningRear2Igain(value));
   }
   onCarMassChange(value) {
     const command = getSocketCommand('HSO_001', value == 'RUN' ? 0:1);
-    this.sendCommandToDevice(command);
+    sendCommandToDevice(command);
     
     const { dispatch } = this.props;
     dispatch(setCarMass(value));
-  }
-
-  sendCommandToDevice(command) {
-    var ws = new WebSocket(`ws://${this.hostname}:8181/`);
-    this.send = function (message, callback) {
-      this.waitForConnection(function () {
-          ws.send(message);
-          ws.close();
-          if (typeof callback !== 'undefined') {
-              callback();
-          }
-      }, 100);
-    };
-
-    this.waitForConnection = function (callback, interval) {
-      if (ws.readyState === 1) {
-        callback();
-      } else {
-        var that = this;
-        // optional: implement backoff for interval here
-        setTimeout(function () {
-            that.waitForConnection(callback, interval);
-        }, interval);
-      }
-    };
-    this.send(command);
   }
   render() {
     const { 
