@@ -23,7 +23,7 @@ import {
 } from './actions/m2SetupActions';
 
 import { connect } from 'react-redux';
-import { getSocketCommand } from './utils/functions.js';
+import { getSocketCommand, sendCommandToDevice } from './utils/functions.js';
 
 class ViewM2Setup extends Component {
   constructor(props) {
@@ -107,7 +107,7 @@ class ViewM2Setup extends Component {
   }
   onDataModeChange(value) {
     const command = getSocketCommand('RUN_DEMO', value);
-    this.sendCommandToDevice(command);
+    sendCommandToDevice(command);
   }
   onDriveSetup(value) {
     alert(value);
@@ -151,7 +151,7 @@ class ViewM2Setup extends Component {
   }
   onVehicleLimitSpeedAKeyboardHide(){
     const command = getSocketCommand('TSO_012', this.state.vehicleLimitSpeedA);
-    this.sendCommandToDevice(command);
+    sendCommandToDevice(command);
 
     const { dispatch } = this.props;
     dispatch(setLimitSpeedA(this.state.vehicleLimitSpeedA));
@@ -165,7 +165,7 @@ class ViewM2Setup extends Component {
   }
   onVehicleRunCountkeyboardHide() {
     const command = getSocketCommand('TSO_013', this.state.vehicleRunCount);
-    this.sendCommandToDevice(command);
+    sendCommandToDevice(command);
 
     const { dispatch } = this.props;
     dispatch(setRunCount(this.state.vehicleRunCount));
@@ -184,7 +184,7 @@ class ViewM2Setup extends Component {
   }
   onVehicleLimitSpeedMKeyboardHide(){
     const command = getSocketCommand('TSO_014', this.state.vehicleLimitSpeedM);
-    this.sendCommandToDevice(command);
+    sendCommandToDevice(command);
 
     const { dispatch } = this.props;
     dispatch(setLimitSpeedM(this.state.vehicleLimitSpeedM));
@@ -205,7 +205,7 @@ class ViewM2Setup extends Component {
   setCurrentPositionStart() {
     
     const command = getSocketCommand('TSO_010', this.state.vehiclePositionStart);
-    this.sendCommandToDevice(command);
+    sendCommandToDevice(command);
 
     // console.log('this.railroad', this.railroad);
     this.railroad.moveStartPoint(this.state.vehiclePositionStart);
@@ -216,7 +216,7 @@ class ViewM2Setup extends Component {
   }
   setCurrentPositionStop() {
     const command = getSocketCommand('TSO_011', this.state.vehiclePositionStop);
-    this.sendCommandToDevice(command);
+    sendCommandToDevice(command);
 
     this.railroad.moveStartPoint(this.state.vehiclePositionStop);
 
@@ -225,11 +225,12 @@ class ViewM2Setup extends Component {
   }
   setCurrentManualSpeed() {
     const command = getSocketCommand('TSO_015', this.state.vehicleShuntSpeed);
-    this.sendCommandToDevice(command);
+    sendCommandToDevice(command);
 
     const { dispatch } = this.props;
     dispatch(setShuntSpeed(this.state.vehicleShuntSpeed));
   }
+  /*
   sendCommandToDevice(command) {
     var ws = new WebSocket(`ws://${this.hostname}:8181/`);
     this.send = function (message, callback) {
@@ -255,12 +256,13 @@ class ViewM2Setup extends Component {
     };
     this.send(command);
   }
+  */
   // sequence start =======================================================
   // s01
   onPowerChange(value) {
     
     const command = getSocketCommand('TSO_001', value == 'on' ? 1:0);
-    this.sendCommandToDevice(command);
+    sendCommandToDevice(command);
 
     const { dispatch } = this.props;
     dispatch( setPower(value) );
@@ -269,7 +271,7 @@ class ViewM2Setup extends Component {
   onLightChange(value) {
     
     const command = getSocketCommand('TSO_002', value == 'on' ? 1:0);
-    this.sendCommandToDevice(command);
+    sendCommandToDevice(command);
 
     const { dispatch } = this.props;
     dispatch( setLight(value) );
@@ -279,7 +281,7 @@ class ViewM2Setup extends Component {
     const { dispatch } = this.props;
     const command = getSocketCommand('TSO_021', value == 'on' ? 1:0);
 
-    this.sendCommandToDevice(command);
+    sendCommandToDevice(command);
     dispatch( setInvCon1(value) );
 
     /*
@@ -289,7 +291,7 @@ class ViewM2Setup extends Component {
     } else {
       
       const command = getSocketCommand('TSO_021', value == 'on' ? 1:0);
-      this.sendCommandToDevice(command);
+      sendCommandToDevice(command);
 
       dispatch( setInvCon1(value) );
     }
@@ -301,7 +303,7 @@ class ViewM2Setup extends Component {
     const { dispatch } = this.props;
     const command = getSocketCommand('TSO_022', value == 'on' ? 1:0);
     
-    this.sendCommandToDevice(command);
+    sendCommandToDevice(command);
     dispatch( setInvCon2(value) );
     /*
     if(invCon1 === 'off' && value === 'on') {
@@ -310,7 +312,7 @@ class ViewM2Setup extends Component {
     } else {
       const command = getSocketCommand('TSO_022', value == 'on' ? 1:0);
 
-      this.sendCommandToDevice(command);
+      sendCommandToDevice(command);
       dispatch( setInvCon2(value) );
     }
     */
@@ -321,7 +323,7 @@ class ViewM2Setup extends Component {
     const { dispatch } = this.props;
     const command = getSocketCommand('TSO_023', value == 'on' ? 1:0);
 
-    this.sendCommandToDevice(command);
+    sendCommandToDevice(command);
     dispatch( setTbms(value) );
     /*
     if(invCon2 === 'off' && value === 'on') {
@@ -330,7 +332,7 @@ class ViewM2Setup extends Component {
     } else {
       
       const command = getSocketCommand('TSO_023', value == 'on' ? 1:0);
-      this.sendCommandToDevice(command);
+      sendCommandToDevice(command);
 
       dispatch( setTbms(value) );
     }
@@ -342,7 +344,7 @@ class ViewM2Setup extends Component {
     const { tBms, dispatch } = this.props;
     const command = getSocketCommand('TSO_024', value == 'on' ? 1:0);
 
-    this.sendCommandToDevice(command);
+    sendCommandToDevice(command);
     dispatch( setDcDc(value) );
     /*
     if(tBms === 'off' && value === 'on') {
@@ -351,7 +353,7 @@ class ViewM2Setup extends Component {
     } else {
       
       const command = getSocketCommand('TSO_024', value == 'on' ? 1:0);
-      this.sendCommandToDevice(command);
+      sendCommandToDevice(command);
 
       dispatch( setDcDc(value) );
     }
@@ -363,7 +365,7 @@ class ViewM2Setup extends Component {
     const { dispatch } = this.props;
     const command = getSocketCommand('TSO_025', value == 'on' ? 1:0);
 
-    this.sendCommandToDevice(command);
+    sendCommandToDevice(command);
     dispatch( setApc(value) );    
     /*
     if(dcDc === 'off' && value === 'on') {
@@ -372,7 +374,7 @@ class ViewM2Setup extends Component {
     } else {
       
       const command = getSocketCommand('TSO_025', value == 'on' ? 1:0);
-      this.sendCommandToDevice(command);
+      sendCommandToDevice(command);
 
       dispatch( setApc(value) );
     }
@@ -384,7 +386,7 @@ class ViewM2Setup extends Component {
     const { dispatch } = this.props;
     const command = getSocketCommand('TSO_026', value == 'on' ? 1:0);
 
-    this.sendCommandToDevice(command);
+    sendCommandToDevice(command);
     dispatch( setInvOut1(value) );
     /*
     if(apc === 'off' && value === 'on') {
@@ -392,7 +394,7 @@ class ViewM2Setup extends Component {
       return false;
     } else {
       const command = getSocketCommand('TSO_026', value == 'on' ? 1:0);
-      this.sendCommandToDevice(command);
+      sendCommandToDevice(command);
 
       dispatch( setInvOut1(value) );
     }
@@ -404,7 +406,7 @@ class ViewM2Setup extends Component {
     const { invOut1, dispatch } = this.props;
     const command = getSocketCommand('TSO_027', value == 'on' ? 1:0);
 
-    this.sendCommandToDevice(command);
+    sendCommandToDevice(command);
     dispatch( setInvOut2(value) );    
     /*
     if(invOut1 === 'off' && value === 'on') {
@@ -412,7 +414,7 @@ class ViewM2Setup extends Component {
       return false;
     } else {
       const command = getSocketCommand('TSO_027', value == 'on' ? 1:0);
-      this.sendCommandToDevice(command);
+      sendCommandToDevice(command);
 
       dispatch( setInvOut2(value) );
     }
@@ -423,7 +425,7 @@ class ViewM2Setup extends Component {
     //alert('s08:' + value);
     const { invOut2, dispatch } = this.props;
     const command = getSocketCommand('TSO_028', value == 'on' ? 1:0);
-    this.sendCommandToDevice(command);
+    sendCommandToDevice(command);
     dispatch( setSbms(value) );
   }
   // s09
@@ -431,7 +433,7 @@ class ViewM2Setup extends Component {
     //alert('s09:' + value);
     const { dispatch } = this.props;
     const command = getSocketCommand('TSO_029', value == 'on' ? 1:0);
-    this.sendCommandToDevice(command);
+    sendCommandToDevice(command);
     dispatch( setSinv(value) );
 
   }
@@ -441,7 +443,7 @@ class ViewM2Setup extends Component {
     const { dispatch } = this.props;
     const command = getSocketCommand('TSO_030', value == 'on' ? 1:0);
 
-    this.sendCommandToDevice(command);
+    sendCommandToDevice(command);
     dispatch( setCamera(value) );
   }
   // s11
@@ -459,7 +461,7 @@ class ViewM2Setup extends Component {
         break;
     }
     const command = getSocketCommand('TSO_003', cValue);
-    this.sendCommandToDevice(command);
+    sendCommandToDevice(command);
 
     const { dispatch } = this.props;
     dispatch(setDriveMode(value));
@@ -467,19 +469,19 @@ class ViewM2Setup extends Component {
   // s12
   onRunDirectionChange(value) {
     const command = getSocketCommand('TSO_004', value == 'on' ? 1:0);
-    this.sendCommandToDevice(command);
+    sendCommandToDevice(command);
 
     const { dispatch } = this.props;
     const command2 = value === "on" ? "d1" : "d0";
     dispatch( setRunDirection(parseInt(command2.charAt(1))));
-    //this.sendCommandToDevice(command);
+    //sendCommandToDevice(command);
   }
   // s13 제동 선택?
 
   // s14
   onRunSwitchChange(value) {
     const command = getSocketCommand('TSO_005', value == 'on' ? 1:0);
-    this.sendCommandToDevice(command);
+    sendCommandToDevice(command);
 
     const { dispatch } = this.props;
     const command2 = value === "on" ? "s1" : "s0";
@@ -489,7 +491,7 @@ class ViewM2Setup extends Component {
   // s15-1
   onHydroBkChange(value) {
     const command = getSocketCommand('TSO_006', value == 'on' ? 1:0);
-    this.sendCommandToDevice(command);
+    sendCommandToDevice(command);
 
     const { dispatch } = this.props;
     dispatch( setHydroBk(value) );
@@ -497,13 +499,12 @@ class ViewM2Setup extends Component {
   // s15-2
   onRegenBkChange(value) {
     const command = getSocketCommand('TSO_007', value == 'on' ? 1:0);
-    this.sendCommandToDevice(command);
+    sendCommandToDevice(command);
 
     const { dispatch } = this.props;
     dispatch( setRegenBk(value) );
   }
   componentDidMount() {
-    // alert(this.NST_test_label);
 
   }
   render() {
@@ -529,13 +530,9 @@ class ViewM2Setup extends Component {
       dispatch
     } = this.props;
     
-    console.log('VehicleSpeedArray', VehicleSpeedArray);
-
     const runSwitchValue = runSwitch === 0 ? "off" : "on";
     const runDirectionValue = runDirection === 0 ? "off" : "on";
     
-    // console.log('runSwitchValue', runSwitch, runSwitchValue);
-    // console.log('runDirectionValue:', runDirection, runDirectionValue);
     let sDriveModeStatus = '';
     let sDriveModeStatusColor = '#fff673';
     switch(driveMode) {
@@ -549,11 +546,9 @@ class ViewM2Setup extends Component {
         sDriveModeStatus = 'AUTO READY';
         break;
     }
-    //console.log('emergencyStop:', emergencyStop);
     if (runSwitchValue === "on") {
       sDriveModeStatus = sDriveModeStatus.replace('READY', 'ACTIVE');
       sDriveModeStatusColor = 'red';
-      // dispatch(setEmergencyStop(0));
     }
 
     if(emergencyStop === 0) {
@@ -592,9 +587,6 @@ class ViewM2Setup extends Component {
                 minHeight: '815px',
               }}
             >
-              {/*
-              <TestSetupPanelDataContainer dataLeft={bmsSocData.data} dataRight={bmsTempData.data} compTitle="BMS" nameLeft="BMS SOC" nameRight="BMS Temp" unitLeft="%" unitRight="℃" cNameLeft="SOC" cNameRight="TEMP" barTitle="PACK #" CompColor="#3581c9"/>
-              */}
               <TestSetupPanelDataContainer2
                 compTitle="T-BMS" nameLeft="CELL SOC" nameRight="CELL TEMP" unitLeft="%" unitRight="℃" cNameLeft="SOC" cNameRight="TEMP" barTitle="PACK #" CompColor="#3581c9"
                 dataLeft={{ 

@@ -27,3 +27,36 @@ export function getSocketCommand(tagId, value) {
   let commandFormat = "#{0},{1};$";
   return commandFormat.format(tagId, value);
 }
+
+export function getHostName() {
+  return window.location.hostname;
+}
+
+export function sendCommandToDevice(command) {
+  const hostname = getHostName();
+  const ws = new WebSocket(`ws://${hostname}:8181/`);
+  
+  const waitForConnection = (callback, interval) => {
+    if (ws.readyState === 1) {
+      callback();
+    } else {
+      var that = this;
+      // optional: implement backoff for interval here
+      setTimeout(() => {
+          waitForConnection(callback, interval);
+      }, interval);
+    }
+  };
+
+  const send = (message, callback) => {
+    waitForConnection(() => {
+        ws.send(message);
+        ws.close();
+        if (typeof callback !== 'undefined') {
+            callback();
+        }
+    }, 100);
+  };
+
+  send(command);
+}

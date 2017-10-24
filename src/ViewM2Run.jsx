@@ -10,7 +10,10 @@ import KeyboardedInput from 'react-touch-screen-keyboard';
 import 'react-touch-screen-keyboard/src/Keyboard.css';
 import Clock from 'react-live-clock';
 import { connect } from 'react-redux';
+
+import { getHostName } from './utils/functions';
 import { H5SPlayVideo } from './utils/H5SPlayVideo';
+
 // import Script from 'react-load-script'
 import Websocket from 'react-websocket';
 
@@ -21,42 +24,13 @@ class ViewM2Run extends Component {
       testLabel: localStorage.getItem("NST_test_label") ? localStorage.getItem("NST_test_label") :'NST 01',
     };
 
-    this.hostname = window.location.hostname;
+    this.hostname = getHostName();
     this.host = window.location.host;
     this.onTestLabelChange = this.onTestLabelChange.bind(this);
   }
-  sendCommandToDevice(command) {
-    var ws = new WebSocket(`ws://${this.hostname}:8181/`);
-    this.send = function (message, callback) {
-      this.waitForConnection(function () {
-          ws.send(message);
-          ws.close();
-          if (typeof callback !== 'undefined') {
-              callback();
-          }
-      }, 100);
-    };
-
-    this.waitForConnection = function (callback, interval) {
-      if (ws.readyState === 1) {
-        callback();
-      } else {
-        var that = this;
-        // optional: implement backoff for interval here
-        setTimeout(function () {
-            that.waitForConnection(callback, interval);
-        }, interval);
-      }
-    };
-    this.send(command);
-  }
   onTestLabelChange(value) {
     if (typeof(Storage) !== "undefined") {
-      // Store
-      console.log('localstroage!');
       localStorage.setItem("NST_test_label", value);
-      // Retrieve
-      // document.getElementById("result").innerHTML = localStorage.getItem("lastname");
     } 
     this.setState({ testLabel: value });
   }
@@ -76,9 +50,7 @@ class ViewM2Run extends Component {
       driveData, driveLever, runDirection, runSwitch, driveMode
     } = this.props;
 
-    // console.log('driveData', driveData);
     let driveLeverValue = 0;
-    
     switch(driveLever) {
       case 0:
         driveLeverValue = -3;
@@ -103,24 +75,12 @@ class ViewM2Run extends Component {
         break;
     }
     
-
     const videoFrontSrc = runDirection == 1 ? "/video/train_view_front.mp4" : "/video/train_view_back.mp4";
     const videoRearSrc = runDirection == 0 ? "/video/train_view_front.mp4" : "/video/train_view_back.mp4";
     const moviePlay = runSwitch == 0 ? false : true;
-    // console.log('runDirection', runDirection, videoFrontSrc);
+
     return (
       <div ref={el => (this.instance = el)}>
-        {/*
-        <Websocket
-          url={`ws://${this.host}/h5sws`}
-          onMessage={this.onWebSocketData} debug={false}
-        />
-        */}
-        <div className="trainNavi">
-          {/*
-          <a href="">Forward CAM</a>
-          <a href="" className="active">Backward CAM</a>*/}
-        </div>
         <div className="trainControlBox tcBoxLeft">
           <div className="tcTitle">
             hyundai rotem company
@@ -281,19 +241,16 @@ class ViewM2Run extends Component {
 }
 
 function mapStateToProps(state){
-  console.log('driveData', state.driveData);  
-  
+  // console.log('driveData', state.driveData);  
   return {
-      driveData: state.driveData,
-      // DIO Command =================================
-      driveMode: state.setM2SetupButtons.driveMode,
-      runDirection: state.setM2SetupButtons.runDirection,      
-      runSwitch: state.setM2SetupButtons.runSwitch,
-      emergencyStop: state.setM2SetupButtons.emergencyStop,
-      driveLever: state.setM2SetupButtons.driveLever,
-
-      
-    }
+    driveData: state.driveData,
+    // DIO Command =================================
+    driveMode: state.setM2SetupButtons.driveMode,
+    runDirection: state.setM2SetupButtons.runDirection,      
+    runSwitch: state.setM2SetupButtons.runSwitch,
+    emergencyStop: state.setM2SetupButtons.emergencyStop,
+    driveLever: state.setM2SetupButtons.driveLever,
+  }
 }
 
 export default connect(mapStateToProps)(ViewM2Run);

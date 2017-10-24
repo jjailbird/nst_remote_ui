@@ -36,7 +36,7 @@ import {
 } from 'react-router-dom';
 import { withRouter } from 'react-router';
 
-import { getRandomInt, getRandomFloat } from './utils/functions';
+import { getRandomInt, getRandomFloat, getHostName } from './utils/functions';
 //페이지 정리
 
 import ViewM2Main from './ViewM2Main';
@@ -47,9 +47,8 @@ import ViewM2Spec from './ViewM2Spec';
 class App extends Component {
   constructor(props) {
     super(props);
-    this.hostname = window.location.hostname;
-    // this.hostname = window.location.host;
-    
+    this.hostname = getHostName();
+  
     this.data = "{}";
 
     this.setDriveData = {};
