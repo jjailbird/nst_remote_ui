@@ -36,7 +36,7 @@ import {
 } from 'react-router-dom';
 import { withRouter } from 'react-router';
 
-import { getRandomInt, getRandomFloat, getHostName } from './utils/functions';
+import { getRandomInt, getRandomFloat, getHostName, sendCommandToDevice } from './utils/functions';
 //페이지 정리
 
 import ViewM2Main from './ViewM2Main';
@@ -130,12 +130,17 @@ class App extends Component {
   }
   handleData(data) {
     this.data = data;
+    const json = JSON.parse(this.data); 
+    if(json.NST_test_label) {
+      console.log('json.NST_test_label', json.NST_test_label);
+    }
+
   }
   patchData() {
-    // console.log("socket handleData", data);
+    
     const json = JSON.parse(this.data); 
     const { dispatch } = this.props;
-   
+
     // TEST_RUN Drive Data ==================================================================
     //this.setDriveData.fwd = TESTDRIVE.CircleRight.FWD; // getRandomInt(-3,3);
     if(json.TRI_001 !== undefined) {
@@ -341,31 +346,6 @@ class App extends Component {
     if(navi) {
       navi.style.backgroundImage = `url(${src})`;
     }
-  }
-  sendCommandToDevice(command) {
-    var ws = new WebSocket(`ws://${this.hostname}:8181/`);
-    this.send = function (message, callback) {
-      this.waitForConnection(function () {
-          ws.send(message);
-          ws.close();
-          if (typeof callback !== 'undefined') {
-              callback();
-          }
-      }, 100);
-    };
-
-    this.waitForConnection = function (callback, interval) {
-      if (ws.readyState === 1) {
-        callback();
-      } else {
-        var that = this;
-        // optional: implement backoff for interval here
-        setTimeout(function () {
-            that.waitForConnection(callback, interval);
-        }, interval);
-      }
-    };
-    this.send(command);
   }
   render() {
     const ChangeTracker = withRouter(({match, location, history}) => {
