@@ -233,6 +233,11 @@ class App extends Component {
   }
   handleData(data) {
     this.data = data;
+    const json = JSON.parse(this.data); 
+    if(json.NST_test_label) {
+      console.log('json.NST_test_label', json.NST_test_label);
+      alert(json.NST_test_label);
+    }
   }
   patchData() {
     const json = JSON.parse(this.data); 
