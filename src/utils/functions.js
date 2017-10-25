@@ -32,9 +32,10 @@ export function getHostName() {
   return window.location.hostname;
 }
 
-export function sendCommandToDevice(command) {
+export function sendCommandToDevice(command, connnectionReplace) {
   const hostname = getHostName();
-  const ws = new WebSocket(`ws://${hostname}:8181/`);
+  const connectionString = connnectionReplace ? `ws://${connnectionReplace}/` : `ws://${hostname}:8181/`;
+  const ws = new WebSocket(connectionString);
   
   const waitForConnection = (callback, interval) => {
     if (ws.readyState === 1) {

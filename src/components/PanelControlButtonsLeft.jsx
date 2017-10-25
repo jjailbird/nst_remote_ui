@@ -38,10 +38,11 @@ export default class PanelControlButtonsLeft extends Component {
   getNstTestLabel(){
 
     const command = {
-      "GET_NST_test_label": 1 
+      // "GET_NST_test_label": 1
+      'NST_test_label': 'NST TEST 00001' 
     };
     
-    sendCommandToDevice(JSON.stringify(command));
+    sendCommandToDevice(JSON.stringify(command), '192.168.147.20:8181');
   }
   render() {
     return (
