@@ -57,7 +57,7 @@ import {
   NavLink
 } from 'react-router-dom';
 
-import { getRandomInt, getRandomFloat, getHostName } from './utils/functions';
+import { getRandomInt, getRandomFloat, getHostName, sendCommandToDevice } from './utils/functions';
 
 //페이지 정리
 import ViewM1Main from './ViewM1Main';
@@ -71,7 +71,7 @@ class App extends Component {
     this.hostname = getHostName();
     
     this.handleData = this.handleData.bind(this);
-    this.patchData = this.patchData.bind(this);
+    this.fetchData = this.fetchData.bind(this);
     this.data = "{}";
 
     this.frontLeftData = {};
@@ -229,17 +229,23 @@ class App extends Component {
   }
   componentDidMount() {
     console.log('timer start!');
-    this.timer = setInterval(this.patchData, 1000 / 30);
+    this.timer = setInterval(this.fetchData, 1000 / 30);
+    
+    const command = {
+      'GET_NST_test_label': `` 
+    }
+    sendCommandToDevice(JSON.stringify(command));
+
   }
   handleData(data) {
     this.data = data;
     const json = JSON.parse(this.data); 
     if(json.NST_test_label) {
-      console.log('json.NST_test_label', json.NST_test_label);
-      alert(json.NST_test_label);
+      // console.log('json.NST_test_label', json.NST_test_label);
+      localStorage.setItem("NST_test_label", json.NST_test_label);
     }
   }
-  patchData() {
+  fetchData() {
     const json = JSON.parse(this.data); 
     const { dispatch, currentAValue } = this.props;
 
@@ -573,8 +579,6 @@ class App extends Component {
     if(json.ISI_007 !== undefined) {
       this.setFrontSensorData.gyroA = json.ISI_007;
       this.setFrontSensorData.gyroS = currentAValue.frontGyroA ? json.ISI_007 - currentAValue.frontGyroA : 0; // json.ISI_017; 
-      
-
     }
     if(json.ISI_001 !== undefined || json.ISI_002 !== undefined || json.ISI_003 !== undefined || json.ISI_004 !== undefined || json.ISI_005 !== undefined || json.ISI_006 !== undefined || json.ISI_007 !== undefined) {
       dispatch( setFrontSensorData(this.setFrontSensorData) )
