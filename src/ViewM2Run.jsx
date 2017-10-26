@@ -32,7 +32,7 @@ class ViewM2Run extends Component {
     if (typeof(Storage) !== "undefined") {
       localStorage.setItem("NST_test_label", value);
       const command = {
-        'SET_NST_test_label': `"${value}"` 
+        'SET_NST_test_label': `${value}` 
       }
       sendCommandToDevice(JSON.stringify(command));      
     } 
