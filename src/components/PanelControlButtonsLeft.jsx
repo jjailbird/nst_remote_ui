@@ -18,9 +18,9 @@ export default class PanelControlButtonsLeft extends Component {
       "CAPTURE": `${snapshotPrefix}${snapshotTarget}.${snapshotDate}` 
     };
     
-    sendCommandToDevice(JSON.stringify(command));
+    sendCommandToDevice(JSON.stringify(command), 'localhost:8181');
   }
-  render() {
+  render(){
     return (
       <div 
         className="conBoxAreaBtnBox cbabbLeft"
