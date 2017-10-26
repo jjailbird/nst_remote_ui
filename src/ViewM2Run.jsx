@@ -11,7 +11,7 @@ import 'react-touch-screen-keyboard/src/Keyboard.css';
 import Clock from 'react-live-clock';
 import { connect } from 'react-redux';
 
-import { getHostName } from './utils/functions';
+import { getHostName, sendCommandToDevice } from './utils/functions';
 import { H5SPlayVideo } from './utils/H5SPlayVideo';
 
 // import Script from 'react-load-script'
@@ -31,6 +31,10 @@ class ViewM2Run extends Component {
   onTestLabelChange(value) {
     if (typeof(Storage) !== "undefined") {
       localStorage.setItem("NST_test_label", value);
+      const command = {
+        'SET_NST_test_label': `"${value}"` 
+      }
+      sendCommandToDevice(JSON.stringify(command));      
     } 
     this.setState({ testLabel: value });
   }
