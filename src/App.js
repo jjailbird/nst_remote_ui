@@ -56,7 +56,7 @@ import {
   NavLink
 } from 'react-router-dom';
 
-import { getRandomInt, getRandomFloat, getHostName } from './utils/functions';
+import { getRandomInt, getRandomFloat, getHostName, sendCommandToDevice } from './utils/functions';
 
 import ViewM3Main from './ViewM3Main';
 import ViewM3Run from './ViewM3Run';
@@ -69,7 +69,7 @@ class App extends Component {
     this.hostname = getHostName();
     
     this.handleData = this.handleData.bind(this);
-    this.patchData = this.patchData.bind(this);
+    this.fetchData = this.fetchData.bind(this);
     this.data = "{}";
     
     // used variables ==============================================
@@ -279,7 +279,6 @@ class App extends Component {
     this.setDriveInfoData.tract = 0;
     this.setDriveInfoData.brake = 0;
 
-
     this.setDriveData = {};
     this.setDriveData.tracBatt = 0;
     this.setDriveData.contBatt = 0;
@@ -292,24 +291,29 @@ class App extends Component {
     this.setDriveData.position = 0;
     this.setDriveData.trat = 0;
     this.setDriveData.brake = 0;
-
-
     //hsc    
   }
   componentDidMount() {
     console.log('timer start!');
-    this.timer = setInterval(this.patchData, 1000 / 30);
+    this.timer = setInterval(this.fetchData, 1000 / 30);
+
+    const command = {
+      'GET_NST_test_label': `` 
+    }
+    sendCommandToDevice(JSON.stringify(command));
+
   }
   handleData(data) {
     this.data = data;
-  }
-  patchData() {
-    //const json = JSON.parse(data);
     const json = JSON.parse(this.data); 
-    // const HSCTEST = json.HSCTEST ? json.HSCTEST : null;
-    // const HSCSETUP = json.HSCSETUP ? json.HSCSETUP : null; 
+    if(json.NST_test_label) {
+      // console.log('json.NST_test_label', json.NST_test_label);
+      localStorage.setItem("NST_test_label", json.NST_test_label);
+    }
+  }
+  fetchData() {
+    const json = JSON.parse(this.data); 
     const { dispatch, currentAValue } = this.props;
-    // console.log('currentAValue', currentAValue);
 
     // HSC_RUN Front LEFT =====================================================
     if(json.HRI_012 != undefined) {
@@ -651,7 +655,6 @@ class App extends Component {
     }
     // =========================================================================
   }
-  
   render() {
     return (
       <Router>
