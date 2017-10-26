@@ -1,3 +1,7 @@
+export function getHostName() {
+  return window.location.hostname;
+}
+
 export function getRandomFloat(min, max) {
   return Math.random() * (max - min) + min;
 }
@@ -26,10 +30,6 @@ export function getToggledValues(values, value) {
 export function getSocketCommand(tagId, value) {
   let commandFormat = "#{0},{1};$";
   return commandFormat.format(tagId, value);
-}
-
-export function getHostName() {
-  return window.location.hostname;
 }
 
 export function sendCommandToDevice(command, connnectionReplace) {

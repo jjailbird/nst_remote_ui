@@ -120,29 +120,45 @@ class App extends Component {
     // -----------------------------------
 
     this.handleData = this.handleData.bind(this);
-    this.patchData = this.patchData.bind(this);
+    this.fetchData = this.fetchData.bind(this);
     this.changeNaviBackground = this.changeNaviBackground.bind(this);
     // ========================================================
  }
   componentDidMount() {
     console.log('timer start!');
-    this.timer = setInterval(this.patchData, 1000 / 30);
+    this.timer = setInterval(this.fetchData, 1000 / 30);
+
+    if(json.GET_NST_test_label) {
+      const command = {
+        'NST_test_label': `"${localStorage.getItem("NST_test_label")}"` 
+      }
+      sendCommandToDevice(JSON.stringify(command));
+    }
+    // For test =========================================================
+    /*
+    const fetchUrl = `http://${this.hostname}${window.location.port == 80 ? '': ':' + window.location.port}/getTestLabel`;
+    console.log('url:', fetchUrl);
+    
+    fetch(fetchUrl).then((res) => {
+      console.log('fetch', res.text() );
+    });
+    fetch(fetchUrl).then(function(response) {
+      return response.text().then(function(text) {
+        console.log('text', text);
+      });
+    });
+    */
+    // ==================================================================
   }
   handleData(data) {
     this.data = data;
-    const json = JSON.parse(this.data); 
-    if(json.NST_test_label) {
-      console.log('json.NST_test_label', json.NST_test_label);
-    }
-
   }
-  patchData() {
+  fetchData() {
     
     const json = JSON.parse(this.data); 
     const { dispatch } = this.props;
 
     // TEST_RUN Drive Data ==================================================================
-    //this.setDriveData.fwd = TESTDRIVE.CircleRight.FWD; // getRandomInt(-3,3);
     if(json.TRI_001 !== undefined) {
       this.setDriveData.position = json.TRI_001;
     }
