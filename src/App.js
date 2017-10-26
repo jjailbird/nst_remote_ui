@@ -150,6 +150,13 @@ class App extends Component {
   }
   handleData(data) {
     this.data = data;
+    const json = JSON.parse(data);
+    if(json.GET_NST_test_label) {
+      const command = {
+        'NST_test_label': `"${localStorage.getItem("NST_test_label")}"` 
+      }
+      sendCommandToDevice(JSON.stringify(command));
+    }
   }
   fetchData() {
     
