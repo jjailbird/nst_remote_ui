@@ -34,7 +34,7 @@ export const SET_SHUNT_SPEED = 'SET_SHUNT_SPEED';
 
 // TEST SETUP Vehicle Status Buttons ----------------
 export const setTestSetupData = (data) => {
-  console.log('setTestSetupData', data);
+  // console.log('setTestSetupData', data);
   return {
     type: SET_TEST_SETUP_DATA,
     data

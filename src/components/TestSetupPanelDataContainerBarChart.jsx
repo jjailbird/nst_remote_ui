@@ -11,8 +11,8 @@ export default class TestSetupPanelDataContainerBarChart extends Component {
     const barFull = 258;   
     let barValue = 0;
     
-    let barValueShift = valueShift ? valueShift : 0;
-    let barMax = valueMax ? valueMax : 100; 
+    let barValueShift = valueShift ? Number(valueShift) : 0;
+    let barMax = valueMax ? Number(valueMax) : 100; 
     
     let barPercent = 0; 
     let barPx = 0; 

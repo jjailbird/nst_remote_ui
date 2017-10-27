@@ -37,12 +37,12 @@ export default class TestSetupPanelDataContainerDonutChart extends Component {
     
     switch(name) {
       case 'notch':
-        lineValueShift = 3;
+        lineValueShift = 0;
         valueMax = 6;
         break;
       case 'speed':
         lineValueShift = 0;
-        valueMax = 60;
+        valueMax = 30;
         break;
       case 'soc':
         lineValueShift = 0;

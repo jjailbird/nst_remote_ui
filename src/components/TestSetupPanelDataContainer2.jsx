@@ -141,10 +141,10 @@ export default class TestSetupPanelDataContainer2 extends Component {
             <TestSetupPanelDataContainerBarChart data={dataRight1} title={`${barTitle}1 TEMP`} unit={unitRight} barColor={CompColor} valueMax={dataRightValueMax} />
             <TestSetupPanelDataContainerBarChart data={dataRight2} title={`${barTitle}2 TEMP`} unit={unitRight} barColor={CompColor} valueMax={dataRightValueMax} />
             <TestSetupPanelDataContainerBarChart
-              data={dataRight3} title="PACK #1 CURRENT" unit="A" valueMax="500" barColor={CompColor}
+              data={dataRight3} title="PACK #1 CURRENT" unit="A" valueMax="1000" valueShift="500" barColor={CompColor}
             />
             <TestSetupPanelDataContainerBarChart
-              data={dataRight4} title="PACK #2 CURRENT" unit="A" valueMax="500" barColor={CompColor}
+              data={dataRight4} title="PACK #2 CURRENT" unit="A" valueMax="1000" valueShift="500" barColor={CompColor}
             />
           </div>
         </div>

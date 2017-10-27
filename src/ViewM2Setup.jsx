@@ -1657,7 +1657,7 @@ class ViewM2Setup extends Component {
 }
 
 function mapStateToProps(state){
-    console.log('state', state.setM2SetupButtons.power, state.setM2SetupButtons.light);
+    // console.log('state', state.setM2SetupButtons.power, state.setM2SetupButtons.light);
     return {
       
       // testSetup: state.setM2SetupData.testSetup,

@@ -32,9 +32,9 @@ export default class TestSetupPanelDataContainer1 extends Component {
     dataLeft1 = dataLeft.data1;
     dataLeft2 = dataLeft.data2;
     dataLeftCircle1 = dataLeft.circle1;
-    dataLeftValueMax1 = dataLeft.valueMax1;
+    dataLeftValueMax1 = dataLeft.valueMax1 ? Number(dataLeft.valueMax1) : 100;
     dataLeftCircle2 = dataLeft.circle2;
-    dataLeftValueMax2 = dataLeft.valueMax2;
+    dataLeftValueMax2 = dataLeft.valueMax2 ? Number(dataLeft.valueMax2) : 100;
     
     dataRight1 = dataRight.data1;
     dataRight2 = dataRight.data2;
