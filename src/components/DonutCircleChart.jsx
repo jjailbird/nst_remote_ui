@@ -30,7 +30,7 @@ export default class DonutCircleChart extends Component {
     
     const lineFull = dashLen;   
     let lineValue = 0;
-    let lineValueShift = shift ? parseInt(shift) : 0;
+    let lineValueShift = shift !== undefined ? parseInt(shift) : 0;
     let valueMax = max ? parseInt(max) : 0; 
     let valuePercent = 0; 
     let linePx = 0; 
@@ -62,12 +62,12 @@ export default class DonutCircleChart extends Component {
     
     let valueDisplayFontSize = valueFontSize;
     let valueDisplay = isFloat(value) ? value.toFixed(1) : value;
-    /*
-    if(Number.isNaN(valueDisplay) == false && valueDisplay > 1000) {
+        
+    if(Number.isNaN(valueDisplay) == false && (valueDisplay > 1000 || valueDisplay < -1000)) {
       valueDisplay = valueDisplay.toExponential(1);
       valueDisplayFontSize = "12px"; 
     }
-    */
+    
     const strokeDasharrayValue = `${linePx} ${circleLen - linePx}`;
     
 

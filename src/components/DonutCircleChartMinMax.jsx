@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { isFloat } from '../utils/functions';
 
-export default class DonutDivideLeftChart extends Component {
+export default class DonutCircleChartMinMax extends Component {
   constructor(props) {
     super(props);
   }
@@ -10,9 +10,9 @@ export default class DonutDivideLeftChart extends Component {
     // const length = donutRing.getTotalLength();
   }
   render() {
-    const { data, max, shift, unit, name, strokeColor, strokeColorLine, donutWidth, donutStrokeWidth, valueFontSize, valueFontColor } = this.props;
+    const { data, min, max, shift, unit, name, strokeColorPlus, strokeColorMinus, strokeColorLine, donutWidth, donutStrokeWidth, valueFontSize, valueFontColor } = this.props;
     //console.log(valueFontSize, valueFontColor);
-    const width = donutWidth;
+    const width = parseInt(donutWidth);
     const height = width;
     const strokeWidth = donutStrokeWidth;
 
@@ -22,7 +22,7 @@ export default class DonutDivideLeftChart extends Component {
     const divideCount = 2;
     
     const dashWidth = circleLen / divideCount;
-    const dashLen = (circleLen * 70) / 100;
+    const dashLen = (circleLen * 100) / 100;
     const dashSpace = circleLen - dashLen;
     const strokeDasharray = `${dashLen} ${dashSpace}`;
     
@@ -30,10 +30,11 @@ export default class DonutDivideLeftChart extends Component {
     
     const lineFull = dashLen;   
     let lineValue = 0;
-    let lineValueShift = shift ? parseFloat(shift) : 0;
-    let valueMax = max ? parseFloat(max) : 0; 
+    let lineValueShift = shift ? parseInt(shift) : 0;
+    let valueMax = max ? parseInt(max) : 0; 
     let valuePercent = 0; 
     let linePx = 0; 
+    
     let value = 0;
 
     if(data !== undefined) {
@@ -45,17 +46,38 @@ export default class DonutDivideLeftChart extends Component {
     
     let valueDisplayFontSize = valueFontSize;
     let valueDisplay = isFloat(value) ? value.toFixed(1) : value;
-        
-    if(Number.isNaN(valueDisplay) == false && (valueDisplay > 1000000 || valueDisplay < -1000000)){
+    
+    if(Number.isNaN(valueDisplay) == false && valueDisplay > 1000) {
       valueDisplay = valueDisplay.toExponential(1);
       valueDisplayFontSize = "12px"; 
     }
     
-    const strokeDasharrayValue = `${linePx} ${circleLen - linePx}`;
+    const strokeDasharrayValue1 = `${linePx} ${circleLen - linePx}`;
+    const strokeDasharrayValue2 = `${linePx/2} ${circleLen - linePx/2}`;
     
 
     return (
-      <div className="ddivcBox">
+      <div
+        style={{
+          width: '94px',
+          height: '42px',
+          textAlign: 'right',
+          float: 'left',
+          marginTop: '15px',
+          position: 'relative'
+        }}
+      >
+        <div
+          style={{
+            textAlign: 'center',
+            width: donutWidth,
+            position: 'absolute',
+            left: '54px',
+            top: '12px',
+            fontSize: '10px',
+            fontWeight: 'bold',
+          }}
+        >{unit}</div>
         <div 
           className="ddivcDataBox"
           style={{
@@ -69,8 +91,8 @@ export default class DonutDivideLeftChart extends Component {
             style={{
               color: '#fff',
               marginBottom: '0px',
-              textTransform: 'capitalize',
-              fontSize: '12px',
+              textTransform: 'uppercase',
+              fontSize: '11px',
               fontWeight: 'normal'
             }}
           >{name}</h5>
@@ -79,35 +101,41 @@ export default class DonutDivideLeftChart extends Component {
             style={{
               fontSize: valueDisplayFontSize,
               fontWeight: 'bold',
-              color: valueFontColor
+              color: valueFontColor,
+              lineHeight: valueDisplayFontSize
             }}
           >
-            {isNaN(valueDisplay) ? valueDisplay : valueDisplay.toLocaleString()} 
-            <small
-              style={{
-                fontWeight: 'normal',
-                fontSize: '14px',
-                color: '#fff',
-                marginLeft: '5px'
-              }}
-            >{unit}</small>
+            {valueDisplay}
           </div>
         </div>
-        <svg  style={{ width: `${width}px`, height: `${height}px` }}>
+        <svg
+          style={{
+            width: `${width}px`,
+            height: `${height}px` ,
+            textAlign: 'center'
+          }}
+        >
           <circle
             cx={centerPos} cy={centerPos}
-            transform={`rotate(-110 ${centerPos} ${centerPos})`}
+            transform={`rotate(90 ${centerPos} ${centerPos})`}
             r={r}
             fill="transparent"
             stroke={strokeColorLine} strokeWidth={strokeWidth} strokeDasharray={strokeDasharray}   strokeDashoffset="0" strokeOpacity="1" />    
           <circle
             id="donutRing"
             cx={centerPos} cy={centerPos}
-            transform={`rotate(-110 ${centerPos} ${centerPos})`}
+            transform={`rotate(90 ${centerPos} ${centerPos})`}
             r={r}
             fill="transparent"            
-            stroke={strokeColor} strokeWidth={strokeWidth} strokeDasharray={strokeDasharrayValue} strokeDashoffset="0" strokeOpacity="1" />
-          
+            stroke={strokeColorPlus} strokeWidth={strokeWidth} strokeDasharray={strokeDasharrayValue1} strokeDashoffset="0" strokeOpacity="1" />
+          <circle
+            id="donutRing2"
+            cx={centerPos} cy={centerPos}
+            transform={`rotate(90 ${centerPos} ${centerPos})`}
+            r={r}
+            fill="transparent"            
+            stroke={strokeColorMinus} strokeWidth={strokeWidth} strokeDasharray={strokeDasharrayValue2} strokeDashoffset="0" strokeOpacity="1" />
+
         </svg>     
       </div>   
     )

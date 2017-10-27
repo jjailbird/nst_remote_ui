@@ -76,13 +76,15 @@ class ViewM1Run extends Component {
     const { dispatch } = this.props;
     dispatch(setCrtl1Mode(value));
   }
-  onCrtl1SensorTypeChange(values){
-    const cValue = '{0}{1}{2}'.format(values.includes('Laser-X')?1:0,values.includes('Laser-Y')?1:0,values.includes('Gyro')?1:0);
-    const command = getSocketCommand('IRO_003',cValue);
+  onCrtl1SensorTypeChange(value){
+    // const cValue = '{0}{1}{2}'.format(values.includes('Laser-X')?1:0,values.includes('Laser-Y')?1:0,values.includes('Gyro')?1:0);
+    // const command = getSocketCommand('IRO_003',cValue);
+
+    const command = getSocketCommand('IRO_003',value == 'LVDT' ? 0:1);
     sendCommandToDevice(command);
 
     const { dispatch } = this.props;
-    dispatch(setCrtl1SensorType(values));
+    dispatch(setCrtl1SensorType(value));
   }
   onCrtl1ControlTypeChange(value){
     const command = getSocketCommand('IRO_004',value == 'Yaw Angle' ? 1:0);
@@ -133,13 +135,15 @@ class ViewM1Run extends Component {
     const { dispatch } = this.props;
     dispatch(setCrtl2Mode(value));
   } 
-  onCrtl2SensorTypeChange(values){
-    const cValue = '{0}{1}{2}'.format(values.includes('Laser-X')?1:0,values.includes('Laser-Y')?1:0,values.includes('Gyro')?1:0);
-    const command = getSocketCommand('IRO_053',cValue);
+  onCrtl2SensorTypeChange(value){
+    // const cValue = '{0}{1}{2}'.format(values.includes('Laser-X')?1:0,values.includes('Laser-Y')?1:0,values.includes('Gyro')?1:0);
+    // const command = getSocketCommand('IRO_053',cValue);
+    
+    const command = getSocketCommand('IRO_053',value == 'LVDT' ? 0:1);
     sendCommandToDevice(command);
 
     const { dispatch } = this.props;
-    dispatch(setCrtl2SensorType(values));
+    dispatch(setCrtl2SensorType(value));
   } 
   onCrtl2ControlTypeChange(value){
     const command = getSocketCommand('IRO_054',value == 'Yaw Angle' ? 1:0);
@@ -296,7 +300,7 @@ class ViewM1Run extends Component {
                   <div className="voiData">
                     <DonutCircleChart 
                       data={motorControlData.data.speed} 
-                      max="60" 
+                      max="30" 
                       unit="Km/m" 
                       name="Speed" 
                       strokeColor="#fff" 
@@ -328,11 +332,12 @@ class ViewM1Run extends Component {
                       // data={motorControlData.data.curv} 
                       // IRI_005
                       data={frontWheelsetData.data.trackCurve}
-                      max={10000000000}
+                      max={2000000}
+                      shift={1000000}
                       unit="m" 
                       name="Radius" 
-                      strokeColor="#fff" 
-                      strokeColorLine="rgba(255,255,255,0.3)" 
+                      strokeColor="#fff"
+                      strokeColorLine="rgba(255,255,255,0.3)"
                       donutWidth="40px" 
                       donutStrokeWidth="5"
                       valueFontSize="20px"
@@ -407,6 +412,7 @@ class ViewM1Run extends Component {
                   
                   <div className="modeConfig1-listBox2">
                     <div className="listBox2-childBox pull-left">
+                      {/*
                       <ControlSwitchCheckBox2
                         title="SENSOR TYPE"
                         activeBgColor="rgba(201,195,53,0.7)" 
@@ -418,6 +424,19 @@ class ViewM1Run extends Component {
                           { idx: 3, title: 'Gyro', value: 'Gyro' }
                         ]}
                         values={crtl1SensorType}
+                        onChange={this.onCrtl1SensorTypeChange}
+                      />
+                      */}
+                      <ControlSwitchButton 
+                        title="SENSOR TYPE"
+                        activeBgColor="rgba(255,255,255,0.3)" 
+                        textColor="#fff" 
+                        padding="3px 20px" 
+                        buttons={[
+                          { idx: 1, title: 'LVDT', value: 'LVDT' },
+                          { idx: 2, title: 'Gyro', value: 'Gyro' }
+                        ]}
+                        value={crtl1SensorType}
                         onChange={this.onCrtl1SensorTypeChange}
                       />
                       <div className="listBox2-controlBox">
@@ -519,6 +538,7 @@ class ViewM1Run extends Component {
                   
                   <div className="modeConfig1-listBox2">
                     <div className="listBox2-childBox pull-left">
+                      {/*
                       <ControlSwitchCheckBox2
                         title="SENSOR TYPE"
                         activeBgColor="rgba(201,195,53,0.7)" 
@@ -532,6 +552,20 @@ class ViewM1Run extends Component {
                         values={crtl2SensorType}
                         onChange={this.onCrtl2SensorTypeChange}
                       />
+                      */}
+                      <ControlSwitchButton 
+                        title="SENSOR TYPE"
+                        activeBgColor="rgba(255,255,255,0.3)" 
+                        textColor="#fff" 
+                        padding="3px 20px" 
+                        buttons={[
+                          { idx: 1, title: 'LVDT', value: 'LVDT' },
+                          { idx: 2, title: 'Gyro', value: 'Gyro' }
+                        ]}
+                        value={crtl2SensorType}
+                        onChange={this.onCrtl2SensorTypeChange}
+                      />
+
                       <div className="listBox2-controlBox">
                         <div className="listBox2-controlBoxTitle">
                           WEIGHT FACTOR – Lateral Sensor
@@ -624,7 +658,8 @@ class ViewM1Run extends Component {
                     <DonutDivideLeftChart 
                       // data={motorControlData.data.curv} 
                       data={motorControlData.data.curv} 
-                      max="10000000000"
+                      shift="1000000"
+                      max="2000000"
                       unit="m" 
                       name="Track Curvature" 
                       strokeColor="#3581c9" 
@@ -639,7 +674,7 @@ class ViewM1Run extends Component {
                 <div className="motorConPieBox2">
                     <DonutDivideLeftChart 
                       data={motorControlData.data.speed} 
-                      max="60"
+                      max="30"
                       unit="km/h" 
                       name="Vehicle Speed" 
                       strokeColor="#c93535" 
@@ -671,7 +706,7 @@ class ViewM1Run extends Component {
                     <span>Track Curve</span>
                     <span>:</span>
                     <span>
-                      {frontWheelsetData.data.trackCurve ? frontWheelsetData.data.trackCurve.toFixed(1) : 0} m
+                      {frontWheelsetData.data.trackCurve ? frontWheelsetData.data.trackCurve.toLocaleString() : 0} m
                     </span>
                   </li>
                   <li>
@@ -706,7 +741,7 @@ class ViewM1Run extends Component {
                     <span>Track Curve</span>
                     <span>:</span>
                     <span>
-                      {rearWheelsetData.data.trackCurve ? rearWheelsetData.data.trackCurve.toFixed(1) : 0} m
+                      {rearWheelsetData.data.trackCurve ? rearWheelsetData.data.trackCurve.toLocaleString() : 0} m
                     </span>
                   </li>
                   <li>
@@ -752,7 +787,7 @@ class ViewM1Run extends Component {
                   <div className="voiData">
                     <DonutCircleChart 
                       data={motorControlData.data.speed} 
-                      max="60"
+                      max="30"
                       unit="Km/m" 
                       name="Speed" 
                       strokeColor="#fff" 
@@ -780,7 +815,8 @@ class ViewM1Run extends Component {
                   <div className="voiData">
                     <DonutCircleChart 
                       data={rearWheelsetData.data.trackCurve} 
-                      max="10000000000"
+                      max="2000000"
+                      shift="1000000"
                       unit="m" 
                       name="Radius" 
                       strokeColor="#fff" 

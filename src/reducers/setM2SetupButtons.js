@@ -31,10 +31,10 @@ import {
 } from '../actions';
 
 const initialState = {
-  crtl1Active: '', crtl1Mode: '', crtl1SensorType: '', crtl1ControlType: '', crtl1WfLateralSensor: -15.5, crtl1WfControlMode: -5, crtl1WfYawSensor: -10, crtl1WfControlType: 0,
-  crtl2Active: '', crtl2Mode: '', crtl2SensorType: '', crtl2ControlType: '', crtl2WfLateralSensor: -15.5, crtl2WfControlMode: -5, crtl2WfYawSensor: -10, crtl2WfControlType: 0,
+  crtl1Active: '', crtl1Mode: '', crtl1SensorType: '', crtl1ControlType: '', crtl1WfLateralSensor: 0, crtl1WfControlMode: 0, crtl1WfYawSensor: 0, crtl1WfControlType: 0,
+  crtl2Active: '', crtl2Mode: '', crtl2SensorType: '', crtl2ControlType: '', crtl2WfLateralSensor: 0, crtl2WfControlMode: 0, crtl2WfYawSensor: 0, crtl2WfControlType: 0,
   chartTypeFrontLeft: 'PIE', chartTypeFrontRight: 'PIE', chartTypeRearLeft: 'PIE', chartTypeRearRight: 'PIE',
-  tuningFrontPgain: -15, tuningFrontIgain: -5, tuningRearPgain: -10, tuningRearIgain: 0, 
+  tuningFrontPgain: 0, tuningFrontIgain: 0, tuningRearPgain: 0, tuningRearIgain: 0, 
   carMass: 'RUN',
   currentAValue: { 
     set: 0,
