@@ -28,10 +28,10 @@ import {
 
 const initialState = {
   crtl1Active: '', crtl1Power: '', crtl1Zero: '', crtl1SensorType: '', crtl1ControlType: '',
-  crtl1SRActiveA: -15.5, crtl1SRActiveB: -5, crtl1SRActiveA2: -10, crtl1SRActiveB2: 0,
+  crtl1SRActiveA: 0, crtl1SRActiveB: 0, crtl1SRActiveA2: 0, crtl1SRActiveB2: 0,
   chartTypeFrontLeft: 'PIE', chartTypeFrontRight: 'PIE', chartTypeRearLeft: 'PIE', chartTypeRearRight: 'PIE',
-  tuningFront1Pgain: -15, tuningFront1Igain: -5, tuningRear1Pgain: -10, tuningRear1Igain: 0,
-  tuningFront2Pgain: -15, tuningFront2Igain: -5, tuningRear2Pgain: -10, tuningRear2Igain: 0,
+  tuningFront1Pgain: 0, tuningFront1Igain: 0, tuningRear1Pgain: 0, tuningRear1Igain: 0,
+  tuningFront2Pgain: 0, tuningFront2Igain: 0, tuningRear2Pgain: 0, tuningRear2Igain: 0,
   carMass: 'RUN',
   currentAValue: { 
     set: 0,

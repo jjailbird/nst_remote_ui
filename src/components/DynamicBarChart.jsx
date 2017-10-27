@@ -9,8 +9,8 @@ export default class DynamicBarChart extends Component {
     const { data, max, shift, unit, name, barColor } = this.props;
     const barFull = 315;   
     let barValue = 0;
-    let barValueShift = shift ? parseInt(shift) : 0;
-    let barMax = max ? parseInt(max) : 0; 
+    let barValueShift = shift ? Number(shift) : 0;
+    let barMax = max ? Number(max) : 0; 
     let barPercent = 0; 
     let barPx = 0; 
     let value = 0;

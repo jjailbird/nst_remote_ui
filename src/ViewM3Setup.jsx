@@ -317,7 +317,8 @@ class ViewM3Setup extends Component {
                       <div className="setPiedata-pieGrape pie1">
                         <LaserDonutCircleChart 
                           data={frontLeftMotorData.data.rpm} 
-                          max="5000"
+                          shift="5000"
+                          max="10000"
                           unit="kgf" 
                           name="STEER FORCE" 
                           dataName = 'force'
@@ -348,7 +349,8 @@ class ViewM3Setup extends Component {
                       <div className="setPiedata-pieGrape pie3">
                         <LaserDonutCircleChart 
                           data={frontRightMotorData.data.rpm} 
-                          max="5000"
+                          shift="5000"
+                          max="10000"
                           unit="kgf" 
                           name="STEER FORCE" 
                           dataName = 'force'
@@ -397,7 +399,8 @@ class ViewM3Setup extends Component {
                       <div className="setPiedata-pieGrape pie1">
                         <LaserDonutCircleChart 
                           data={rearLeftMotorData.data.rpm} 
-                          max="5000"
+                          shift="5000"
+                          max="10000"
                           unit="kgf" 
                           name="STEER FORCE" 
                           dataName = 'force'
@@ -428,7 +431,8 @@ class ViewM3Setup extends Component {
                       <div className="setPiedata-pieGrape pie3">
                         <LaserDonutCircleChart 
                           data={rearRightMotorData.data.rpm} 
-                          max="5000"
+                          shift="5000"
+                          max="10000"
                           unit="kgf" 
                           name="STEER FORCE" 
                           dataName = 'force'
@@ -732,12 +736,12 @@ class ViewM3Setup extends Component {
                       </div>
                       <div className="axleGraphBox">
                         <div className="axleGraphBoxGroup">
-                          <LaserBarChart data={frontSensorData.data.leftApA} name="A" dataName="leftApA" barColor="red" max="500" />
-                          <LaserBarChartMiddle data={frontSensorData.data.leftApS} name="S" dataName="leftApS" barColor="red" min="-500" max="500" />
+                          <LaserBarChart data={frontSensorData.data.leftApA} name="A" dataName="leftApA" barColor="red" max="150" />
+                          <LaserBarChartMiddle data={frontSensorData.data.leftApS} name="S" dataName="leftApS" barColor="red" min="-15" max="-15" />
                         </div>
                         <div className="axleGraphBoxGroup">
-                          <LaserBarChart data={frontSensorData.data.leftBpA} name="A" dataName="leftBpA" barColor="red" max="500" />
-                          <LaserBarChartMiddle data={frontSensorData.data.leftBpS} name="S" dataName="leftBpS" barColor="red" min="-500" max="500" />
+                          <LaserBarChart data={frontSensorData.data.leftBpA} name="A" dataName="leftBpA" barColor="red" max="150" />
+                          <LaserBarChartMiddle data={frontSensorData.data.leftBpS} name="S" dataName="leftBpS" barColor="red" min="-15" max="15" />
                         </div>
                         <div className="axleGraphBoxGroup">
                           <LaserBarChartMiddle data={frontSensorData.data.leftLvdtA} name="A" dataName="leftLvdtA" barColor="blue" min="-25" max="25" />
@@ -779,12 +783,12 @@ class ViewM3Setup extends Component {
                       </div>
                       <div className="axleGraphBox">
                         <div className="axleGraphBoxGroup">
-                          <LaserBarChart data={frontSensorData.data.rightApA} name="A" dataName="rightApA" barColor="red" max="500" />
-                          <LaserBarChartMiddle data={frontSensorData.data.rightApS} name="S" dataName="rightApS" barColor="red" min="-500" max="500" />
+                          <LaserBarChart data={frontSensorData.data.rightApA} name="A" dataName="rightApA" barColor="red" max="150" />
+                          <LaserBarChartMiddle data={frontSensorData.data.rightApS} name="S" dataName="rightApS" barColor="red" min="-15" max="-15" />
                         </div>
                         <div className="axleGraphBoxGroup">
-                          <LaserBarChart data={frontSensorData.data.rightBpA} name="A" dataName="rightBpA" barColor="red" max="500" />
-                          <LaserBarChartMiddle data={frontSensorData.data.rightBpS} name="S" dataName="rightBpS" barColor="red" min="-500" max="500"/>
+                          <LaserBarChart data={frontSensorData.data.rightBpA} name="A" dataName="rightBpA" barColor="red" max="150" />
+                          <LaserBarChartMiddle data={frontSensorData.data.rightBpS} name="S" dataName="rightBpS" barColor="red" min="-15" max="15"/>
                         </div>
                         <div className="axleGraphBoxGroup">
                           <LaserBarChartMiddle data={frontSensorData.data.rightLvdtA} name="A" dataName="rightLvdtA" barColor="blue" min="-25" max="25" />
@@ -851,12 +855,12 @@ class ViewM3Setup extends Component {
                       </div>
                       <div className="axleGraphBox">
                         <div className="axleGraphBoxGroup">
-                          <LaserBarChart data={rearSensorData.data.leftApA} name="A" dataName="leftApA" barColor="red" max="500" />
-                          <LaserBarChartMiddle data={rearSensorData.data.leftApS} name="S" dataName="leftApS" barColor="red" min="-500" max="500" />
+                          <LaserBarChart data={rearSensorData.data.leftApA} name="A" dataName="leftApA" barColor="red" max="150" />
+                          <LaserBarChartMiddle data={rearSensorData.data.leftApS} name="S" dataName="leftApS" barColor="red" min="-15" max="-15" />
                         </div>
                         <div className="axleGraphBoxGroup">
-                          <LaserBarChart data={rearSensorData.data.leftBpA} name="A" dataName="leftBpA" barColor="red" max="500" />
-                          <LaserBarChartMiddle data={rearSensorData.data.leftBpS} name="S" dataName="leftBpS" barColor="red" min="-500" max="500" />
+                          <LaserBarChart data={rearSensorData.data.leftBpA} name="A" dataName="leftBpA" barColor="red" max="150" />
+                          <LaserBarChartMiddle data={rearSensorData.data.leftBpS} name="S" dataName="leftBpS" barColor="red" min="-15" max="-15" />
                         </div>
                         <div className="axleGraphBoxGroup">
                           <LaserBarChartMiddle data={rearSensorData.data.leftLvdtA} name="A" dataName="leftLvdtA" barColor="blue" min="-25" max="25" />
@@ -898,12 +902,12 @@ class ViewM3Setup extends Component {
                       </div>
                       <div className="axleGraphBox">
                         <div className="axleGraphBoxGroup">
-                          <LaserBarChart data={rearSensorData.data.rightApA} name="A" dataName="rightApA" barColor="red" max="500" />
-                          <LaserBarChartMiddle data={rearSensorData.data.rightApS} name="S" dataName="rightApS" barColor="red" max="500" />
+                          <LaserBarChart data={rearSensorData.data.rightApA} name="A" dataName="rightApA" barColor="red" max="150" />
+                          <LaserBarChartMiddle data={rearSensorData.data.rightApS} name="S" dataName="rightApS" barColor="red" min="-15" max="-15" />
                         </div>
                         <div className="axleGraphBoxGroup">
-                          <LaserBarChart data={rearSensorData.data.rightBpA} name="A" dataName="rightBpA" barColor="red" max="500" />
-                          <LaserBarChartMiddle data={rearSensorData.data.rightBpS} name="S" dataName="rightBpS" barColor="red" min="-500" max="500" />
+                          <LaserBarChart data={rearSensorData.data.rightBpA} name="A" dataName="rightBpA" barColor="red" max="150" />
+                          <LaserBarChartMiddle data={rearSensorData.data.rightBpS} name="S" dataName="rightBpS" barColor="red" min="-15" max="15" />
                         </div>
                         <div className="axleGraphBoxGroup">
                           <LaserBarChartMiddle data={rearSensorData.data.rightLvdtA} name="A" dataName="rightLvdtA" barColor="blue" min="-25" max="25" />

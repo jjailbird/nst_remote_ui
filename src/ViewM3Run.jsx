@@ -221,7 +221,7 @@ class ViewM3Run extends Component {
                   <div className="voiData">
                     <DonutCircleChart 
                       data={motorControlHscData.data.speed}
-                      max="60" 
+                      max="30" 
                       unit="Km/m" 
                       name="Speed" 
                       strokeColor="#fff" 
@@ -253,7 +253,8 @@ class ViewM3Run extends Component {
                       // data={motorControlHscData.data.curv} 
                       // HRI_005
                       data={frontWheelsetHscData.data.trackCurve}
-                      max={10000000000}
+                      shift={1000000}
+                      max={2000000}
                       unit="m" 
                       name="Radius" 
                       strokeColor="#fff" 
@@ -461,7 +462,8 @@ class ViewM3Run extends Component {
                   <div className="motorConPieBox1Child">
                     <DonutDivideLeftChart 
                       data={motorControlHscData.data.curv} 
-                      max="10000000000"
+                      shift="1000000"
+                      max="2000000"
                       unit="m" 
                       name="Track Curvature" 
                       strokeColor="#3581c9" 
@@ -476,7 +478,7 @@ class ViewM3Run extends Component {
                 <div className="motorConPieBox2">
                   <DonutDivideLeftChart 
                     data={motorControlHscData.data.speed} 
-                    max="60"
+                    max="30"
                     unit="km/h" 
                     name="Vehicle Speed" 
                     strokeColor="#c93535" 
@@ -508,7 +510,7 @@ class ViewM3Run extends Component {
                     <span>Track Curve</span>
                     <span>:</span>
                     <span>
-                      {frontWheelsetHscData.data.trackCurve ? frontWheelsetHscData.data.trackCurve.toFixed(1) : 0} m
+                      {frontWheelsetHscData.data.trackCurve ? frontWheelsetHscData.data.trackCurve.toLocaleString() : 0} m
                     </span>
                   </li>
                   <li>
@@ -543,7 +545,7 @@ class ViewM3Run extends Component {
                     <span>Track Curve</span>
                     <span>:</span>
                     <span>
-                      {rearWheelsetHscData.data.trackCurve ? rearWheelsetHscData.data.trackCurve.toFixed(1) : 0} m
+                      {rearWheelsetHscData.data.trackCurve ? rearWheelsetHscData.data.trackCurve.toLocaleString() : 0} m
                     </span>
                   </li>
                   <li>
@@ -589,7 +591,7 @@ class ViewM3Run extends Component {
                     <DonutCircleChart 
                       // HRI_001
                       data={motorControlHscData.data.speed} 
-                      max="60"
+                      max="30"
                       unit="Km/m" 
                       name="Speed" 
                       strokeColor="#fff" 
@@ -621,7 +623,8 @@ class ViewM3Run extends Component {
                       data={motorControlHscData.data.curv} 
                       // HRI_009
                       data={rearWheelsetHscData.data.trackCurve}
-                      max={10000000000}
+                      shift={1000000}
+                      max={2000000}
                       unit="m" 
                       name="Radius" 
                       strokeColor="#fff" 

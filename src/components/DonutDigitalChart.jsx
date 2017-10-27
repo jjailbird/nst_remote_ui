@@ -27,8 +27,8 @@ export default class DonutDigitalChart extends Component {
     const lineFull = circleLen;   
     let lineValue = 0;
    
-    let lineValueShift = shift ? parseInt(shift) : 0;
-    let lineMax = max ? parseInt(max) : 0; 
+    let lineValueShift = shift ? Number(shift) : 0;
+    let lineMax = max ? Number(max) : 0; 
 
     let linePercent = 0; 
     let linePx = 0; 

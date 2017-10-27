@@ -30,45 +30,31 @@ export default class DonutCircleChart extends Component {
     
     const lineFull = dashLen;   
     let lineValue = 0;
-    let lineValueShift = shift ? parseInt(shift) : 0;
-    let valueMax = max ? parseInt(max) : 0; 
+    let lineValueShift = shift ? Number(shift) : 0;
+    let valueMax = max ? Number(max) : 0; 
     let valuePercent = 0; 
     let linePx = 0; 
-    
-    /*
-    switch(name) {
-      case 'Speed':
-        lineValueShift = 0;
-        valueMax = 60;
-        break;
-      case 'Position':
-        lineValueShift = 0;
-        valueMax = 250;
-        break;
-      case 'Radius':
-        lineValueShift = 0;
-        valueMax = 10000;
-        break;
-    }
-    */
     let value = 0;
 
+    let valueDisplayFontSize = valueFontSize;
+    let valueDisplay = "";
+  
     if(data !== undefined) {
-      value = data;
+      value = Number(data);
       lineValue = value + lineValueShift;
       valuePercent = (lineValue / valueMax) * 100; 
       linePx = (lineFull * valuePercent) / 100;
+      
+      if(value > 1000 || value < -1000) {
+        valueDisplay = value.toExponential(1);
+        valueDisplayFontSize = "12px"; 
+      } else {
+        valueDisplay = isFloat(value) ? value.toFixed(1) : value
+      }
+
     }
-    let valueDisplayFontSize = valueFontSize;
-    let valueDisplay = isFloat(value) ? value.toFixed(1) : value;
-    /*
-    if(valueDisplay > 1000) {
-      valueDisplay = valueDisplay.toExponential(1);
-      valueDisplayFontSize = "12px"; 
-    }
-    */
+
     const strokeDasharrayValue = `${linePx} ${circleLen - linePx}`;
-    
 
     return (
       <div
