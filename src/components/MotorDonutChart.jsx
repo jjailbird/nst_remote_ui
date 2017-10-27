@@ -37,16 +37,16 @@ export default class MotorDonutChart extends Component {
     
     switch(name) {
       case 'A-cur':
-        lineValueShift = 0;
-        valueMax = 500;
+        lineValueShift = 330;
+        valueMax = 660;
         break;
       case 'B-cur':
-        lineValueShift = 0;
-        valueMax = 500;
+        lineValueShift = 330;
+        valueMax = 660;
         break;
       case 'C-cur':
-        lineValueShift = 0;
-        valueMax = 500;
+        lineValueShift = 330;
+        valueMax = 660;
         break;
     }
     

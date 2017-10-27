@@ -10,7 +10,7 @@ export default class LaserDonutCircleChart extends Component {
     // const length = donutRing.getTotalLength();
   }
   render() {
-    const { data, unit, name, dataName, strokeColor, strokeColorLine, donutWidth, donutStrokeWidth, valueFontSize, valueFontColor } = this.props;
+    const { data, shift, max, unit, name, dataName, strokeColor, strokeColorLine, donutWidth, donutStrokeWidth, valueFontSize, valueFontColor } = this.props;
     //console.log("data = ",data);
     //console.log(valueFontSize, valueFontColor);
     const width = donutWidth;
@@ -31,34 +31,10 @@ export default class LaserDonutCircleChart extends Component {
     
     const lineFull = dashLen;   
     let lineValue = 0;
-    let lineValueShift =0;
-    let valueMax = 0; 
+    let lineValueShift = shift !== undefined ? parseFloat(shift) : 0;
+    let valueMax = max !== undefined ? parseFloat(max) : 0; 
     let valuePercent = 0; 
     let linePx = 0; 
-    
-    switch(dataName) {
-      case 'lx':
-        lineValueShift = 10;
-        valueMax = 20;
-        break;
-      case 'ly':
-        lineValueShift = 10;
-        valueMax = 20;
-        break;
-      case 'rx':
-        lineValueShift = 10;
-        valueMax = 20;
-        break;
-      case 'ry':
-        lineValueShift = 10;
-        valueMax = 20;
-        break;
-      case 'g':
-        lineValueShift = 10;
-        valueMax = 20;
-        break;
-    }
-    
     let value = 0;
 
     if(data) {
@@ -120,7 +96,7 @@ export default class LaserDonutCircleChart extends Component {
               marginTop: '3px'
             }}
           >
-            {valueDisplay}
+            {isNaN(valueDisplay) ? valueDisplay : valueDisplay.toLocaleString()}
           </div>
         </div>
         <svg

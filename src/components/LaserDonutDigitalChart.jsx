@@ -31,8 +31,8 @@ export default class LaserDonutDigitalChart extends Component {
     const lineFull = dashLen;   
     let lineValue = 0;
     
-    let lineValueShift = shift ? parseInt(shift) : 0;
-    let valueMax = max ? parseInt(max) : 0; 
+    let lineValueShift = shift ? parseFloat(shift) : 0;
+    let valueMax = max ? parseFloat(max) : 0; 
 
     let valuePercent = 0; 
     let linePx = 0; 

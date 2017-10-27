@@ -11,8 +11,8 @@ export default class DynamicLineChart extends Component {
     const lineFull = 30;   //실제높이 -2  
     let lineValue = 0;
 
-    let lineValueShift = shift ? parseFloat(shift) : 0;
-    let lineMax = max ? parseFloat(max) : 0; 
+    let lineValueShift = shift ? Number(shift) : 0;
+    let lineMax = max ? Number(max) : 0; 
 
     let linePercent = 0; 
     let linePx = 0; 
