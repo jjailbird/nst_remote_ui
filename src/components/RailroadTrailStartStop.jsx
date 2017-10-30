@@ -112,7 +112,7 @@ export default class RailroadTrailStartStop extends Component {
           <path
             id="railPath"
             fill="none" stroke="#5D6C81" strokeWidth="2" strokeMiterlimit="10"
-            d="M23.999,26.732h195.846c15.188,0,27.5,12.313,27.5,27.5l0,0c0,15.188-12.313,27.5-27.5,27.5h-56.679"
+            d="M23.999,26.732h196c15.188,0,27.5,12.313,27.5,27.5l0,0c0,15.188-12.313,27.5-27.5,27.5h-58"
           />
           <circle
             id="circleTrain"

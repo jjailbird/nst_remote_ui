@@ -9,6 +9,7 @@ import TestSetupPanelDataContainer2 from './components/TestSetupPanelDataContain
 import TestSetupPanelDataContainerDonutChart from './components/TestSetupPanelDataContainerDonutChart';
 import TestSetupGaugeBar from './components/TestSetupGaugeBar';
 import DynamicLineChart2 from './components/DynamicLineChart2';
+import RunningMileage from './components/RunningMileage';
 import RailroadTrailStartStop from './components/RailroadTrailStartStop';
 
 import KeyboardedInput from './components/react-touch-screen-keyboard/src/KeyboardedInput';
@@ -20,6 +21,7 @@ import {
   setInvCon1, setInvCon2, setTbms, setDcDc, setApc, setInvOut1, setInvOut2, setSbms, setSinv, setCamera,
   setPower ,setLight, setDriveMode, setRunDirection, setRunSwitch, setHydroBk, setRegenBk,
   setPositionStart, setPositionStop, setLimitSpeedA, setRunCount, setLimitSpeedM, setShuntSpeed,
+  setMileageTotal, setMileageTest,
 } from './actions/m2SetupActions';
 
 import { connect } from 'react-redux';
@@ -104,6 +106,16 @@ class ViewM2Setup extends Component {
     this.setCurrentPositionStart = this.setCurrentPositionStart.bind(this);
     this.setCurrentPositionStop = this.setCurrentPositionStop.bind(this);
     this.setCurrentManualSpeed = this.setCurrentManualSpeed.bind(this);
+
+    this.onResetMileageClick = this.onResetMileageClick.bind(this);
+  }
+  onResetMileageClick() {
+    const { dispatch } = this.props;
+    dispatch( setMileageTest(0) );
+    
+    const command = getSocketCommand('TSI_039', 0);
+    sendCommandToDevice(command);
+
   }
   onDataModeChange(value) {
     const command = getSocketCommand('RUN_DEMO', value);
@@ -526,6 +538,7 @@ class ViewM2Setup extends Component {
       invOut1, invOut2, sBms, sInv, camera,
       power, light, driveMode, runDirection, runSwitch, hydroBk, regenBk,
       positionStart, positionStop, limitSpeedA, runCount, limitSpeedM, shuntSpeed,
+      mileageTotal, mileageTest,
       // -----------------------------------------------------------
       dispatch
     } = this.props;
@@ -1228,10 +1241,15 @@ class ViewM2Setup extends Component {
                         width: '100%',
                         height: '196px',
                         background: 'rgba(0,0,0,0.3)',
-                        marginBottom: '14px'
+                        marginBottom: '14px',
+                        position: 'relative'
                     }}
                   >
-                    <DynamicLineChart2 data={VehicleSpeedArray} unit="km/h" name="Vehicle Speed"/>
+                    <span className="testPanelBoxTitleFull">
+                      RUNNING MILEAGE
+                    </span>
+                    <RunningMileage total={mileageTotal} test={mileageTest} onResetMileageClick={this.onResetMileageClick} />
+                    {/*<DynamicLineChart2 data={VehicleSpeedArray} unit="km/h" name="Vehicle Speed"/>*/}
                   </div>
                   <div
                     style={{
@@ -1745,6 +1763,9 @@ function mapStateToProps(state){
       runCount: state.setM2SetupButtons.runCount,
       limitSpeedM: state.setM2SetupButtons.limitSpeedM,
       shuntSpeed: state.setM2SetupButtons.shuntSpeed,
+
+      mileageTotal: state.setM2SetupButtons.mileageTotal,
+      mileageTest: state.setM2SetupButtons.mileageTest,
       // =============================================
     }
 }

@@ -8,6 +8,7 @@ import {
   setDriveData,
   setEmergencyStop, setRunSwitch, setDriveLever,
   setTestSetupData, setPower ,setLight,
+  setMileageTotal, setMileageTest,
   /*
   setInvCon1, setInvCon2, setTbms, setDcDc, setApc, setInvOut1, setInvOut2, setSbms, setSinv, setCamera,
   setPower ,setLight, setDriveMode, setRunDirection, setHydroBk, setRegenBk,
@@ -361,6 +362,15 @@ class App extends Component {
       dispatch( setEmergencyStop(json.TSI_000) );
       dispatch( setRunSwitch(json.TSI_000) );
     }
+
+    // Running Mileage -----------------------------
+    if(json.TSI_038 !== undefined) {
+      dispatch( setMileageTotal(json.TSI_038) );
+    }
+    if(json.TSI_039 !== undefined) {
+      dispatch( setMileageTest(json.TSI_039) );
+    }    
+    // ---------------------------------------------
   }
   changeNaviBackground(src) {
     const navi = document.getElementById('naviMenu');

@@ -31,6 +31,8 @@ export const SET_RUN_COUNT = 'SET_RUN_COUNT';
 export const SET_LIMIT_SPEED_M = 'SET_LIMIT_SPEED_M';
 export const SET_SHUNT_SPEED = 'SET_SHUNT_SPEED';
 
+export const SET_MILEAGE_TOTAL = 'SET_MILEAGE_TOTAL';
+export const SET_MILEAGE_TEST = 'SET_MILEAGE_TEST';
 
 // TEST SETUP Vehicle Status Buttons ----------------
 export const setTestSetupData = (data) => {
@@ -198,6 +200,20 @@ export const setLimitSpeedM = (data) => {
 export const setShuntSpeed = (data) => {
   return {
     type: SET_SHUNT_SPEED,
+    data
+  }
+}
+
+export const setMileageTotal = (data) => {
+  return {
+    type: SET_MILEAGE_TOTAL,
+    data
+  }
+}
+
+export const setMileageTest = (data) => {
+  return {
+    type: SET_MILEAGE_TEST,
     data
   }
 }

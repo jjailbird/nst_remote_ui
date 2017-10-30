@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import DriveDonutDivideLeftChart from './components/DriveDonutDivideLeftChart';
-import DriveRailroadTrail from './components/DriveRailroadTrail';
+import DriveRailroadTrail2 from './components/DriveRailroadTrail2';
 import RailDonutPanelLeft from './components/RailDonutPanelLeft'
 import RailDonutPanelRight from './components/RailDonutPanelRight'
 import RailDonutGraphLeft from './components/RailDonutGraphLeft'
@@ -29,6 +29,7 @@ class ViewM2Run extends Component {
     this.onTestLabelChange = this.onTestLabelChange.bind(this);
   }
   onTestLabelChange(value) {
+    console.log('onTestLabelChange!', value);
     if (typeof(Storage) !== "undefined") {
       localStorage.setItem("NST_test_label", value);
       const command = {
@@ -185,7 +186,7 @@ class ViewM2Run extends Component {
           </div>
           <div className="tcPositionBox">
             <div className="tcPosition" style={{width: '204px'}}>
-              <DriveRailroadTrail value={driveData.data.position} valueMax="250" />
+              <DriveRailroadTrail2 value={driveData.data.position} valueMax="250" />
             </div>
           </div>
         </div>

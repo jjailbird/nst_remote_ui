@@ -4,6 +4,7 @@ import {
   SET_POWER, SET_LIGHT, SET_DRIVE_MODE, SET_RUN_DIRECTION, SET_RUN_SWITCH, SET_HYDRO_BK ,SET_REGEN_BK,
   SET_POSITION_START, SET_POSITION_STOP, SET_LIMIT_SPEED_A, SET_RUN_COUNT, SET_LIMIT_SPEED_M, SET_SHUNT_SPEED,
   SET_DRIVE_LEVER, SET_EMERGENCY_STOP,
+  SET_MILEAGE_TOTAL, SET_MILEAGE_TEST,
 } from '../actions/m2SetupActions';
 
 const initialState = { 
@@ -12,6 +13,7 @@ const initialState = {
   power: 'off', light: 'off', driveMode: 'ST', runDirection: 1, runSwitch: 0, hydroBk: 'off', regenBk: 'off',
   positionStart: 0, positionStop: 250, limitSpeedA: 15, runCount: 0, limitSpeedM: 0, shuntSpeed: 0,
   driveLever: 0, emergencyStop: 1,
+  mileageTotal: 0, mileageTest: 0,
 }
 
 export default function setM2SetupButtons(state = initialState, action) {
@@ -66,7 +68,10 @@ export default function setM2SetupButtons(state = initialState, action) {
       return { ...state, driveLever: action.data };
     case SET_EMERGENCY_STOP:
       return { ...state, emergencyStop: action.data };
-
+    case SET_MILEAGE_TOTAL:
+      return { ...state, mileageTotal: action.data };
+    case SET_MILEAGE_TEST:
+      return { ...state, mileageTest: action.data };
     default:
       return state;
   } 
