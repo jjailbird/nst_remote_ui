@@ -260,7 +260,7 @@ class ViewM1Setup extends Component {
                         shift="15"
                         max="30"
                         unit="mm" 
-                        name="Laser - X 013" 
+                        name="Laser - X" 
                         dataName = 'lx'
                         strokeColor="rgba(44,106,170,0.7)" 
                         strokeColorLine="rgba(255,255,255,0.2)" 
@@ -277,7 +277,7 @@ class ViewM1Setup extends Component {
                         shift="15"
                         max="30"
                         unit="mm" 
-                        name="Laser - Y 008" 
+                        name="Laser - Y" 
                         dataName = 'ly'
                         strokeColor="rgba(201,53,53,0.7)" 
                         strokeColorLine="rgba(255,255,255,0.2)" 
@@ -294,7 +294,7 @@ class ViewM1Setup extends Component {
                         shift="15"
                         max="30"
                         unit="mm" 
-                        name="Laser - X 016" 
+                        name="Laser - X" 
                         dataName = 'lx'
                         strokeColor="rgba(44,106,170,0.7)" 
                         strokeColorLine="rgba(255,255,255,0.2)" 
@@ -311,7 +311,7 @@ class ViewM1Setup extends Component {
                         shift="15"
                         max="30"
                         unit="mm" 
-                        name="Laser - Y 018" 
+                        name="Laser - Y" 
                         dataName = 'ly'
                         strokeColor="rgba(201,53,53,0.7)" 
                         strokeColorLine="rgba(255,255,255,0.2)" 
@@ -347,7 +347,7 @@ class ViewM1Setup extends Component {
                         shift="15"
                         max="30"
                         unit="mm" 
-                        name="Laser - X 028" 
+                        name="Laser - X" 
                         dataName = 'rx'
                         strokeColor="rgba(44,106,170,0.7)" 
                         strokeColorLine="rgba(255,255,255,0.2)" 
@@ -364,7 +364,7 @@ class ViewM1Setup extends Component {
                         shift="15"
                         max="30"
                         unit="mm" 
-                        name="Laser - Y 033" 
+                        name="Laser - Y" 
                         dataName = 'ry'
                         strokeColor="rgba(201,53,53,0.7)" 
                         strokeColorLine="rgba(255,255,255,0.2)" 
@@ -381,7 +381,7 @@ class ViewM1Setup extends Component {
                         shift="15"
                         max="30"
                         unit="mm" 
-                        name="Laser - X 036" 
+                        name="Laser - X" 
                         dataName = 'rx'
                         strokeColor="rgba(44,106,170,0.7)" 
                         strokeColorLine="rgba(255,255,255,0.2)" 
@@ -398,7 +398,7 @@ class ViewM1Setup extends Component {
                         shift="15"
                         max="30"
                         unit="mm" 
-                        name="Laser - Y 038" 
+                        name="Laser - Y" 
                         dataName = 'ry'
                         strokeColor="rgba(201,53,53,0.7)" 
                         strokeColorLine="rgba(255,255,255,0.2)" 
@@ -415,7 +415,7 @@ class ViewM1Setup extends Component {
                         shift="3.5"
                         max="7"
                         unit="°" 
-                        name="GYRO - Z 037" 
+                        name="GYRO - Z" 
                         dataName="rearG"
                         strokeColor="rgba(137,182,89,1)" 
                         strokeColorLine="rgba(137,182,89,0.3)" 
