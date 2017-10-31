@@ -100,7 +100,7 @@ class App extends Component {
 
     this.frontLeftMotorData = {};
     this.frontLeftMotorData.rpm = 0;
-    this.frontLeftMotorData.torque = -20;
+    this.frontLeftMotorData.torque = 0;
     this.frontLeftMotorData.a = 0;
     this.frontLeftMotorData.b = 0;
     this.frontLeftMotorData.c = 0;
@@ -108,7 +108,7 @@ class App extends Component {
 
     this.frontRightMotorData = {};
     this.frontRightMotorData.rpm = 0;
-    this.frontRightMotorData.torque = -20;
+    this.frontRightMotorData.torque = 0;
     this.frontRightMotorData.a = 0;
     this.frontRightMotorData.b = 0;
     this.frontRightMotorData.c = 0;
@@ -116,7 +116,7 @@ class App extends Component {
 
     this.rearLeftMotorData = {};
     this.rearLeftMotorData.rpm = 0;
-    this.rearLeftMotorData.torque = -20;
+    this.rearLeftMotorData.torque = 0;
     this.rearLeftMotorData.a = 0;
     this.rearLeftMotorData.b = 0;
     this.rearLeftMotorData.c = 0;
@@ -124,7 +124,7 @@ class App extends Component {
 
     this.rearRightMotorData = {};
     this.rearRightMotorData.rpm = 0;
-    this.rearRightMotorData.torque = -20;
+    this.rearRightMotorData.torque = 0;
     this.rearRightMotorData.a = 0;
     this.rearRightMotorData.b = 0;
     this.rearRightMotorData.c = 0;
