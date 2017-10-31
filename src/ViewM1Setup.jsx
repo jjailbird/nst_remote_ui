@@ -256,11 +256,11 @@ class ViewM1Setup extends Component {
                     <div className="setPiedata-pieGrape pie1">
                       <LaserDonutCircleChart 
                         // data={frontLeftData.data.laserX} 
-                        data={frontLeftMotorData.data.rpm} 
+                        data={frontSensorData.data.leftLvdtS} 
                         shift="15"
                         max="30"
                         unit="mm" 
-                        name="Laser - X" 
+                        name="Laser - X 013" 
                         dataName = 'lx'
                         strokeColor="rgba(44,106,170,0.7)" 
                         strokeColorLine="rgba(255,255,255,0.2)" 
@@ -273,11 +273,11 @@ class ViewM1Setup extends Component {
                     <div className="setPiedata-pieGrape pie2">
                       <LaserDonutCircleChart 
                         // data={frontLeftData.data.laserY} 
-                        data={frontSensorData.data.leftLvdtS} 
+                        data={frontSensorData.data.laserY1} 
                         shift="15"
                         max="30"
                         unit="mm" 
-                        name="Laser - Y" 
+                        name="Laser - Y 008" 
                         dataName = 'ly'
                         strokeColor="rgba(201,53,53,0.7)" 
                         strokeColorLine="rgba(255,255,255,0.2)" 
@@ -290,11 +290,11 @@ class ViewM1Setup extends Component {
                     <div className="setPiedata-pieGrape pie3">
                       <LaserDonutCircleChart 
                         //data={rearLeftData.data.laserX} 
-                        data={frontRightMotorData.data.rpm} 
+                        data={frontSensorData.data.rightLvdtS} 
                         shift="15"
                         max="30"
                         unit="mm" 
-                        name="Laser - X" 
+                        name="Laser - X 016" 
                         dataName = 'lx'
                         strokeColor="rgba(44,106,170,0.7)" 
                         strokeColorLine="rgba(255,255,255,0.2)" 
@@ -307,11 +307,11 @@ class ViewM1Setup extends Component {
                     <div className="setPiedata-pieGrape pie4">
                       <LaserDonutCircleChart 
                         // data={rearLeftData.data.laserY} 
-                        data={frontSensorData.data.rightLvdtS} 
+                        data={frontSensorData.data.laserY2} 
                         shift="15"
                         max="30"
                         unit="mm" 
-                        name="Laser - Y" 
+                        name="Laser - Y 018" 
                         dataName = 'ly'
                         strokeColor="rgba(201,53,53,0.7)" 
                         strokeColorLine="rgba(255,255,255,0.2)" 
@@ -343,11 +343,11 @@ class ViewM1Setup extends Component {
                     <div className="setPiedata-pieGrape pie1">
                       <LaserDonutCircleChart 
                         // data={frontRightData.data.laserX} 
-                        data={rearLeftMotorData.data.rpm} 
+                        data={rearSensorData.data.laserX1} 
                         shift="15"
                         max="30"
                         unit="mm" 
-                        name="Laser - X" 
+                        name="Laser - X 028" 
                         dataName = 'rx'
                         strokeColor="rgba(44,106,170,0.7)" 
                         strokeColorLine="rgba(255,255,255,0.2)" 
@@ -364,7 +364,7 @@ class ViewM1Setup extends Component {
                         shift="15"
                         max="30"
                         unit="mm" 
-                        name="Laser - Y" 
+                        name="Laser - Y 033" 
                         dataName = 'ry'
                         strokeColor="rgba(201,53,53,0.7)" 
                         strokeColorLine="rgba(255,255,255,0.2)" 
@@ -377,11 +377,11 @@ class ViewM1Setup extends Component {
                     <div className="setPiedata-pieGrape pie3">
                       <LaserDonutCircleChart 
                         // data={rearRightData.data.laserX} 
-                        data={rearRightMotorData.data.rpm} 
+                        data={rearSensorData.data.rightLvdtS} 
                         shift="15"
                         max="30"
                         unit="mm" 
-                        name="Laser - X" 
+                        name="Laser - X 036" 
                         dataName = 'rx'
                         strokeColor="rgba(44,106,170,0.7)" 
                         strokeColorLine="rgba(255,255,255,0.2)" 
@@ -394,11 +394,11 @@ class ViewM1Setup extends Component {
                     <div className="setPiedata-pieGrape pie4">
                       <LaserDonutCircleChart 
                         // data={rearRightData.data.laserY} 
-                        data={rearSensorData.data.rightLvdtS} 
+                        data={rearSensorData.data.laserY2} 
                         shift="15"
                         max="30"
                         unit="mm" 
-                        name="Laser - Y" 
+                        name="Laser - Y 038" 
                         dataName = 'ry'
                         strokeColor="rgba(201,53,53,0.7)" 
                         strokeColorLine="rgba(255,255,255,0.2)" 
@@ -415,7 +415,7 @@ class ViewM1Setup extends Component {
                         shift="3.5"
                         max="7"
                         unit="°" 
-                        name="GYRO - Z" 
+                        name="GYRO - Z 037" 
                         dataName="rearG"
                         strokeColor="rgba(137,182,89,1)" 
                         strokeColorLine="rgba(137,182,89,0.3)" 
@@ -819,7 +819,7 @@ class ViewM1Setup extends Component {
 }
 
 function mapStateToProps(state){
-    // console.log('itcsetup',state.setItcSetupFrontRightData);
+    // console.log('state.frontLeftMotorData',state.frontLeftMotorData);
     return {
 
       frontLeftMotorData: state.frontLeftMotorData,

@@ -1,7 +1,7 @@
 export function getHostName() {
   return '192.168.1.2';
-  // return '192.168.147.19';
   // return window.location.hostname;
+  // return '192.168.147.19';
 }
 
 export function getRandomFloat(min, max) {

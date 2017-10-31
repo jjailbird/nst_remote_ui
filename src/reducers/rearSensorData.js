@@ -14,7 +14,11 @@ const defaultState = {
   ry2A: 0,
   ry2S: 0,
   gA: 0,
-  gS: 0
+  gS: 0,
+  laserX1: 0,
+  laserX2: 0,
+  laserY1: 0,
+  laserY2: 0,
 }
 
 export default function rearSensorData(state = { data: defaultState }, action) {

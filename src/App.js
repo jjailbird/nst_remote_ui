@@ -195,36 +195,42 @@ class App extends Component {
     this.setDriveData.brake = 0;
 
     this.setFrontSensorData = {};
-    this.setFrontSensorData.leftApA = 0;
-    this.setFrontSensorData.leftApS = 0;
-    this.setFrontSensorData.leftBpA = 0;
-    this.setFrontSensorData.leftBpS = 0;
-    this.setFrontSensorData.leftLvdtA = 0;
-    this.setFrontSensorData.leftLvdtS = 0;
-    this.setFrontSensorData.rightApA = 0;
-    this.setFrontSensorData.rightApS = 0;
-    this.setFrontSensorData.rightBpA = 0;
-    this.setFrontSensorData.rightBpS = 0;
-    this.setFrontSensorData.rightLvdtA = 0;
-    this.setFrontSensorData.rightLvdtS = 0;
-    this.setFrontSensorData.gyroA = 0;
-    this.setFrontSensorData.gyroS = 0;
+    this.setFrontSensorData.leftApA = 0; // ISI_001
+    this.setFrontSensorData.leftApS = 0; // ISI_011 
+    this.setFrontSensorData.leftBpA = 0; // ISI_002
+    this.setFrontSensorData.leftBpS = 0; // ISI_012
+    this.setFrontSensorData.leftLvdtA = 0; // ISI_003
+    this.setFrontSensorData.leftLvdtS = 0; // ISI_013
+    this.setFrontSensorData.rightApA = 0; // ISI_004
+    this.setFrontSensorData.rightApS = 0; // ISI_014
+    this.setFrontSensorData.rightBpA = 0; // ISI_005
+    this.setFrontSensorData.rightBpS = 0; // ISI_015
+    this.setFrontSensorData.rightLvdtA = 0; // ISI_006
+    this.setFrontSensorData.rightLvdtS = 0; // ISI_016
+    this.setFrontSensorData.gyroA = 0; // ISI_007
+    this.setFrontSensorData.gyroS = 0; // ISI_017
+
+    this.setFrontSensorData.laserY1 = 0; // ISI_008
+    this.setFrontSensorData.laserY2 = 0; // ISI_018
 
     this.setRearSensorData = {};
-    this.setRearSensorData.leftApA = 0;
-    this.setRearSensorData.leftApS = 0;
-    this.setRearSensorData.leftBpA = 0;
-    this.setRearSensorData.leftBpS = 0;
-    this.setRearSensorData.leftLvdtA = 0;
-    this.setRearSensorData.leftLvdtS = 0;
-    this.setRearSensorData.rightApA = 0;
-    this.setRearSensorData.rightApS = 0;
-    this.setRearSensorData.rightBpA = 0;
-    this.setRearSensorData.rightBpS = 0;
-    this.setRearSensorData.rightLvdtA = 0;
-    this.setRearSensorData.rightLvdtS = 0;
-    this.setRearSensorData.gyroA = 0;
-    this.setRearSensorData.gyroS = 0;
+    this.setRearSensorData.leftApA = 0; // ISI_021
+    this.setRearSensorData.leftApS = 0; // ISI_031
+    this.setRearSensorData.leftBpA = 0; // ISI_022
+    this.setRearSensorData.leftBpS = 0; // ISI_032
+    this.setRearSensorData.leftLvdtA = 0; // ISI_023
+    this.setRearSensorData.leftLvdtS = 0; // ISI_033
+    this.setRearSensorData.rightApA = 0; // ISI_024
+    this.setRearSensorData.rightApS = 0; // ISI_034
+    this.setRearSensorData.rightBpA = 0; // ISI_025
+    this.setRearSensorData.rightBpS = 0; // ISI_035
+    this.setRearSensorData.rightLvdtA = 0; // ISI_026
+    this.setRearSensorData.rightLvdtS = 0; // ISI_036
+    this.setRearSensorData.gyroA = 0; // ISI_027
+    this.setRearSensorData.gyroS = 0; // ISI_037
+
+    this.setRearSensorData.laserX1 = 0; // ISI_028
+    this.setRearSensorData.laserY2 = 0; // ISI_038
 
   }
   componentDidMount() {
@@ -562,7 +568,7 @@ class App extends Component {
     }
     if(json.ISI_003 !== undefined) {
       this.setFrontSensorData.leftLvdtA = json.ISI_003;
-      this.setFrontSensorData.leftLvdtS = currentAValue.frontLeftA3 ? json.ISI_003 - currentAValue.frontLeftA3 : 0; // json.ISI_013;   
+      // this.setFrontSensorData.leftLvdtS = currentAValue.frontLeftA3 ? json.ISI_003 - currentAValue.frontLeftA3 : 0; // json.ISI_013;   
     }
     if(json.ISI_004 !== undefined) {
       this.setFrontSensorData.rightApA = json.ISI_004;
@@ -574,13 +580,33 @@ class App extends Component {
     }
     if(json.ISI_006 !== undefined) {
       this.setFrontSensorData.rightLvdtA = json.ISI_006;
-      this.setFrontSensorData.rightLvdtS = currentAValue.frontRightA3 ? json.ISI_006 - currentAValue.frontRightA3 : 0; // json.ISI_016; 
+      // this.setFrontSensorData.rightLvdtS = currentAValue.frontRightA3 ? json.ISI_006 - currentAValue.frontRightA3 : 0; // json.ISI_016; 
     }
     if(json.ISI_007 !== undefined) {
       this.setFrontSensorData.gyroA = json.ISI_007;
-      this.setFrontSensorData.gyroS = currentAValue.frontGyroA ? json.ISI_007 - currentAValue.frontGyroA : 0; // json.ISI_017; 
+      // this.setFrontSensorData.gyroS = currentAValue.frontGyroA ? json.ISI_007 - currentAValue.frontGyroA : 0; // json.ISI_017; 
     }
-    if(json.ISI_001 !== undefined || json.ISI_002 !== undefined || json.ISI_003 !== undefined || json.ISI_004 !== undefined || json.ISI_005 !== undefined || json.ISI_006 !== undefined || json.ISI_007 !== undefined) {
+
+    if(json.ISI_008 !== undefined) {
+      this.setFrontSensorData.laserY1 = json.ISI_008;
+    }
+    if(json.ISI_018 !== undefined) {
+      this.setFrontSensorData.laserY2 = json.ISI_018;
+    }
+
+    if(json.ISI_013 !== undefined) {
+      this.setFrontSensorData.leftLvdtS = json.ISI_013;
+    }
+    if(json.ISI_016 !== undefined) {
+      this.setFrontSensorData.rightLvdtS = json.ISI_016; 
+    }
+    if(json.ISI_017 !== undefined) {
+      this.setFrontSensorData.gyroS = json.ISI_017;
+    }
+
+    if(json.ISI_001 !== undefined || json.ISI_002 !== undefined || json.ISI_003 !== undefined || json.ISI_004 !== undefined || json.ISI_005 !== undefined
+      || json.ISI_006 !== undefined || json.ISI_007 !== undefined 
+      || json.ISI_008 !== undefined || json.ISI_018 !== undefined || json.ISI_013 !== undefined || json.ISI_016 !== undefined || json.ISI_017 !== undefined) {
       dispatch( setFrontSensorData(this.setFrontSensorData) )
     }
     // =========================================================================
@@ -596,7 +622,7 @@ class App extends Component {
     }
     if(json.ISI_023 !== undefined) {
       this.setRearSensorData.leftLvdtA = json.ISI_023;
-      this.setRearSensorData.leftLvdtS = currentAValue.rearLeftA3 ? json.ISI_023 - currentAValue.rearLeftA3 : 0; // json.ISI_033; 
+      // this.setRearSensorData.leftLvdtS = currentAValue.rearLeftA3 ? json.ISI_023 - currentAValue.rearLeftA3 : 0; // json.ISI_033; 
     }
     if(json.ISI_024 !== undefined) {
       this.setRearSensorData.rightApA = json.ISI_024;
@@ -608,13 +634,33 @@ class App extends Component {
     }
     if(json.ISI_026 !== undefined) {
       this.setRearSensorData.rightLvdtA = json.ISI_026;
-      this.setRearSensorData.rightLvdtS = currentAValue.rearRightA3 ? json.ISI_026 - currentAValue.rearRightA3 : 0; // json.ISI_036; 
+      // this.setRearSensorData.rightLvdtS = currentAValue.rearRightA3 ? json.ISI_026 - currentAValue.rearRightA3 : 0; // json.ISI_036; 
     }
     if(json.ISI_027 !== undefined) {
       this.setRearSensorData.gyroA = json.ISI_027;
-      this.setRearSensorData.gyroS = currentAValue.rearGyroA ? json.ISI_027 - currentAValue.rearGyroA : 0; // json.ISI_037; 
+      // this.setRearSensorData.gyroS = currentAValue.rearGyroA ? json.ISI_027 - currentAValue.rearGyroA : 0; // json.ISI_037; 
     }
-    if(json.ISI_021 !== undefined || json.ISI_022 !== undefined || json.ISI_023 !== undefined || json.ISI_024 !== undefined || json.ISI_025 !== undefined || json.ISI_026 !== undefined || json.ISI_027 !== undefined) {
+
+    if(json.ISI_028 !== undefined) {
+      this.setRearSensorData.laserX1 = json.ISI_028; 
+    }
+    if(json.ISI_038 !== undefined) {
+      this.setRearSensorData.laserY2 = json.ISI_038; 
+    }
+
+    if(json.ISI_033 !== undefined) {
+      this.setRearSensorData.leftLvdtS = json.ISI_033; 
+    }
+    if(json.ISI_036 !== undefined) {
+      this.setRearSensorData.rightLvdtS = json.ISI_036; 
+    }
+    if(json.ISI_037 !== undefined) {
+      this.setRearSensorData.gyroS = json.ISI_037; 
+    }
+    
+    if(json.ISI_021 !== undefined || json.ISI_022 !== undefined || json.ISI_023 !== undefined || json.ISI_024 !== undefined || json.ISI_025 !== undefined 
+      || json.ISI_026 !== undefined || json.ISI_027 !== undefined
+      || json.ISI_033 !== undefined || json.ISI_036 !== undefined || json.ISI_037 !== undefined || json.ISI_028 !== undefined || json.ISI_038 !== undefined) {
       dispatch( setRearSensorData(this.setRearSensorData) )
     }
     // =========================================================================
