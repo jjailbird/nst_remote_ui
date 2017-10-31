@@ -12,7 +12,7 @@ export default class LaserDonutDigitalChart extends Component {
   render() {
     const { data, max, shift, unit, name, dataName, strokeColor, strokeColorLine, donutWidth, donutStrokeWidth, valueFontSize, valueFontColor } = this.props;
     //console.log(valueFontSize, valueFontColor);
-    const width = parseInt(donutWidth);
+    const width = parseFloat(donutWidth);
     const height = width;
     const strokeWidth = donutStrokeWidth;
 
@@ -30,8 +30,8 @@ export default class LaserDonutDigitalChart extends Component {
     
     const lineFull = dashLen;   
     let lineValue = 0;
-    let lineValueShift = shift ? parseInt(shift) : 0;
-    let valueMax = max ? parseInt(max) : 0; 
+    let lineValueShift = shift ? parseFloat(shift) : 0;
+    let valueMax = max ? parseFloat(max) : 0; 
     let valuePercent = 0; 
     let linePx = 0; 
     
@@ -50,7 +50,7 @@ export default class LaserDonutDigitalChart extends Component {
 
     let value = 0;
 
-    if(data) {
+    if(data !== undefined) {
       value = data;
       lineValue = value + lineValueShift;
       valuePercent = (lineValue / valueMax) * 100; 

@@ -588,8 +588,9 @@ class App extends Component {
     }
     if(json.HSI_003 != undefined) {
       this.setFrontSensorData.leftLvdtA = json.HSI_003;
-      this.setFrontSensorData.leftLvdtS = currentAValue.frontLeftA3 ? json.HSI_003 - currentAValue.frontLeftA3 : 0; // json.HSI_013;
+      // this.setFrontSensorData.leftLvdtS = currentAValue.frontLeftA3 ? json.HSI_003 - currentAValue.frontLeftA3 : 0; // json.HSI_013;
     }
+
     if(json.HSI_004 != undefined) {
       this.setFrontSensorData.rightApA = json.HSI_004; 
       this.setFrontSensorData.rightApS = currentAValue.frontRightA1 ? json.HSI_004 - currentAValue.frontRightA1 : 0; // json.HSI_014;
@@ -600,18 +601,25 @@ class App extends Component {
     }
     if(json.HSI_006 != undefined) {
       this.setFrontSensorData.rightLvdtA = json.HSI_006;
-      this.setFrontSensorData.rightLvdtS = currentAValue.frontRightA3 ? json.HSI_006 - currentAValue.frontRightA3 : 0; // json.HSI_016;
+      // this.setFrontSensorData.rightLvdtS = currentAValue.frontRightA3 ? json.HSI_006 - currentAValue.frontRightA3 : 0; // json.HSI_016;
     }
     if(json.HSI_007 != undefined) {
       this.setFrontSensorData.gyroA = json.HSI_007;
-      this.setFrontSensorData.gyroS = currentAValue.frontGyroA ? json.HSI_007 - currentAValue.frontGyroA : 0; // // json.HSI_017;
+      // this.setFrontSensorData.gyroS = currentAValue.frontGyroA ? json.HSI_007 - currentAValue.frontGyroA : 0; // // json.HSI_017;
+    }
+    
+    if(json.HSI_013 != undefined) {
+      this.setFrontSensorData.leftLvdtS = json.HSI_013;
+    }
+    if(json.HSI_016 != undefined) {
+      this.setFrontSensorData.rightLvdtS = json.HSI_016;
     }
     if(json.HSI_017 != undefined) {
       this.setFrontSensorData.gyroZ = json.HSI_017;
     }
-    //console.log('this.setFrontSensorData', this.setFrontSensorData);
-    if(json.HSI_001 != undefined || json.HSI_002 != undefined || json.HSI_003 != undefined || json.HSI_004 != undefined || json.HSI_005 != undefined ||
-       json.HSI_006 != undefined || json.HSI_007 != undefined || json.HSI_017 != undefined) {
+
+    if(json.HSI_001 !== undefined || json.HSI_002 !== undefined || json.HSI_003 !== undefined || json.HSI_004 !== undefined || json.HSI_005 !== undefined ||
+       json.HSI_006 !== undefined || json.HSI_007 !== undefined || json.HSI_017 !== undefined || json.HSI_013 !== undefined || json.HSI_016 !== undefined) {
       // console.log('this.setFrontSensorData', this.setFrontSensorData);
       dispatch( setFrontSensorData(this.setFrontSensorData) )
     }
@@ -628,7 +636,7 @@ class App extends Component {
     }
     if(json.HSI_023 != undefined) {
       this.setRearSensorData.leftLvdtA = json.HSI_023;
-      this.setRearSensorData.leftLvdtS = currentAValue.rearLeftA3 ? json.HSI_023 - currentAValue.rearLeftA3 : 0; // json.HSI_033; 
+      // this.setRearSensorData.leftLvdtS = currentAValue.rearLeftA3 ? json.HSI_023 - currentAValue.rearLeftA3 : 0; // json.HSI_033; 
     }
     if(json.HSI_024 != undefined) {
       this.setRearSensorData.rightApA = json.HSI_024;
@@ -640,7 +648,7 @@ class App extends Component {
     }
     if(json.HSI_026 != undefined) {
       this.setRearSensorData.rightLvdtA = json.HSI_026;
-      this.setRearSensorData.rightLvdtS = currentAValue.rearRightA3 ? json.HSI_026 - currentAValue.rearRightA3 : 0; // json.HSI_036; 
+      // this.setRearSensorData.rightLvdtS = currentAValue.rearRightA3 ? json.HSI_026 - currentAValue.rearRightA3 : 0; // json.HSI_036; 
     }
     if(json.HSI_027 != undefined) {
       this.setRearSensorData.gyroA = json.HSI_027;
@@ -649,8 +657,16 @@ class App extends Component {
     if(json.HSI_037 != undefined) {
       this.setRearSensorData.gyroZ = json.HSI_037;
     }
-    if(json.HSI_021 != undefined || json.HSI_022 != undefined || json.HSI_023 != undefined || json.HSI_024 != undefined || json.HSI_025 != undefined || 
-      json.HSI_026 != undefined || json.HSI_027 != undefined || json.HSI_037 != undefined) {
+    
+    if(json.HSI_033 != undefined) {
+      this.setRearSensorData.leftLvdtS = json.HSI_033; 
+    }
+    if(json.HSI_036 != undefined) {
+      this.setRearSensorData.rightLvdtS = json.HSI_036; 
+    }
+
+    if(json.HSI_021 !== undefined || json.HSI_022 !== undefined || json.HSI_023 !== undefined || json.HSI_024 !== undefined || json.HSI_025 !== undefined || 
+      json.HSI_026 !== undefined || json.HSI_027 !== undefined || json.HSI_037 !== undefined || json.HSI_033 !== undefined || json.HSI_036 !== undefined) {
       dispatch( setRearSensorData(this.setRearSensorData) )
     }
     // =========================================================================
