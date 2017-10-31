@@ -28,7 +28,7 @@ export default class RunningMileage extends Component {
           </tr>
           <tr>
             <td style={{ color: '#fff' }}>>></td>
-            <td style={{ color: '#fff', textAlign: 'right' }}>{fTotal}</td>
+            <td style={{ color: '#fff', textAlign: 'right', fontSize: '20px' }}>{fTotal}</td>
           </tr>
           <tr>
             <td>TEST MILEAGE</td>
@@ -36,10 +36,7 @@ export default class RunningMileage extends Component {
           </tr>
           <tr>
             <td style={{ color: '#ffff00' }}>>></td>
-            <td style={{ color: '#ffff00', textAlign: 'right' }}>{fTest}</td>
-          </tr>
-          <tr>
-            <td colSpan="2" style={{ height: '8px' }}></td>
+            <td style={{ color: '#ffff00', textAlign: 'right', fontSize: '20px' }}>{fTest}</td>
           </tr>
           <tr>
             <td style={{ textAlign: 'center' }}><img src="/img/runningMan.white.png" alt="running man" /></td>
