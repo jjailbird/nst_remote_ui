@@ -36,19 +36,6 @@ export default class LaserDonutDigitalChart extends Component {
 
     let valuePercent = 0; 
     let linePx = 0; 
-    
-    /*
-    switch(dataName) {
-      case 'frontG':
-        lineValueShift = 5;
-        valueMax = 10;
-        break;
-      case 'rearG':
-        lineValueShift = 5;
-        valueMax = 10;
-        break;
-    }
-    */
     let value = 0;
 
     if(data !== undefined) {

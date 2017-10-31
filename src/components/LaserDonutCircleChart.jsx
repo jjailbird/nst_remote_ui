@@ -37,7 +37,7 @@ export default class LaserDonutCircleChart extends Component {
     let linePx = 0; 
     let value = 0;
 
-    if(data) {
+    if(data !== undefined) {
       value = data;
       lineValue = value + lineValueShift;
       valuePercent = (lineValue / valueMax) * 100; 
