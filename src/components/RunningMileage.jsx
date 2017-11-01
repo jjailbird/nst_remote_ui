@@ -24,7 +24,7 @@ export default class RunningMileage extends Component {
         <table style={{ width: '100%', color: 'rgba(255, 255, 255, 0.7)', fontSize: '14px', fontWeight: 'bold' }}>
           <tr>
             <td>TOTAL MILEAGE</td>
-            <td style={{ textAlign: 'center' }}>km/h</td>
+            <td style={{ textAlign: 'center' }}>km</td>
           </tr>
           <tr>
             <td style={{ color: '#fff' }}>>></td>
