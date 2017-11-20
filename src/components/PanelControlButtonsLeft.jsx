@@ -31,8 +31,10 @@ export default class PanelControlButtonsLeft extends Component {
         }}
       >
         <a href="javascript:void(0)" onClick={this.snapshotCurrentPage}>CAP</a>
+        {/*
         <a href="javascript:void(0)">REC</a>
         <a href="javascript:void(0)">SAVE</a>
+        */}
       </div>
     );
   }
