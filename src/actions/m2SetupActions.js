@@ -34,6 +34,8 @@ export const SET_SHUNT_SPEED = 'SET_SHUNT_SPEED';
 export const SET_MILEAGE_TOTAL = 'SET_MILEAGE_TOTAL';
 export const SET_MILEAGE_TEST = 'SET_MILEAGE_TEST';
 
+export const SET_RECORDING = 'SET_RECORDING';
+
 // TEST SETUP Vehicle Status Buttons ----------------
 export const setTestSetupData = (data) => {
   // console.log('setTestSetupData', data);
@@ -136,7 +138,7 @@ export const setLight = (data) => {
 }
 
 export const setDriveMode = (data) => {
-  console.log('setDriveMode!', data);
+  // console.log('setDriveMode!', data);
   return {
     type: SET_DRIVE_MODE,
     data
@@ -214,6 +216,13 @@ export const setMileageTotal = (data) => {
 export const setMileageTest = (data) => {
   return {
     type: SET_MILEAGE_TEST,
+    data
+  }
+}
+
+export const setRecording = (data) => {
+  return {
+    type: SET_RECORDING,
     data
   }
 }
