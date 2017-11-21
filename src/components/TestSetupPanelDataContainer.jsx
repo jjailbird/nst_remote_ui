@@ -20,25 +20,29 @@ export default class TestSetupPanelDataContainer extends Component {
     let dataLeft4 = '';
     let dataLeftCircle = 0;
     let dataLeftValueMax = 100;
+    let dataLeftValueShift = 0;
     let dataRight1 = '';
     let dataRight2 = '';
     let dataRight3 = '';
     let dataRight4 = '';
     let dataRightCircle = 0;
     let dataRightValueMax = 100;
-    
+    let dataRightValueShift = 0;
+
     dataLeft1 = dataLeft.data1;
     dataLeft2 = dataLeft.data2;
     dataLeft3 = dataLeft.data3;
     dataLeft4 = dataLeft.data4;
     dataLeftValueMax = dataLeft.valueMax ? dataLeft.valueMax : 100;
-    
+    dataLeftValueShift = dataLeft.valueShift ? dataLeft.valueShift : 0;
+
     dataRight1 = dataRight.data1;
     dataRight2 = dataRight.data2;
     dataRight3 = dataRight.data3;
     dataRight4 = dataRight.data4;
     dataRightValueMax = dataRight.valueMax ? dataRight.valueMax : 100;
-    
+    dataRightValueShift = dataRight.valueShift ? dataRight.valueShift : 0;
+
     dataLeftCircle = dataLeft.circle;
     dataRightCircle = dataRight.circle;
    
@@ -81,6 +85,7 @@ export default class TestSetupPanelDataContainer extends Component {
                 valueFontSize="24px"
                 valueFontColor="#fff"
                 valueMax={dataLeftValueMax}
+                valueShift={dataLeftValueShift}
               />
             </div>
             <div 
@@ -94,10 +99,10 @@ export default class TestSetupPanelDataContainer extends Component {
             >
               {nameLeft} {nameLeft ? `${unitLeft}` : ''} 
             </div>
-            <TestSetupPanelDataContainerBarChart data={dataLeft1} title={`${barTitle}1`} unit={unitLeft} barColor={CompColor} valueMax={dataLeftValueMax} />
-            <TestSetupPanelDataContainerBarChart data={dataLeft2} title={`${barTitle}2`} unit={unitLeft} barColor={CompColor} valueMax={dataLeftValueMax} />
-            <TestSetupPanelDataContainerBarChart data={dataLeft3} title={`${barTitle}3`} unit={unitLeft} barColor={CompColor} valueMax={dataLeftValueMax} />
-            <TestSetupPanelDataContainerBarChart data={dataLeft4} title={`${barTitle}4`} unit={unitLeft} barColor={CompColor} valueMax={dataLeftValueMax} />
+            <TestSetupPanelDataContainerBarChart data={dataLeft1} title={`${barTitle}1`} unit={unitLeft} barColor={CompColor} valueMax={dataLeftValueMax} valueShift={dataLeftValueShift} />
+            <TestSetupPanelDataContainerBarChart data={dataLeft2} title={`${barTitle}2`} unit={unitLeft} barColor={CompColor} valueMax={dataLeftValueMax} valueShift={dataLeftValueShift} />
+            <TestSetupPanelDataContainerBarChart data={dataLeft3} title={`${barTitle}3`} unit={unitLeft} barColor={CompColor} valueMax={dataLeftValueMax} valueShift={dataLeftValueShift} />
+            <TestSetupPanelDataContainerBarChart data={dataLeft4} title={`${barTitle}4`} unit={unitLeft} barColor={CompColor} valueMax={dataLeftValueMax} valueShift={dataLeftValueShift} />
           </div>
         </div>
         <div className="pull-right tspdInner">

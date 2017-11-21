@@ -629,7 +629,8 @@ class ViewM2Setup extends Component {
                   data1: InvVolt1, data2: InvVolt2, data3: InvVolt3, data4: InvVolt4,
                   // circle: (InvVolt1 + InvVolt2 + InvVolt3 + InvVolt4) / 4,
                   circle: InvVolt0,
-                  valueMax: 900
+                  valueShift: 20,
+                  valueMax: 920
                 }} 
                 dataRight={{
                   data1: InvTemp1, data2: InvTemp2, data3: InvTemp3, data4: InvTemp4,
