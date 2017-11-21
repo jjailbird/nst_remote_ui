@@ -20,23 +20,27 @@ export default class RunningMileage extends Component {
     fTest = fTest.toFixed(3);
 
     return (
-      <div className="dlcBox" style={{ position: 'relative', marginTop: '60px', padding: '0px 10px', width: '100%' }}>
+      <div className="dlcBox" style={{ position: 'relative', marginTop: '50px', padding: '0px 10px', width: '100%' }}>
         <table style={{ width: '100%', color: 'rgba(255, 255, 255, 0.7)', fontSize: '14px', fontWeight: 'bold' }}>
           <tr>
             <td>TOTAL MILEAGE</td>
             <td style={{ textAlign: 'center' }}>km</td>
           </tr>
           <tr>
-            <td style={{ color: '#fff' }}>>></td>
-            <td style={{ color: '#fff', textAlign: 'right', fontSize: '30px' }}>{fTotal}</td>
+            <td colSpan="2" style={{ color: '#fff', textAlign: 'right', fontSize: '36px', lineHeight: '32px' }}>
+              <span style={{ fontSize: '20px', float: 'left'}}>>></span>
+              {fTotal}
+            </td>
           </tr>
           <tr>
             <td>TEST MILEAGE</td>
             <td style={{ textAlign: 'center' }}>m</td>
           </tr>
           <tr>
-            <td style={{ color: '#ffff00' }}>>></td>
-            <td style={{ color: '#ffff00', textAlign: 'right', fontSize: '30px' }}>{fTest}</td>
+            <td colSpan="2" style={{ color: '#ffff00', textAlign: 'right', fontSize: '36px', lineHeight: '32px' }}>
+              <span style={{ fontSize: '20px', float: 'left'}}>>></span>
+              {fTest}
+            </td>
           </tr>
           <tr>
             <td style={{ textAlign: 'center' }}><img src="/img/runningMan.white.png" alt="running man" /></td>
