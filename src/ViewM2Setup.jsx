@@ -113,8 +113,10 @@ class ViewM2Setup extends Component {
     const { dispatch } = this.props;
     dispatch( setMileageTest(0) );
     
+    /*
     const command = getSocketCommand('TSI_039', 0);
     sendCommandToDevice(command);
+    */
 
   }
   onDataModeChange(value) {
@@ -276,17 +278,20 @@ class ViewM2Setup extends Component {
     const command = getSocketCommand('TSO_001', value == 'on' ? 1:0);
     sendCommandToDevice(command);
 
+    /*
     const { dispatch } = this.props;
     dispatch( setPower(value) );
+    */
   }
   // s02
   onLightChange(value) {
     
     const command = getSocketCommand('TSO_002', value == 'on' ? 1:0);
     sendCommandToDevice(command);
-
+    /*
     const { dispatch } = this.props;
     dispatch( setLight(value) );
+    */
   }
   // s03 -1
   onInvCon1Change(value) {
