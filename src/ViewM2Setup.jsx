@@ -110,14 +110,13 @@ class ViewM2Setup extends Component {
     this.onResetMileageClick = this.onResetMileageClick.bind(this);
   }
   onResetMileageClick() {
-    const { dispatch } = this.props;
-    dispatch( setMileageTest(0) );
     
-    /*
     const command = getSocketCommand('TSI_039', 0);
     sendCommandToDevice(command);
+    /*
+    const { dispatch } = this.props;
+    dispatch( setMileageTest(0) );
     */
-
   }
   onDataModeChange(value) {
     const command = getSocketCommand('RUN_DEMO', value);
