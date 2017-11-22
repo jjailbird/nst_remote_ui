@@ -14,9 +14,10 @@ class PanelControlButtonsLeft extends Component {
   }
   recordingToggle() {
     const { dispatch, recording } = this.props;
-    const recordingValue = !recording;
+    const snapshotPrefix = localStorage.getItem("NST_test_label");
+    const recordingValue = !recording ? snapshotPrefix:0;
     // const command = getSocketCommand('REC_000', recordingValue == 'on' ? 1:0);
-    const command = getSocketCommand('REC_000', recordingValue ? 1:0);
+    const command = getSocketCommand('REC_000', recordingValue);
     sendCommandToDevice(command);
 
     dispatch(setRecording(!recording));
@@ -94,8 +95,10 @@ class PanelControlButtonsLeft extends Component {
           REC
           <ReactLoading type="spin" color="#6B2638" height='16px' width='16px' delay="0" className={recordingButtonClass.join(' ')} />
         </a>
+        {/*
         <a href="javascript:void(0)" onClick={this.getNstTestLabel}>SAVE</a>
         <a href="#" id="hiddenSave" style={{display:'none'}}>HiddenSave</a>
+        */}
       </div>
     );
   }
