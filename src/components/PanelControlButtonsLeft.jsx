@@ -92,11 +92,11 @@ class PanelControlButtonsLeft extends Component {
           href="javascript:void(0)"
           onClick={this.recordingToggle}
         >
-          REC
+          SAVE
           <ReactLoading type="spin" color="#6B2638" height='16px' width='16px' delay="0" className={recordingButtonClass.join(' ')} />
         </a>
         {/*
-        <a href="javascript:void(0)" onClick={this.getNstTestLabel}>SAVE</a>
+        <a href="javascript:void(0)">REC</a>
         <a href="#" id="hiddenSave" style={{display:'none'}}>HiddenSave</a>
         */}
       </div>
