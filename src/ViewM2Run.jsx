@@ -221,7 +221,7 @@ class ViewM2Run extends Component {
                 borderRadius: '50px'
               }}
             >
-              <source src={videoRearSrc}></source>
+              {/*<source src={videoRearSrc}></source>*/}
             </video>
           </div>
           <div className="trainViewVideo">
