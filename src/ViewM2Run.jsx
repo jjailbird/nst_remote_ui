@@ -29,7 +29,7 @@ class ViewM2Run extends Component {
     this.onTestLabelChange = this.onTestLabelChange.bind(this);
   }
   onTestLabelChange(value) {
-    console.log('onTestLabelChange!', value);
+    // console.logconsole.log('onTestLabelChange!', value);
     if (typeof(Storage) !== "undefined") {
       localStorage.setItem("NST_test_label", value);
       const command = {
@@ -41,7 +41,7 @@ class ViewM2Run extends Component {
   }
   componentDidMount(){
    
-    console.log('HSSPlyaer start!');
+    //console.log('HSSPlyaer start!');
     const rtspFrontPlayer = new H5SPlayVideo('frontVideo');
     rtspFrontPlayer.Start();
     const rtspRearPlayer = new H5SPlayVideo('rearVideo');
