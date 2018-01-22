@@ -33,15 +33,17 @@ export default class TestSetupPanelDataContainer extends Component {
     dataLeft2 = dataLeft.data2;
     dataLeft3 = dataLeft.data3;
     dataLeft4 = dataLeft.data4;
-    dataLeftValueMax = dataLeft.valueMax ? dataLeft.valueMax : 100;
-    dataLeftValueShift = dataLeft.valueShift ? dataLeft.valueShift : 0;
+    dataLeftValueMax = dataLeft.valueMax ? Number(dataLeft.valueMax) : 100;
+    dataLeftValueShift = dataLeft.valueShift ? Number(dataLeft.valueShift) : 0;
+
+    // console.log('TestSetupPanelDataContainer', dataLeft, dataLeftValueMax, dataLeftValueShift);
 
     dataRight1 = dataRight.data1;
     dataRight2 = dataRight.data2;
     dataRight3 = dataRight.data3;
     dataRight4 = dataRight.data4;
-    dataRightValueMax = dataRight.valueMax ? dataRight.valueMax : 100;
-    dataRightValueShift = dataRight.valueShift ? dataRight.valueShift : 0;
+    dataRightValueMax = dataRight.valueMax ? Number(dataRight.valueMax) : 100;
+    dataRightValueShift = dataRight.valueShift ? Number(dataRight.valueShift) : 0;
 
     dataLeftCircle = dataLeft.circle;
     dataRightCircle = dataRight.circle;

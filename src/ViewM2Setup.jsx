@@ -623,7 +623,8 @@ class ViewM2Setup extends Component {
                 }}
               /> 
               <TestSetupPanelDataContainer
-                compTitle="INV" nameLeft="" nameRight="" unitLeft="V" unitRight="℃" cNameLeft="OUT VOLT" cNameRight="TEMP" barTitle="INV #" CompColor="#3581c9"
+                compTitle="INV" nameLeft="" nameRight="" unitLeft="V" unitRight="℃" 
+                cNameLeft="OUT VOLT" cNameRight="TEMP" barTitle="INV #" CompColor="#3581c9"
                 dataLeft={{
                   data1: InvVolt1, data2: InvVolt2, data3: InvVolt3, data4: InvVolt4,
                   // circle: (InvVolt1 + InvVolt2 + InvVolt3 + InvVolt4) / 4,
@@ -909,7 +910,7 @@ class ViewM2Setup extends Component {
                         <span className="testPanelBoxTitleFull">
                           TRACT
                         </span>
-                        <TestSetupGaugeBar data={Tract} name="tract" unit="" fillColor="#949a3f"/>
+                        <TestSetupGaugeBar data={Tract} name="tract" unit="KN" fillColor="#949a3f"/>
                       </div>
                     </div>
 
@@ -918,7 +919,7 @@ class ViewM2Setup extends Component {
                         <span className="testPanelBoxTitleFull">
                           BRAKE
                         </span>
-                        <TestSetupGaugeBar data={Brake} name="brake" unit="" fillColor="#949a3f"/>
+                        <TestSetupGaugeBar data={Brake} name="brake" unit="KN" fillColor="#949a3f"/>
                       </div>
                     </div>
 

@@ -63,7 +63,7 @@ export default class TestSetupGaugeBar extends Component {
               marginTop: '5px',
               fontSize: '19px'
             }}
-        >{valueDisplay}</div>
+        >{valueDisplay} {unit}</div>
       </div>
     );
   }
