@@ -490,7 +490,7 @@ class ViewM1Setup extends Component {
                       </div>
                       <div className="setupMotorGraphList">
                         <div className="bar-graph">
-                          <MotorGaugeBar data={frontLeftMotorData.data.rpm} name="rpm" max="2000" unit=""/>
+                          <MotorGaugeBar data={frontLeftMotorData.data.rpm} name="rpm" shift="2000" max="4000" unit=""/>
                         </div>
                         <div className="bar-graph">
                           <MotorGaugeBar data={frontLeftMotorData.data.torque} name="torque" shift="600" max="1200" unit="Nm"/>
@@ -554,7 +554,7 @@ class ViewM1Setup extends Component {
                       </div>
                       <div className="setupMotorGraphList">
                         <div className="bar-graph">
-                          <MotorGaugeBar data={frontRightMotorData.data.rpm} name="rpm" max="2000" unit=""/>
+                          <MotorGaugeBar data={frontRightMotorData.data.rpm} name="rpm" shift="2000" max="4000" unit=""/>
                         </div>
                         <div className="bar-graph">
                           <MotorGaugeBar data={frontRightMotorData.data.torque} name="torque" shift="600" max="1200" unit="Nm"/>
@@ -620,7 +620,7 @@ class ViewM1Setup extends Component {
                       </div>
                       <div className="setupMotorGraphList">
                         <div className="bar-graph">
-                          <MotorGaugeBar data={rearLeftMotorData.data.rpm} name="rpm" max="2000" unit=""/>
+                          <MotorGaugeBar data={rearLeftMotorData.data.rpm} name="rpm" shift="2000" max="4000" unit=""/>
                         </div>
                         <div className="bar-graph">
                           <MotorGaugeBar data={rearLeftMotorData.data.torque} name="torque" shift="600" max="1200" unit="Nm"/>
@@ -684,7 +684,7 @@ class ViewM1Setup extends Component {
                       </div>
                       <div className="setupMotorGraphList">
                         <div className="bar-graph">
-                          <MotorGaugeBar data={rearRightMotorData.data.rpm} name="rpm" max="2000" unit=""/>
+                          <MotorGaugeBar data={rearRightMotorData.data.rpm} name="rpm" shift="2000" max="4000" unit=""/>
                         </div>
                         <div className="bar-graph">
                           <MotorGaugeBar data={rearRightMotorData.data.torque} name="torque" shift="600" max="1200" unit="Nm"/>

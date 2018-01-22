@@ -40,7 +40,7 @@ export default class ControlSwitchButton extends Component {
           <a
             key={button.idx}
             href="#"
-            data-value={button.title}
+            data-value={button.value}
             onClick={this.handleChange}
             className={value === button.value ? 'active' : ''}
             style={{

@@ -47,19 +47,19 @@ export default class GraphTabContainer extends Component {
               <DonutDigitalChart data={data.latDistance} shift="15" max="30" unit="mm" name="lat. distance" strokeColor="#8cb857" strokeColorLine="#2f4036"/>
               <DonutDigitalChart data={data.yawAngle} shift="3.5" max="7" unit="deg" name="yaw angle" strokeColor="#8cb857" strokeColorLine="#2f4036"/>
               <DonutDigitalChart data={data.motorTorque} shift="4000" max="8000" unit="Nm" name="motor torque" strokeColor="#3581c9" strokeColorLine="#16315b"/>
-              <DonutDigitalChart data={data.motorSpeed} max="2000" unit="RPM" name="motor speed" strokeColor="#3581c9" strokeColorLine="#16315b"/>
+              <DonutDigitalChart data={data.motorSpeed} shift="2000" max="4000" unit="RPM" name="motor speed" strokeColor="#3581c9" strokeColorLine="#16315b"/>
             </div>
             <div className={type != 'BAR' ? 'hide' : ''}>
               <DynamicBarChart data={data.latDistance} shift="15" max="30" unit="mm" name="lat. distance" barColor="#6f934f"/>
               <DynamicBarChart data={data.yawAngle} shift="3.5" max="7" unit="deg" name="yaw angle" barColor="#6f934f"/>
               <DynamicBarChart data={data.motorTorque} shift="4000" max="8000" unit="Nm" name="motor torque" barColor="#2c68a8"/>
-              <DynamicBarChart data={data.motorSpeed} max="2000" unit="RPM" name="motor speed" barColor="#2c68a8"/>
+              <DynamicBarChart data={data.motorSpeed} shift="2000" max="4000" unit="RPM" name="motor speed" barColor="#2c68a8"/>
             </div>
             <div className={type != 'LINE' ? 'hide' : ''}>
               <DynamicLineChart data={data.latDistance} shift="15" max="30" unit="mm" name="lat. distance"/>
               <DynamicLineChart data={data.yawAngle} shift="3.5" max="7" unit="deg" name="yaw angle" />
               <DynamicLineChart data={data.motorTorque} shift="4000" max="8000" unit="Nm" name="motor torque" />
-              <DynamicLineChart data={data.motorSpeed} max="2000" unit="RPM" name="motor speed" />              
+              <DynamicLineChart data={data.motorSpeed} shift="2000" max="4000" unit="RPM" name="motor speed" />              
             </div>
 
           </div>        

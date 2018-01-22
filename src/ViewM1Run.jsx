@@ -428,13 +428,13 @@ class ViewM1Run extends Component {
                       />
                       */}
                       <ControlSwitchButton 
-                        title="SENSOR TYPE"
+                        title="INV. STATE"
                         activeBgColor="rgba(255,255,255,0.3)" 
                         textColor="#fff" 
                         padding="3px 20px" 
                         buttons={[
-                          { idx: 1, title: 'LVDT', value: 'LVDT' },
-                          { idx: 2, title: 'Gyro', value: 'Gyro' }
+                          { idx: 1, title: 'RUN', value: 'LVDT' },
+                          { idx: 2, title: 'RESET', value: 'Gyro' }
                         ]}
                         value={crtl1SensorType}
                         onChange={this.onCrtl1SensorTypeChange}
@@ -554,13 +554,13 @@ class ViewM1Run extends Component {
                       />
                       */}
                       <ControlSwitchButton 
-                        title="SENSOR TYPE"
+                        title="INV. STATE"
                         activeBgColor="rgba(255,255,255,0.3)" 
                         textColor="#fff" 
                         padding="3px 20px" 
                         buttons={[
-                          { idx: 1, title: 'LVDT', value: 'LVDT' },
-                          { idx: 2, title: 'Gyro', value: 'Gyro' }
+                          { idx: 1, title: 'RUN', value: 'LVDT' },
+                          { idx: 2, title: 'RESET', value: 'Gyro' }
                         ]}
                         value={crtl2SensorType}
                         onChange={this.onCrtl2SensorTypeChange}
