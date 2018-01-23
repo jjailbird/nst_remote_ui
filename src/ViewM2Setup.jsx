@@ -521,7 +521,10 @@ class ViewM2Setup extends Component {
     dispatch( setRegenBk(value) );
   }
   componentDidMount() {
-
+    this.setState({
+      vehiclePositionStart: this.state.vehiclePositionStart,
+      vehiclePositionStop: this.state.vehiclePositionStop
+    });
   }
   render() {
     const { 

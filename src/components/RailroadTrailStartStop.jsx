@@ -52,7 +52,7 @@ export default class RailroadTrailStartStop extends Component {
     this.moveCircle(this.props.value);
     this.moveStartPoint(this.props.start);
     this.moveStopPoint(this.props.stop);
-    
+    // console.log('RailroadTrailStartStop', 'componentDidMount', this.props.start, this.props.stop);
   }
   componentDidUpdate() {
     
