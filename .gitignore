@@ -17,3 +17,6 @@ yarn-debug.log*
 yarn-error.log*
 
 /public/video
+
+package.json
+package-lock.json
