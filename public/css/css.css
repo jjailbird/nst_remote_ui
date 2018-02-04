@@ -1138,9 +1138,20 @@ ul.setupDescList li{
     margin: 5px 0 14px;
 }
 
-
-
-
 .keyboard-wrapper {
   bottom: 415px !important;
+}
+
+input.rect-touch-screen-keyboard-input-weight,
+input.rect-touch-screen-keyboard-input-weight:focus {
+  width: 10%;
+  float: right;
+  margin: 0px 0 0px;
+  text-align: right;
+  font-size: 13px;
+  font-weight: bold;
+  outline: none;
+  background-color: transparent;
+  border: none;
+  color: #fff;
 }

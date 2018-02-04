@@ -653,7 +653,7 @@ class ViewM3Run extends Component {
             </div>
             <GraphTabHscContainer data={frontRightHscData.data} type={chartTypeFrontRight} onChange={this.onChartTypeFrontRightChange} title="Front Right"/>
             <GraphTabHscContainer data={rearRightHscData.data} type={chartTypeRearRight} onChange={this.onChartTypeRearRightChange} title="Rear Right"/>
-            <PanelControlButtonsRight />
+            <PanelControlButtonsRight target="HRO" />
           </div>
         </div>
       </div>

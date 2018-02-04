@@ -937,7 +937,7 @@ class ViewM3Setup extends Component {
                     <a href="#" onClick={this.onSensorResetClick} style={{ backgroundColor: currentAValue.set == 0 ? 'rgba(255, 255, 255, 0.3)' : '' }}>ORG</a>
                   </div>
                 </div>
-                <PanelControlButtonsRight />
+                {/*<PanelControlButtonsRight />*/}
               </div>
             </div>
           </div>
