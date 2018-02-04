@@ -1658,7 +1658,8 @@ class ViewM2Setup extends Component {
                         <input
                           type="button"
                           value="SET"
-                          onClick={this.setCurrentManualSpeed}
+                          // onClick={this.setCurrentManualSpeed}
+                          onClick={() => this.onDriveSetup('SAVE')}
                           style={{
                             padding: '5px 10px',
                             border: '1px solid rgba(255,255,255,0.3)',
