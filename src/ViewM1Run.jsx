@@ -845,7 +845,7 @@ class ViewM1Run extends Component {
             </div>
             <GraphTabContainer data={frontRightData.data} type={chartTypeFrontRight} onChange={this.onChartTypeFrontRightChange} title="Front Right"/>
             <GraphTabContainer data={rearRightData.data} type={chartTypeRearRight} onChange={this.onChartTypeRearRightChange} title="Rear Right"/>
-            <PanelControlButtonsRight />
+            <PanelControlButtonsRight target="IRO" />
           </div>
         </div>
       </div>
