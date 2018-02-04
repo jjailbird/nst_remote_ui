@@ -123,7 +123,8 @@ class ViewM2Setup extends Component {
     sendCommandToDevice(command);
   }
   onDriveSetup(value) {
-    alert(value);
+    const command = getSocketCommand('RUN_AUTO', value);
+    sendCommandToDevice(command);
   }
   onVehiclePositionStartChange(value) {
     let start = value.replace('m', '');
@@ -1627,7 +1628,7 @@ class ViewM2Setup extends Component {
                         <input
                           type="button"
                           value="Default"
-                          onClick={() => this.onDriveSetup('default')}
+                          onClick={() => this.onDriveSetup('DEFAULT')}
                           style={{
                             padding: '5px 10px',
                             border: '1px solid rgba(255,255,255,0.3)',
@@ -1642,7 +1643,7 @@ class ViewM2Setup extends Component {
                         <input
                           type="button"
                           value="RES"
-                          onClick={() => this.onDriveSetup('restore')}
+                          onClick={() => this.onDriveSetup('RESTORE')}
                           style={{
                             padding: '5px 10px',
                             border: '1px solid rgba(255,255,255,0.3)',
@@ -1673,7 +1674,7 @@ class ViewM2Setup extends Component {
                     </div>
                   </div>
                 </div>
-                <PanelControlButtonsRight />
+                {/*<PanelControlButtonsRight />*/}
               </div>
             </div>         
           </div>
