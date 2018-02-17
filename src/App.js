@@ -9,10 +9,11 @@ import {
   setEmergencyStop, setRunSwitch, setDriveLever,
   setTestSetupData, setPower ,setLight,
   setMileageTotal, setMileageTest,
+  setPositionStart, setPositionStop, setRunCount, setLimitSpeedA, setLimitSpeedM, setShuntSpeed
   /*
   setInvCon1, setInvCon2, setTbms, setDcDc, setApc, setInvOut1, setInvOut2, setSbms, setSinv, setCamera,
   setPower ,setLight, setDriveMode, setRunDirection, setHydroBk, setRegenBk,
-  setPositionStart, setPositionStop,
+  , ,
   */
 } from './actions/m2SetupActions';
 
@@ -152,12 +153,35 @@ class App extends Component {
   handleData(data) {
     this.data = data;
     const json = JSON.parse(data);
+    const { dispatch } = this.props;
+    
     if(json.GET_NST_test_label) {
       const command = {
         'NST_test_label': `${localStorage.getItem("NST_test_label")}` 
       }
       sendCommandToDevice(JSON.stringify(command));
     }
+
+    if(json.TSO_010 !== undefined) {
+      console.log('json.TSO_010', json.TSO_010);
+      dispatch(setPositionStart(json.TSO_010));
+    }
+    if(json.TSO_011 !== undefined) {
+      dispatch(setPositionStop(json.TSO_011));
+    }
+    if(json.TSO_012 !== undefined) {
+      dispatch(setLimitSpeedA(json.TSO_012));
+    }
+    if(json.TSO_013 !== undefined) {
+      dispatch(setRunCount(json.TSO_013));
+    }
+    if(json.TSO_014 !== undefined) {
+      dispatch(setLimitSpeedM(json.TSO_014));
+    }
+    if(json.TSO_015 !== undefined) {
+      dispatch(setShuntSpeed(json.TSO_015));
+    }
+
   }
   fetchData() {
     
@@ -371,6 +395,8 @@ class App extends Component {
       dispatch( setMileageTest(json.TSI_039) );
     }    
     // ---------------------------------------------
+   
+
   }
   changeNaviBackground(src) {
     const navi = document.getElementById('naviMenu');
