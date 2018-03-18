@@ -56,7 +56,7 @@ class ViewM1Run extends Component {
     this.onChartTypeRearRightChange = this.onChartTypeRearRightChange.bind(this);
 
     this.onTabActivate = this.onTabActivate.bind(this);
-
+    this.test_label = localStorage.getItem('NST_test_label');
   }
   onDataModeChange(value) {
     const command = getSocketCommand('RUN_DEMO', value);
@@ -253,6 +253,8 @@ class ViewM1Run extends Component {
       crtl2Active, crtl2Mode, crtl2SensorType, crtl2ControlType, crtl2WfLateralSensor, crtl2WfControlMode, crtl2WfYawSensor, crtl2WfControlType,
       chartTypeFrontLeft, chartTypeFrontRight, chartTypeRearLeft, chartTypeRearRight,
     } = this.props;
+
+
     return (
       <div className="contBox">
         <div className="headArea">
@@ -280,7 +282,7 @@ class ViewM1Run extends Component {
             <div className="panelBox liveCam">
               <div className="videoBox">
                 <div className="videoOverInfo voiCount">
-                  Test Day : 001
+                  Test Day : {this.test_label}
                 </div>
                 <div
                   className="videoOverInfo voiTitle"
@@ -766,7 +768,7 @@ class ViewM1Run extends Component {
             <div className="panelBox recording-">
               <div className="videoBox">
                 <div className="videoOverInfo voiCount">
-                  Test Day : 001
+                  Test Day : {this.test_label}
                 </div>
                 <div
                   className="videoOverInfo voiTitle"
