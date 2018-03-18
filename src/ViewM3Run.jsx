@@ -44,6 +44,7 @@ class ViewM3Run extends Component {
     this.onChartTypeFrontRightChange = this.onChartTypeFrontRightChange.bind(this);
     this.onChartTypeRearLeftChange = this.onChartTypeRearLeftChange.bind(this);
     this.onChartTypeRearRightChange = this.onChartTypeRearRightChange.bind(this);
+    this.test_label = localStorage.getItem('NST_test_label');
   }
   onDataModeChange(value) {
     const command = getSocketCommand('RUN_DEMO', value);
@@ -201,7 +202,7 @@ class ViewM3Run extends Component {
             <div className="panelBox liveCam">
               <div className="videoBox">
                 <div className="videoOverInfo voiCount">
-                  Test Day : 001
+                  Test Day : {this.test_label}
                 </div>
                 <div
                   className="videoOverInfo voiTitle"
@@ -570,7 +571,7 @@ class ViewM3Run extends Component {
             <div className="panelBox recording-">
               <div className="videoBox">
                 <div className="videoOverInfo voiCount">
-                  Test Day : 001
+                  Test Day : {this.test_label}
                 </div>
                 <div
                   className="videoOverInfo voiTitle"
