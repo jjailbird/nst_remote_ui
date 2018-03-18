@@ -133,9 +133,13 @@ class ViewM2Setup extends Component {
 
     // const { positionStop } = this.props;
     if(start >= 0 && start < this.railLength) {
+      const { dispatch } = this.props;
+      dispatch(setPositionStart(start));
+      /*  
       this.setState({
         vehiclePositionStart: start
       });
+      */
     }
 
   }
@@ -144,11 +148,14 @@ class ViewM2Setup extends Component {
     stop = stop.replace(' ', '');
     stop = stop.trim();
 
-    // const { positionStart } = this.props;
     if(stop >= 0 && stop <= this.railLength) {
+      const { dispatch } = this.props;
+      dispatch(setPositionStop(stop));
+      /*
       this.setState({
         vehiclePositionStop: stop
       });
+      */
     }
   }
   onVehicleLimitSpeedAChange(value) {
@@ -156,52 +163,61 @@ class ViewM2Setup extends Component {
     speed = speed.replace(' ', '');
     speed = speed.trim();
 
-    // const { positionStart } = this.props;
     if(speed >= 0 && speed <= 100) {
+      const { dispatch } = this.props;
+      dispatch(setLimitSpeedA(speed));
+      /*
       this.setState({
         vehicleLimitSpeedA: speed
       });
+      */
     }
   }
   onVehicleLimitSpeedAKeyboardHide(){
-    const command = getSocketCommand('TSO_012', this.state.vehicleLimitSpeedA);
+    const { limitSpeedA } = this.props;
+    const command = getSocketCommand('TSO_012', limitSpeedA);
     sendCommandToDevice(command);
-
-    const { dispatch } = this.props;
-    dispatch(setLimitSpeedA(this.state.vehicleLimitSpeedA));
+    
+    // dispatch(setLimitSpeedA(this.state.vehicleLimitSpeedA));
 
   }
 
   onVehicleRunCountChange(value) {
+    const { dispatch } = this.props;
+    dispatch(setRunCount(value));
+    /*
     this.setState({
       vehicleRunCount: value
     });
+    */
   }
   onVehicleRunCountkeyboardHide() {
-    const command = getSocketCommand('TSO_013', this.state.vehicleRunCount);
+    const { runCount } = this.props;
+    const command = getSocketCommand('TSO_013', runCount);
     sendCommandToDevice(command);
 
-    const { dispatch } = this.props;
-    dispatch(setRunCount(this.state.vehicleRunCount));
+    //const { dispatch } = this.props;
+    // dispatch(setRunCount(this.state.vehicleRunCount));
   }
   onVehicleLimitSpeedMChange(value) {
     let speed = value.replace('km/h', '');
     speed = speed.replace(' ', '');
     speed = speed.trim();
 
-    // const { positionStart } = this.props;
     if(speed >= 0 && speed <= 100) {
+      const { dispatch } = this.props;
+      dispatch(setLimitSpeedM(speed));
+      /*
       this.setState({
         vehicleLimitSpeedM: speed
       });
+      */
     }
   }
   onVehicleLimitSpeedMKeyboardHide(){
-    const command = getSocketCommand('TSO_014', this.state.vehicleLimitSpeedM);
+    const { limitSpeedM } = this.props;
+    const command = getSocketCommand('TSO_014', limitSpeedM);
     sendCommandToDevice(command);
-
-    const { dispatch } = this.props;
-    dispatch(setLimitSpeedM(this.state.vehicleLimitSpeedM));
   }
 
   onVehicleShuntSpeedChange(value) {
@@ -217,25 +233,31 @@ class ViewM2Setup extends Component {
     }
   }
   setCurrentPositionStart() {
-    
-    const command = getSocketCommand('TSO_010', this.state.vehiclePositionStart);
+    const { positionStart } = this.props;
+
+    const command = getSocketCommand('TSO_010', positionStart);
     sendCommandToDevice(command);
-
-    // console.log('this.railroad', this.railroad);
-    this.railroad.moveStartPoint(this.state.vehiclePositionStart);
-
-    const { dispatch } = this.props;
-    dispatch(setPositionStart(this.state.vehiclePositionStart));
-    
+    // alert(typeof positionStart);
+    this.railroad.moveStartPoint(positionStart);
+    // this.railroad.moveStartPoint(this.state.vehiclePositionStart);
+    // dispatch(setPositionStart(positionStart));
   }
   setCurrentPositionStop() {
+    const { positionStop } = this.props;
+
+    const command = getSocketCommand('TSO_011', positionStop);
+    sendCommandToDevice(command);
+    this.railroad.moveStopPoint(positionStop);
+    
+    /*
     const command = getSocketCommand('TSO_011', this.state.vehiclePositionStop);
     sendCommandToDevice(command);
 
-    this.railroad.moveStartPoint(this.state.vehiclePositionStop);
+    this.railroad.moveStopPoint(this.state.vehiclePositionStop);
 
     const { dispatch } = this.props;
     dispatch(setPositionStop(this.state.vehiclePositionStop));
+    */
   }
   setCurrentManualSpeed() {
     const command = getSocketCommand('TSO_015', this.state.vehicleShuntSpeed);
@@ -1372,7 +1394,8 @@ class ViewM2Setup extends Component {
                           className="input-vehicle-position"
                           type="text"
                           defaultKeyboard="us"
-                          value={`${this.state.vehiclePositionStart} m`}
+                          // value={`${this.state.vehiclePositionStart} m`}
+                          value={`${positionStart} m`}
                           onChange={this.onVehiclePositionStartChange}
                         /> 
                         <input
@@ -1417,7 +1440,8 @@ class ViewM2Setup extends Component {
                           className="input-vehicle-position"
                           type="text"
                           defaultKeyboard="us"
-                          value={`${this.state.vehiclePositionStop} m`}
+                          // value={`${this.state.vehiclePositionStop} m`}
+                          value={`${positionStop} m`}
                           onChange={this.onVehiclePositionStopChange}
                         /> 
                         <input
@@ -1470,7 +1494,8 @@ class ViewM2Setup extends Component {
                           className="input-vehicle-position input-wide"
                           type="text"
                           defaultKeyboard="us"
-                          value={`${this.state.vehicleLimitSpeedA} km/h`}
+                          // value={`${this.state.vehicleLimitSpeedA} km/h`}
+                          value={`${limitSpeedA} km/h`}
                           onChange={this.onVehicleLimitSpeedAChange}
                           onHide={this.onVehicleLimitSpeedAKeyboardHide}
                         /> 
@@ -1498,7 +1523,8 @@ class ViewM2Setup extends Component {
                           className="input-vehicle-position input-wide"
                           type="text"
                           defaultKeyboard="us"
-                          value={`${this.state.vehicleRunCount}`}
+                          // value={`${this.state.vehicleRunCount}`}
+                          value={`${runCount}`}
                           onChange={this.onVehicleRunCountChange}
                           onHide={this.onVehicleRunCountkeyboardHide}
                         />
@@ -1574,7 +1600,8 @@ class ViewM2Setup extends Component {
                           className="input-vehicle-position input-wide"
                           type="text"
                           defaultKeyboard="us"
-                          value={`${this.state.vehicleLimitSpeedM} km/h`}
+                          // value={`${this.state.vehicleLimitSpeedM} km/h`}
+                          value={`${limitSpeedM} km/h`}
                           onChange={this.onVehicleLimitSpeedMChange}
                           onHide={this.onVehicleLimitSpeedMKeyboardHide}
                         />
@@ -1614,7 +1641,8 @@ class ViewM2Setup extends Component {
                           className="input-vehicle-position input-wide"
                           type="text"
                           defaultKeyboard="us"
-                          value={`${this.state.vehicleShuntSpeed} km/h`}
+                          // value={`${this.state.vehicleShuntSpeed} km/h`}
+                          value={`${shuntSpeed} km/h`}
                           onChange={this.onVehicleShuntSpeedChange}
                         />
                       </div>{/*inputGroup END*/}
@@ -1686,7 +1714,8 @@ class ViewM2Setup extends Component {
 }
 
 function mapStateToProps(state){
-    // console.log('state', state.setM2SetupButtons.power, state.setM2SetupButtons.light);
+    // console.log('state.setM2SetupButtons.positionStart', state.setM2SetupButtons.positionStart);
+    
     return {
       
       // testSetup: state.setM2SetupData.testSetup,
