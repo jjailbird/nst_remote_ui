@@ -34,7 +34,9 @@ import {
   setItcSetupFrontLeftData,
   setItcSetupFrontRightData,
   setItcSetupRearLeftData,
-  setItcSetupRearRightData
+  setItcSetupRearRightData,
+  setCrtl1Active, setCrtl1Mode, setCrtl1SensorType, setCrtl1ControlType, setCrtl1WFLateralSensor, setCrtl1WFControlMode, setCrtl1WFYawSensor, setCrtl1WFControlType,
+  setCrtl2Active, setCrtl2Mode, setCrtl2SensorType, setCrtl2ControlType, setCrtl2WFLateralSensor, setCrtl2WFControlMode, setCrtl2WFYawSensor, setCrtl2WFControlType,
 } from './actions';
 
 import React, { Component } from 'react';
@@ -234,11 +236,10 @@ class App extends Component {
 
   }
   componentDidMount() {
-    console.log('timer start!');
     this.timer = setInterval(this.fetchData, 1000 / 30);
     
     const command = {
-      'GET_NST_test_label': `` 
+      'GET_NST_test_label': '' 
     }
     sendCommandToDevice(JSON.stringify(command));
 
@@ -248,8 +249,101 @@ class App extends Component {
     const json = JSON.parse(this.data); 
     if(json.NST_test_label) {
       // console.log('json.NST_test_label', json.NST_test_label);
-      localStorage.setItem("NST_test_label", json.NST_test_label);
+      localStorage.setItem('NST_test_label', json.NST_test_label);
     }
+    /*
+    IRO_001: 0, IRO_051: 0
+    IRO_002: 0, IRO_052: 0
+    IRO_003: 0, IRO_053: 0
+    IRO_004: 0, IRO_054: 0
+    IRO_005: 100, IRO_055: 100
+    IRO_006: 100, IRO_056: 100
+    IRO_007: 0,  IRO_057: 0
+    IRO_008: 0,  IRO_058: 0
+    */
+    const { dispatch } = this.props;
+    
+    if(json.IRO_001 !== undefined) {
+      const value = json.IRO_001 == 1 ? 'on' : 'off';
+      dispatch(setCrtl1Active(value));
+    }
+    
+    if(json.IRO_002 !== undefined) {
+      const value = json.IRO_002 == 1 ? 'Speed' : 'Torque';
+      dispatch(setCrtl1Mode(value));
+    }
+    
+    if(json.IRO_003 !== undefined) {
+      const value = json.IRO_003 == 0 ? 'LVDT' : 'Gyro';
+      dispatch(setCrtl1SensorType(value));
+    }
+    
+    if(json.IRO_004 !== undefined) {
+      const value = json.IRO_004 == 1 ? 'Yaw Angle' : 'Lateral Position';
+      dispatch(setCrtl1ControlType(value));
+    }
+    
+    if(json.IRO_005 !== undefined) {
+      const value = json.IRO_005; 
+      dispatch(setCrtl1WFLateralSensor(value));
+    }
+    
+    if(json.IRO_006 !== undefined) {
+      const value = json.IRO_006; 
+      dispatch(setCrtl1WFYawSensor(value));
+    }
+    
+    if(json.IRO_007 !== undefined) {
+      const value = json.IRO_007; 
+      dispatch(setCrtl1WFControlMode(value));
+    }
+    
+    if(json.IRO_008 !== undefined) {
+      const value = json.IRO_008; 
+      dispatch(setCrtl1WFControlType(value));
+    }
+    
+    if(json.IRO_051 !== undefined) {
+      const value = json.IRO_051 == 1 ? 'on' : 'off';
+      dispatch(setCrtl2Active(value));
+    }
+    
+    if(json.IRO_052 !== undefined) {
+      const value = json.IRO_052 == 1 ? 'Speed' : 'Torque';
+      dispatch(setCrtl2Mode(value));
+    }
+    
+    if(json.IRO_053 !== undefined) {
+      const value = json.IRO_053 == 0 ? 'LVDT' : 'Gyro';
+      dispatch(setCrtl2SensorType(value));
+    }
+    
+    if(json.IRO_054 !== undefined) {
+      const value = json.IRO_054 == 1 ? 'Yaw Angle' : 'Lateral Position';
+      dispatch(setCrtl2ControlType(value));
+    }
+    
+    if(json.IRO_055 !== undefined) {
+      const value = json.IRO_055; 
+      dispatch(setCrtl2WFLateralSensor(value));
+    }
+    
+    if(json.IRO_056 !== undefined) {
+      const value = json.IRO_056; 
+      dispatch(setCrtl2WFYawSensor(value));
+    }
+    
+    if(json.IRO_057 !== undefined) {
+      const value = json.IRO_057; 
+      dispatch(setCrtl2WFControlMode(value));
+    }
+    
+    if(json.IRO_058 !== undefined) {
+      const value = json.IRO_058; 
+      dispatch(setCrtl2WFControlType(value));
+    }
+
+
   }
   fetchData() {
     const json = JSON.parse(this.data); 
@@ -449,7 +543,7 @@ class App extends Component {
     if(json.IRI_002 !== undefined) {
       this.setMotorControlData.position = json.IRI_002;
     }
-    if(json.IRI_013 !== undefined) {
+    if(json.IRI_003 !== undefined) {
       this.setMotorControlData.curv = json.IRI_003;
     }
     if(json.IRI_001 !== undefined || json.IRI_002 !== undefined || json.IRI_003 !== undefined){
