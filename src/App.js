@@ -164,7 +164,7 @@ class App extends Component {
       }
       sendCommandToDevice(JSON.stringify(command));
     }
-
+    /* Default Values  #TSO_010,35;TSO_011,120;TSO_012,15;TSO_013,0;TSO_014,10;TSO_015,5;$ */
     if(json.TSO_010 !== undefined) {
       dispatch(setPositionStart(json.TSO_010));
     }

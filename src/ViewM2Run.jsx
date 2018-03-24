@@ -47,10 +47,7 @@ class ViewM2Run extends Component {
     if (runDemo == 0) {
       rtspFrontPlayer.Start();
       rtspRearPlayer.Start();
-    } else {
-      alert('demo');
     }
-
    
   }
   render() {
