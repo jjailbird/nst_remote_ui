@@ -127,7 +127,6 @@ class ViewM2Setup extends Component {
     dispatch(setRunDemo(value));
   }
   onDriveSetup(value) {
-    alert(value);
     const command = getSocketCommand('RUN_AUTO', value);
     sendCommandToDevice(command);
   }
