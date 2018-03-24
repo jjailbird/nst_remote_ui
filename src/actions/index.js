@@ -220,6 +220,8 @@ export const setRearWheelsetHscData = (data) => {
 }
 
 // HSC RUN - control buttons ------------------------------------------------------------------------------------------------------
+export const SET_RUN_DEMO = 'SET_RUN_DEMO';
+
 export const SET_CRTL_1_ACTIVE = 'SET_CRTL_1_ACTIVE';
 export const SET_CRTL_1_POWER = 'SET_CRTL_1_POWER';
 export const SET_CRTL_1_ZERO = 'SET_CRTL_1_ZERO';
@@ -230,6 +232,13 @@ export const SET_CRTL_1_SR_ACTIVE_A = 'SET_CRTL_1_SR_ACTIVE_A';
 export const SET_CRTL_1_SR_ACTIVE_B = 'SET_CRTL_1_SR_ACTIVE_B';
 export const SET_CRTL_1_SR_ACTIVE_A2 = 'SET_CRTL_1_SR_ACTIVE_A2';
 export const SET_CRTL_1_SR_ACTIVE_B2 = 'SET_CRTL_1_SR_ACTIVE_B2';
+
+export const setRunDemo = (data) => {
+  return {
+    type: SET_RUN_DEMO,
+    data
+  }
+}
 
 export const setCrtl1Active = (data) => {
   return {

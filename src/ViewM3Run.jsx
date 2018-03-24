@@ -20,6 +20,7 @@ import { getSocketCommand, getHostName, sendCommandToDevice } from './utils/func
 import {
   setCrtl1Active, setCrtl1Power, setCrtl1Zero, setCrtl1SensorType, setCrtl1ControlType, setCrtl1SRActiveA, setCrtl1SRActiveB, setCrtl1SRActiveA2, setCrtl1SRActiveB2,
   setChartTypeFrontLeft, setChartTypeFrontRight, setChartTypeRearLeft, setChartTypeRearRight, 
+  setRunDemo,
 } from './actions'
 
 class ViewM3Run extends Component {
@@ -49,6 +50,9 @@ class ViewM3Run extends Component {
   onDataModeChange(value) {
     const command = getSocketCommand('RUN_DEMO', value);
     sendCommandToDevice(command);
+    const { dispatch } = this.props;
+    dispatch(setRunDemo(value));
+
   }
   onCrtl1ActiveChange(value){
     const command = getSocketCommand('HRO_001', value == 'On' ? 1:0);
@@ -116,19 +120,19 @@ class ViewM3Run extends Component {
     const { dispatch } = this.props;
     dispatch(setCrtl1SRActiveA(value));
   }
-  onCrtl1SRActiveBChange(value){
-    const command = getSocketCommand('HRO_008',value);
-    sendCommandToDevice(command);
-
-    const { dispatch } = this.props;
-    dispatch(setCrtl1SRActiveB(value));
-  } 
   onCrtl1SRActiveA2Change(value){
     const command = getSocketCommand('HRO_007',value);
     sendCommandToDevice(command);
 
     const { dispatch } = this.props;
     dispatch(setCrtl1SRActiveA2(value));
+  } 
+  onCrtl1SRActiveBChange(value){
+    const command = getSocketCommand('HRO_008',value);
+    sendCommandToDevice(command);
+
+    const { dispatch } = this.props;
+    dispatch(setCrtl1SRActiveB(value));
   } 
   onCrtl1SRActiveB2Change(value){
     const command = getSocketCommand('HRO_009',value);
@@ -157,10 +161,14 @@ class ViewM3Run extends Component {
   componentDidMount(){
     // console.log('HSSPlyaer start!');
     
+    const { runDemo } = this.props;
     const rtspFrontPlayer = new H5SPlayVideo('videoLeft');
-    rtspFrontPlayer.Start();
     const rtspRearPlayer = new H5SPlayVideo('videoRight');
-    rtspRearPlayer.Start();
+
+    if(runDemo == 0) {
+      rtspFrontPlayer.Start();
+      rtspRearPlayer.Start();
+    }
     
   }
   render() {
@@ -174,6 +182,7 @@ class ViewM3Run extends Component {
       rearWheelsetHscData,
       crtl1Active, crtl1Power, crtl1Zero, crtl1SensorType, crtl1ControlType, crtl1SRActiveA, crtl1SRActiveB, crtl1SRActiveA2, crtl1SRActiveB2,
       chartTypeFrontLeft, chartTypeFrontRight, chartTypeRearLeft, chartTypeRearRight,
+      runDemo,
     } = this.props;
     return (
       <div className="contBox">
@@ -269,13 +278,13 @@ class ViewM3Run extends Component {
                 </div>
                 <video
                   id="videoLeft"
-                  // src="/video/T_Left_org.mp4"
+                  src={runDemo == 1 ? '/video/T_Left_org.mp4' : ''}
                   data-token="token1"
-                  data-h5spath="/h5swsapi"
+                  data-h5spath={runDemo == 0 ? '/h5swsapi' : ''}
                   style={{
                     transform: 'rotate(180deg)'
                   }}
-                  //autoPlay="true"
+                  autoPlay={runDemo == 1 ? 'true': 'false'}
                 />                
               </div>
               <div className="panelTitle">
@@ -639,13 +648,13 @@ class ViewM3Run extends Component {
                 </div>
                 <video
                   id="videoRight"
-                  // src="/video/T_Right_org.mp4"
+                  src={runDemo == 1 ? '/video/T_Right_org.mp4' : ''}
                   data-token="token2"
-                  data-h5spath="/h5swsapi"
+                  data-h5spath={runDemo == 0 ? '/h5swsapi' : ''}
                   style={{
                     // transform: 'rotate(180deg)'
                   }}
-                  // autoPlay="true"
+                  autoPlay={runDemo == 1 ? 'true' : 'false'}
                 />
               </div>
               <div className="panelTitle">
@@ -674,6 +683,7 @@ function mapStateToProps(state){
       frontWheelsetHscData: state.frontWheelsetHscData,
       rearWheelsetHscData: state.rearWheelsetHscData,
 
+      runDemo: state.setSetupButtons.runDemo,
       crtl1Active: state.setSetupButtons.crtl1Active,
       crtl1Power: state.setSetupButtons.crtl1Power,
       crtl1Zero: state.setSetupButtons.crtl1Zero, 
@@ -688,6 +698,7 @@ function mapStateToProps(state){
       chartTypeFrontRight: state.setSetupButtons.chartTypeFrontRight,
       chartTypeRearLeft: state.setSetupButtons.chartTypeRearLeft,
       chartTypeRearRight: state.setSetupButtons.chartTypeRearRight,
+
     }
 }
 
