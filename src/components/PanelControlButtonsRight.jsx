@@ -9,7 +9,6 @@ export default class PanelControlButtonsRight extends Component {
   }
   setCommand(command) {
     const cmdString = getSocketCommand(this.target,command);  
-    alert(cmdString);
     sendCommandToDevice(cmdString);
   }
   render() {
