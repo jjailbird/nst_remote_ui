@@ -23,7 +23,8 @@ import { getSocketCommand, getHostName, sendCommandToDevice } from './utils/func
 import {
   setCrtl1Active, setCrtl1Mode, setCrtl1SensorType, setCrtl1ControlType, setCrtl1WFLateralSensor, setCrtl1WFControlMode, setCrtl1WFYawSensor, setCrtl1WFControlType,
   setCrtl2Active, setCrtl2Mode, setCrtl2SensorType, setCrtl2ControlType, setCrtl2WFLateralSensor, setCrtl2WFControlMode, setCrtl2WFYawSensor, setCrtl2WFControlType,
-  setChartTypeFrontLeft, setChartTypeFrontRight, setChartTypeRearLeft, setChartTypeRearRight, 
+  setChartTypeFrontLeft, setChartTypeFrontRight, setChartTypeRearLeft, setChartTypeRearRight,
+  setRunDemo, 
 } from './actions'
 
 class ViewM1Run extends Component {
@@ -61,6 +62,9 @@ class ViewM1Run extends Component {
   onDataModeChange(value) {
     const command = getSocketCommand('RUN_DEMO', value);
     sendCommandToDevice(command);
+
+    const { dispatch } = this.props;
+    dispatch(setRunDemo(value));
   }
   onCrtl1ActiveChange(value){
     const command = getSocketCommand('IRO_001',value == 'on' ? 1:0);
@@ -233,12 +237,15 @@ class ViewM1Run extends Component {
   }
   componentDidMount(){
     
-    // console.log('HSSPlyaer start!');
+    const { runDemo } = this.props;
+  
     const rtspFrontPlayer = new H5SPlayVideo('videoLeft');
-    rtspFrontPlayer.Start();
     const rtspRearPlayer = new H5SPlayVideo('videoRight');
-    rtspRearPlayer.Start();
-    
+
+    if(runDemo == 0) {
+      rtspFrontPlayer.Start();
+      rtspRearPlayer.Start();
+    } 
   }
   render() {
     const { 
@@ -252,6 +259,7 @@ class ViewM1Run extends Component {
       crtl1Active, crtl1Mode, crtl1SensorType, crtl1ControlType, crtl1WfLateralSensor, crtl1WfControlMode, crtl1WfYawSensor, crtl1WfControlType,
       crtl2Active, crtl2Mode, crtl2SensorType, crtl2ControlType, crtl2WfLateralSensor, crtl2WfControlMode, crtl2WfYawSensor, crtl2WfControlType,
       chartTypeFrontLeft, chartTypeFrontRight, chartTypeRearLeft, chartTypeRearRight,
+      runDemo,
     } = this.props;
 
 
@@ -349,10 +357,10 @@ class ViewM1Run extends Component {
                 </div>
                 <video
                   id="videoLeft"
-                  // src="/video/M_Left_org.mp4"
+                  src={runDemo == 1 ? '/video/M_Left_org.mp4' : ''}
                   data-token="token1"
-                  data-h5spath="/h5swsapi"
-                  autoPlay="true"
+                  data-h5spath={runDemo == 0 ? '/h5swsapi' : ''}
+                  autoPlay={runDemo == 1 ? 'true' : 'false'}
                   /*
                   style={{
                     transform: 'rotate(180deg)'
@@ -832,13 +840,13 @@ class ViewM1Run extends Component {
                 </div>
                 <video
                   id="videoRight"
-                  // src="/video/M_Right_org.mp4"
+                  src={runDemo == 1 ? '/video/M_Right_org.mp4' : ''}
                   data-token="token2"
-                  data-h5spath="/h5swsapi"
+                  data-h5spath={runDemo == 0 ? '/h5swsapi' : ''}
                   style={{
                     // transform: 'rotate(180deg)'
                   }}
-                  autoPlay="true"
+                  autoPlay={runDemo == 1 ? 'true' : 'false'}
                 />
               </div>
               <div className="panelTitle">
@@ -881,6 +889,7 @@ function mapStateToProps(state){
       crtl2WfControlMode: state.setM2SetupButtons.crtl2WfControlMode, 
       crtl2WfYawSensor: state.setM2SetupButtons.crtl2WfYawSensor, 
       crtl2WfControlType: state.setM2SetupButtons.crtl2WfControlType,
+      runDemo: state.setM2SetupButtons.runDemo,
 
       chartTypeFrontLeft: state.setM2SetupButtons.chartTypeFrontLeft,
       chartTypeFrontRight: state.setM2SetupButtons.chartTypeFrontRight,

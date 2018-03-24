@@ -258,6 +258,8 @@ export const setRearWheelsetHscData = (data) => {
 }
 
 // ITC RUN - control buttons ------------------------------------------------------------------------------------------------------
+export const SET_RUN_DEMO = 'SET_RUN_DEMO';
+
 export const SET_CRTL_1_ACTIVE = 'SET_CRTL_1_ACTIVE';
 export const SET_CRTL_1_MODE = 'SET_CRTL_1_MODE';
 export const SET_CRTL_1_SENSOR_TYPE = 'SET_CRTL_1_SENSOR_TYPE';
@@ -276,6 +278,12 @@ export const SET_CRTL_2_WF_CONTROL_MODE = 'SET_CRTL_2_WF_CONTROL_MODE';
 export const SET_CRTL_2_WF_YAW_SENSOR = 'SET_CRTL_2_WF_YAW_SENSOR';
 export const SET_CRTL_2_WF_CONTROL_TYPE = 'SET_CRTL_2_WF_CONTROL_TYPE';
 
+export const setRunDemo = (data) => {
+  return {
+    type: SET_RUN_DEMO,
+    data
+  }
+}
 export const setCrtl1Active = (data) => {
   return {
     type: SET_CRTL_1_ACTIVE,

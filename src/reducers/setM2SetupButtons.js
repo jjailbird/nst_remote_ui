@@ -1,4 +1,5 @@
 import {
+  SET_RUN_DEMO,
   SET_CRTL_1_ACTIVE,
   SET_CRTL_1_MODE,
   SET_CRTL_1_SENSOR_TYPE,
@@ -41,10 +42,13 @@ const initialState = {
     frontLeftA1: 0, frontLeftA2: 0, frontLeftA3: 0, frontRightA1:0, frontRightA2:0, frontRightA3:0, frontGyroA: 0,
     rearLeftA1: 0, rearLeftA2: 0, rearLeftA3: 0, rearRightA1:0, rearRightA2:0, rearRightA3:0, rearGyroA: 0,
   },
+  runDemo: 0,
 }
 
 export default function setM2SetupButtons(state = initialState, action) {
   switch(action.type) {
+    case SET_RUN_DEMO:
+      return { ...state, runDemo: action.data };
     case SET_CRTL_1_ACTIVE:
       return { ...state, crtl1Active: action.data };
     case SET_CRTL_1_MODE:
