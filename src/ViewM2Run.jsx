@@ -3,8 +3,8 @@ import DriveDonutDivideLeftChart from './components/DriveDonutDivideLeftChart';
 import DriveRailroadTrail2 from './components/DriveRailroadTrail2';
 import RailDonutPanelLeft from './components/RailDonutPanelLeft'
 import RailDonutPanelRight from './components/RailDonutPanelRight'
-import RailDonutGraphLeft from './components/RailDonutGraphLeft'
-import RailDonuGraphRight from './components/RailDonutGraphRight'
+// import RailDonutGraphLeft from './components/RailDonutGraphLeft'
+// import RailDonuGraphRight from './components/RailDonutGraphRight'
 
 import KeyboardedInput from 'react-touch-screen-keyboard';
 import 'react-touch-screen-keyboard/src/Keyboard.css';
@@ -15,13 +15,13 @@ import { getHostName, sendCommandToDevice } from './utils/functions';
 import { H5SPlayVideo } from './utils/H5SPlayVideo';
 
 // import Script from 'react-load-script'
-import Websocket from 'react-websocket';
+// import Websocket from 'react-websocket';
 
 class ViewM2Run extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      testLabel: localStorage.getItem("NST_test_label") ? localStorage.getItem("NST_test_label") :'NST 01',
+      testLabel: localStorage.getItem('NST_test_label') ? localStorage.getItem('NST_test_label') :'NST 01',
     };
 
     this.hostname = getHostName();
@@ -29,9 +29,8 @@ class ViewM2Run extends Component {
     this.onTestLabelChange = this.onTestLabelChange.bind(this);
   }
   onTestLabelChange(value) {
-    // console.logconsole.log('onTestLabelChange!', value);
-    if (typeof(Storage) !== "undefined") {
-      localStorage.setItem("NST_test_label", value);
+    if (typeof(Storage) !== 'undefined') {
+      localStorage.setItem('NST_test_label', value);
       const command = {
         'SET_NST_test_label': `${value}` 
       }
@@ -40,17 +39,24 @@ class ViewM2Run extends Component {
     this.setState({ testLabel: value });
   }
   componentDidMount(){
-   
-    //console.log('HSSPlyaer start!');
-    const rtspFrontPlayer = new H5SPlayVideo('frontVideo');
-    rtspFrontPlayer.Start();
+    const { runDemo } = this.props;
+
+    const rtspFrontPlayer = new H5SPlayVideo('frontVideo');  
     const rtspRearPlayer = new H5SPlayVideo('rearVideo');
-    rtspRearPlayer.Start();
-    
+
+    if (runDemo == 0) {
+      rtspFrontPlayer.Start();
+      rtspRearPlayer.Start();
+    } else {
+      alert('demo');
+    }
+
+   
   }
   render() {
     const { 
-      driveData, driveLever, runDirection, runSwitch, driveMode
+      driveData, driveLever, runDirection, driveMode, runDemo
+      //,runSwitch
     } = this.props;
 
     let driveLeverValue = 0;
@@ -78,9 +84,9 @@ class ViewM2Run extends Component {
         break;
     }
     
-    const videoFrontSrc = runDirection == 1 ? "/video/train_view_front.mp4" : "/video/train_view_back.mp4";
-    const videoRearSrc = runDirection == 0 ? "/video/train_view_front.mp4" : "/video/train_view_back.mp4";
-    const moviePlay = runSwitch == 0 ? false : true;
+    const videoFrontSrc = runDirection == 1 ? '/video/train_view_front.mp4' : '/video/train_view_back.mp4';
+    const videoRearSrc = runDirection == 0 ? '/video/train_view_front.mp4' : '/video/train_view_back.mp4';
+    // const moviePlay = runSwitch == 0 ? false : true;
 
     return (
       <div ref={el => (this.instance = el)}>
@@ -213,15 +219,15 @@ class ViewM2Run extends Component {
               // data-token="token2"
               id={runDirection == 0 ? 'frontVideo':'rearVideo'}
               data-token={runDirection == 0 ? 'token1':'token2'}
-              data-h5spath="/h5swsapi"
-              // autoPlay={moviePlay}
+              data-h5spath={runDemo == 0 ? '/h5swsapi' : ''}
+              autoPlay={runDemo == 1 ? true: false}
               // loop
               style={{
                 width: '500px',
                 borderRadius: '50px'
               }}
             >
-              {/*<source src={videoRearSrc}></source>*/}
+              <source src={runDemo == 1 ? videoRearSrc : ''}></source> 
             </video>
           </div>
           <div className="trainViewVideo">
@@ -230,11 +236,12 @@ class ViewM2Run extends Component {
               // data-token="token1"
               id={runDirection == 1 ? 'frontVideo':'rearVideo'}
               data-token={runDirection == 1 ? 'token1':'token2'}
-              data-h5spath="/h5swsapi"
-              // autoPlay={moviePlay}
+              // data-h5spath="/h5swsapi"
+              data-h5spath={runDemo == 0 ? '/h5swsapi' : ''}
+              autoPlay={runDemo == 1 ? true: false}
               // loop
             >
-              
+              <source src={runDemo == 1 ? videoFrontSrc : ''}></source>
             </video>
           </div>
         </div>
@@ -244,7 +251,6 @@ class ViewM2Run extends Component {
 }
 
 function mapStateToProps(state){
-  // console.log('driveData', state.driveData);  
   return {
     driveData: state.driveData,
     // DIO Command =================================
@@ -253,6 +259,7 @@ function mapStateToProps(state){
     runSwitch: state.setM2SetupButtons.runSwitch,
     emergencyStop: state.setM2SetupButtons.emergencyStop,
     driveLever: state.setM2SetupButtons.driveLever,
+    runDemo: state.setM2SetupButtons.runDemo,
   }
 }
 

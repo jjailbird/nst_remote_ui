@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PanelControlButtonsLeft from './components/PanelControlButtonsLeft';
-import PanelControlButtonsRight from './components/PanelControlButtonsRight';
+// import PanelControlButtonsRight from './components/PanelControlButtonsRight';
 import ControlSwitchButtonOnOff from './components/ControlSwitchButtonOnOff';
 import ControlSwitchButtonOnOffPatch from './components/ControlSwitchButtonOnOffPatch';
 import TestSetupPanelDataContainer from './components/TestSetupPanelDataContainer';
@@ -8,7 +8,7 @@ import TestSetupPanelDataContainer1 from './components/TestSetupPanelDataContain
 import TestSetupPanelDataContainer2 from './components/TestSetupPanelDataContainer2';
 import TestSetupPanelDataContainerDonutChart from './components/TestSetupPanelDataContainerDonutChart';
 import TestSetupGaugeBar from './components/TestSetupGaugeBar';
-import DynamicLineChart2 from './components/DynamicLineChart2';
+// import DynamicLineChart2 from './components/DynamicLineChart2';
 import RunningMileage from './components/RunningMileage';
 import RailroadTrailStartStop from './components/RailroadTrailStartStop';
 
@@ -17,11 +17,13 @@ import 'react-touch-screen-keyboard/src/Keyboard.css';
 // import Keyboard from 'react-virtual-keyboard';
 import { 
   // setTestSetupData, 
-  setEmergencyStop,
+  // setEmergencyStop,
   setInvCon1, setInvCon2, setTbms, setDcDc, setApc, setInvOut1, setInvOut2, setSbms, setSinv, setCamera,
-  setPower ,setLight, setDriveMode, setRunDirection, setRunSwitch, setHydroBk, setRegenBk,
+  // setPower ,setLight, 
+  setDriveMode, setRunDirection, setRunSwitch, setHydroBk, setRegenBk,
   setPositionStart, setPositionStop, setLimitSpeedA, setRunCount, setLimitSpeedM, setShuntSpeed,
-  setMileageTotal, setMileageTest,
+  // setMileageTotal, setMileageTest,
+  setRunDemo,
 } from './actions/m2SetupActions';
 
 import { connect } from 'react-redux';
@@ -39,7 +41,7 @@ class ViewM2Setup extends Component {
       vehicleShuntSpeed: this.props.shuntSpeed,
     
     };
-    this.NST_test_label = localStorage.getItem("NST_test_label") ? localStorage.getItem("NST_test_label") : 'NST 01';
+    this.NST_test_label = localStorage.getItem('NST_test_label') ? localStorage.getItem('NST_test_label') : 'NST 01';
     this.hostname = window.location.hostname;
     this.railLength = 250;
     
@@ -121,6 +123,8 @@ class ViewM2Setup extends Component {
   onDataModeChange(value) {
     const command = getSocketCommand('RUN_DEMO', value);
     sendCommandToDevice(command);
+    const { dispatch } = this.props;
+    dispatch(setRunDemo(value));
   }
   onDriveSetup(value) {
     const command = getSocketCommand('RUN_AUTO', value);
@@ -380,7 +384,7 @@ class ViewM2Setup extends Component {
   // s05
   onDcDcChange(value) {
     //alert('s05:' + value);
-    const { tBms, dispatch } = this.props;
+    const { dispatch } = this.props;
     const command = getSocketCommand('TSO_024', value == 'on' ? 1:0);
 
     sendCommandToDevice(command);
@@ -442,7 +446,7 @@ class ViewM2Setup extends Component {
   // s07-2
   onInvOut2Change(value) {
     //alert('s07-2:' + value);
-    const { invOut1, dispatch } = this.props;
+    const { dispatch } = this.props;
     const command = getSocketCommand('TSO_027', value == 'on' ? 1:0);
 
     sendCommandToDevice(command);
@@ -462,7 +466,7 @@ class ViewM2Setup extends Component {
   // s08
   onSbmsChange(value) {
     //alert('s08:' + value);
-    const { invOut2, dispatch } = this.props;
+    const { dispatch } = this.props;
     const command = getSocketCommand('TSO_028', value == 'on' ? 1:0);
     sendCommandToDevice(command);
     dispatch( setSbms(value) );
@@ -511,7 +515,7 @@ class ViewM2Setup extends Component {
     sendCommandToDevice(command);
 
     const { dispatch } = this.props;
-    const command2 = value === "on" ? "d1" : "d0";
+    const command2 = value === 'on' ? 'd1' : 'd0';
     dispatch( setRunDirection(parseInt(command2.charAt(1))));
     //sendCommandToDevice(command);
   }
@@ -523,7 +527,7 @@ class ViewM2Setup extends Component {
     sendCommandToDevice(command);
 
     const { dispatch } = this.props;
-    const command2 = value === "on" ? "s1" : "s0";
+    const command2 = value === 'on' ? 's1' : 's0';
     dispatch(setRunSwitch(parseInt(command2.charAt(1))));
   }
 
@@ -560,7 +564,8 @@ class ViewM2Setup extends Component {
       CBmsSoc1, CBmsVolt1, SBmsSoc0, SBmsSoc1, SBmsSoc2, SBmsVolt0, SBmsVolt1, SBmsVolt2,
       
       Notch, BatterySoc, Tract, Brake, 
-      VehicleSpeed, VehiclePosition,
+      // VehicleSpeed, 
+      VehiclePosition,
       VehicleSpeedArray,
       // -----------------------------------------------------------
       // Buttons sequence ------------------------------------------
@@ -570,11 +575,11 @@ class ViewM2Setup extends Component {
       positionStart, positionStop, limitSpeedA, runCount, limitSpeedM, shuntSpeed,
       mileageTotal, mileageTest,
       // -----------------------------------------------------------
-      dispatch
+      //dispatch
     } = this.props;
     
-    const runSwitchValue = runSwitch === 0 ? "off" : "on";
-    const runDirectionValue = runDirection === 0 ? "off" : "on";
+    const runSwitchValue = runSwitch === 0 ? 'off' : 'on';
+    const runDirectionValue = runDirection === 0 ? 'off' : 'on';
     
     let sDriveModeStatus = '';
     let sDriveModeStatusColor = '#fff673';
@@ -589,7 +594,7 @@ class ViewM2Setup extends Component {
         sDriveModeStatus = 'AUTO READY';
         break;
     }
-    if (runSwitchValue === "on") {
+    if (runSwitchValue === 'on') {
       sDriveModeStatus = sDriveModeStatus.replace('READY', 'ACTIVE');
       sDriveModeStatusColor = 'red';
     }

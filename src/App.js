@@ -38,7 +38,10 @@ import {
 } from 'react-router-dom';
 import { withRouter } from 'react-router';
 
-import { getRandomInt, getRandomFloat, getHostName, sendCommandToDevice } from './utils/functions';
+import { 
+        //getRandomInt, getRandomFloat, 
+        getHostName, sendCommandToDevice 
+} from './utils/functions';
 //페이지 정리
 
 import ViewM2Main from './ViewM2Main';
@@ -127,11 +130,11 @@ class App extends Component {
     // ========================================================
  }
   componentDidMount() {
-    console.log('timer start!');
+    // console.log('timer start!');
     this.timer = setInterval(this.fetchData, 1000 / 30);
 
     const command = {
-      'NST_test_label': `${localStorage.getItem("NST_test_label")}` 
+      'NST_test_label': `${localStorage.getItem('NST_test_label')}` 
     }
     sendCommandToDevice(JSON.stringify(command));
     // For test =========================================================
@@ -157,13 +160,12 @@ class App extends Component {
     
     if(json.GET_NST_test_label) {
       const command = {
-        'NST_test_label': `${localStorage.getItem("NST_test_label")}` 
+        'NST_test_label': `${localStorage.getItem('NST_test_label')}` 
       }
       sendCommandToDevice(JSON.stringify(command));
     }
 
     if(json.TSO_010 !== undefined) {
-      console.log('json.TSO_010', json.TSO_010);
       dispatch(setPositionStart(json.TSO_010));
     }
     if(json.TSO_011 !== undefined) {

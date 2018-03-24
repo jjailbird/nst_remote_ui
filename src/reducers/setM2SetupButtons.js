@@ -6,6 +6,7 @@ import {
   SET_DRIVE_LEVER, SET_EMERGENCY_STOP,
   SET_MILEAGE_TOTAL, SET_MILEAGE_TEST,
   SET_RECORDING,
+  SET_RUN_DEMO,
 } from '../actions/m2SetupActions';
 
 const initialState = { 
@@ -16,6 +17,7 @@ const initialState = {
   driveLever: 0, emergencyStop: 1,
   mileageTotal: 0, mileageTest: 0,
   recording: false,
+  runDemo: 0,
 }
 
 export default function setM2SetupButtons(state = initialState, action) {
@@ -54,6 +56,8 @@ export default function setM2SetupButtons(state = initialState, action) {
       return { ...state, runDirection: action.data };
     case SET_RUN_SWITCH:
       return { ...state, runSwitch: action.data };
+    case SET_RUN_DEMO:
+      return { ...state, runDemo: action.data };
     case SET_POSITION_START:
       return { ...state, positionStart: action.data };
     case SET_POSITION_STOP:

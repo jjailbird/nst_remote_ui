@@ -20,6 +20,7 @@ export const SET_LIGHT = 'SET_LIGHT';
 export const SET_DRIVE_MODE = 'SET_DRIVE_MODE';
 export const SET_RUN_DIRECTION = 'SET_RUN_DIRECTION';
 export const SET_RUN_SWITCH = 'SET_RUN_SWITCH';
+export const SET_RUN_DEMO = 'SET_RUN_DEMO';
 export const SET_HYDRO_BK = 'SET_HYDRO_BK';
 export const SET_REGEN_BK = 'SET_REGEN_BK';
 
@@ -157,6 +158,13 @@ export const setRunSwitch = (data) => {
   }
 }
 
+export const setRunDemo = (data) => {
+  return {
+    type: SET_RUN_DEMO,
+    data
+  }
+}
+
 export const setHydroBk = (data) => {
   return {
     type: SET_HYDRO_BK,
@@ -226,3 +234,5 @@ export const setRecording = (data) => {
     data
   }
 }
+
+
